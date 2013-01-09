@@ -1,0 +1,1 @@
+{"google":"UA-4453587-1","note":"Don't delete this file! It's used internally to help with page regeneration.","body":"### Where in the world should I host my blog?\r\n\r\n```\r\n$ wget --mirror --page-requisites --convert-links localhost:3001\r\n```\r\n","name":"Alice, Bob, and Mallory","tagline":"metasyntactics"}
