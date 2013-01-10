@@ -4,46 +4,83 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Alice, Bob, and Mallory by jonelf</title>
+
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
+    <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/jonelf">View On GitHub</a></li>
-        </nav>
-      </div><!-- end header -->
-
     <div class="wrapper">
+      <header>
+        <h1 class="header">Alice, Bob, and Mallory</h1>
+        <p class="header">metasyntactics</p>
 
+
+
+        <ul>
+          <li><a class="buttons github" href="https://github.com/jonelf">GitHub Profile</a></li>
+        </ul>
+
+      </header>
       <section>
-        <div id="title">
-          <h1>Alice, Bob, and Mallory</h1>
-          <p>metasyntactics</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/jonelf">jonelf</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
-        </div>
-
         <h3>Where in the world should I host my blog?</h3>
 
 <pre><code>$ wget --mirror --page-requisites --convert-links localhost:3001
 </code></pre>
-      </section>
 
+<pre><code>calculateDistribution = (results) -&gt;
+  dict = {}
+  for res in results
+    prop = res.join('')
+    if dict.hasOwnProperty(prop) then dict[prop]++ else dict[prop]=1
+
+  for key, value of dict
+    console.log key+":"+value
+
+console.log "Sort by random"
+
+results = []
+
+for i in [0..60000] by 1
+  arr = ['A', 'B', 'C']
+  arr.sort -&gt;
+    0.5 - Math.random()
+  results.push(arr)
+
+calculateDistribution results
+
+# Fisher-Yates shuffle
+console.log "Fisher-Yates shuffle"
+
+fisherYates = (arr) -&gt;
+  swapFrom = arr.length
+  if swapFrom == 0 then return false
+
+  while --swapFrom
+    swapTo = Math.floor(Math.random() * (swapFrom+1))
+    [arr[swapFrom], arr[swapTo]] = [arr[swapTo], arr[swapFrom]]
+
+
+results = []
+
+for i in [0..60000] by 1
+  arr = ['A', 'B', 'C']
+  fisherYates(arr)
+  results.push(arr)
+
+calculateDistribution results
+</code></pre>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-              <script type="text/javascript">
+		          <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
