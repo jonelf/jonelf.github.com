@@ -1,0 +1,678 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Alice, Bob, and Mallory</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="xml/atom/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="xml/rss20/feed.xml" />
+  <script src="javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <div class="atomentry" id="article-9315">
+  <h2 class="title">
+    <a href="articles/2012/10/18/merge-collections-without-duplicates-in-c">Merge collections without duplicates in C#</a> 
+    
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2012-10-18T23:28:00+02:00"><span class="typo_date" title="Thu, 18 Oct 2012 21:28:00 GMT">Thu, 18 Oct 2012 21:28:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>Your task is to merge two lists of objects. The resulting collection should be without duplicates, based on a certain property on the objects.</p>
+
+<p>The lists are populated with very simple Person objects.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="index.html#n1" name="n1">1</a>
+<a href="index.html#n2" name="n2">2</a>
+<a href="index.html#n3" name="n3">3</a>
+<a href="index.html#n4" name="n4">4</a>
+<a href="index.html#n5" name="n5">5</a>
+</pre></td>
+  <td class="code"><pre>class Person
+{
+        public <span style="color:#0a5;font-weight:bold">int</span> Number { get; set; }
+        public string Name { get; set; }
+}</pre></td>
+</tr></table>
+
+<p><br>
+C# programmers often turn to LINQ, and they should! With LINQ you could end up with something like this:</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="index.html#n1" name="n1">1</a>
+<a href="index.html#n2" name="n2">2</a>
+<a href="index.html#n3" name="n3">3</a>
+</pre></td>
+  <td class="code"><pre>var merged = new List&lt;Person&gt;(list1);
+merged.AddRange(list2.Where(p2 =&gt; 
+                list1.All(p1 =&gt; p1.Number != p2.Number)));</pre></td>
+</tr></table>
+
+<p><br>
+It's not all that obvious how it works and it also has performance problems. This solution has to iterate over <code>list1</code> for every object in <code>list2</code>. Not every object every time but on average half of them (if the lists contains no duplicates within themselves). If the lists contains a 1000 objects each there's a good chance that <code>list1</code> will be iterated 500.000 times. That kind of work does not come for free.</p>
+
+<p>We need to get rid of this nested looping. I was pretty sure a dictionary based solution would do the trick.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="index.html#n1" name="n1">1</a>
+<a href="index.html#n2" name="n2">2</a>
+<a href="index.html#n3" name="n3">3</a>
+<a href="index.html#n4" name="n4">4</a>
+<a href="index.html#n5" name="n5">5</a>
+<a href="index.html#n6" name="n6">6</a>
+</pre></td>
+  <td class="code"><pre>var dict = list2.ToDictionary(p =&gt; p.Number);
+foreach (var person in list1)
+{
+        dict[person.Number] = person;
+}
+var merged = dict.Values.ToList();</pre></td>
+</tr></table>
+
+<p><br>
+This solution converts <code>list2</code> to a dictionary and then it loops a single time over <code>list1</code>. It either adds to the dictionary or replaces the value of <code>list2</code> if it was a duplicate. This seemed to be a much more efficient algorithm.</p>
+
+<p>In C# there's not just <a href="http://msdn.microsoft.com/en-us/library/xfhwa508.aspx">Dictionary&lt;TKey, TValue></a> but we also have <a href="http://msdn.microsoft.com/en-us/library/bb359438.aspx">HashSet</a>. A HashSet is a collection that contains no duplicates. It also has the <code>UnionWith</code> method and that is exactly what we are looking for. The problem is that it compares object to object and we want to compare based on a property.</p>
+
+<p>Fortunately the HashSet methods honors the default equality comparer. Such a beast could look like this.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="index.html#n1" name="n1">1</a>
+<a href="index.html#n2" name="n2">2</a>
+<a href="index.html#n3" name="n3">3</a>
+<a href="index.html#n4" name="n4">4</a>
+<a href="index.html#n5" name="n5">5</a>
+<a href="index.html#n6" name="n6">6</a>
+<a href="index.html#n7" name="n7">7</a>
+<a href="index.html#n8" name="n8">8</a>
+<a href="index.html#n9" name="n9">9</a>
+<strong><a href="index.html#n10" name="n10">10</a></strong>
+<a href="index.html#n11" name="n11">11</a>
+<a href="index.html#n12" name="n12">12</a>
+</pre></td>
+  <td class="code"><pre>class PersonComparer : IEqualityComparer&lt;Person&gt;
+{
+        public <span style="color:#0a5;font-weight:bold">bool</span> Equals(Person p1, Person p2)
+        {
+                <span style="color:#080;font-weight:bold">return</span> p1.Number == p2.Number;
+        }
+
+        public <span style="color:#0a5;font-weight:bold">int</span> GetHashCode(Person p)
+        {
+                <span style="color:#080;font-weight:bold">return</span> p.Number;
+        }
+}</pre></td>
+</tr></table>
+
+<p><br>
+Then just add it as the second parameter to the constructor.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="index.html#n1" name="n1">1</a>
+<a href="index.html#n2" name="n2">2</a>
+<a href="index.html#n3" name="n3">3</a>
+</pre></td>
+  <td class="code"><pre>var hs = new HashSet&lt;Person&gt;(list1, new PersonComparer());
+hs.UnionWith(list2);
+var merged = hs.ToList();</pre></td>
+</tr></table>
+
+<p><br>
+<img src="https://dl.dropbox.com/u/26840/union_venn_diagram.png" style="display: inline-block; float:right">
+Set theory tells us that this merging is actually  a union of the two sets (without duplicates) and   LINQ happens to have a <code>Union</code> method.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>
+</pre></td>
+  <td class="code"><pre>var merged = list1.Union(list2, new PersonComparer());</pre></td>
+</tr></table>
+
+<p><br>
+By that we've come full circle and it's time to see how the different solutions performs. I wrote a small <a href="https://gist.github.com/3916414">test program</a> that creates two lists of objects with 1000 objects in each. In each list 500 of the objects property, that we base the merge on, has the same value.</p>
+
+<pre>
+Lists and LINQ merge: 4820ms
+Dictionary merge: 16ms
+HashSet and IEqualityComparer: 20ms
+LINQ Union and IEqualityComparer: 24ms
+</pre>
+
+<p>The first solution is, in this case, 300 times slower than the fastest one! </p>
+
+<p>I prefer LINQ Union because it communicates intent very clearly.</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/c" rel="noindex, follow, tag">C#</a></li>
+    
+    <li>Meta 
+      
+      
+      <a href="articles/2012/10/18/merge-collections-without-duplicates-in-c" rel="bookmark">permalink</a>,
+      <a href="xml/rss/article/9315/feed.xml">rss</a>,    
+      <a href="xml/atom/article/9315/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-9227">
+  <h2 class="title">
+    <a href="articles/2012/09/01/asp-net-web-api">ASP.NET Web API</a> 
+    
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2012-09-01T18:05:00+02:00"><span class="typo_date" title="Sat, 01 Sep 2012 16:05:00 GMT">Sat, 01 Sep 2012 16:05:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>Here's <a href="http://plea.se/webapi">my slides</a> for a presentation on REST and ASP.NET Web API that I did.</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    
+    
+    <li>Meta 
+      
+      <a href="articles/2012/09/01/asp-net-web-api#comments">no comments</a>,
+      <a href="articles/2012/09/01/asp-net-web-api" rel="bookmark">permalink</a>,
+      <a href="xml/rss/article/9227/feed.xml">rss</a>,    
+      <a href="xml/atom/article/9227/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-6692">
+  <h2 class="title">
+    <a href="articles/2011/11/01/leif-in-clojure">Leif in Clojure</a> 
+    <span class="comment_count">2</span>
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2011-11-01T03:12:00+01:00"><span class="typo_date" title="Tue, 01 Nov 2011 02:12:00 GMT">Tue, 01 Nov 2011 02:12:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>I've been meaning to learn a functional language for years. I don't know what put me off besides the fear of parentheses and the notion that maybe, just maybe, <a href="http://www.randomhacks.net/articles/2005/12/03/why-ruby-is-an-acceptable-lisp">Ruby could be an acceptable Lisp</a>. For all I know, Ruby might be just that, but there's  one thing about Ruby that is starting to get more and more unacceptable to me. </p>
+
+<p>Ruby is actually not very well fit to take advantage of the multi-core world we are living in. The <a href="http://en.wikipedia.org/wiki/Global_Interpreter_Lock">GIL</a> and the prevalent mutable state are two big problems. As web applications go, that's often not a problem since it's almost always possible to scale without threads there. But if you want to use the full potential of your multi-core machine in a singe Ruby process/VM, you are out of luck. There are <a href="https://github.com/tarcieri/celluloid">workarounds</a> that get you somewhere and there are implementations of Ruby without a GIL (JRuby and soon Rubinius). Even without the GIL we still have the problem of having a lot of mutable state. That will, probably, make it hard to scale over multiple cores.</p>
+
+<p>A little more than a week ago I watched the presentation <a href="http://www.infoq.com/presentations/Simple-Made-Easy">Simple Made Easy by Rich Hickey</a>. It's an excellent presentation and one of the best I've seen in years. I was also aware that Hickey is the man who designed <a href="http://en.wikipedia.org/wiki/Clojure">Clojure</a>. Finally, I was able to make a choice. I chose to begin to learn <a href="http://clojure.org/">Clojure</a>.</p>
+
+<p>I'm still very early in this endeavor. Actually, still trying to decide what books I should read. Anyway, the day after I saw the presentation I downloaded <a href="https://github.com/arthuredelstein/clooj">clooj</a> (a simple IDE), read some blogs and some documentation, and started to hack on something. Just to try to get a feel for how hard this was going to be. The parentheses didn't bother me all that much, it was much harder to accept that operators are just functions and that they get no special treatment. It seems you simply have to (+ 31 11) to add 31 and 11. I think I can get over that.</p>
+
+<p>As a side note, it turns out I wrote my first Clojure program on 2011-10-24 and that happened to be the day that <a href="http://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)">John McCarthy</a>, the father of Lisp, died. Yet another of those strange coincidences that <a href="http://youarenotsosmart.com/2010/09/11/the-texas-sharpshooter-fallacy/">seems to happens more often than they should</a>.</p>
+
+<p>The program I wrote is yet another implementation of the stupid simple "algorithm" that I've got to call <a href="http://plea.se/me/Leif.html">Leif</a>. If you take <a href="http://en.wikipedia.org/wiki/Conway's_Game_of_Life">Conway's Game of Life</a>, remove the rules and replace them with randomness, you could end up with something like <a href="http://plea.se/me/leif/canvas_leif.html">Leif</a>. Quite silly, actually.</p>
+
+<p>Hopefully I will have something more interesting to tell in a couple of <strike>weeks</strike>months, after I've got some more experience with Clojure. For now, Leif will have to do. Here it is.</p>
+
+<script src="https://gist.github.com/1335248.js"> </script>
+
+<p>This is what it looks like at the beginning  </p>
+
+<p><img src="http://dl.dropbox.com/u/26840/clojure_leif_couple_of_tenths_of_a_second.png"></p>
+
+<p>and after a couple of minutes it looks like this  </p>
+
+<p><img src="http://dl.dropbox.com/u/26840/clojure_leif_couple_of_minutes_in.png">  </p>
+
+<p>One thing that surprised me is that it seems to use both of my cores even though I put no effort whatsoever in making it do so. Probably just the Java GC or something.</p>
+
+<p><img src="http://dl.dropbox.com/u/26840/clojure_leif_task_manager.png"></p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a>, <a href="http://alicebobandmallory.com/articles/category/clojure" rel="noindex, follow, tag">Clojure</a></li>
+    
+    <li>Meta 
+      
+      <a href="articles/2011/11/01/leif-in-clojure#comments">2 comments</a>,
+      <a href="articles/2011/11/01/leif-in-clojure" rel="bookmark">permalink</a>,
+      <a href="xml/rss/article/6692/feed.xml">rss</a>,    
+      <a href="xml/atom/article/6692/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-6678">
+  <h2 class="title">
+    <a href="articles/2011/10/27/inspired-by-randomness">Inspired by randomness</a> 
+    <span class="comment_count">1</span>
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2011-10-27T23:19:00+02:00"><span class="typo_date" title="Thu, 27 Oct 2011 21:19:00 GMT">Thu, 27 Oct 2011 21:19:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>Inspired by <a href="http://vanillajava.blogspot.com/2011/10/randomly-no-so-random.html">Randomly not so random</a> I decided to play around with the subject.</p>
+
+<p>Both Java and C# uses a <a href="http://en.wikipedia.org/wiki/Linear_congruential_generator">linear congruential generator</a> as their <a href="http://en.wikipedia.org/wiki/Pseudorandom_number_generator">pseudorandom number generators</a>. </p>
+
+<blockquote>
+    <p>The current implementation of the Random class is based on a modified version of Donald E. Knuth's subtractive random number generator algorithm."</p>
+</blockquote>
+
+<p>About System.Random at <a href="http://msdn.microsoft.com/en-us/library/system.random.aspx">MSDN</a>.</p>
+
+<p>I tried to find information on what values Microsoft uses for the <em>m</em>, <em>a</em>, and <em>c</em> parameters in their <a href="http://en.wikipedia.org/wiki/Linear_congruential_generator">LGC</a> implementation but I failed to do so. </p>
+
+<p>A good random number generator should have certain properties. </p>
+
+<blockquote>
+    <p>The German Federal Office for Information Security (BSI) has established four criteria for quality of deterministic random number generators. They are summarized here:<br/>
+    K1 — A sequence of random numbers with a low probability of containing identical consecutive elements.  </p>
+</blockquote>
+
+<p>From the <a href="http://en.wikipedia.org/wiki/Pseudorandom_number_generator">pseudorandom number generator</a> article on Wikipedia. Let's see what we can do about that.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="index.html#n1" name="n1">1</a>
+<a href="index.html#n2" name="n2">2</a>
+<a href="index.html#n3" name="n3">3</a>
+<a href="index.html#n4" name="n4">4</a>
+<a href="index.html#n5" name="n5">5</a>
+</pre></td>
+  <td class="code"><pre>var random = new Random(<span style="color:#00D">116793166</span>);
+<span style="color:#080;font-weight:bold">for</span> (<span style="color:#0a5;font-weight:bold">int</span> i = <span style="color:#00D">0</span>; i &lt; <span style="color:#00D">9</span>; i++)
+{
+    Console.Write(random.Next(<span style="color:#00D">10</span>) + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20"> </span><span style="color:#710">&quot;</span></span>);
+}</pre></td>
+</tr></table>
+
+<p><br/></p>
+
+<p>Outputs:</p>
+
+<pre>
+1 1 1 1 1 1 1 1 1
+</pre>
+
+<p>Did I just break the K1 criteria above? You know I didn't but you might be interested in how I found the seed number. It's easy but also quite computational intensive, that's why I used <a href="http://msdn.microsoft.com/en-us/library/system.threading.tasks.parallel.for.aspx">Parallel.For</a>.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="index.html#n1" name="n1">1</a>
+<a href="index.html#n2" name="n2">2</a>
+<a href="index.html#n3" name="n3">3</a>
+<a href="index.html#n4" name="n4">4</a>
+<a href="index.html#n5" name="n5">5</a>
+<a href="index.html#n6" name="n6">6</a>
+<a href="index.html#n7" name="n7">7</a>
+<a href="index.html#n8" name="n8">8</a>
+<a href="index.html#n9" name="n9">9</a>
+<strong><a href="index.html#n10" name="n10">10</a></strong>
+<a href="index.html#n11" name="n11">11</a>
+<a href="index.html#n12" name="n12">12</a>
+</pre></td>
+  <td class="code"><pre>Parallel.For(<span style="color:#00D">0</span>, <span style="color:#0a5;font-weight:bold">int</span>.MaxValue, i =&gt;
+{
+    var rnd = new Random(i);
+    <span style="color:#0a5;font-weight:bold">bool</span> allSame = <span style="color:#069">true</span>;
+    <span style="color:#080;font-weight:bold">for</span> (<span style="color:#0a5;font-weight:bold">int</span> j = <span style="color:#00D">0</span>; j &lt; <span style="color:#00D">9</span>; j++)
+    {
+        allSame = allSame &amp;&amp; rnd.Next(<span style="color:#00D">10</span>) == <span style="color:#00D">1</span>;
+        <span style="color:#080;font-weight:bold">if</span> (!allSame) <span style="color:#080;font-weight:bold">break</span>;
+    }
+    <span style="color:#080;font-weight:bold">if</span> (allSame)
+        Console.WriteLine(i); 
+});</pre></td>
+</tr></table>
+
+<p><br/>
+It took a couple of minutes for the number 116793166 to show up in my console.</p>
+
+<p>To keep on playing I needed a random string generator. Mine looks like this.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="index.html#n1" name="n1">1</a>
+<a href="index.html#n2" name="n2">2</a>
+<a href="index.html#n3" name="n3">3</a>
+<a href="index.html#n4" name="n4">4</a>
+<a href="index.html#n5" name="n5">5</a>
+<a href="index.html#n6" name="n6">6</a>
+<a href="index.html#n7" name="n7">7</a>
+<a href="index.html#n8" name="n8">8</a>
+<a href="index.html#n9" name="n9">9</a>
+</pre></td>
+  <td class="code"><pre>private <span style="color:#088;font-weight:bold">const</span> string _chars = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">abcdefghijklmnopqrstuvwxyz</span><span style="color:#710">&quot;</span></span>;
+
+private <span style="color:#088;font-weight:bold">static</span> string RandomString(<span style="color:#0a5;font-weight:bold">int</span> size, Random rng)
+{
+    var buffer = new <span style="color:#0a5;font-weight:bold">char</span>[size];
+    <span style="color:#080;font-weight:bold">for</span> (<span style="color:#0a5;font-weight:bold">int</span> i = <span style="color:#00D">0</span>; i &lt; size; i++)
+        buffer[i] = _chars[rng.Next(_chars.Length)];
+    <span style="color:#080;font-weight:bold">return</span> new string(buffer);
+}</pre></td>
+</tr></table>
+
+<p><br/>
+If the random generators were the same it looks like it should give the same result as <a href="http://vanillajava.blogspot.com/2011/10/randomly-no-so-random.html">the Java one</a> but <code>RandomString(5, new Random(-229985452))</code> returns <code>tfsld</code>. Either my RandomString method works different than the Java one or it's the case that Java and .NET has slightly different settings of their LGCs.</p>
+
+<p>Mathematically there's an infinite amount of inputs that results in a returned <code>hello</code>, for instance 1382472294, but here we are limited by the size of our integers.</p>
+
+<p>I found the seed 1382472294 with the following little method and loop</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="index.html#n1" name="n1">1</a>
+<a href="index.html#n2" name="n2">2</a>
+<a href="index.html#n3" name="n3">3</a>
+<a href="index.html#n4" name="n4">4</a>
+<a href="index.html#n5" name="n5">5</a>
+<a href="index.html#n6" name="n6">6</a>
+<a href="index.html#n7" name="n7">7</a>
+<a href="index.html#n8" name="n8">8</a>
+<a href="index.html#n9" name="n9">9</a>
+<strong><a href="index.html#n10" name="n10">10</a></strong>
+<a href="index.html#n11" name="n11">11</a>
+<a href="index.html#n12" name="n12">12</a>
+<a href="index.html#n13" name="n13">13</a>
+<a href="index.html#n14" name="n14">14</a>
+<a href="index.html#n15" name="n15">15</a>
+<a href="index.html#n16" name="n16">16</a>
+<a href="index.html#n17" name="n17">17</a>
+<a href="index.html#n18" name="n18">18</a>
+<a href="index.html#n19" name="n19">19</a>
+<strong><a href="index.html#n20" name="n20">20</a></strong>
+</pre></td>
+  <td class="code"><pre>private <span style="color:#088;font-weight:bold">static</span> <span style="color:#0a5;font-weight:bold">bool</span> CompareToRandomString(string str, Random rng) 
+{ 
+    <span style="color:#080;font-weight:bold">for</span> (<span style="color:#0a5;font-weight:bold">int</span> i = <span style="color:#00D">0</span>; i &lt; str.Length; i++)
+    {
+        <span style="color:#080;font-weight:bold">if</span> (_chars[rng.Next(_chars.Length)] != str[i])
+            <span style="color:#080;font-weight:bold">return</span> <span style="color:#069">false</span>;
+    }
+    <span style="color:#080;font-weight:bold">return</span> <span style="color:#069">true</span>;
+}
+
+...
+
+<span style="color:#088;font-weight:bold">const</span> string lookingFor = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">hello</span><span style="color:#710">&quot;</span></span>;
+
+Parallel.For(<span style="color:#00D">0</span>, <span style="color:#0a5;font-weight:bold">int</span>.MaxValue, i =&gt;
+{
+    var rnd = new Random(i);
+    <span style="color:#080;font-weight:bold">if</span> (CompareToRandomString(lookingFor, rnd))
+        Console.WriteLine(i);
+});</pre></td>
+</tr></table>
+
+<p><br/>
+I leave it up to you to implement a <a href="http://msdn.microsoft.com/en-us/library/dd460721.aspx">break</a> out of that loop.</p>
+
+<p><a href="http://www.ruby-doc.org/core-1.9.2/Random.html">Ruby</a> does not use a LGC but a <a href="http://en.wikipedia.org/wiki/Mersenne_twister">Mersenne twister</a> instead. It's still only pseudorandom so there's no problem finding patterns you like and being able to repeat them.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="index.html#n1" name="n1">1</a>
+<a href="index.html#n2" name="n2">2</a>
+</pre></td>
+  <td class="code"><pre>srand(<span style="color:#00D">2570940381</span>)
+<span style="color:#00D">9</span>.times { print <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">%d </span><span style="color:#710">&quot;</span></span> % rand(<span style="color:#00D">10</span>) }</pre></td>
+</tr></table>
+
+<p>Outputs:<br/>
+<code>1 2 3 4 5 6 7 8 9</code></p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="index.html#n1" name="n1">1</a>
+<a href="index.html#n2" name="n2">2</a>
+<a href="index.html#n3" name="n3">3</a>
+</pre></td>
+  <td class="code"><pre>charset=(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">a</span><span style="color:#710">'</span></span>..<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">z</span><span style="color:#710">'</span></span>).to_a
+srand(<span style="color:#00D">124931</span>)
+puts (<span style="color:#00D">0</span>...<span style="color:#00D">4</span>).map{ charset.to_a[rand(charset.size)] }.join</pre></td>
+</tr></table>
+
+<p>Outputs:<br/>
+<code>ruby</code></p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a>, <a href="http://alicebobandmallory.com/articles/category/c" rel="noindex, follow, tag">C#</a>, <a href="http://alicebobandmallory.com/articles/category/math" rel="noindex, follow, tag">Math</a>, <a href="http://alicebobandmallory.com/articles/category/java" rel="noindex, follow, tag">Java</a></li>
+    
+    <li>Meta 
+      
+      <a href="articles/2011/10/27/inspired-by-randomness#comments">1 comment</a>,
+      <a href="articles/2011/10/27/inspired-by-randomness" rel="bookmark">permalink</a>,
+      <a href="xml/rss/article/6678/feed.xml">rss</a>,    
+      <a href="xml/atom/article/6678/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-5485">
+  <h2 class="title">
+    <a href="articles/2011/04/19/sudoku-solver-in-coffeescript">Sudoku solver in CoffeeScript</a> 
+    <span class="comment_count">6</span>
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2011-04-19T15:46:00+02:00"><span class="typo_date" title="Tue, 19 Apr 2011 13:46:00 GMT">Tue, 19 Apr 2011 13:46:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p><a href="http://jashkenas.github.com/coffee-script/">CoffeeScript</a> is inspired by Ruby and Python but what's most peculiar with it is that it compiles to JavaScript. The generated JavaScript isn't all that bad and it even passes <a href="http://www.javascriptlint.com/">JavaScript lint</a> without warnings.</p>
+
+<p>"Underneath all of those embarrassing braces and semicolons, JavaScript has always had a gorgeous object model at its heart." - Jeremy Ashkenas</p>
+
+<p>About a week ago I stumbled on the very clever <a href="http://norvig.com/sudoku.html">Sudoku solver by Peter Norvig</a>. I have nothing (or at least not much) against Python but I pretty soon checked out the Ruby translations of the solver. I then <a href="https://gist.github.com/914326">refactored one</a> of the solutions to get a chance to get to know the algorithm better.</p>
+
+<p>Now that I finally <a href="http://jashkenas.github.com/coffee-script/#installation">installed CoffeeScript</a> the Sudoku solver came to mind. I dived in head first and got in trouble pretty soon. It turns out that Array Comprehensions in CoffeeScript differs some from the List Comprehensions in Python.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="index.html#n1" name="n1">1</a>
+<a href="index.html#n2" name="n2">2</a>
+<a href="index.html#n3" name="n3">3</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">cross</span>(<span style="color:#036;font-weight:bold">A</span>, <span style="color:#036;font-weight:bold">B</span>):
+       <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Cross product of elements in A and elements in B.</span><span style="color:#710">&quot;</span></span>
+       <span style="color:#080;font-weight:bold">return</span> [a+b <span style="color:#080;font-weight:bold">for</span> a <span style="color:#080;font-weight:bold">in</span> <span style="color:#036;font-weight:bold">A</span> <span style="color:#080;font-weight:bold">for</span> b <span style="color:#080;font-weight:bold">in</span> <span style="color:#036;font-weight:bold">B</span>]</pre></td>
+</tr></table>
+
+<p>returns an one-dimensional array if you call it with two arrays (or strings).</p>
+
+<p>But in CoffeeScript </p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>
+</pre></td>
+  <td class="code"><pre>cross = (<span style="color:#036;font-weight:bold">A</span>, <span style="color:#036;font-weight:bold">B</span>) -&gt; (a+b <span style="color:#080;font-weight:bold">for</span> a <span style="color:#080;font-weight:bold">in</span> <span style="color:#036;font-weight:bold">A</span> <span style="color:#080;font-weight:bold">for</span> b <span style="color:#080;font-weight:bold">in</span> <span style="color:#036;font-weight:bold">B</span>)</pre></td>
+</tr></table>
+
+<p>returns a two-dimensional array.</p>
+
+<p><a href="https://github.com/jashkenas/coffee-script/issues/1191">The jury</a> is still out on <a href="http://stackoverflow.com/questions/5685449/nested-array-comprehensions-in-coffeescript">if this is intended</a> or not but either way the <a href="http://en.wikipedia.org/wiki/List_comprehension">array  comprehensions</a> in CoffeeScript are still very useful.</p>
+
+<div style="background-color: #F0F0F0">
+<font color="red">EDIT 2011-06-02</font><br>
+It's been decided that this is by design. The issue has been closed.
+</div>
+
+<p><br>
+ For the <code>cross</code>-function I ended up with</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="index.html#n1" name="n1">1</a>
+<a href="index.html#n2" name="n2">2</a>
+<a href="index.html#n3" name="n3">3</a>
+<a href="index.html#n4" name="n4">4</a>
+<a href="index.html#n5" name="n5">5</a>
+<a href="index.html#n6" name="n6">6</a>
+</pre></td>
+  <td class="code"><pre>cross = (<span style="color:#036;font-weight:bold">A</span>, <span style="color:#036;font-weight:bold">B</span>) -&gt;
+  results = []
+  <span style="color:#080;font-weight:bold">for</span> a <span style="color:#080;font-weight:bold">in</span> <span style="color:#036;font-weight:bold">A</span>
+    <span style="color:#080;font-weight:bold">for</span> b <span style="color:#080;font-weight:bold">in</span> <span style="color:#036;font-weight:bold">B</span>
+      results.push a + b
+  results</pre></td>
+</tr></table>
+
+<p><br/></p>
+
+<div style="background-color: #F0F0F0">
+<font color="red">EDIT 2011-06-02</font><br>
+Using `map` I could have got much closer to the Ruby version.
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="index.html#n1" name="n1">1</a>
+<a href="index.html#n2" name="n2">2</a>
+</pre></td>
+  <td class="code"><pre>cross = (cols, rows) -&gt;
+  [].concat (cols.map (x) -&gt; rows.map (y) -&gt; y+x)...</pre></td>
+</tr></table>
+
+I'm still more of a map/reduce guy than a list comprehension ninja.
+</div>
+
+<p><br><br>
+You can find the <a href="https://gist.github.com/927782">CoffeScript Sudoku solver as a Gist</a>. <strike>Compile it with<br/>
+<code>coffee -c sudoku.coffee</code><br/>
+and then run it with<br/>
+<code>node sudoku.js</code></strike></p>
+
+<p>I don't know how I missed it but as Trevor pointed out below all you have to do is<br/>
+<code>coffee sudoku.coffee</code></p>
+
+<pre>
+    1 2 3 4 5 6 7 8 9
+  |------+-----+-----|
+A | 4 8 3|9 2 1|6 5 7|
+B | 9 6 7|3 4 5|8 2 1|
+C | 2 5 1|8 7 6|4 9 3|
+  |------+-----+-----|
+D | 5 4 8|1 3 2|9 7 6|
+E | 7 2 9|5 6 4|1 3 8|
+F | 1 3 6|7 9 8|2 4 5|
+  |------+-----+-----|
+G | 3 7 2|6 8 9|5 1 4|
+H | 8 1 4|2 5 3|7 6 9|
+I | 6 9 5|4 1 7|3 8 2|
+  |------+-----+-----|
+</pre>
+
+<p><a href="sudoku.js.html">Here's</a> the generated <a href="sudoku.js.html">sudoku.js</a>.</p>
+
+<p>This is the only CoffeeScript I've ever written but I already like it (more than JavaScript). Please correct me if I strayed from the CoffeeScript way. </p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a>, <a href="http://alicebobandmallory.com/articles/category/javascript" rel="noindex, follow, tag">JavaScript</a></li>
+    
+    <li>Meta 
+      
+      <a href="articles/2011/04/19/sudoku-solver-in-coffeescript#comments">6 comments</a>,
+      <a href="articles/2011/04/19/sudoku-solver-in-coffeescript" rel="bookmark">permalink</a>,
+      <a href="xml/rss/article/5485/feed.xml">rss</a>,    
+      <a href="xml/atom/article/5485/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+
+
+<p class="pagination">Older posts: 1 <a href="articles/page/2">2</a> <a href="articles/page/3">3</a>  ... <a href="articles/page/12">12</a></p>
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="pages/AboutMe">About me</a>/<a href="pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

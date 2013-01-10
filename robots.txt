@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin
+Disallow: /articles/nuke_comment/
+Disallow: /articles/category/
+Sitemap: http://alicebobandmallory.com/sitemap.xml

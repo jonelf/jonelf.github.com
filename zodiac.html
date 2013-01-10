@@ -1,0 +1,90 @@
+<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>zodiac.rb</title>
+<meta name="GENERATOR" content="SciTE - www.Scintilla.org" />
+<style type="text/css">
+.S0 {
+	color: #808080;
+	background: #FFFFFF;
+}
+.S2 {
+	font-style: italic;
+	font-family: 'Comic Sans MS';
+	color: #007F00;
+	background: #FFFFFF;
+	font-size: 9pt;
+}
+.S4 {
+	color: #007F7F;
+	background: #FFFFFF;
+}
+.S5 {
+	font-weight: bold;
+	color: #00007F;
+	background: #FFFFFF;
+}
+.S6 {
+	font-family: 'Lucida Console';
+	color: #7F007F;
+	background: #FFFFFF;
+	font-size: 9pt;
+}
+.S10 {
+	font-weight: bold;
+	color: #000000;
+	background: #FFFFFF;
+}
+span {
+	font-family: 'Lucida Sans Unicode';
+	color: #000000;
+	background: #FFFFFF;
+	font-size: 10pt;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<span><span class="S2"># The Zodiac Killer 340 cipher</span><br />
+<span class="S2"># Character frequency</span><br />
+<span class="S2"># By jonelf¤gmail.com</span><br />
+<span class="S2"># Background: http://www.re-quest.net/mystery/zodiac/index.htm</span><br />
+<span class="S2"># Thanks to Chris McCarthy</span><br />
+<span class="S2"># http://www.dtm.ciw.edu/chris/z/</span><br />
+<span class="S2"># &nbsp;&nbsp;http://www.dtm.ciw.edu/chris/z/340.ascii</span><br />
+<span class="S2"># &nbsp;&nbsp;http://www.dtm.ciw.edu/chris/z/strange.char.txt</span><br />
+<br />
+<span class="S2"># Ruby - http://www.ruby-lang.org/</span><br />
+<br />
+crypto<span class="S10">=</span><span class="S6">"HER&gt;pl^VPkI1LTG2dNp+B(#O%DWY.&lt;\Kf)By:cM+UZGW()L#zHJSpp7^l8\V3pO++RK2_9M+ztjdI5FP+&amp;4k/p8R^FlO-\dCkF&gt;2D(#5+Kq%;2UcXGV.zLI(G2Jfj#O+_NYz+@L9d&lt;M+b+ZR2FBcyA64K-zlUV+^J+Op7&lt;FBy-U+R/5tEIDYBpbTMKO2&lt;clRjI\5T5M.+&amp;BFz69Sy#+NI5FBc(;8RlGFN^f525b.cV5t++yBX1\:49CE&gt;VUZ5-+Ic.3zBK(Op^.fMqG2RcT+L52C&lt;+FlWBI)L++)WCzWcPOSHT/()pIFkdW&lt;7tB_YOB\-Cc&gt;MDHNpkSzZO8AIK;+"</span><br />
+ca<span class="S10">=</span>crypto<span class="S10">.</span>split<span class="S10">(</span><span class="S6">""</span><span class="S10">)</span><br />
+<br />
+csorted<span class="S10">=</span>ca<span class="S10">.</span>sort<br />
+<br />
+before<span class="S10">=</span><span class="S6">""</span><br />
+i<span class="S10">=</span><span class="S4">0</span><br />
+frt<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>Array<span class="S10">.</span>new<br />
+<br />
+<span class="S2"># Get character frequence</span><br />
+<span class="S5">for</span><span class="S0"> </span>ch<span class="S0"> </span><span class="S5">in</span><span class="S0"> </span>csorted<span class="S0"> &nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span>i<span class="S10">+=</span><span class="S4">1</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S0"> </span>before!<span class="S10">=</span>ch<span class="S0"> </span><span class="S5">then</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>frt<span class="S0"> </span><span class="S10">&lt;&lt;</span><span class="S0"> </span><span class="S10">[</span>ch<span class="S10">,</span><span class="S0"> </span>i<span class="S10">]</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S2"># puts ch + ", "+ i.to_s</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>i<span class="S10">=</span><span class="S4">0</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">end</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span>before<span class="S10">=</span>ch<br />
+<span class="S5">end</span><br />
+<br />
+<span class="S2"># Sort the array on frequence</span><br />
+sfrt<span class="S10">=</span>frt<span class="S10">.</span>sort<span class="S0"> </span><span class="S10">{|</span>x<span class="S10">,</span>y<span class="S10">|</span><span class="S0"> </span>y<span class="S10">[</span><span class="S4">1</span><span class="S10">]&lt;=&gt;</span>x<span class="S10">[</span><span class="S4">1</span><span class="S10">]}</span><br />
+<br />
+puts<span class="S0"> </span><span class="S6">"Crypto length:"</span><span class="S0"> </span><span class="S10">+</span><span class="S0"> </span>ca<span class="S10">.</span>length<span class="S10">.</span>to_s<br />
+puts<span class="S0"> </span><span class="S6">"Unique chars: "</span><span class="S0"> </span><span class="S10">+</span><span class="S0"> </span>ca<span class="S10">.</span>uniq<span class="S10">.</span>length<span class="S10">.</span>to_s<br />
+puts<br />
+<br />
+<span class="S5">for</span><span class="S0"> </span>ch<span class="S0"> </span><span class="S5">in</span><span class="S0"> </span>sfrt<br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span>puts<span class="S0"> </span>ch<span class="S10">[</span><span class="S4">1</span><span class="S10">].</span>to_s<span class="S0"> </span><span class="S10">+</span><span class="S0"> </span><span class="S6">", "</span><span class="S0"> </span><span class="S10">+</span><span class="S0"> </span>ch<span class="S10">[</span><span class="S4">0</span><span class="S10">]</span><br />
+<span class="S5">end</span><br />
+<span class="S0"></span></span>
+</body>
+</html>
