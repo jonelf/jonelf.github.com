@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Man in the browser</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../../../xml/atom/article/1736/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../../xml/rss20/article/1736/feed.xml" />
+  <script src="../../../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+       xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+       xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about=""
+    dc:title="Man in the browser"
+    dc:identifier="http://alicebobandmallory.com/articles/2007/11/26/man-in-the-browser"
+    dc:description="There's some buzz about a new trojan technique called &quot;Man in the browser&quot;. The trojan plugs itself into the users browser and then it intercepts the HTML. This h"
+    dc:creator="jonelf"
+    dc:date="2007-12-05T00:00:41+01:00" />
+</rdf:RDF>
+-->
+
+<div class="post" onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_article'); }"  onmouseout="Element.hide('admin_article');" >
+  <a href="http://alicebobandmallory.com/admin/content/edit/1736" class="admintools" id="admin_article" style="display: none">edit</a>
+  <h2>Man in the browser</h2>
+  <p class="auth">Posted by Jonas Elfström
+  <span class="typo_date" title="Mon, 26 Nov 2007 20:40:00 GMT">Mon, 26 Nov 2007 20:40:00 GMT</span></p>
+  <p>There's some buzz about a new trojan technique called <a href="http://www.f-secure.com/f-secure/pressroom/news/fs_news_20071122_1_eng.html">"Man in the browser"</a>.  The trojan plugs itself into the users browser and then it intercepts the HTML. This have all sorts of implications, for instance the SSL certificate will seem to be valid. </p>
+
+<p>Even if your virus protection does not detect the "Man in the browser" there are still ways to be quite safe. If your bank uses a security token which you not only logs in with but also use to sign your transactions, the attack will most likely fail. One problem is that it is up to you, the user, to actually verify that you are signing the expected amount to the expected accounts. To get protection against someone who has complete control over your computer the security protocol must "communicate" with the security token both ways. </p>
+
+<p>It is not enough to only let the user enter the total value of the transactions because the tokens answer to such a simple value could be reused (during a short period of time) also the attack could be crafted to create the correct amount but to other accounts. By asking the user to also sign every new account the attacker will not be able to hide a transaction to his account.</p>
+
+<p>The challenge is to make the security protocol clear and <a href="../../03/27/secure-and-simple-security-tokens-needed">simple</a> enough so that the user can understand what he would expect the bank to respond and expect from him.</p>
+
+<p>It's the usual three: have a firewall, an updated virus protection and a secure bank with a <a href="http://en.wikipedia.org/wiki/Security_token#Digital_signatures">digital security token</a> were you sign your transactions and maybe you can sleep a little better.</p>
+</div>
+<p class="meta">
+  Posted in <a href="http://alicebobandmallory.com/articles/category/security" rel="noindex, follow, tag">Security</a>&nbsp;<strong>|</strong>&nbsp;<a href="man-in-the-browser#comments">1 comment</a>
+</p>
+
+  <a name="comments"></a><h4 class="blueblk">Comments</h4>
+    <p class="postmetadata alt">
+      <small><a href="man-in-the-browser#respond">Comments closed</a></small>
+    </p>
+  <ol class="comment-list" id="commentList">
+  
+    <ol id="comments" class="comments">
+  	<li class="comment" id="comment-3677">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2009-10-01T21:35:06+02:00"><span class="typo_date" title="Thu, 01 Oct 2009 19:35:06 GMT">Thu, 01 Oct 2009 19:35:06 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>MITB is not dead. <a href="https://financialcryptography.com/mt/archives/001190.html">https://financialcryptography.com/mt/archives/001190.html</a></p>
+	  </div>
+	</li>
+	</ol>
+
+  
+  </ol>
+
+
+<p class="postmetadata alt">
+  <small>
+  <a href="../../../../xml/rss20/article/1736/feed.xml" title="RSS Feed">RSS feed for this post</a>
+  </small>
+</p>
+
+
+<p>Comments are closed</p>
+<!--
+  <p>Comments are disabled</p>
+-->
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../../../pages/AboutMe">About me</a>/<a href="../../../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

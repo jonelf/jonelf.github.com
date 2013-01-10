@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Scary tools</title>
+    <link>http://alicebobandmallory.com/articles/2007/12/12/scary-tools</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Scary tools</title>
+      <description>&lt;p&gt;I recently attended a session held by &lt;a href="http://truesecurity.se/blogs/murray/"&gt;Marcus Murray&lt;/a&gt;. It seems it was kind of a compressed version of the &lt;a href="http://truesecurity.se/blogs/murray/archive/2007/06/05/session-notes-sec-310-why-i-can-hack-your-network-in-a-day-teched-us-2007-part-1.aspx#comments"&gt;session&lt;/a&gt; he held at TechEd earlier this year. Murray is witty, charismatic and has a broad and deep understanding of IT-security issues. He cracks jokes and practices a little social engineering to keep the audience attentive.
+If you and your IT-staff wants to be briefed (and scared) with the latest in IT-security I could easily recommend Murray.&lt;/p&gt;
+
+&lt;p&gt;He demonstrated a couple of tools that both impressed and scared me. First he demonstrated how to set up a mail based attack using the commercial &lt;a href="http://www.coresecurity.com/?module=ContentMod&amp;amp;action=item&amp;amp;id=32"&gt;Core IMPACT&lt;/a&gt;. It's a very impressive tool and mail based attacks are only one out of many attacks this software has the ability to execute. Before seeing this I could never have guessed there are tools this advanced and this easy to use. The lists of exploits it can test, in an all automated fashion, were long and seemed to be up to date.&lt;/p&gt;
+
+&lt;p&gt;Murray also demonstrated &lt;a href="http://www.grc.com/nat/arp.htm"&gt;ARP poisoning&lt;/a&gt; and hijacking of a RDP session by using the free &lt;a href="http://www.oxid.it/index.html"&gt;Cain &amp;amp; Abel &lt;/a&gt; tool. You could feel the discomfort in the air as it dawned on the audience how easy this is to set up.&lt;/p&gt;</description>
+      <pubDate>Wed, 12 Dec 2007 17:15:00 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:a8894523-e498-4a14-9ea2-45acb0672dbf</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2007/12/12/scary-tools</link>
+      <category>Security</category>
+    </item>
+  </channel>
+</rss>

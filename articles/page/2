@@ -1,0 +1,853 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Alice, Bob, and Mallory</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../xml/atom/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../xml/rss20/feed.xml" />
+  <script src="../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <div class="atomentry" id="article-5276">
+  <h2 class="title">
+    <a href="../2011/03/21/how-to-test-ie9-if-you-run-windows-xp">How to test IE9 if you run Windows XP</a> 
+    <span class="comment_count">12</span>
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2011-03-21T22:20:00+01:00"><span class="typo_date" title="Mon, 21 Mar 2011 21:20:00 GMT">Mon, 21 Mar 2011 21:20:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p><font color="red">Edit 2012-01-05</font><br/>
+A couple of weeks ago Microsoft finally released <a href="http://www.microsoft.com/download/en/details.aspx?id=11575">Internet Explorer Application Compatibility VPC Images for IE9</a>.<br/>
+Because of this, the below procedure is not necessary anymore.</p>
+
+<p>There's one quite strange thing with these images. The Win7+IE8 image is about 2.6GB but the Win7+IE9 is 4.3GB! There's some extra tools in the IE9 one but they certainly do not add up to the 1.7GB size difference. I've had reports of people successfully downloading the Win7+IE8 and then upgrading to IE9. That could be an option if you want to save some download time and disk space.</p>
+
+<p><strike>
+I'm currently at a company still running Windows XP. Last week Internet Explorer 9 was released and it <a href="http://en.wikipedia.org/wiki/Internet_Explorer_9">requires</a> at least Windows Vista. That requirement was a problem because we absolutely had to test our web applications in IE9. Microsoft had released Internet Explorer Application Compatibility VPC Images for earlier versions of IE but not for <a href="http://windows.microsoft.com/en-US/internet-explorer/downloads/ie-9/worldwide-languages">IE9</a>. At least they still offer a VPC running Vista and that was the path we took to solve our testing problems. If you know of an easier way then please tell!</p>
+
+<ul>
+<li><a href="http://www.microsoft.com/windows/virtual-pc/download.aspx">Download</a> and install  Virtual PC.<br/>
+<font color="red">Edit 2011-09-25</font> It seems Microsoft has changed the download page. You can get <a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx">Virtual PC 2007</a> for older versions of Windows <a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx">here</a>.</li>
+<li><a href="http://www.microsoft.com/downloads/en/details.aspx?FamilyID=21eabb90-958f-4b64-b5f1-73d0a413c8ef&amp;displaylang=en">Download</a> and run/unpack  the IE8-VIS VHD.</li>
+<li>Create a new virtual machine and select the VHD as the harddisk.</li>
+<li>In the virtual machine then <a href="http://www.microsoft.com/windows/virtual-pc/download.aspx">download</a> and install Vista SP2.</li>
+<li>Finally, obviously still in the VPC, <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home">download</a> IE9.
+</strike></li>
+</ul>
+
+      
+  </div>
+
+  <ul class="meta">
+    
+    
+    <li>Meta 
+      
+      
+      <a href="../2011/03/21/how-to-test-ie9-if-you-run-windows-xp" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/5276/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/5276/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-5205">
+  <h2 class="title">
+    <a href="../2011/01/01/lazy-evaluation-is-no-friend-of-mutable-state">Lazy evaluation is no friend of mutable state</a> 
+    <span class="comment_count">1</span>
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2011-01-01T17:08:00+01:00"><span class="typo_date" title="Sat, 01 Jan 2011 16:08:00 GMT">Sat, 01 Jan 2011 16:08:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>A couple of days ago I accidentally landed on <a href="http://www.cs.nyu.edu/~vs667/articles/mergesort/">a page</a> about implementing <a href="http://en.wikipedia.org/wiki/Merge_sort">merge sort</a> in C#.  I thought it would be a nice exercise to try to <a href="http://stackoverflow.com/questions/4545090/listt-and-ienumerable-difference">implement that</a> as a generic method and so I did. <a href="http://www.sorting-algorithms.com/merge-sort"><img title="merge sort" src="http://www.sorting-algorithms.com/animation/40/random-initial-order/merge-sort.gif" style="display: inline-block; float:right" border="0"></a> </p>
+
+<p>I also wanted to learn more about the characteristics of <a href="http://msdn.microsoft.com/en-us/library/9eekhta0.aspx">IEnumerable</a> so I used <code>IEnumerable&lt;T&gt;</code> instead of <code>List&lt;T&gt;</code>. That choice got me in trouble and I opted for help on <a href="http://www.stackoverflow.com/">Stack Overflow</a>.</p>
+
+<p>People said it was sorting correctly but <a href="http://stackoverflow.com/questions/4545090/listt-and-ienumerable-difference/4545170#4545170">Jon Skeet also asked if I tested it correctly</a> and that I did not. I digged deeper into the problem and extended the question on SO. I had a hunch that it was the mutable state of <code>List&lt;T&gt;</code> and the lazy evaluation of <code>IEnumerable</code> that was the problem but I couldn't quite figure out how. </p>
+
+<p>Along came <a href="http://stackoverflow.com/users/7586/kobi">Kobi</a> and <a href="http://stackoverflow.com/questions/4545090/listt-and-ienumerable-difference/4565811#4565811">his answer</a> finally made me understand why a <code>.Sort()</code> of the list messed up the result of my sorting. </p>
+
+<p>I then changed the implementation to be fully lazy evaluated and now it looks like this.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="2#n1" name="n1">1</a>
+<a href="2#n2" name="n2">2</a>
+<a href="2#n3" name="n3">3</a>
+<a href="2#n4" name="n4">4</a>
+<a href="2#n5" name="n5">5</a>
+<a href="2#n6" name="n6">6</a>
+<a href="2#n7" name="n7">7</a>
+<a href="2#n8" name="n8">8</a>
+<a href="2#n9" name="n9">9</a>
+<strong><a href="2#n10" name="n10">10</a></strong>
+<a href="2#n11" name="n11">11</a>
+<a href="2#n12" name="n12">12</a>
+<a href="2#n13" name="n13">13</a>
+<a href="2#n14" name="n14">14</a>
+<a href="2#n15" name="n15">15</a>
+<a href="2#n16" name="n16">16</a>
+<a href="2#n17" name="n17">17</a>
+<a href="2#n18" name="n18">18</a>
+<a href="2#n19" name="n19">19</a>
+<strong><a href="2#n20" name="n20">20</a></strong>
+<a href="2#n21" name="n21">21</a>
+<a href="2#n22" name="n22">22</a>
+<a href="2#n23" name="n23">23</a>
+<a href="2#n24" name="n24">24</a>
+<a href="2#n25" name="n25">25</a>
+<a href="2#n26" name="n26">26</a>
+<a href="2#n27" name="n27">27</a>
+<a href="2#n28" name="n28">28</a>
+<a href="2#n29" name="n29">29</a>
+<strong><a href="2#n30" name="n30">30</a></strong>
+<a href="2#n31" name="n31">31</a>
+<a href="2#n32" name="n32">32</a>
+<a href="2#n33" name="n33">33</a>
+</pre></td>
+  <td class="code"><pre>public class MergeSort&lt;T&gt;
+{
+    public IEnumerable&lt;T&gt; Sort(IEnumerable&lt;T&gt; arr)
+    {
+        <span style="color:#080;font-weight:bold">if</span> (arr.Count() &lt;= <span style="color:#00D">1</span>) <span style="color:#080;font-weight:bold">return</span> arr;
+
+        <span style="color:#0a5;font-weight:bold">int</span> middle = arr.Count() / <span style="color:#00D">2</span>;
+        var left = arr.Take(middle);
+        var right = arr.Skip(middle);
+        <span style="color:#080;font-weight:bold">return</span> Merge(Sort(left), Sort(right));
+    }
+
+    private <span style="color:#088;font-weight:bold">static</span> IEnumerable&lt;T&gt; Merge(IEnumerable&lt;T&gt; left, IEnumerable&lt;T&gt; right)
+    {
+        IEnumerable&lt;T&gt; arrSorted = Enumerable.Empty&lt;T&gt;();
+
+        <span style="color:#080;font-weight:bold">while</span> (left.Count() &gt; <span style="color:#00D">0</span> &amp;&amp; right.Count() &gt; <span style="color:#00D">0</span>)
+        {
+            <span style="color:#080;font-weight:bold">if</span> (Comparer&lt;T&gt;.Default.Compare(left.First(), right.First()) &lt; <span style="color:#00D">0</span>)
+            {
+                arrSorted=arrSorted.Concat(left.Take(<span style="color:#00D">1</span>));
+                left = left.Skip(<span style="color:#00D">1</span>);
+            }
+            <span style="color:#080;font-weight:bold">else</span>
+            {
+                arrSorted=arrSorted.Concat(right.Take(<span style="color:#00D">1</span>));
+                right = right.Skip(<span style="color:#00D">1</span>);
+            }
+        }
+
+        <span style="color:#080;font-weight:bold">return</span> arrSorted.Concat(left).Concat(right);
+    }
+}</pre></td>
+</tr></table>
+
+<p><br>
+Please be aware that this is but an exercise and not very efficient.</p>
+
+<p>Now to the problems that you can encounter with the above and an explanation to the title of the post. Let's MergeSort a simple <code>List&lt;int&gt;</code> followed by a  call to the built-in <code>.Sort()</code> on <code>List&lt;T&gt;</code>.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="2#n1" name="n1">1</a>
+<a href="2#n2" name="n2">2</a>
+<a href="2#n3" name="n3">3</a>
+<a href="2#n4" name="n4">4</a>
+<a href="2#n5" name="n5">5</a>
+<a href="2#n6" name="n6">6</a>
+</pre></td>
+  <td class="code"><pre>var ints = new List&lt;<span style="color:#0a5;font-weight:bold">int</span>&gt; { <span style="color:#00D">2</span>, <span style="color:#00D">3</span>, <span style="color:#00D">1</span> };
+var mergeSortInt = new MergeSort&lt;<span style="color:#0a5;font-weight:bold">int</span>&gt;();
+var sortedInts = mergeSortInt.Sort(ints);
+<span style="color:#777">// sortedInts.ToList() is {1, 2, 3}</span>
+ints.Sort();
+<span style="color:#777">// sortedInts.ToList() is {3, 1, 2}</span></pre></td>
+</tr></table>
+
+<p><br>
+So what's going on here? As far as I can tell it's something like this. <code>sortedInts</code> isn't evaluated until the first call to <code>MoveNext()</code> (or <code>Tolist()</code> or any of those). Before that it only has lazy pointers to the original enumerable values. <code>ints.Sort()</code> messes up the beauty of lazy evaluation by changing the underlying data structure. It can do that because <code>List&lt;T&gt;</code> is mutable (writeable).</p>
+
+<p>But why {3, 1, 2}  after <code>ints.Sort()</code>?   The original sequence was { 2, 3, 1} and that is what the MergeSort sorted, not by creating a new sequence but only by lazy pointers. </p>
+
+<p>At first the MergeSort sorts like this </p>
+
+<p><img title="diagram before .Sort()" src="http://dl.dropbox.com/u/26840/beforeSort.png" border="0"/></p>
+
+<p>but after the source list has been sorted/changed it will do this
+<img title="diagram after .Sort()" src="http://dl.dropbox.com/u/26840/afterSort.png" border="0"/></p>
+
+<p>What can you do to stop this to happening to you? The boring way is to never use lazy evaluation but that is kind of hard if you happen to use <a href="http://en.wikipedia.org/wiki/Language_Integrated_Query">LINQ</a> (and you should, it's great). Another way is to use immutable data structures and that is how functional languages tackles this problem. In C# we have the <a href="http://msdn.microsoft.com/en-us/library/ms132474.aspx">ReadOnlyCollection<T></a> and it obviously has no <code>Sort()</code> method. </p>
+
+<p>A nice feature of the MergeSort above is that it has no problems with an immutable collection.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="2#n1" name="n1">1</a>
+<a href="2#n2" name="n2">2</a>
+<a href="2#n3" name="n3">3</a>
+<a href="2#n4" name="n4">4</a>
+<a href="2#n5" name="n5">5</a>
+</pre></td>
+  <td class="code"><pre>var rints = new ReadOnlyCollection&lt;<span style="color:#0a5;font-weight:bold">int</span>&gt;(ints);
+var sortedRints = mergeSortInt.Sort(rints);
+<span style="color:#777">// sortedRints.ToList() is {1, 2, 3}</span>
+ints.Sort();
+<span style="color:#777">// sortedRints.ToList() is {3, 1, 2}</span></pre></td>
+</tr></table>
+
+<p><br>
+What?! How could an immutable collection get messed up like this? It turns out that <code>ReadOnlyCollection&lt;T&gt;</code> is only <a href="http://blogs.msdn.com/b/jaredpar/archive/2008/04/22/api-design-readonlycollection-t.aspx">a facade for mutable collections</a> and that is what bit us here. You have to pass a copy of the list. Example follows.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="2#n1" name="n1">1</a>
+<a href="2#n2" name="n2">2</a>
+<a href="2#n3" name="n3">3</a>
+</pre></td>
+  <td class="code"><pre>var rints = new ReadOnlyCollection&lt;<span style="color:#0a5;font-weight:bold">int</span>&gt;(new List&lt;<span style="color:#0a5;font-weight:bold">int</span>&gt;(ints));
+var sortedRints = mergeSortInt.Sort(rints);
+ints.Sort();</pre></td>
+</tr></table>
+
+<p><br>
+That also works for <code>List&lt;T&gt;</code>.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="2#n1" name="n1">1</a>
+<a href="2#n2" name="n2">2</a>
+<a href="2#n3" name="n3">3</a>
+<a href="2#n4" name="n4">4</a>
+<a href="2#n5" name="n5">5</a>
+<a href="2#n6" name="n6">6</a>
+</pre></td>
+  <td class="code"><pre>var ints = new List&lt;<span style="color:#0a5;font-weight:bold">int</span>&gt; { <span style="color:#00D">2</span>, <span style="color:#00D">3</span>, <span style="color:#00D">1</span> };
+var mergeSortInt = new MergeSort&lt;<span style="color:#0a5;font-weight:bold">int</span>&gt;();
+var sortedInts = mergeSortInt.Sort(new List&lt;<span style="color:#0a5;font-weight:bold">int</span>&gt;(ints));
+<span style="color:#777">// sortedInts.ToList() is {1, 2, 3}</span>
+ints.Sort();
+<span style="color:#777">// sortedInts.ToList() is {1, 2, 3}</span></pre></td>
+</tr></table>
+
+<p><br></p>
+
+<p>Finally I would like to send a big thank you to <a href="https://twitter.com/Kobi">Kobi</a> for sorting out my problems with the original solution.</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/c" rel="noindex, follow, tag">C#</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2011/01/01/lazy-evaluation-is-no-friend-of-mutable-state#comments">1 comment</a>,
+      <a href="../2011/01/01/lazy-evaluation-is-no-friend-of-mutable-state" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/5205/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/5205/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-4404">
+  <h2 class="title">
+    <a href="../2010/10/24/a-strict-directed-graph">A strict directed graph</a> 
+    
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2010-10-24T00:39:00+02:00"><span class="typo_date" title="Sat, 23 Oct 2010 22:39:00 GMT">Sat, 23 Oct 2010 22:39:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>Recently N. asked a question on a list that made my geek-senses tingle. He had a test with 12 levels of questions. The testee should answer 10 questions. If a question was answered correctly the level would go up and if it was not correct it would go down. If a level 12 was answered correctly, another level 12 would be asked and vice versa. The first question would be a level 6. N. wanted to know how many questions of each level he needed.</p>
+
+<p>Pretty soon he got a correct answer and several wrong. One of the incorrect answers was, and I don't like to admit this, provided by me. I took the recursive route (which I very seldom do) and then tried to present the result in ASCII. I failed. The result from the algorithm in itself was correct but the presentation was simplified so much it failed to deliver the correct answer. Here it is:<pre>
+             06
+            05 07
+          04 06 08
+         03 05 07 09
+       02 04 06 08 10
+      01 03 05 07 09 11
+    01 02 04 06 08 10 12
+   01 02 03 05 07 09 11 12
+ 01 02 03 04 06 08 10 11 12
+01 02 03 04 05 07 09 10 11 12
+</pre></p>
+
+<p>The problem is that this result can be read as if the testee could get two level 2 questions in a row but the rules forbids that.</p>
+
+<p><a href="http://kafka.mine.nu/g.png" target="_blank"><img title="Click to show full size." src="http://kafka.mine.nu/me/pics/RootedBinaryDirectedAcyclicGraph.png" style="display: inline-block; float:right" border="0"/></a></p>
+
+<p>Then I remembered reading about <a href="http://www.graphviz.org/">Graphviz</a> and especially <a href="http://github.com/glejeune/Ruby-Graphviz/">Ruby-Graphviz</a>. That's what I used to generate the graph to the right. The graph itself is nothing but a visualization of all the possible question sequences. To find the answer that N. was looking for you can follow a level from top to bottom and count the number of times it can occur. I have to admit that it's far from the most convenient way but it works.</p>
+
+<p><strong>The result</strong><br/>
+5 of level 1, 5, 6 &amp; 7.<br/>
+4 of level 3, 4, 8, 9  &amp; 12.<br/>
+3 of level 2, 10 &amp; 11.</p>
+
+<p>I had to jump a few hurdles to get there. First my old Ubuntu-install, for unknown reasons, had some ancient version of <code>libfreetype</code> in <code>/usr/local/lib/</code> that I had to remove. In the end an <code>rm /usr/local/lib/libfreetype*</code> would have been good. I also did a <code>sudo ldconfig</code> but I'm not sure that was necessary. Let's just hope you're on a modern system where a <code>sudo apt-get install graphviz</code> followed by <code>sudo gem install ruby-graphviz</code> will be enough.</p>
+
+<p>The <a href="http://gist.github.com/639589">recursive code</a> I wrote produces every single path the testee can take. A graph of that would be quite big since it's 1023 nodes. I then <a href="http://www.graphviz.org/Documentation.php">found out</a> about <em>strict digraph</em> in the Graphviz <a href="http://en.wikipedia.org/wiki/DOT_language">DOT language</a>. It sounded like a perfect fit and it was! One problem though, Ruby-Graphviz didn't seem to know about it. The power of open source software let me patch <code>ruby-graphviz-0.9.18/lib/graphviz/constants.rb</code> so that <code>GRAPHTYPE</code> included it</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="2#n1" name="n1">1</a>
+<a href="2#n2" name="n2">2</a>
+<a href="2#n3" name="n3">3</a>
+<a href="2#n4" name="n4">4</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#777">## Const: graphs type</span>
+ <span style="color:#036;font-weight:bold">GRAPHTYPE</span> = [
+   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">digraph</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">graph</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">strict digraph</span><span style="color:#710">&quot;</span></span>
+ ]</pre></td>
+</tr></table>
+
+<p><br/>
+Another awesome power of open source is <a href="http://algorithmique.net/about.html">Grégoire Lejeune</a> because only hours after me contacting him he <a href="http://github.com/glejeune/Ruby-Graphviz/commit/b8d10d28e0c2a58e57bab4fe9c859b114e02e8a8">added it</a> to the GitHub repository.</p>
+
+<p>Here's the code that produced the Rooted Binary <a href="http://en.wikipedia.org/wiki/Directed_acyclic_graph">Directed Acyclic Graph</a> (or is it Rooted Directed Binary Acyclic Graph?).</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="2#n1" name="n1">1</a>
+<a href="2#n2" name="n2">2</a>
+<a href="2#n3" name="n3">3</a>
+<a href="2#n4" name="n4">4</a>
+<a href="2#n5" name="n5">5</a>
+<a href="2#n6" name="n6">6</a>
+<a href="2#n7" name="n7">7</a>
+<a href="2#n8" name="n8">8</a>
+<a href="2#n9" name="n9">9</a>
+<strong><a href="2#n10" name="n10">10</a></strong>
+<a href="2#n11" name="n11">11</a>
+<a href="2#n12" name="n12">12</a>
+<a href="2#n13" name="n13">13</a>
+<a href="2#n14" name="n14">14</a>
+<a href="2#n15" name="n15">15</a>
+<a href="2#n16" name="n16">16</a>
+<a href="2#n17" name="n17">17</a>
+<a href="2#n18" name="n18">18</a>
+<a href="2#n19" name="n19">19</a>
+<strong><a href="2#n20" name="n20">20</a></strong>
+<a href="2#n21" name="n21">21</a>
+<a href="2#n22" name="n22">22</a>
+<a href="2#n23" name="n23">23</a>
+<a href="2#n24" name="n24">24</a>
+<a href="2#n25" name="n25">25</a>
+<a href="2#n26" name="n26">26</a>
+<a href="2#n27" name="n27">27</a>
+</pre></td>
+  <td class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubygems</span><span style="color:#710">'</span></span>
+require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">graphviz</span><span style="color:#710">'</span></span>
+
+<span style="color:#33B">@min_level</span>=<span style="color:#00D">1</span>
+<span style="color:#33B">@max_level</span>=<span style="color:#00D">12</span>
+<span style="color:#33B">@max_depth</span>=<span style="color:#00D">10</span>
+start_level=<span style="color:#00D">6</span>
+
+<span style="color:#33B">@g</span> = <span style="color:#036;font-weight:bold">GraphViz</span>.new(<span style="color:#A60">:G</span>, <span style="color:#A60">:type</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">strict digraph</span><span style="color:#710">&quot;</span></span> )
+
+<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">add_node</span>(level, depth, parent)
+  <span style="color:#080;font-weight:bold">if</span> depth&lt;<span style="color:#33B">@max_depth</span>
+    current=[level, depth].join(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">,</span><span style="color:#710">&quot;</span></span>)
+
+    sub=level&lt;=&gt;<span style="color:#33B">@min_level</span>
+    add=<span style="color:#33B">@max_level</span>&lt;=&gt;level
+    add_node(level-sub, depth+<span style="color:#00D">1</span>, current)
+    add_node(level+add, depth+<span style="color:#00D">1</span>, current)
+
+    <span style="color:#33B">@g</span>.add_node(current).label=level.to_s
+    <span style="color:#33B">@g</span>.add_edge(parent, current) <span style="color:#080;font-weight:bold">unless</span> parent==<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">00</span><span style="color:#710">&quot;</span></span>
+  <span style="color:#080;font-weight:bold">end</span>
+<span style="color:#080;font-weight:bold">end</span>
+
+add_node(start_level, <span style="color:#00D">0</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">00</span><span style="color:#710">&quot;</span></span>)
+
+<span style="color:#33B">@g</span>.output( <span style="color:#A60">:png</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">graph.png</span><span style="color:#710">&quot;</span></span> )</pre></td>
+</tr></table>
+
+<p><br>
+With the current parameters this problem might not be the most exciting but I believe that by just modifying them slightly we would, again, reach a wall of complexity.</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a>, <a href="http://alicebobandmallory.com/articles/category/math" rel="noindex, follow, tag">Math</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2010/10/24/a-strict-directed-graph#comments">no comments</a>,
+      <a href="../2010/10/24/a-strict-directed-graph" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/4404/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/4404/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-4392">
+  <h2 class="title">
+    <a href="../2010/10/14/encrypt-images-in-javascript">Encrypt images in JavaScript</a> 
+    
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2010-10-14T23:40:00+02:00"><span class="typo_date" title="Thu, 14 Oct 2010 21:40:00 GMT">Thu, 14 Oct 2010 21:40:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>In browsers that supports the HTML5 <a href="http://en.wikipedia.org/wiki/Canvas_element">canvas </a> it's possible to read the raw image data. I figured that this makes it possible to encrypt images on the client. Why would one ever want to encrypt images client-side? One use case could be to send images to a server that only those who know the password can decrypt (host-proof hosting).</p>
+
+<p>I used <a href="http://code.google.com/p/crypto-js/">Crypto-JS</a> to encrypt with <a href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES</a> and <a href="http://en.wikipedia.org/wiki/Rabbit_%28cipher%29">Rabbit</a>.</p>
+
+<p>First I get the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#canvaspixelarray">CanvasPixelArray</a> from the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#imagedata">ImageData</a> object.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="2#n1" name="n1">1</a>
+<a href="2#n2" name="n2">2</a>
+<a href="2#n3" name="n3">3</a>
+<a href="2#n4" name="n4">4</a>
+</pre></td>
+  <td class="code"><pre>var ctx = document.getElementById(<span style="color:#D20">'l</span>eif<span style="color:#D20">')</span>
+                  .getContext(<span style="color:#D20">'2</span>d<span style="color:#D20">')</span>;
+var imgd = ctx.getImageData(<span style="color:#00D">0</span>,<span style="color:#00D">0</span>,width,height);
+var pixelArray = imgd.data;</pre></td>
+</tr></table>
+<br/>
+The pixel array has four bytes for each pixel as <a href="http://en.wikipedia.org/wiki/RGBA_color_space">RGBA</a> but Crypto-JS encrypts a string, not an array. At first I used <code>.join()</code> and <code>.split(",")</code> to get from array to string and back. It was slow and the string got much longer than it had to be. Actually four times longer. To save even more space I decided to discard the alpha channel.  
+<br/>
+<br/>
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="2#n1" name="n1">1</a>
+<a href="2#n2" name="n2">2</a>
+<a href="2#n3" name="n3">3</a>
+<a href="2#n4" name="n4">4</a>
+<a href="2#n5" name="n5">5</a>
+<a href="2#n6" name="n6">6</a>
+<a href="2#n7" name="n7">7</a>
+<a href="2#n8" name="n8">8</a>
+<a href="2#n9" name="n9">9</a>
+<strong><a href="2#n10" name="n10">10</a></strong>
+</pre></td>
+  <td class="code"><pre>function canvasArrToString(a) {
+  var s=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#710">&quot;</span></span>;
+  <span style="color:#777">// Removes alpha to save space.</span>
+  <span style="color:#080;font-weight:bold">for</span> (var i=<span style="color:#00D">0</span>; i&lt;pix.length; i+=<span style="color:#00D">4</span>) {
+    s+=(String.fromCharCode(pix[i])
+        + String.fromCharCode(pix[i+<span style="color:#00D">1</span>])
+        + String.fromCharCode(pix[i+<span style="color:#00D">2</span>]));
+  }
+  <span style="color:#080;font-weight:bold">return</span> s;
+}</pre></td>
+</tr></table>
+<br/>
+That string is what I then encrypt. I sticked to `+=` after reading <a href="http://www.sitepen.com/blog/2008/05/09/string-performance-an-analysis/">String Performance an Analysis</a>.  
+<br/>
+<br/>
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>
+</pre></td>
+  <td class="code"><pre>var encrypted = Crypto.Rabbit.encrypt(imageString, password);</pre></td>
+</tr></table>
+<br/>
+I used a small 160x120 pixels image. With four bytes for each pixels that gives 76800 bytes. Even though I stripped the alpha channel the encrypted image still takes up 124680 bytes, 1.62 times bigger. Using  `.join()` it was 384736 bytes, 5 times bigger. One cause for it still being larger than the original image is that Crypto-JS returns a <a href="http://en.wikipedia.org/wiki/Base64">Base64</a> encoded string and that adds something like 37%.  
+<br>
+<br>
+Before I could write it back to the canvas I had to convert it to an array again.  
+<br/>
+<br/>
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="2#n1" name="n1">1</a>
+<a href="2#n2" name="n2">2</a>
+<a href="2#n3" name="n3">3</a>
+<a href="2#n4" name="n4">4</a>
+<a href="2#n5" name="n5">5</a>
+<a href="2#n6" name="n6">6</a>
+<a href="2#n7" name="n7">7</a>
+<a href="2#n8" name="n8">8</a>
+<a href="2#n9" name="n9">9</a>
+<strong><a href="2#n10" name="n10">10</a></strong>
+</pre></td>
+  <td class="code"><pre>function canvasStringToArr(s) {
+  var arr=[];
+  <span style="color:#080;font-weight:bold">for</span> (var i=<span style="color:#00D">0</span>; i&lt;s.length; i+=<span style="color:#00D">3</span>) {
+    <span style="color:#080;font-weight:bold">for</span> (var j=<span style="color:#00D">0</span>; j&lt;<span style="color:#00D">3</span>; j++) {
+      arr.push(s.substring(i+j,i+j+<span style="color:#00D">1</span>).charCodeAt());
+    }
+    arr.push(<span style="color:#00D">255</span>); <span style="color:#777">// Hardcodes alpha to 255.</span>
+  }
+  <span style="color:#080;font-weight:bold">return</span> arr;
+}</pre></td>
+</tr></table>
+<br/>
+Decryption is simple.
+<br/>
+<br/>
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="2#n1" name="n1">1</a>
+<a href="2#n2" name="n2">2</a>
+<a href="2#n3" name="n3">3</a>
+<a href="2#n4" name="n4">4</a>
+</pre></td>
+  <td class="code"><pre>var arr=canvasStringToArr(
+              Crypto.Rabbit.decrypt(encryptedString, password));
+imgd.data=arr;
+ctx.putImageData(imgd,<span style="color:#00D">0</span>,<span style="color:#00D">0</span>);</pre></td>
+</tr></table>
+<br/>
+
+Tested in Firefox, Google Chrome, WebKit3.1 (Android 2.2), iOS 4.1, and a very recent release of Opera.  
+<br/>
+<br/>
+<table style="width: 366pt; border-collapse: collapse;" width="487" border="0" cellpadding="0" cellspacing="0">
+
+<colgroup><col style="width: 160pt;" width="213"><col style="width: 62pt;" width="82"><col style="width: 48pt;" width="64" span="3"></colgroup>
+<tbody>
+<tr style="min-height: 12.75pt;" height="17">
+<td style="border: 0.5pt solid windowtext; background-color: transparent; width: 160pt; min-height: 12.75pt;" width="213" height="17">
+<strong><font face="Arial" size="2">Browser / Action in milliseconds</font></strong></td>
+<td style="border-width: 0.5pt 0.5pt 0.5pt medium; border-style: solid solid solid none; border-color: windowtext; background-color: transparent; width: 62pt;" width="82">
+<strong><font face="Arial" size="2">Enc. Rabbit</font></strong></td>
+<td style="border-width: 0.5pt 0.5pt 0.5pt medium; border-style: solid solid solid none; border-color: windowtext; background-color: transparent; width: 48pt;" width="64">
+<strong><font face="Arial" size="2">Dec. Rabbit</font></strong></td>
+<td style="border-width: 0.5pt 0.5pt 0.5pt medium; border-style: solid solid solid none; border-color: windowtext; background-color: transparent; width: 48pt;" width="64">
+<strong><font face="Arial" size="2">Enc. AES</font></strong></td>
+<td style="border-width: 0.5pt 0.5pt 0.5pt medium; border-style: solid solid solid none; border-color: windowtext; background-color: transparent; width: 48pt;" width="64">
+<strong><font face="Arial" size="2">Dec. AES</font></strong></td>
+
+</tr>
+<tr style="min-height: 12.75pt;" height="17">
+<td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17">
+<font face="Arial" size="2">Google Chrome 6.0.472.62 C2D@1.86GHz</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">136</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">130</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">236</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">222</font></td>
+
+</tr>
+<tr style="min-height: 12.75pt;" height="17">
+<td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17">
+<font face="Arial" size="2">Opera 10.63 P4HT@3GHz</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">246</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">252</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">438</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">437</font></td>
+
+</tr>
+<tr style="min-height: 12.75pt;" height="17">
+<td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17">
+<font face="Arial" size="2">Google Chrome 6.0.472.63 P4HT@3GHz</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">280</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">648</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">303</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">547</font></td>
+
+</tr>
+<tr style="min-height: 12.75pt;" height="17">
+<td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17">
+<font face="Arial" size="2">Firefox 3.6.10 Phenom II X4 945@3GHz</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">494</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">321</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">1876</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">1745</font></td>
+</tr>
+<tr style="min-height: 12.75pt;" height="17">
+<td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17">
+<font face="Arial" size="2">Firefox 3.6.10 i5@3,5GHz</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">366</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">193</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">1639</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">1410</font></td>
+</tr>
+
+<tr style="min-height: 12.75pt;" height="17">
+<td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17">
+<font face="Arial" size="2">Firefox 3.6.10 C2D@1.86GHz</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">760</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">367</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">2417</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">1983</font></td>
+
+</tr>
+
+<tr style="min-height: 12.75pt;" height="17">
+<td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17">
+<font face="Arial" size="2">Firefox 3.6.10 P4HT@3GHz</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">880</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">440</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">4000</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">3500</font></td>
+</tr>
+
+<tr style="min-height: 12.75pt;" height="17">
+<td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17">
+<font face="Arial" size="2">Nokia N900 Chrome</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">1764</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">1975</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">2509</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">2508</font></td>
+
+</tr>
+<tr style="min-height: 12.75pt;" height="17">
+<td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17">
+<font face="Arial" size="2">WebKit 3.1 (HTC Desire)</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">2000</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">2200</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">3300</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">3400</font></td>
+
+</tr>
+<tr style="min-height: 12.75pt;" height="17">
+<td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17">
+<font face="Arial" size="2">iPhone 3GS iOS 4.1</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">2130</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">2071</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">7198</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">7131</font></td>
+
+</tr>
+<tr style="min-height: 12.75pt;" height="17">
+<td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17">
+<font face="Arial" size="2">N900 Firefox Mobile</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">3411</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">3508</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">19308</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">19466</font></td>
+
+</tr>
+<tr style="min-height: 12.75pt;" height="17">
+<td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17">
+<font face="Arial" size="2">N900 native (MicroB)</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">4681</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">4300</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">24560</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">20973</font></td>
+
+</tr>
+<tr style="min-height: 12.75pt;" height="17">
+<td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17">
+<font face="Arial" size="2">X10 Mini Pro, Android 1.6</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">7464</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right">
+<font face="Arial" size="2">7747</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;">
+<font face="Arial" size="2">timeout</font></td>
+<td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;">
+<font face="Arial" size="2">timeout</font></td>
+
+</tr>
+</tbody>
+</table>
+
+<p>&nbsp;  </p>
+
+<p>A <a href="http://plea.se/me/cryptimage.html">demo</a> can be found <a href="http://plea.se/me/cryptimage.html">here</a>.
+<br/><br/>
+<font color="red">EDIT 2010-10-17</font><br><br>
+<strong>Warning</strong> I've noticed that the encrypted strings aren't compatible between browsers. At least not in between Google Chrome and Firefox. I don't know why.</p>
+
+<p>I also tried to add deflate/inflate and that compresses my test image to a third of the raw size and in Google Chrome it also halved the execution time. In Firefox Rabbit got about 50% slower and AES about 50% faster with deflate/inflate.</p>
+
+<p><a href="http://plea.se/me/cryptimage2.html">Here's a demo of this</a>. 
+<br><br>
+<font color="red">EDIT 2010-10-21</font><br><br>
+Added a preprocessing filter of the raw image data inspired by <a href="http://www.w3.org/TR/PNG-Filters.html">PNG</a> type 1 sub filter. Presented my idea to Fredrik and he returned a formula. Thanks!
+<br>
+The result wasn't what I had hoped for, a measly 6% smaller. I also tried to save the image as real PNG and that one is 20480 bytes.
+20480*1.37=28057 bytes (Base64 overhead) and my homemade format is 38336 bytes. Not a fantastic result but not that horrible either.
+<br><br>
+<a href="http://plea.se/me/cryptimage3.html">Here's a demo of this</a>. </p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/cryptography" rel="noindex, follow, tag">Cryptography</a>, <a href="http://alicebobandmallory.com/articles/category/javascript" rel="noindex, follow, tag">JavaScript</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2010/10/14/encrypt-images-in-javascript#comments">no comments</a>,
+      <a href="../2010/10/14/encrypt-images-in-javascript" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/4392/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/4392/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-4389">
+  <h2 class="title">
+    <a href="../2010/10/14/to-hack-a-superpower">To hack a Superpower</a> 
+    <span class="comment_count">1</span>
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2010-10-14T21:57:00+02:00"><span class="typo_date" title="Thu, 14 Oct 2010 19:57:00 GMT">Thu, 14 Oct 2010 19:57:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>I was interviewed in a swedish documentary called <a href="http://svt.se/2.122744/1.2172403/att-hacka-en-stormakt?lid=20101014&amp;lpos=SVT2_0000_sitelink&amp;from=tabla">Att hacka en stormakt</a> (To hack a Superpower). It's mostly in swedish but <a href="../2007/02/04/hello-this-is-special-agent-brian">Brian Koref</a> (US AF) and Tom Talleur (NASA) are interviewed in english. It can be <a href="http://svtplay.se/v/2175727/dokumentarfilm/att_hacka_en_stormakt">streamed from SVTPlay</a> (at least if you live in Sweden) until 2010-11-09.</p>
+
+<p>It covers the cracking frenzy of a couple Swedish youths back in 1996. They happened to break into a server I was responsible for and from that server they logged in to a machine with a .mil-address. That's how we got involved.</p>
+
+<p>The event has been covered before in a <a href="http://sverigesradio.se/sida/artikel.aspx?ProgramID=2519&amp;Artikel=2447808">radio documentary</a> called <i>Svenska hackers</i> (Swedish hackers).</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/security" rel="noindex, follow, tag">Security</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2010/10/14/to-hack-a-superpower#comments">1 comment</a>,
+      <a href="../2010/10/14/to-hack-a-superpower" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/4389/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/4389/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+
+
+<p class="pagination">Older posts: <a href="1">1</a> 2 <a href="3">3</a> <a href="4">4</a>  ... <a href="12">12</a></p>
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../pages/AboutMe">About me</a>/<a href="../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

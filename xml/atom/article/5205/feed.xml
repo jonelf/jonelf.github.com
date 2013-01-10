@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: Lazy evaluation is no friend of mutable state</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/5205/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2011/01/01/lazy-evaluation-is-no-friend-of-mutable-state" rel="alternate" type="text/html"/>
+  <updated>2011-01-03T01:08:10+01:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:a704f3a7-860c-4e49-95e0-62c194fe075e</id>
+    <published>2011-01-01T17:08:00+01:00</published>
+    <updated>2011-01-03T01:08:10+01:00</updated>
+    <title type="html">Lazy evaluation is no friend of mutable state</title>
+    <link href="http://alicebobandmallory.com/articles/2011/01/01/lazy-evaluation-is-no-friend-of-mutable-state" rel="alternate" type="text/html"/>
+    <category label="C#" term="c" scheme="http://alicebobandmallory.com/articles/category/c"/>
+    <summary type="html">&lt;p&gt;A couple of days ago I accidentally landed on &lt;a href="http://www.cs.nyu.edu/~vs667/articles/mergesort/"&gt;a page&lt;/a&gt; about implementing &lt;a href="http://en.wikipedia.org/wiki/Merge_sort"&gt;merge sort&lt;/a&gt; in C#.  I thought it would be a nice exercise to try to &lt;a href="http://stackoverflow.com/questions/4545090/listt-and-ienumerable-difference"&gt;implement that&lt;/a&gt; as a generic method and so I did. &lt;a href="http://www.sorting-algorithms.com/merge-sort"&gt;&lt;img title="merge sort" src="http://www.sorting-algorithms.com/animation/40/random-initial-order/merge-sort.gif" style="display: inline-block; float:right" border="0"&gt;&lt;/a&gt; &lt;/p&gt;
+
+&lt;p&gt;I also wanted to learn more about the characteristics of &lt;a href="http://msdn.microsoft.com/en-us/library/9eekhta0.aspx"&gt;IEnumerable&lt;/a&gt; so I used &lt;code&gt;IEnumerable&amp;lt;T&amp;gt;&lt;/code&gt; instead of &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt;. That choice got me in trouble and I opted for help on &lt;a href="http://www.stackoverflow.com/"&gt;Stack Overflow&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;People said it was sorting correctly but &lt;a href="http://stackoverflow.com/questions/4545090/listt-and-ienumerable-difference/4545170#4545170"&gt;Jon Skeet also asked if I tested it correctly&lt;/a&gt; and that I did not. I digged deeper into the problem and extended the question on SO. I had a hunch that it was the mutable state of &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt; and the lazy evaluation of &lt;code&gt;IEnumerable&lt;/code&gt; that was the problem but I couldn't quite figure out how. &lt;/p&gt;
+
+&lt;p&gt;Along came &lt;a href="http://stackoverflow.com/users/7586/kobi"&gt;Kobi&lt;/a&gt; and &lt;a href="http://stackoverflow.com/questions/4545090/listt-and-ienumerable-difference/4565811#4565811"&gt;his answer&lt;/a&gt; finally made me understand why a &lt;code&gt;.Sort()&lt;/code&gt; of the list messed up the result of my sorting. &lt;/p&gt;
+
+&lt;p&gt;I then changed the implementation to be fully lazy evaluated and now it looks like this.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
+&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
+&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
+&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
+&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
+&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
+&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n21" name="n21"&gt;21&lt;/a&gt;
+&lt;a href="#n22" name="n22"&gt;22&lt;/a&gt;
+&lt;a href="#n23" name="n23"&gt;23&lt;/a&gt;
+&lt;a href="#n24" name="n24"&gt;24&lt;/a&gt;
+&lt;a href="#n25" name="n25"&gt;25&lt;/a&gt;
+&lt;a href="#n26" name="n26"&gt;26&lt;/a&gt;
+&lt;a href="#n27" name="n27"&gt;27&lt;/a&gt;
+&lt;a href="#n28" name="n28"&gt;28&lt;/a&gt;
+&lt;a href="#n29" name="n29"&gt;29&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n30" name="n30"&gt;30&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n31" name="n31"&gt;31&lt;/a&gt;
+&lt;a href="#n32" name="n32"&gt;32&lt;/a&gt;
+&lt;a href="#n33" name="n33"&gt;33&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;public class MergeSort&amp;lt;T&amp;gt;
+{
+    public IEnumerable&amp;lt;T&amp;gt; Sort(IEnumerable&amp;lt;T&amp;gt; arr)
+    {
+        &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (arr.Count() &amp;lt;= &lt;span style="color:#00D"&gt;1&lt;/span&gt;) &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; arr;
+
+        &lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; middle = arr.Count() / &lt;span style="color:#00D"&gt;2&lt;/span&gt;;
+        var left = arr.Take(middle);
+        var right = arr.Skip(middle);
+        &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; Merge(Sort(left), Sort(right));
+    }
+
+    private &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; IEnumerable&amp;lt;T&amp;gt; Merge(IEnumerable&amp;lt;T&amp;gt; left, IEnumerable&amp;lt;T&amp;gt; right)
+    {
+        IEnumerable&amp;lt;T&amp;gt; arrSorted = Enumerable.Empty&amp;lt;T&amp;gt;();
+
+        &lt;span style="color:#080;font-weight:bold"&gt;while&lt;/span&gt; (left.Count() &amp;gt; &lt;span style="color:#00D"&gt;0&lt;/span&gt; &amp;amp;&amp;amp; right.Count() &amp;gt; &lt;span style="color:#00D"&gt;0&lt;/span&gt;)
+        {
+            &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (Comparer&amp;lt;T&amp;gt;.Default.Compare(left.First(), right.First()) &amp;lt; &lt;span style="color:#00D"&gt;0&lt;/span&gt;)
+            {
+                arrSorted=arrSorted.Concat(left.Take(&lt;span style="color:#00D"&gt;1&lt;/span&gt;));
+                left = left.Skip(&lt;span style="color:#00D"&gt;1&lt;/span&gt;);
+            }
+            &lt;span style="color:#080;font-weight:bold"&gt;else&lt;/span&gt;
+            {
+                arrSorted=arrSorted.Concat(right.Take(&lt;span style="color:#00D"&gt;1&lt;/span&gt;));
+                right = right.Skip(&lt;span style="color:#00D"&gt;1&lt;/span&gt;);
+            }
+        }
+
+        &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; arrSorted.Concat(left).Concat(right);
+    }
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+Please be aware that this is but an exercise and not very efficient.&lt;/p&gt;
+
+&lt;p&gt;Now to the problems that you can encounter with the above and an explanation to the title of the post. Let's MergeSort a simple &lt;code&gt;List&amp;lt;int&amp;gt;&lt;/code&gt; followed by a  call to the built-in &lt;code&gt;.Sort()&lt;/code&gt; on &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var ints = new List&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt; { &lt;span style="color:#00D"&gt;2&lt;/span&gt;, &lt;span style="color:#00D"&gt;3&lt;/span&gt;, &lt;span style="color:#00D"&gt;1&lt;/span&gt; };
+var mergeSortInt = new MergeSort&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt;();
+var sortedInts = mergeSortInt.Sort(ints);
+&lt;span style="color:#777"&gt;// sortedInts.ToList() is {1, 2, 3}&lt;/span&gt;
+ints.Sort();
+&lt;span style="color:#777"&gt;// sortedInts.ToList() is {3, 1, 2}&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+So what's going on here? As far as I can tell it's something like this. &lt;code&gt;sortedInts&lt;/code&gt; isn't evaluated until the first call to &lt;code&gt;MoveNext()&lt;/code&gt; (or &lt;code&gt;Tolist()&lt;/code&gt; or any of those). Before that it only has lazy pointers to the original enumerable values. &lt;code&gt;ints.Sort()&lt;/code&gt; messes up the beauty of lazy evaluation by changing the underlying data structure. It can do that because &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt; is mutable (writeable).&lt;/p&gt;
+
+&lt;p&gt;But why {3, 1, 2}  after &lt;code&gt;ints.Sort()&lt;/code&gt;?   The original sequence was { 2, 3, 1} and that is what the MergeSort sorted, not by creating a new sequence but only by lazy pointers. &lt;/p&gt;
+
+&lt;p&gt;At first the MergeSort sorts like this &lt;/p&gt;
+
+&lt;p&gt;&lt;img title="diagram before .Sort()" src="http://dl.dropbox.com/u/26840/beforeSort.png" border="0"/&gt;&lt;/p&gt;
+
+&lt;p&gt;but after the source list has been sorted/changed it will do this
+&lt;img title="diagram after .Sort()" src="http://dl.dropbox.com/u/26840/afterSort.png" border="0"/&gt;&lt;/p&gt;
+
+&lt;p&gt;What can you do to stop this to happening to you? The boring way is to never use lazy evaluation but that is kind of hard if you happen to use &lt;a href="http://en.wikipedia.org/wiki/Language_Integrated_Query"&gt;LINQ&lt;/a&gt; (and you should, it's great). Another way is to use immutable data structures and that is how functional languages tackles this problem. In C# we have the &lt;a href="http://msdn.microsoft.com/en-us/library/ms132474.aspx"&gt;ReadOnlyCollection&lt;T&gt;&lt;/a&gt; and it obviously has no &lt;code&gt;Sort()&lt;/code&gt; method. &lt;/p&gt;
+
+&lt;p&gt;A nice feature of the MergeSort above is that it has no problems with an immutable collection.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var rints = new ReadOnlyCollection&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt;(ints);
+var sortedRints = mergeSortInt.Sort(rints);
+&lt;span style="color:#777"&gt;// sortedRints.ToList() is {1, 2, 3}&lt;/span&gt;
+ints.Sort();
+&lt;span style="color:#777"&gt;// sortedRints.ToList() is {3, 1, 2}&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+What?! How could an immutable collection get messed up like this? It turns out that &lt;code&gt;ReadOnlyCollection&amp;lt;T&amp;gt;&lt;/code&gt; is only &lt;a href="http://blogs.msdn.com/b/jaredpar/archive/2008/04/22/api-design-readonlycollection-t.aspx"&gt;a facade for mutable collections&lt;/a&gt; and that is what bit us here. You have to pass a copy of the list. Example follows.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var rints = new ReadOnlyCollection&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt;(new List&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt;(ints));
+var sortedRints = mergeSortInt.Sort(rints);
+ints.Sort();&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+That also works for &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var ints = new List&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt; { &lt;span style="color:#00D"&gt;2&lt;/span&gt;, &lt;span style="color:#00D"&gt;3&lt;/span&gt;, &lt;span style="color:#00D"&gt;1&lt;/span&gt; };
+var mergeSortInt = new MergeSort&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt;();
+var sortedInts = mergeSortInt.Sort(new List&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt;(ints));
+&lt;span style="color:#777"&gt;// sortedInts.ToList() is {1, 2, 3}&lt;/span&gt;
+ints.Sort();
+&lt;span style="color:#777"&gt;// sortedInts.ToList() is {1, 2, 3}&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally I would like to send a big thank you to &lt;a href="https://twitter.com/Kobi"&gt;Kobi&lt;/a&gt; for sorting out my problems with the original solution.&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;A couple of days ago I accidentally landed on &lt;a href="http://www.cs.nyu.edu/~vs667/articles/mergesort/"&gt;a page&lt;/a&gt; about implementing &lt;a href="http://en.wikipedia.org/wiki/Merge_sort"&gt;merge sort&lt;/a&gt; in C#.  I thought it would be a nice exercise to try to &lt;a href="http://stackoverflow.com/questions/4545090/listt-and-ienumerable-difference"&gt;implement that&lt;/a&gt; as a generic method and so I did. &lt;a href="http://www.sorting-algorithms.com/merge-sort"&gt;&lt;img title="merge sort" src="http://www.sorting-algorithms.com/animation/40/random-initial-order/merge-sort.gif" style="display: inline-block; float:right" border="0"&gt;&lt;/a&gt; &lt;/p&gt;
+
+&lt;p&gt;I also wanted to learn more about the characteristics of &lt;a href="http://msdn.microsoft.com/en-us/library/9eekhta0.aspx"&gt;IEnumerable&lt;/a&gt; so I used &lt;code&gt;IEnumerable&amp;lt;T&amp;gt;&lt;/code&gt; instead of &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt;. That choice got me in trouble and I opted for help on &lt;a href="http://www.stackoverflow.com/"&gt;Stack Overflow&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;People said it was sorting correctly but &lt;a href="http://stackoverflow.com/questions/4545090/listt-and-ienumerable-difference/4545170#4545170"&gt;Jon Skeet also asked if I tested it correctly&lt;/a&gt; and that I did not. I digged deeper into the problem and extended the question on SO. I had a hunch that it was the mutable state of &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt; and the lazy evaluation of &lt;code&gt;IEnumerable&lt;/code&gt; that was the problem but I couldn't quite figure out how. &lt;/p&gt;
+
+&lt;p&gt;Along came &lt;a href="http://stackoverflow.com/users/7586/kobi"&gt;Kobi&lt;/a&gt; and &lt;a href="http://stackoverflow.com/questions/4545090/listt-and-ienumerable-difference/4565811#4565811"&gt;his answer&lt;/a&gt; finally made me understand why a &lt;code&gt;.Sort()&lt;/code&gt; of the list messed up the result of my sorting. &lt;/p&gt;
+
+&lt;p&gt;I then changed the implementation to be fully lazy evaluated and now it looks like this.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
+&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
+&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
+&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
+&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
+&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
+&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n21" name="n21"&gt;21&lt;/a&gt;
+&lt;a href="#n22" name="n22"&gt;22&lt;/a&gt;
+&lt;a href="#n23" name="n23"&gt;23&lt;/a&gt;
+&lt;a href="#n24" name="n24"&gt;24&lt;/a&gt;
+&lt;a href="#n25" name="n25"&gt;25&lt;/a&gt;
+&lt;a href="#n26" name="n26"&gt;26&lt;/a&gt;
+&lt;a href="#n27" name="n27"&gt;27&lt;/a&gt;
+&lt;a href="#n28" name="n28"&gt;28&lt;/a&gt;
+&lt;a href="#n29" name="n29"&gt;29&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n30" name="n30"&gt;30&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n31" name="n31"&gt;31&lt;/a&gt;
+&lt;a href="#n32" name="n32"&gt;32&lt;/a&gt;
+&lt;a href="#n33" name="n33"&gt;33&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;public class MergeSort&amp;lt;T&amp;gt;
+{
+    public IEnumerable&amp;lt;T&amp;gt; Sort(IEnumerable&amp;lt;T&amp;gt; arr)
+    {
+        &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (arr.Count() &amp;lt;= &lt;span style="color:#00D"&gt;1&lt;/span&gt;) &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; arr;
+
+        &lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; middle = arr.Count() / &lt;span style="color:#00D"&gt;2&lt;/span&gt;;
+        var left = arr.Take(middle);
+        var right = arr.Skip(middle);
+        &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; Merge(Sort(left), Sort(right));
+    }
+
+    private &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; IEnumerable&amp;lt;T&amp;gt; Merge(IEnumerable&amp;lt;T&amp;gt; left, IEnumerable&amp;lt;T&amp;gt; right)
+    {
+        IEnumerable&amp;lt;T&amp;gt; arrSorted = Enumerable.Empty&amp;lt;T&amp;gt;();
+
+        &lt;span style="color:#080;font-weight:bold"&gt;while&lt;/span&gt; (left.Count() &amp;gt; &lt;span style="color:#00D"&gt;0&lt;/span&gt; &amp;amp;&amp;amp; right.Count() &amp;gt; &lt;span style="color:#00D"&gt;0&lt;/span&gt;)
+        {
+            &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (Comparer&amp;lt;T&amp;gt;.Default.Compare(left.First(), right.First()) &amp;lt; &lt;span style="color:#00D"&gt;0&lt;/span&gt;)
+            {
+                arrSorted=arrSorted.Concat(left.Take(&lt;span style="color:#00D"&gt;1&lt;/span&gt;));
+                left = left.Skip(&lt;span style="color:#00D"&gt;1&lt;/span&gt;);
+            }
+            &lt;span style="color:#080;font-weight:bold"&gt;else&lt;/span&gt;
+            {
+                arrSorted=arrSorted.Concat(right.Take(&lt;span style="color:#00D"&gt;1&lt;/span&gt;));
+                right = right.Skip(&lt;span style="color:#00D"&gt;1&lt;/span&gt;);
+            }
+        }
+
+        &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; arrSorted.Concat(left).Concat(right);
+    }
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+Please be aware that this is but an exercise and not very efficient.&lt;/p&gt;
+
+&lt;p&gt;Now to the problems that you can encounter with the above and an explanation to the title of the post. Let's MergeSort a simple &lt;code&gt;List&amp;lt;int&amp;gt;&lt;/code&gt; followed by a  call to the built-in &lt;code&gt;.Sort()&lt;/code&gt; on &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var ints = new List&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt; { &lt;span style="color:#00D"&gt;2&lt;/span&gt;, &lt;span style="color:#00D"&gt;3&lt;/span&gt;, &lt;span style="color:#00D"&gt;1&lt;/span&gt; };
+var mergeSortInt = new MergeSort&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt;();
+var sortedInts = mergeSortInt.Sort(ints);
+&lt;span style="color:#777"&gt;// sortedInts.ToList() is {1, 2, 3}&lt;/span&gt;
+ints.Sort();
+&lt;span style="color:#777"&gt;// sortedInts.ToList() is {3, 1, 2}&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+So what's going on here? As far as I can tell it's something like this. &lt;code&gt;sortedInts&lt;/code&gt; isn't evaluated until the first call to &lt;code&gt;MoveNext()&lt;/code&gt; (or &lt;code&gt;Tolist()&lt;/code&gt; or any of those). Before that it only has lazy pointers to the original enumerable values. &lt;code&gt;ints.Sort()&lt;/code&gt; messes up the beauty of lazy evaluation by changing the underlying data structure. It can do that because &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt; is mutable (writeable).&lt;/p&gt;
+
+&lt;p&gt;But why {3, 1, 2}  after &lt;code&gt;ints.Sort()&lt;/code&gt;?   The original sequence was { 2, 3, 1} and that is what the MergeSort sorted, not by creating a new sequence but only by lazy pointers. &lt;/p&gt;
+
+&lt;p&gt;At first the MergeSort sorts like this &lt;/p&gt;
+
+&lt;p&gt;&lt;img title="diagram before .Sort()" src="http://dl.dropbox.com/u/26840/beforeSort.png" border="0"/&gt;&lt;/p&gt;
+
+&lt;p&gt;but after the source list has been sorted/changed it will do this
+&lt;img title="diagram after .Sort()" src="http://dl.dropbox.com/u/26840/afterSort.png" border="0"/&gt;&lt;/p&gt;
+
+&lt;p&gt;What can you do to stop this to happening to you? The boring way is to never use lazy evaluation but that is kind of hard if you happen to use &lt;a href="http://en.wikipedia.org/wiki/Language_Integrated_Query"&gt;LINQ&lt;/a&gt; (and you should, it's great). Another way is to use immutable data structures and that is how functional languages tackles this problem. In C# we have the &lt;a href="http://msdn.microsoft.com/en-us/library/ms132474.aspx"&gt;ReadOnlyCollection&lt;T&gt;&lt;/a&gt; and it obviously has no &lt;code&gt;Sort()&lt;/code&gt; method. &lt;/p&gt;
+
+&lt;p&gt;A nice feature of the MergeSort above is that it has no problems with an immutable collection.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var rints = new ReadOnlyCollection&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt;(ints);
+var sortedRints = mergeSortInt.Sort(rints);
+&lt;span style="color:#777"&gt;// sortedRints.ToList() is {1, 2, 3}&lt;/span&gt;
+ints.Sort();
+&lt;span style="color:#777"&gt;// sortedRints.ToList() is {3, 1, 2}&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+What?! How could an immutable collection get messed up like this? It turns out that &lt;code&gt;ReadOnlyCollection&amp;lt;T&amp;gt;&lt;/code&gt; is only &lt;a href="http://blogs.msdn.com/b/jaredpar/archive/2008/04/22/api-design-readonlycollection-t.aspx"&gt;a facade for mutable collections&lt;/a&gt; and that is what bit us here. You have to pass a copy of the list. Example follows.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var rints = new ReadOnlyCollection&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt;(new List&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt;(ints));
+var sortedRints = mergeSortInt.Sort(rints);
+ints.Sort();&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+That also works for &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var ints = new List&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt; { &lt;span style="color:#00D"&gt;2&lt;/span&gt;, &lt;span style="color:#00D"&gt;3&lt;/span&gt;, &lt;span style="color:#00D"&gt;1&lt;/span&gt; };
+var mergeSortInt = new MergeSort&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt;();
+var sortedInts = mergeSortInt.Sort(new List&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt;(ints));
+&lt;span style="color:#777"&gt;// sortedInts.ToList() is {1, 2, 3}&lt;/span&gt;
+ints.Sort();
+&lt;span style="color:#777"&gt;// sortedInts.ToList() is {1, 2, 3}&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally I would like to send a big thank you to &lt;a href="https://twitter.com/Kobi"&gt;Kobi&lt;/a&gt; for sorting out my problems with the original solution.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas</name>
+    </author>
+    <id>urn:uuid:ab976999-9634-4a5e-8da5-0edf70bdc2dc</id>
+    <published>2012-12-20T07:51:46+01:00</published>
+    <updated>2013-01-07T00:31:40+01:00</updated>
+    <title type="html">Comment on Lazy evaluation is no friend of mutable state by Jonas</title>
+    <link href="http://alicebobandmallory.com/articles/2011/01/01/lazy-evaluation-is-no-friend-of-mutable-state#comment-9464" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Today the .NET team released a preview of Immutable Collections. 
+&lt;a href="http://blogs.msdn.com/b/bclteam/archive/2012/12/18/preview-of-immutable-collections-released-on-nuget.aspx"&gt;http://blogs.msdn.com/b/bclteam/archive/2012/12/18/preview-of-immutable-collections-released-on-nuget.aspx&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+</feed>

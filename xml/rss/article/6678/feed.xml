@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Inspired by randomness</title>
+    <link>http://alicebobandmallory.com/articles/2011/10/27/inspired-by-randomness</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Inspired by randomness</title>
+      <description>&lt;p&gt;Inspired by &lt;a href="http://vanillajava.blogspot.com/2011/10/randomly-no-so-random.html"&gt;Randomly not so random&lt;/a&gt; I decided to play around with the subject.&lt;/p&gt;
+
+&lt;p&gt;Both Java and C# uses a &lt;a href="http://en.wikipedia.org/wiki/Linear_congruential_generator"&gt;linear congruential generator&lt;/a&gt; as their &lt;a href="http://en.wikipedia.org/wiki/Pseudorandom_number_generator"&gt;pseudorandom number generators&lt;/a&gt;. &lt;/p&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;The current implementation of the Random class is based on a modified version of Donald E. Knuth's subtractive random number generator algorithm."&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;About System.Random at &lt;a href="http://msdn.microsoft.com/en-us/library/system.random.aspx"&gt;MSDN&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I tried to find information on what values Microsoft uses for the &lt;em&gt;m&lt;/em&gt;, &lt;em&gt;a&lt;/em&gt;, and &lt;em&gt;c&lt;/em&gt; parameters in their &lt;a href="http://en.wikipedia.org/wiki/Linear_congruential_generator"&gt;LGC&lt;/a&gt; implementation but I failed to do so. &lt;/p&gt;
+
+&lt;p&gt;A good random number generator should have certain properties. &lt;/p&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;The German Federal Office for Information Security (BSI) has established four criteria for quality of deterministic random number generators. They are summarized here:&lt;br/&gt;
+    K1 — A sequence of random numbers with a low probability of containing identical consecutive elements.  &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;From the &lt;a href="http://en.wikipedia.org/wiki/Pseudorandom_number_generator"&gt;pseudorandom number generator&lt;/a&gt; article on Wikipedia. Let's see what we can do about that.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var random = new Random(&lt;span style="color:#00D"&gt;116793166&lt;/span&gt;);
+&lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; (&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; i = &lt;span style="color:#00D"&gt;0&lt;/span&gt;; i &amp;lt; &lt;span style="color:#00D"&gt;9&lt;/span&gt;; i++)
+{
+    Console.Write(random.Next(&lt;span style="color:#00D"&gt;10&lt;/span&gt;) + &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt; &lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;Outputs:&lt;/p&gt;
+
+&lt;pre&gt;
+1 1 1 1 1 1 1 1 1
+&lt;/pre&gt;
+
+&lt;p&gt;Did I just break the K1 criteria above? You know I didn't but you might be interested in how I found the seed number. It's easy but also quite computational intensive, that's why I used &lt;a href="http://msdn.microsoft.com/en-us/library/system.threading.tasks.parallel.for.aspx"&gt;Parallel.For&lt;/a&gt;.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;Parallel.For(&lt;span style="color:#00D"&gt;0&lt;/span&gt;, &lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;.MaxValue, i =&amp;gt;
+{
+    var rnd = new Random(i);
+    &lt;span style="color:#0a5;font-weight:bold"&gt;bool&lt;/span&gt; allSame = &lt;span style="color:#069"&gt;true&lt;/span&gt;;
+    &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; (&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; j = &lt;span style="color:#00D"&gt;0&lt;/span&gt;; j &amp;lt; &lt;span style="color:#00D"&gt;9&lt;/span&gt;; j++)
+    {
+        allSame = allSame &amp;amp;&amp;amp; rnd.Next(&lt;span style="color:#00D"&gt;10&lt;/span&gt;) == &lt;span style="color:#00D"&gt;1&lt;/span&gt;;
+        &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (!allSame) &lt;span style="color:#080;font-weight:bold"&gt;break&lt;/span&gt;;
+    }
+    &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (allSame)
+        Console.WriteLine(i); 
+});&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+It took a couple of minutes for the number 116793166 to show up in my console.&lt;/p&gt;
+
+&lt;p&gt;To keep on playing I needed a random string generator. Mine looks like this.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;private &lt;span style="color:#088;font-weight:bold"&gt;const&lt;/span&gt; string _chars = &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;abcdefghijklmnopqrstuvwxyz&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;
+
+private &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; string RandomString(&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; size, Random rng)
+{
+    var buffer = new &lt;span style="color:#0a5;font-weight:bold"&gt;char&lt;/span&gt;[size];
+    &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; (&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; i = &lt;span style="color:#00D"&gt;0&lt;/span&gt;; i &amp;lt; size; i++)
+        buffer[i] = _chars[rng.Next(_chars.Length)];
+    &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; new string(buffer);
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+If the random generators were the same it looks like it should give the same result as &lt;a href="http://vanillajava.blogspot.com/2011/10/randomly-no-so-random.html"&gt;the Java one&lt;/a&gt; but &lt;code&gt;RandomString(5, new Random(-229985452))&lt;/code&gt; returns &lt;code&gt;tfsld&lt;/code&gt;. Either my RandomString method works different than the Java one or it's the case that Java and .NET has slightly different settings of their LGCs.&lt;/p&gt;
+
+&lt;p&gt;Mathematically there's an infinite amount of inputs that results in a returned &lt;code&gt;hello&lt;/code&gt;, for instance 1382472294, but here we are limited by the size of our integers.&lt;/p&gt;
+
+&lt;p&gt;I found the seed 1382472294 with the following little method and loop&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
+&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
+&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
+&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
+&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
+&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
+&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;private &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; &lt;span style="color:#0a5;font-weight:bold"&gt;bool&lt;/span&gt; CompareToRandomString(string str, Random rng) 
+{ 
+    &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; (&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; i = &lt;span style="color:#00D"&gt;0&lt;/span&gt;; i &amp;lt; str.Length; i++)
+    {
+        &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (_chars[rng.Next(_chars.Length)] != str[i])
+            &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; &lt;span style="color:#069"&gt;false&lt;/span&gt;;
+    }
+    &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; &lt;span style="color:#069"&gt;true&lt;/span&gt;;
+}
+
+...
+
+&lt;span style="color:#088;font-weight:bold"&gt;const&lt;/span&gt; string lookingFor = &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;hello&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;
+
+Parallel.For(&lt;span style="color:#00D"&gt;0&lt;/span&gt;, &lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;.MaxValue, i =&amp;gt;
+{
+    var rnd = new Random(i);
+    &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (CompareToRandomString(lookingFor, rnd))
+        Console.WriteLine(i);
+});&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+I leave it up to you to implement a &lt;a href="http://msdn.microsoft.com/en-us/library/dd460721.aspx"&gt;break&lt;/a&gt; out of that loop.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.ruby-doc.org/core-1.9.2/Random.html"&gt;Ruby&lt;/a&gt; does not use a LGC but a &lt;a href="http://en.wikipedia.org/wiki/Mersenne_twister"&gt;Mersenne twister&lt;/a&gt; instead. It's still only pseudorandom so there's no problem finding patterns you like and being able to repeat them.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;srand(&lt;span style="color:#00D"&gt;2570940381&lt;/span&gt;)
+&lt;span style="color:#00D"&gt;9&lt;/span&gt;.times { print &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;%d &lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; % rand(&lt;span style="color:#00D"&gt;10&lt;/span&gt;) }&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Outputs:&lt;br/&gt;
+&lt;code&gt;1 2 3 4 5 6 7 8 9&lt;/code&gt;&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;charset=(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;a&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;..&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;z&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;).to_a
+srand(&lt;span style="color:#00D"&gt;124931&lt;/span&gt;)
+puts (&lt;span style="color:#00D"&gt;0&lt;/span&gt;...&lt;span style="color:#00D"&gt;4&lt;/span&gt;).map{ charset.to_a[rand(charset.size)] }.join&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Outputs:&lt;br/&gt;
+&lt;code&gt;ruby&lt;/code&gt;&lt;/p&gt;</description>
+      <pubDate>Thu, 27 Oct 2011 23:19:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:f596c241-0004-4935-ba79-64693f890cb2</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2011/10/27/inspired-by-randomness</link>
+      <category>Ruby</category>
+      <category>C#</category>
+      <category>Math</category>
+      <category>Java</category>
+    </item>
+    <item>
+      <title>"Inspired by randomness" by Ian Best</title>
+      <description>&lt;p&gt;It was really interesting how you found the seed number. I will definitely implement a break out of the loop. There won&amp;#8217;t be any issues finding patterns we like and repeat them.&lt;/p&gt;</description>
+      <pubDate>Thu, 22 Mar 2012 10:52:35 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:4bbbd9ed-f65f-480c-b7b5-65e725b8e7d2</guid>
+      <link>http://alicebobandmallory.com/articles/2011/10/27/inspired-by-randomness#comment-7671</link>
+    </item>
+  </channel>
+</rss>

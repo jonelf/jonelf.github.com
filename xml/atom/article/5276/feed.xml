@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: How to test IE9 if you run Windows XP</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/5276/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2011/03/21/how-to-test-ie9-if-you-run-windows-xp" rel="alternate" type="text/html"/>
+  <updated>2013-01-10T00:22:28+01:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:a4947525-3c1d-4ca0-b707-04a4466a520d</id>
+    <published>2011-03-21T22:20:00+01:00</published>
+    <updated>2013-01-10T00:22:28+01:00</updated>
+    <title type="html">How to test IE9 if you run Windows XP</title>
+    <link href="http://alicebobandmallory.com/articles/2011/03/21/how-to-test-ie9-if-you-run-windows-xp" rel="alternate" type="text/html"/>
+    <summary type="html">&lt;p&gt;&lt;font color="red"&gt;Edit 2012-01-05&lt;/font&gt;&lt;br/&gt;
+A couple of weeks ago Microsoft finally released &lt;a href="http://www.microsoft.com/download/en/details.aspx?id=11575"&gt;Internet Explorer Application Compatibility VPC Images for IE9&lt;/a&gt;.&lt;br/&gt;
+Because of this, the below procedure is not necessary anymore.&lt;/p&gt;
+
+&lt;p&gt;There's one quite strange thing with these images. The Win7+IE8 image is about 2.6GB but the Win7+IE9 is 4.3GB! There's some extra tools in the IE9 one but they certainly do not add up to the 1.7GB size difference. I've had reports of people successfully downloading the Win7+IE8 and then upgrading to IE9. That could be an option if you want to save some download time and disk space.&lt;/p&gt;
+
+&lt;p&gt;&lt;strike&gt;
+I'm currently at a company still running Windows XP. Last week Internet Explorer 9 was released and it &lt;a href="http://en.wikipedia.org/wiki/Internet_Explorer_9"&gt;requires&lt;/a&gt; at least Windows Vista. That requirement was a problem because we absolutely had to test our web applications in IE9. Microsoft had released Internet Explorer Application Compatibility VPC Images for earlier versions of IE but not for &lt;a href="http://windows.microsoft.com/en-US/internet-explorer/downloads/ie-9/worldwide-languages"&gt;IE9&lt;/a&gt;. At least they still offer a VPC running Vista and that was the path we took to solve our testing problems. If you know of an easier way then please tell!&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.microsoft.com/windows/virtual-pc/download.aspx"&gt;Download&lt;/a&gt; and install  Virtual PC.&lt;br/&gt;
+&lt;font color="red"&gt;Edit 2011-09-25&lt;/font&gt; It seems Microsoft has changed the download page. You can get &lt;a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx"&gt;Virtual PC 2007&lt;/a&gt; for older versions of Windows &lt;a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx"&gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.microsoft.com/downloads/en/details.aspx?FamilyID=21eabb90-958f-4b64-b5f1-73d0a413c8ef&amp;amp;displaylang=en"&gt;Download&lt;/a&gt; and run/unpack  the IE8-VIS VHD.&lt;/li&gt;
+&lt;li&gt;Create a new virtual machine and select the VHD as the harddisk.&lt;/li&gt;
+&lt;li&gt;In the virtual machine then &lt;a href="http://www.microsoft.com/windows/virtual-pc/download.aspx"&gt;download&lt;/a&gt; and install Vista SP2.&lt;/li&gt;
+&lt;li&gt;Finally, obviously still in the VPC, &lt;a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home"&gt;download&lt;/a&gt; IE9.
+&lt;/strike&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    <content type="html">&lt;p&gt;&lt;font color="red"&gt;Edit 2012-01-05&lt;/font&gt;&lt;br/&gt;
+A couple of weeks ago Microsoft finally released &lt;a href="http://www.microsoft.com/download/en/details.aspx?id=11575"&gt;Internet Explorer Application Compatibility VPC Images for IE9&lt;/a&gt;.&lt;br/&gt;
+Because of this, the below procedure is not necessary anymore.&lt;/p&gt;
+
+&lt;p&gt;There's one quite strange thing with these images. The Win7+IE8 image is about 2.6GB but the Win7+IE9 is 4.3GB! There's some extra tools in the IE9 one but they certainly do not add up to the 1.7GB size difference. I've had reports of people successfully downloading the Win7+IE8 and then upgrading to IE9. That could be an option if you want to save some download time and disk space.&lt;/p&gt;
+
+&lt;p&gt;&lt;strike&gt;
+I'm currently at a company still running Windows XP. Last week Internet Explorer 9 was released and it &lt;a href="http://en.wikipedia.org/wiki/Internet_Explorer_9"&gt;requires&lt;/a&gt; at least Windows Vista. That requirement was a problem because we absolutely had to test our web applications in IE9. Microsoft had released Internet Explorer Application Compatibility VPC Images for earlier versions of IE but not for &lt;a href="http://windows.microsoft.com/en-US/internet-explorer/downloads/ie-9/worldwide-languages"&gt;IE9&lt;/a&gt;. At least they still offer a VPC running Vista and that was the path we took to solve our testing problems. If you know of an easier way then please tell!&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.microsoft.com/windows/virtual-pc/download.aspx"&gt;Download&lt;/a&gt; and install  Virtual PC.&lt;br/&gt;
+&lt;font color="red"&gt;Edit 2011-09-25&lt;/font&gt; It seems Microsoft has changed the download page. You can get &lt;a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx"&gt;Virtual PC 2007&lt;/a&gt; for older versions of Windows &lt;a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx"&gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.microsoft.com/downloads/en/details.aspx?FamilyID=21eabb90-958f-4b64-b5f1-73d0a413c8ef&amp;amp;displaylang=en"&gt;Download&lt;/a&gt; and run/unpack  the IE8-VIS VHD.&lt;/li&gt;
+&lt;li&gt;Create a new virtual machine and select the VHD as the harddisk.&lt;/li&gt;
+&lt;li&gt;In the virtual machine then &lt;a href="http://www.microsoft.com/windows/virtual-pc/download.aspx"&gt;download&lt;/a&gt; and install Vista SP2.&lt;/li&gt;
+&lt;li&gt;Finally, obviously still in the VPC, &lt;a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home"&gt;download&lt;/a&gt; IE9.
+&lt;/strike&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>hivedb</name>
+    </author>
+    <id>urn:uuid:02d952f0-69f4-44c2-bd20-9f574d194564</id>
+    <published>2012-04-19T09:09:37+02:00</published>
+    <updated>2012-04-19T14:15:47+02:00</updated>
+    <title type="html">Comment on How to test IE9 if you run Windows XP by hivedb</title>
+    <link href="http://alicebobandmallory.com/articles/2011/03/21/how-to-test-ie9-if-you-run-windows-xp#comment-8233" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Being a web designer I often have to test websites for browser compatibility. I still use XP for it&amp;#8217;s simplicity and was searching for ie9 for XP. Your Virtual PC solution is a good temporary alternative. Thanks.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>horia</name>
+    </author>
+    <id>urn:uuid:bf045ec3-5517-4a0f-aeb6-989faf930aaa</id>
+    <published>2012-04-01T16:42:49+02:00</published>
+    <updated>2012-04-01T21:24:39+02:00</updated>
+    <title type="html">Comment on How to test IE9 if you run Windows XP by horia</title>
+    <link href="http://alicebobandmallory.com/articles/2011/03/21/how-to-test-ie9-if-you-run-windows-xp#comment-7830" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;the VHD for IE9 is using Windows7. The windows 7 version of the VHD is stated in wikipedia as working only with Virtual PC (actual edition) not with virtual pc 2007. The actual edition of Virtual PC does not work with Windows XP.
+so it seems to be still a problem. 
+I am actually trying to use the IE9+win7 pack (VHD) from Microsoft, by using it in the VPC2007 environment, on windows XP Home edition&amp;#8230; If it works, I will tell you.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>stk</name>
+    </author>
+    <id>urn:uuid:6d0b332e-129e-4ba7-b330-c83bf6cf58fd</id>
+    <published>2011-12-31T22:48:55+01:00</published>
+    <updated>2012-01-01T18:27:07+01:00</updated>
+    <title type="html">Comment on How to test IE9 if you run Windows XP by stk</title>
+    <link href="http://alicebobandmallory.com/articles/2011/03/21/how-to-test-ie9-if-you-run-windows-xp#comment-7069" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Am in same boat. Appreciate the quick tute. I use IETester, which also won&amp;#8217;t emulate IE9/10 b/c it&amp;#8217;s running on XP.&lt;/p&gt;
+
+&lt;p&gt;File under: Too much work. &lt;/p&gt;
+
+&lt;p&gt;(Why in the www would MS make a browser O/S-dependent?)  Dumb.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>chris</name>
+    </author>
+    <id>urn:uuid:4736f5cc-bc39-45bd-89b3-a6fcf134dbc3</id>
+    <published>2011-10-05T20:09:22+02:00</published>
+    <updated>2011-10-09T21:29:34+02:00</updated>
+    <title type="html">Comment on How to test IE9 if you run Windows XP by chris</title>
+    <link href="http://alicebobandmallory.com/articles/2011/03/21/how-to-test-ie9-if-you-run-windows-xp#comment-6592" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;wow, nevermind, its in the Hint sorry&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>chris</name>
+    </author>
+    <id>urn:uuid:b300e7b4-a737-4cfb-859a-82fc68a5b381</id>
+    <published>2011-10-05T19:54:43+02:00</published>
+    <updated>2011-10-09T21:29:33+02:00</updated>
+    <title type="html">Comment on How to test IE9 if you run Windows XP by chris</title>
+    <link href="http://alicebobandmallory.com/articles/2011/03/21/how-to-test-ie9-if-you-run-windows-xp#comment-6591" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;I got everything running but it is asking for a password for both accounts, what is the password to get in?&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:78e7a6b6-4b6f-4bda-91bc-76ab561f5142</id>
+    <published>2011-09-25T20:17:27+02:00</published>
+    <updated>2011-09-25T20:19:07+02:00</updated>
+    <title type="html">Comment on How to test IE9 if you run Windows XP by Jonas Elfström</title>
+    <link href="http://alicebobandmallory.com/articles/2011/03/21/how-to-test-ie9-if-you-run-windows-xp#comment-6526" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;@Ryan It sure seems that way. Did you access the page from an XP or a Windows 7 machine?&lt;/p&gt;
+
+&lt;p&gt;You can find an older version of Virtual PC at 
+&lt;a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx"&gt;http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Ryan</name>
+    </author>
+    <id>urn:uuid:993f13b6-5b1b-4aba-a4f3-c10073503239</id>
+    <published>2011-09-22T22:32:05+02:00</published>
+    <updated>2011-09-25T20:19:08+02:00</updated>
+    <title type="html">Comment on How to test IE9 if you run Windows XP by Ryan</title>
+    <link href="http://alicebobandmallory.com/articles/2011/03/21/how-to-test-ie9-if-you-run-windows-xp#comment-6516" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;The first download link takes you to a virtual pc download that is for windows 7 computers only.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:a9754394-bc4b-414e-9fbf-68c710ecd70a</id>
+    <published>2011-07-25T16:47:26+02:00</published>
+    <updated>2011-07-31T22:07:27+02:00</updated>
+    <title type="html">Comment on How to test IE9 if you run Windows XP by Jonas Elfström</title>
+    <link href="http://alicebobandmallory.com/articles/2011/03/21/how-to-test-ie9-if-you-run-windows-xp#comment-6175" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;I had no such problem while following the steps above. I did not actually try to connect to the host machine but connecting to internet or intranet sites was no problem. Didn&amp;#8217;t feel slow.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Bah Humbug</name>
+    </author>
+    <id>urn:uuid:8edd2d87-8ecb-4fd0-811b-4be8b7b6d501</id>
+    <published>2011-07-25T00:56:32+02:00</published>
+    <updated>2011-07-25T16:42:43+02:00</updated>
+    <title type="html">Comment on How to test IE9 if you run Windows XP by Bah Humbug</title>
+    <link href="http://alicebobandmallory.com/articles/2011/03/21/how-to-test-ie9-if-you-run-windows-xp#comment-6161" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Unfortunately, when you use the virtual image, you might not be able to connect to the Internet or to a localhost, or to any folders on your hard drive. In the past (2007) that was possible.&lt;/p&gt;
+
+&lt;p&gt;So, you may be able to run IE9 on Vista/Windows7 on your XP machine, but it may be VERY slow and totally useless.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>bilal@glotechno.com</name>
+    </author>
+    <id>urn:uuid:e03984e3-5932-4cdc-9f54-8e0fa0c7f1a3</id>
+    <published>2011-05-10T11:36:27+02:00</published>
+    <updated>2011-05-10T20:03:41+02:00</updated>
+    <title type="html">Comment on How to test IE9 if you run Windows XP by bilal@glotechno.com</title>
+    <link href="http://alicebobandmallory.com/articles/2011/03/21/how-to-test-ie9-if-you-run-windows-xp#comment-5590" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;nice:-)&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Olli</name>
+    </author>
+    <id>urn:uuid:09f99679-dc03-4817-970a-4c612e6dea75</id>
+    <published>2011-04-28T09:59:38+02:00</published>
+    <updated>2011-04-30T00:28:29+02:00</updated>
+    <title type="html">Comment on How to test IE9 if you run Windows XP by Olli</title>
+    <link href="http://alicebobandmallory.com/articles/2011/03/21/how-to-test-ie9-if-you-run-windows-xp#comment-5550" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Thanks, too&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Peter</name>
+    </author>
+    <id>urn:uuid:98287e2b-955d-46f3-ac39-2d17402770e8</id>
+    <published>2011-04-15T16:29:38+02:00</published>
+    <updated>2011-04-17T22:47:26+02:00</updated>
+    <title type="html">Comment on How to test IE9 if you run Windows XP by Peter</title>
+    <link href="http://alicebobandmallory.com/articles/2011/03/21/how-to-test-ie9-if-you-run-windows-xp#comment-5460" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Thanks.&lt;/p&gt;</content>
+  </entry>
+</feed>

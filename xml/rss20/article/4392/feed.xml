@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Encrypt images in JavaScript</title>
+    <link>http://alicebobandmallory.com/articles/2010/10/14/encrypt-images-in-javascript</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Encrypt images in JavaScript</title>
+      <description>&lt;p&gt;In browsers that supports the HTML5 &lt;a href="http://en.wikipedia.org/wiki/Canvas_element"&gt;canvas &lt;/a&gt; it's possible to read the raw image data. I figured that this makes it possible to encrypt images on the client. Why would one ever want to encrypt images client-side? One use case could be to send images to a server that only those who know the password can decrypt (host-proof hosting).&lt;/p&gt;
+
+&lt;p&gt;I used &lt;a href="http://code.google.com/p/crypto-js/"&gt;Crypto-JS&lt;/a&gt; to encrypt with &lt;a href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard"&gt;AES&lt;/a&gt; and &lt;a href="http://en.wikipedia.org/wiki/Rabbit_%28cipher%29"&gt;Rabbit&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;First I get the &lt;a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#canvaspixelarray"&gt;CanvasPixelArray&lt;/a&gt; from the &lt;a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#imagedata"&gt;ImageData&lt;/a&gt; object.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var ctx = document.getElementById(&lt;span style="color:#D20"&gt;'l&lt;/span&gt;eif&lt;span style="color:#D20"&gt;')&lt;/span&gt;
+                  .getContext(&lt;span style="color:#D20"&gt;'2&lt;/span&gt;d&lt;span style="color:#D20"&gt;')&lt;/span&gt;;
+var imgd = ctx.getImageData(&lt;span style="color:#00D"&gt;0&lt;/span&gt;,&lt;span style="color:#00D"&gt;0&lt;/span&gt;,width,height);
+var pixelArray = imgd.data;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;br/&gt;
+The pixel array has four bytes for each pixel as &lt;a href="http://en.wikipedia.org/wiki/RGBA_color_space"&gt;RGBA&lt;/a&gt; but Crypto-JS encrypts a string, not an array. At first I used &lt;code&gt;.join()&lt;/code&gt; and &lt;code&gt;.split(",")&lt;/code&gt; to get from array to string and back. It was slow and the string got much longer than it had to be. Actually four times longer. To save even more space I decided to discard the alpha channel.  
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;function canvasArrToString(a) {
+  var s=&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;
+  &lt;span style="color:#777"&gt;// Removes alpha to save space.&lt;/span&gt;
+  &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; (var i=&lt;span style="color:#00D"&gt;0&lt;/span&gt;; i&amp;lt;pix.length; i+=&lt;span style="color:#00D"&gt;4&lt;/span&gt;) {
+    s+=(String.fromCharCode(pix[i])
+        + String.fromCharCode(pix[i+&lt;span style="color:#00D"&gt;1&lt;/span&gt;])
+        + String.fromCharCode(pix[i+&lt;span style="color:#00D"&gt;2&lt;/span&gt;]));
+  }
+  &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; s;
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;br/&gt;
+That string is what I then encrypt. I sticked to `+=` after reading &lt;a href="http://www.sitepen.com/blog/2008/05/09/string-performance-an-analysis/"&gt;String Performance an Analysis&lt;/a&gt;.  
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var encrypted = Crypto.Rabbit.encrypt(imageString, password);&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;br/&gt;
+I used a small 160x120 pixels image. With four bytes for each pixels that gives 76800 bytes. Even though I stripped the alpha channel the encrypted image still takes up 124680 bytes, 1.62 times bigger. Using  `.join()` it was 384736 bytes, 5 times bigger. One cause for it still being larger than the original image is that Crypto-JS returns a &lt;a href="http://en.wikipedia.org/wiki/Base64"&gt;Base64&lt;/a&gt; encoded string and that adds something like 37%.  
+&lt;br&gt;
+&lt;br&gt;
+Before I could write it back to the canvas I had to convert it to an array again.  
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;function canvasStringToArr(s) {
+  var arr=[];
+  &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; (var i=&lt;span style="color:#00D"&gt;0&lt;/span&gt;; i&amp;lt;s.length; i+=&lt;span style="color:#00D"&gt;3&lt;/span&gt;) {
+    &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; (var j=&lt;span style="color:#00D"&gt;0&lt;/span&gt;; j&amp;lt;&lt;span style="color:#00D"&gt;3&lt;/span&gt;; j++) {
+      arr.push(s.substring(i+j,i+j+&lt;span style="color:#00D"&gt;1&lt;/span&gt;).charCodeAt());
+    }
+    arr.push(&lt;span style="color:#00D"&gt;255&lt;/span&gt;); &lt;span style="color:#777"&gt;// Hardcodes alpha to 255.&lt;/span&gt;
+  }
+  &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; arr;
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;br/&gt;
+Decryption is simple.
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var arr=canvasStringToArr(
+              Crypto.Rabbit.decrypt(encryptedString, password));
+imgd.data=arr;
+ctx.putImageData(imgd,&lt;span style="color:#00D"&gt;0&lt;/span&gt;,&lt;span style="color:#00D"&gt;0&lt;/span&gt;);&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;br/&gt;
+
+Tested in Firefox, Google Chrome, WebKit3.1 (Android 2.2), iOS 4.1, and a very recent release of Opera.  
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;table style="width: 366pt; border-collapse: collapse;" width="487" border="0" cellpadding="0" cellspacing="0"&gt;
+
+&lt;colgroup&gt;&lt;col style="width: 160pt;" width="213"&gt;&lt;col style="width: 62pt;" width="82"&gt;&lt;col style="width: 48pt;" width="64" span="3"&gt;&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border: 0.5pt solid windowtext; background-color: transparent; width: 160pt; min-height: 12.75pt;" width="213" height="17"&gt;
+&lt;strong&gt;&lt;font face="Arial" size="2"&gt;Browser / Action in milliseconds&lt;/font&gt;&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border-width: 0.5pt 0.5pt 0.5pt medium; border-style: solid solid solid none; border-color: windowtext; background-color: transparent; width: 62pt;" width="82"&gt;
+&lt;strong&gt;&lt;font face="Arial" size="2"&gt;Enc. Rabbit&lt;/font&gt;&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border-width: 0.5pt 0.5pt 0.5pt medium; border-style: solid solid solid none; border-color: windowtext; background-color: transparent; width: 48pt;" width="64"&gt;
+&lt;strong&gt;&lt;font face="Arial" size="2"&gt;Dec. Rabbit&lt;/font&gt;&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border-width: 0.5pt 0.5pt 0.5pt medium; border-style: solid solid solid none; border-color: windowtext; background-color: transparent; width: 48pt;" width="64"&gt;
+&lt;strong&gt;&lt;font face="Arial" size="2"&gt;Enc. AES&lt;/font&gt;&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border-width: 0.5pt 0.5pt 0.5pt medium; border-style: solid solid solid none; border-color: windowtext; background-color: transparent; width: 48pt;" width="64"&gt;
+&lt;strong&gt;&lt;font face="Arial" size="2"&gt;Dec. AES&lt;/font&gt;&lt;/strong&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;Google Chrome 6.0.472.62 C2D@1.86GHz&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;136&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;130&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;236&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;222&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;Opera 10.63 P4HT@3GHz&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;246&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;252&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;438&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;437&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;Google Chrome 6.0.472.63 P4HT@3GHz&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;280&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;648&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;303&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;547&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;Firefox 3.6.10 Phenom II X4 945@3GHz&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;494&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;321&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;1876&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;1745&lt;/font&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;Firefox 3.6.10 i5@3,5GHz&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;366&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;193&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;1639&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;1410&lt;/font&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;Firefox 3.6.10 C2D@1.86GHz&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;760&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;367&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;2417&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;1983&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;Firefox 3.6.10 P4HT@3GHz&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;880&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;440&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;4000&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;3500&lt;/font&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;Nokia N900 Chrome&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;1764&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;1975&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;2509&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;2508&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;WebKit 3.1 (HTC Desire)&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;2000&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;2200&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;3300&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;3400&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;iPhone 3GS iOS 4.1&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;2130&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;2071&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;7198&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;7131&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;N900 Firefox Mobile&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;3411&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;3508&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;19308&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;19466&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;N900 native (MicroB)&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;4681&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;4300&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;24560&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;20973&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;X10 Mini Pro, Android 1.6&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;7464&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;7747&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;"&gt;
+&lt;font face="Arial" size="2"&gt;timeout&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;"&gt;
+&lt;font face="Arial" size="2"&gt;timeout&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&amp;nbsp;  &lt;/p&gt;
+
+&lt;p&gt;A &lt;a href="http://plea.se/me/cryptimage.html"&gt;demo&lt;/a&gt; can be found &lt;a href="http://plea.se/me/cryptimage.html"&gt;here&lt;/a&gt;.
+&lt;br/&gt;&lt;br/&gt;
+&lt;font color="red"&gt;EDIT 2010-10-17&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Warning&lt;/strong&gt; I've noticed that the encrypted strings aren't compatible between browsers. At least not in between Google Chrome and Firefox. I don't know why.&lt;/p&gt;
+
+&lt;p&gt;I also tried to add deflate/inflate and that compresses my test image to a third of the raw size and in Google Chrome it also halved the execution time. In Firefox Rabbit got about 50% slower and AES about 50% faster with deflate/inflate.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://plea.se/me/cryptimage2.html"&gt;Here's a demo of this&lt;/a&gt;. 
+&lt;br&gt;&lt;br&gt;
+&lt;font color="red"&gt;EDIT 2010-10-21&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+Added a preprocessing filter of the raw image data inspired by &lt;a href="http://www.w3.org/TR/PNG-Filters.html"&gt;PNG&lt;/a&gt; type 1 sub filter. Presented my idea to Fredrik and he returned a formula. Thanks!
+&lt;br&gt;
+The result wasn't what I had hoped for, a measly 6% smaller. I also tried to save the image as real PNG and that one is 20480 bytes.
+20480*1.37=28057 bytes (Base64 overhead) and my homemade format is 38336 bytes. Not a fantastic result but not that horrible either.
+&lt;br&gt;&lt;br&gt;
+&lt;a href="http://plea.se/me/cryptimage3.html"&gt;Here's a demo of this&lt;/a&gt;. &lt;/p&gt;</description>
+      <pubDate>Thu, 14 Oct 2010 23:40:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:1cb3eec8-d3a1-48f2-bb32-024bbf4cbe96</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2010/10/14/encrypt-images-in-javascript</link>
+      <category>Cryptography</category>
+      <category>JavaScript</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Hello, this is special agent Brian...</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../../../xml/atom/article/5/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../../xml/rss20/article/5/feed.xml" />
+  <script src="../../../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+       xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+       xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about=""
+    dc:title="Hello, this is special agent Brian..."
+    dc:identifier="http://alicebobandmallory.com/articles/2007/02/04/hello-this-is-special-agent-brian"
+    dc:description="I've been interested in computer security for a long time. Maybe watching War games and coding Commodore 64 made an impact on me as a boy. A couple of years later the annoying &lt;a href=&quot;http://en.wikiped"
+    dc:creator="jonelf"
+    dc:date="2009-07-28T12:42:23+02:00" />
+</rdf:RDF>
+-->
+
+<div class="post" onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_article'); }"  onmouseout="Element.hide('admin_article');" >
+  <a href="http://alicebobandmallory.com/admin/content/edit/5" class="admintools" id="admin_article" style="display: none">edit</a>
+  <h2>Hello, this is special agent Brian...</h2>
+  <p class="auth">Posted by Jonas Elfström
+  <span class="typo_date" title="Sun, 04 Feb 2007 19:35:00 GMT">Sun, 04 Feb 2007 19:35:00 GMT</span></p>
+  <p>I've been interested in computer security for a long time. Maybe watching <a href="http://www.imdb.com/title/tt0086567/">War games</a> and coding Commodore 64 made an impact on me as a boy. A couple of years later the annoying <a href="http://en.wikipedia.org/wiki/SCA_virus">boot sector</a> viruses on the Amiga kept my interest going.</p>
+<p>
+In late 1995 I was involved in starting up a local Internet Service Provider. Me and a friend (a colleague at our day job) were the technicians. Our server ran Slackware Linux. Fast forward to late 1996. My collegue was sitting in our "office" and happened to notice some strange processes and activity on our server. He pulled the network plug immidiately. We had been hacked!
+</p>
+<p>A couple of days later we got an email from an investigator in the US Airforce. Not that I really thought that it wasn't real but I still wanted more confirmation, so I asked him to call me. I will always remember his opening line "Hello, this is Special Agent <a href="http://www.linkedin.com/pub/0/70a/636">Brian</a>...". He asked if he could get some excerpts from certain logs and as far as I remember we provided them to him. He also told us that people like those breaking in into our system usually are very good at removing traces of  their visit in the logs. My friends gut feeling and fast network disconnect made us keep the logs.</p>
+<p>All that said I'm not working as a computer security specialist. I've been working as DBA, sysop, teacher, software developer, project manager and systems integrator. I like to think of myself as a software engineer with some social skills. Also I might have a little more focus and feel for computer security than the next guy.</p>
+
+</div>
+<p class="meta">
+  Posted in <a href="http://alicebobandmallory.com/articles/category/security" rel="noindex, follow, tag">Security</a>&nbsp;<strong>|</strong>&nbsp;<a href="hello-this-is-special-agent-brian#comments">no comments</a>
+</p>
+
+  <a name="comments"></a><h4 class="blueblk">Comments</h4>
+    <p class="postmetadata alt">
+      <small><a href="hello-this-is-special-agent-brian#respond">Comments closed</a></small>
+    </p>
+  <ol class="comment-list" id="commentList">
+  
+    <li id="dummy_comment" style="display: none"></li>
+  
+  </ol>
+
+
+<p class="postmetadata alt">
+  <small>
+  <a href="../../../../xml/rss20/article/5/feed.xml" title="RSS Feed">RSS feed for this post</a>
+  </small>
+</p>
+
+
+<p>Comments are closed</p>
+<!--
+  <p>Comments are disabled</p>
+-->
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../../../pages/AboutMe">About me</a>/<a href="../../../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

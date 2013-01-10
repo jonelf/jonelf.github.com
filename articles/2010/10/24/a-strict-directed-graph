@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>A strict directed graph</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../../../xml/atom/article/4404/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../../xml/rss20/article/4404/feed.xml" />
+  <script src="../../../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+       xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+       xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about=""
+    dc:title="A strict directed graph"
+    dc:identifier="http://alicebobandmallory.com/articles/2010/10/24/a-strict-directed-graph"
+    dc:description="Recently N. asked a question on a list that made my geek-senses tingle. He had a test with 12 levels of questions. The testee should answer 10 questions. If a question was answered correctly the level would go up and if it was not correct it would go do"
+    dc:creator="jonelf"
+    dc:date="2012-02-17T01:05:55+01:00" />
+</rdf:RDF>
+-->
+
+<div class="post" onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_article'); }"  onmouseout="Element.hide('admin_article');" >
+  <a href="http://alicebobandmallory.com/admin/content/edit/4404" class="admintools" id="admin_article" style="display: none">edit</a>
+  <h2>A strict directed graph</h2>
+  <p class="auth">Posted by Jonas Elfström
+  <span class="typo_date" title="Sat, 23 Oct 2010 22:39:00 GMT">Sat, 23 Oct 2010 22:39:00 GMT</span></p>
+  <p>Recently N. asked a question on a list that made my geek-senses tingle. He had a test with 12 levels of questions. The testee should answer 10 questions. If a question was answered correctly the level would go up and if it was not correct it would go down. If a level 12 was answered correctly, another level 12 would be asked and vice versa. The first question would be a level 6. N. wanted to know how many questions of each level he needed.</p>
+
+<p>Pretty soon he got a correct answer and several wrong. One of the incorrect answers was, and I don't like to admit this, provided by me. I took the recursive route (which I very seldom do) and then tried to present the result in ASCII. I failed. The result from the algorithm in itself was correct but the presentation was simplified so much it failed to deliver the correct answer. Here it is:<pre>
+             06
+            05 07
+          04 06 08
+         03 05 07 09
+       02 04 06 08 10
+      01 03 05 07 09 11
+    01 02 04 06 08 10 12
+   01 02 03 05 07 09 11 12
+ 01 02 03 04 06 08 10 11 12
+01 02 03 04 05 07 09 10 11 12
+</pre></p>
+
+<p>The problem is that this result can be read as if the testee could get two level 2 questions in a row but the rules forbids that.</p>
+
+<p><a href="http://kafka.mine.nu/g.png" target="_blank"><img title="Click to show full size." src="http://kafka.mine.nu/me/pics/RootedBinaryDirectedAcyclicGraph.png" style="display: inline-block; float:right" border="0"/></a></p>
+
+<p>Then I remembered reading about <a href="http://www.graphviz.org/">Graphviz</a> and especially <a href="http://github.com/glejeune/Ruby-Graphviz/">Ruby-Graphviz</a>. That's what I used to generate the graph to the right. The graph itself is nothing but a visualization of all the possible question sequences. To find the answer that N. was looking for you can follow a level from top to bottom and count the number of times it can occur. I have to admit that it's far from the most convenient way but it works.</p>
+
+<p><strong>The result</strong><br/>
+5 of level 1, 5, 6 &amp; 7.<br/>
+4 of level 3, 4, 8, 9  &amp; 12.<br/>
+3 of level 2, 10 &amp; 11.</p>
+
+<p>I had to jump a few hurdles to get there. First my old Ubuntu-install, for unknown reasons, had some ancient version of <code>libfreetype</code> in <code>/usr/local/lib/</code> that I had to remove. In the end an <code>rm /usr/local/lib/libfreetype*</code> would have been good. I also did a <code>sudo ldconfig</code> but I'm not sure that was necessary. Let's just hope you're on a modern system where a <code>sudo apt-get install graphviz</code> followed by <code>sudo gem install ruby-graphviz</code> will be enough.</p>
+
+<p>The <a href="http://gist.github.com/639589">recursive code</a> I wrote produces every single path the testee can take. A graph of that would be quite big since it's 1023 nodes. I then <a href="http://www.graphviz.org/Documentation.php">found out</a> about <em>strict digraph</em> in the Graphviz <a href="http://en.wikipedia.org/wiki/DOT_language">DOT language</a>. It sounded like a perfect fit and it was! One problem though, Ruby-Graphviz didn't seem to know about it. The power of open source software let me patch <code>ruby-graphviz-0.9.18/lib/graphviz/constants.rb</code> so that <code>GRAPHTYPE</code> included it</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="a-strict-directed-graph#n1" name="n1">1</a>
+<a href="a-strict-directed-graph#n2" name="n2">2</a>
+<a href="a-strict-directed-graph#n3" name="n3">3</a>
+<a href="a-strict-directed-graph#n4" name="n4">4</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#777">## Const: graphs type</span>
+ <span style="color:#036;font-weight:bold">GRAPHTYPE</span> = [
+   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">digraph</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">graph</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">strict digraph</span><span style="color:#710">&quot;</span></span>
+ ]</pre></td>
+</tr></table>
+
+<p><br/>
+Another awesome power of open source is <a href="http://algorithmique.net/about.html">Grégoire Lejeune</a> because only hours after me contacting him he <a href="http://github.com/glejeune/Ruby-Graphviz/commit/b8d10d28e0c2a58e57bab4fe9c859b114e02e8a8">added it</a> to the GitHub repository.</p>
+
+<p>Here's the code that produced the Rooted Binary <a href="http://en.wikipedia.org/wiki/Directed_acyclic_graph">Directed Acyclic Graph</a> (or is it Rooted Directed Binary Acyclic Graph?).</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="a-strict-directed-graph#n1" name="n1">1</a>
+<a href="a-strict-directed-graph#n2" name="n2">2</a>
+<a href="a-strict-directed-graph#n3" name="n3">3</a>
+<a href="a-strict-directed-graph#n4" name="n4">4</a>
+<a href="a-strict-directed-graph#n5" name="n5">5</a>
+<a href="a-strict-directed-graph#n6" name="n6">6</a>
+<a href="a-strict-directed-graph#n7" name="n7">7</a>
+<a href="a-strict-directed-graph#n8" name="n8">8</a>
+<a href="a-strict-directed-graph#n9" name="n9">9</a>
+<strong><a href="a-strict-directed-graph#n10" name="n10">10</a></strong>
+<a href="a-strict-directed-graph#n11" name="n11">11</a>
+<a href="a-strict-directed-graph#n12" name="n12">12</a>
+<a href="a-strict-directed-graph#n13" name="n13">13</a>
+<a href="a-strict-directed-graph#n14" name="n14">14</a>
+<a href="a-strict-directed-graph#n15" name="n15">15</a>
+<a href="a-strict-directed-graph#n16" name="n16">16</a>
+<a href="a-strict-directed-graph#n17" name="n17">17</a>
+<a href="a-strict-directed-graph#n18" name="n18">18</a>
+<a href="a-strict-directed-graph#n19" name="n19">19</a>
+<strong><a href="a-strict-directed-graph#n20" name="n20">20</a></strong>
+<a href="a-strict-directed-graph#n21" name="n21">21</a>
+<a href="a-strict-directed-graph#n22" name="n22">22</a>
+<a href="a-strict-directed-graph#n23" name="n23">23</a>
+<a href="a-strict-directed-graph#n24" name="n24">24</a>
+<a href="a-strict-directed-graph#n25" name="n25">25</a>
+<a href="a-strict-directed-graph#n26" name="n26">26</a>
+<a href="a-strict-directed-graph#n27" name="n27">27</a>
+</pre></td>
+  <td class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rubygems</span><span style="color:#710">'</span></span>
+require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">graphviz</span><span style="color:#710">'</span></span>
+
+<span style="color:#33B">@min_level</span>=<span style="color:#00D">1</span>
+<span style="color:#33B">@max_level</span>=<span style="color:#00D">12</span>
+<span style="color:#33B">@max_depth</span>=<span style="color:#00D">10</span>
+start_level=<span style="color:#00D">6</span>
+
+<span style="color:#33B">@g</span> = <span style="color:#036;font-weight:bold">GraphViz</span>.new(<span style="color:#A60">:G</span>, <span style="color:#A60">:type</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">strict digraph</span><span style="color:#710">&quot;</span></span> )
+
+<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">add_node</span>(level, depth, parent)
+  <span style="color:#080;font-weight:bold">if</span> depth&lt;<span style="color:#33B">@max_depth</span>
+    current=[level, depth].join(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">,</span><span style="color:#710">&quot;</span></span>)
+
+    sub=level&lt;=&gt;<span style="color:#33B">@min_level</span>
+    add=<span style="color:#33B">@max_level</span>&lt;=&gt;level
+    add_node(level-sub, depth+<span style="color:#00D">1</span>, current)
+    add_node(level+add, depth+<span style="color:#00D">1</span>, current)
+
+    <span style="color:#33B">@g</span>.add_node(current).label=level.to_s
+    <span style="color:#33B">@g</span>.add_edge(parent, current) <span style="color:#080;font-weight:bold">unless</span> parent==<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">00</span><span style="color:#710">&quot;</span></span>
+  <span style="color:#080;font-weight:bold">end</span>
+<span style="color:#080;font-weight:bold">end</span>
+
+add_node(start_level, <span style="color:#00D">0</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">00</span><span style="color:#710">&quot;</span></span>)
+
+<span style="color:#33B">@g</span>.output( <span style="color:#A60">:png</span> =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">graph.png</span><span style="color:#710">&quot;</span></span> )</pre></td>
+</tr></table>
+
+<p><br>
+With the current parameters this problem might not be the most exciting but I believe that by just modifying them slightly we would, again, reach a wall of complexity.</p>
+</div>
+<p class="meta">
+  Posted in <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a>, <a href="http://alicebobandmallory.com/articles/category/math" rel="noindex, follow, tag">Math</a>&nbsp;<strong>|</strong>&nbsp;<a href="a-strict-directed-graph#comments">no comments</a>
+</p>
+
+  <a name="comments"></a><h4 class="blueblk">Comments</h4>
+    <p class="postmetadata alt">
+      <small><a href="a-strict-directed-graph#respond">Comments closed</a></small>
+    </p>
+  <ol class="comment-list" id="commentList">
+  
+    <li id="dummy_comment" style="display: none"></li>
+  
+  </ol>
+
+
+<p class="postmetadata alt">
+  <small>
+  <a href="../../../../xml/rss20/article/4404/feed.xml" title="RSS Feed">RSS feed for this post</a>
+  </small>
+</p>
+
+
+<p>Comments are closed</p>
+<!--
+  <p>Comments are disabled</p>
+-->
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../../../pages/AboutMe">About me</a>/<a href="../../../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

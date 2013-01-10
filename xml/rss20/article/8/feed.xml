@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Randomly chosen OTPs</title>
+    <link>http://alicebobandmallory.com/articles/2007/02/06/randomly-chosen-otps</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Randomly chosen OTPs</title>
+      <description>&lt;p&gt;In this post I hope to answer some questions I got about the one-time password protocol I described in &lt;a href="/articles/2007/02/05/trojans-and-one-time-passwords"&gt;"Trojans and one-time passwords"&lt;/a&gt;.
+&lt;/p&gt;
+&lt;p&gt;The scenario is that the attacker has got at least one OTP by using a trojan or some other means.&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;Couldn't the attacker just reload the login page until he is asked to enter an OTP that he has?&lt;/cite&gt;&lt;br/&gt;
+- No, he could not. All decent login procedures has a max number of tries before blocking the account. Also the OTP is asked for in the page following the login-page and failure to enter or to enter a faulty OTP there should count as a failed login attempt.
+&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;Couldn't the trojan record all OTPs entered and then it knows it's only one left redirect the login attempt and then login itself with that OTP?&lt;/cite&gt;&lt;br/&gt;
+- This is a real concern. To counterfeit this you have to have more OTPs than you will actually use or the numbered list could go on and on and not begin from 1 for every new sheet of OTPs. In either way the trojan will have a hard time to find out how many OTPs there are left.&lt;/p&gt;
+&lt;p&gt;In theory you could also present the number of the OTP as a &lt;a href="http://www.captcha.net/"&gt;CAPTCHA&lt;/a&gt; but I would recommend against it for usability reasons and because it locks out people with certain &lt;a href="http://www.w3.org/TR/turingtest/#conclusion"&gt;disabilities&lt;/a&gt;.
+&lt;/p&gt;
+&lt;h3&gt;Probability of success&lt;/h3&gt;
+&lt;p&gt;Let's say the trojan has succeeded in getting hold of two OTPs. What is the probability that it will hit the correct OTP if the user has a list of 20, 50 and 200 OTPs and if three login tries are allowed?&lt;/p&gt;
+&lt;div class="typocode"&gt;&lt;pre&gt;&lt;code class="typocode_default "&gt;20: (1-(18/20*17/19*16/18))*100 = 28.4%
+50: (1-(48/50*47/49*46/48))*100 = 11.8%
+200: (1-(198/200*197/199*196/198))*100 = 3.0%&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is why it is important to make it hard or impossible for the trojan to count how many OTPs there are left.&lt;/p&gt;
+&lt;p&gt;If you add a second round of OTP check like I suggested in my earlier &lt;a href="/articles/2007/02/05/trojans-and-one-time-passwords"&gt;post &lt;/a&gt; life gets a lot harder for Mallory.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 06 Feb 2007 16:59:00 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:518ebbda-3d49-418f-b8d3-0b50e7c97db8</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2007/02/06/randomly-chosen-otps</link>
+      <category>Security</category>
+    </item>
+  </channel>
+</rss>

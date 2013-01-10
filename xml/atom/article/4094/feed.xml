@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: Blog comment spam taken to the next level?</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/4094/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2010/05/19/blog-comment-spam-taken-to-the-next-level" rel="alternate" type="text/html"/>
+  <updated>2010-05-20T10:46:23+02:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:060e83d9-08e0-41f0-b66c-ec986c11fc16</id>
+    <published>2010-05-19T23:01:00+02:00</published>
+    <updated>2010-05-20T10:46:23+02:00</updated>
+    <title type="html">Blog comment spam taken to the next level?</title>
+    <link href="http://alicebobandmallory.com/articles/2010/05/19/blog-comment-spam-taken-to-the-next-level" rel="alternate" type="text/html"/>
+    <category label="Blogging" term="blogging" scheme="http://alicebobandmallory.com/articles/category/blogging"/>
+    <summary type="html">&lt;p&gt;Only days after starting this barely visited blog the &lt;a href="http://en.wikipedia.org/wiki/Spam_in_blogs"&gt;comment spammers&lt;/a&gt; showed up. I activated &lt;a href="http://akismet.com/"&gt;Akismet&lt;/a&gt; and it solved my problem for a while. Over time the spamming got worse and although almost no spam actually showed up on the blog, my fear of false positives still forced me to remove the spam manually. Not my idea of fun.&lt;/p&gt;
+
+&lt;p&gt;I then activated a very simple hurdle. I demanded JavaScript to be able to post comments. Well, not really, what &lt;a href="http://wiki.github.com/fdv/typo/"&gt;Typo&lt;/a&gt; really did was to expect the HTTP header &lt;code&gt;X-Requested-With: XMLHttpRequest&lt;/code&gt;. That worked flawlessly for about three years. Just six weeks ago I noticed the first spambots including the needed header to pass through. Almost all posted stupid drug ads that Akismet easily identified as spam. The situation was still under control.&lt;/p&gt;
+
+&lt;p&gt;Yesterday something completely new happened. I got a comment on an old post about my admiration of Ira Glass and &lt;a href="http://www.thisamericanlife.org/"&gt;This American Life&lt;/a&gt;. The comment seemed believable enough and it passed the spam filter. Still, the link at the end undeniably identified it as spam.
+Then there was another, and another, and up until now a total of six spam comments in the new and more advanced format. I'm still not sure if these are scripted but it seems an awful lot of work if they are actually manually typed. &lt;/p&gt;
+
+&lt;p&gt;&lt;a href="/articles/2010/02/03/ira-glass-on-storytelling"&gt;&lt;img src="/images/advanced_blog_spam1.png"&gt;
+&lt;/a&gt;
+And also these on a post about &lt;a href="/articles/2009/10/20/infinite-ranges-in-c"&gt;infinite ranges in C#&lt;/a&gt;:
+&lt;a href="/articles/2009/10/20/infinite-ranges-in-c"&gt;&lt;img src="/images/advanced_blog_spam2.png"&gt;
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I'm kind of bothered with the ones both referring to content of the post and at the same time mentioning that it's not about programming like most of my posts are.&lt;/p&gt;
+
+&lt;p&gt;Are these human or machine made? A clever combination? Also, if you happen to be a spambot and actually answer this then I guess I will have to congratulate you for passing the Turing test.&lt;/p&gt;
+
+&lt;p&gt;PS. They spammed from &lt;code&gt;110.0.0.0 - 110.255.255.255&lt;/code&gt; so if you happen to have problems with the same spammers and aren't worried about blocking the Philippines then you know what to do. DS.&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;Only days after starting this barely visited blog the &lt;a href="http://en.wikipedia.org/wiki/Spam_in_blogs"&gt;comment spammers&lt;/a&gt; showed up. I activated &lt;a href="http://akismet.com/"&gt;Akismet&lt;/a&gt; and it solved my problem for a while. Over time the spamming got worse and although almost no spam actually showed up on the blog, my fear of false positives still forced me to remove the spam manually. Not my idea of fun.&lt;/p&gt;
+
+&lt;p&gt;I then activated a very simple hurdle. I demanded JavaScript to be able to post comments. Well, not really, what &lt;a href="http://wiki.github.com/fdv/typo/"&gt;Typo&lt;/a&gt; really did was to expect the HTTP header &lt;code&gt;X-Requested-With: XMLHttpRequest&lt;/code&gt;. That worked flawlessly for about three years. Just six weeks ago I noticed the first spambots including the needed header to pass through. Almost all posted stupid drug ads that Akismet easily identified as spam. The situation was still under control.&lt;/p&gt;
+
+&lt;p&gt;Yesterday something completely new happened. I got a comment on an old post about my admiration of Ira Glass and &lt;a href="http://www.thisamericanlife.org/"&gt;This American Life&lt;/a&gt;. The comment seemed believable enough and it passed the spam filter. Still, the link at the end undeniably identified it as spam.
+Then there was another, and another, and up until now a total of six spam comments in the new and more advanced format. I'm still not sure if these are scripted but it seems an awful lot of work if they are actually manually typed. &lt;/p&gt;
+
+&lt;p&gt;&lt;a href="/articles/2010/02/03/ira-glass-on-storytelling"&gt;&lt;img src="/images/advanced_blog_spam1.png"&gt;
+&lt;/a&gt;
+And also these on a post about &lt;a href="/articles/2009/10/20/infinite-ranges-in-c"&gt;infinite ranges in C#&lt;/a&gt;:
+&lt;a href="/articles/2009/10/20/infinite-ranges-in-c"&gt;&lt;img src="/images/advanced_blog_spam2.png"&gt;
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I'm kind of bothered with the ones both referring to content of the post and at the same time mentioning that it's not about programming like most of my posts are.&lt;/p&gt;
+
+&lt;p&gt;Are these human or machine made? A clever combination? Also, if you happen to be a spambot and actually answer this then I guess I will have to congratulate you for passing the Turing test.&lt;/p&gt;
+
+&lt;p&gt;PS. They spammed from &lt;code&gt;110.0.0.0 - 110.255.255.255&lt;/code&gt; so if you happen to have problems with the same spammers and aren't worried about blocking the Philippines then you know what to do. DS.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:51ec31a4-0993-4f43-ab32-8d494d81fd59</id>
+    <published>2012-05-03T23:26:54+02:00</published>
+    <updated>2012-05-04T08:18:46+02:00</updated>
+    <title type="html">Comment on Blog comment spam taken to the next level? by Jonas Elfström</title>
+    <link href="http://alicebobandmallory.com/articles/2010/05/19/blog-comment-spam-taken-to-the-next-level#comment-8397" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Possible new kind of spam &lt;a href="http://ezliu.com/my-favorite-spammers-world-of-tanks/"&gt;http://ezliu.com/my-favorite-spammers-world-of-tanks/&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:76d20abe-2920-40fa-869d-42a9416e399e</id>
+    <published>2012-04-10T10:33:32+02:00</published>
+    <updated>2012-04-10T10:52:18+02:00</updated>
+    <title type="html">Comment on Blog comment spam taken to the next level? by Jonas Elfström</title>
+    <link href="http://alicebobandmallory.com/articles/2010/05/19/blog-comment-spam-taken-to-the-next-level#comment-8118" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;It took them three hours and my conclusion is that this actually is human entered spam. Fascinating! How can that ever be a profitable business?&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:9ffb4426-095a-4c8f-aecf-fe4ed2e04e53</id>
+    <published>2012-04-09T23:41:02+02:00</published>
+    <updated>2012-04-09T23:42:09+02:00</updated>
+    <title type="html">Comment on Blog comment spam taken to the next level? by Jonas Elfström</title>
+    <link href="http://alicebobandmallory.com/articles/2010/05/19/blog-comment-spam-taken-to-the-next-level#comment-8111" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Now the numbers in the comment calc question are images. Let the countdown begin!&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:246ff80d-29e5-4267-a762-7859110a42b3</id>
+    <published>2012-04-09T21:50:35+02:00</published>
+    <updated>2012-04-09T22:38:55+02:00</updated>
+    <title type="html">Comment on Blog comment spam taken to the next level? by Jonas Elfström</title>
+    <link href="http://alicebobandmallory.com/articles/2010/05/19/blog-comment-spam-taken-to-the-next-level#comment-8108" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;It didn&amp;#8217;t work at all. Either they have a spambot that runs JavaScript or it&amp;#8217;s posted by humans. Next try will be showing the numbers as images. If it&amp;#8217;s a spambot I hope that will stop them for a while.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:080e1d86-fdd5-4331-ba08-1f8e86a3771a</id>
+    <published>2012-04-09T00:35:25+02:00</published>
+    <updated>2012-04-09T00:36:11+02:00</updated>
+    <title type="html">Comment on Blog comment spam taken to the next level? by Jonas Elfström</title>
+    <link href="http://alicebobandmallory.com/articles/2010/05/19/blog-comment-spam-taken-to-the-next-level#comment-8079" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;A couple of minutes ago I finally hacked together a JavaScript based approach. It will be very interesting to see if I will get any spam in the next couple of days.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:78e7a785-c0fe-4e67-9bd6-3ce039352c0b</id>
+    <published>2011-10-04T11:07:05+02:00</published>
+    <updated>2011-10-09T21:29:32+02:00</updated>
+    <title type="html">Comment on Blog comment spam taken to the next level? by Jonas Elfström</title>
+    <link href="http://alicebobandmallory.com/articles/2010/05/19/blog-comment-spam-taken-to-the-next-level#comment-6587" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;&lt;a href="http://samsaffron.com/archive/2011/10/04/Spam+bacon+sausage+and+blog+spam+a+JavaScript+approach"&gt;Spam, bacon, sausage and blog spam: a JavaScript approach - by Sam Saffron&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>clacke</name>
+    </author>
+    <id>urn:uuid:aaa43285-c51b-48d7-bdd2-0092930abd8c</id>
+    <published>2010-05-20T13:46:41+02:00</published>
+    <updated>2010-05-21T09:01:43+02:00</updated>
+    <title type="html">Comment on Blog comment spam taken to the next level? by clacke</title>
+    <link href="http://alicebobandmallory.com/articles/2010/05/19/blog-comment-spam-taken-to-the-next-level#comment-4102" rel="alternate" type="text/html"/>
+    <content type="html">&lt;blockquote&gt;
+    &lt;p&gt;The question is “8th word on this page” and the word is always the same&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Well, the mother of all wikis at c2.com still uses &amp;#8220;Type the code word, 567, here&amp;#8221;, which seems to be working reasonably well, combined with the efforts of moderators and ad-hoc temporary write-blocking of troublesome nets.&lt;/p&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;Exactly, but only until they perfect their AI. :)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So, are you predicting spam overtaking military and porn as the main technology driver? ;-)&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas</name>
+    </author>
+    <id>urn:uuid:4f6b8bea-898a-457e-a2dd-242f43c6ddb5</id>
+    <published>2010-05-20T13:24:36+02:00</published>
+    <updated>2010-05-21T09:01:50+02:00</updated>
+    <title type="html">Comment on Blog comment spam taken to the next level? by Jonas</title>
+    <link href="http://alicebobandmallory.com/articles/2010/05/19/blog-comment-spam-taken-to-the-next-level#comment-4101" rel="alternate" type="text/html"/>
+    <content type="html">&lt;blockquote&gt;
+    &lt;p&gt;Is your CAPTCHA home-grown?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Yes, and ridiculously simple. The question is &amp;#8220;8th word on this page&amp;#8221; and the word is always the same and is even present in the title of the page.&lt;/p&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;would need the spammers’ personal attention&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Exactly, but only until they perfect their AI. :)&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>clacke</name>
+    </author>
+    <id>urn:uuid:3956ccb0-50cd-4d9e-8a08-49c4937e9f56</id>
+    <published>2010-05-20T12:46:24+02:00</published>
+    <updated>2010-05-21T09:01:49+02:00</updated>
+    <title type="html">Comment on Blog comment spam taken to the next level? by clacke</title>
+    <link href="http://alicebobandmallory.com/articles/2010/05/19/blog-comment-spam-taken-to-the-next-level#comment-4100" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Yes, the mobile device issue would probably be a problem. Although with mobile devices these days running on &gt; 1GHz Snapdragons, maybe not as big a problem as you think. I&amp;#8217;m not talking about minutes here. Only enough to make it less cost-effective to run large-scale spambots. But maybe someone with more insight will tell me that the spammers have access to huge botnets anyway, making the CPU time cheap enough that a scheme like this is meaningless unless it creates a problem even for legitimate users.&lt;/p&gt;
+
+&lt;p&gt;Is your CAPTCHA home-grown? I have been thinking about this before. With a few widespread CAPTCHA implementations, spambots would probably focus on trying to get around those. Any site running a custom implementation, with some personal twist, would need the spammers&amp;#8217; personal attention and thus escape the bulk of the spam.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas</name>
+    </author>
+    <id>urn:uuid:315cf385-ca1c-43d1-960b-42605283a088</id>
+    <published>2010-05-20T11:09:43+02:00</published>
+    <updated>2010-05-21T09:01:48+02:00</updated>
+    <title type="html">Comment on Blog comment spam taken to the next level? by Jonas</title>
+    <link href="http://alicebobandmallory.com/articles/2010/05/19/blog-comment-spam-taken-to-the-next-level#comment-4099" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;@clacke Interesting idea but wouldn&amp;#8217;t it be kind of cruel to users from slow mobile devices and such? There&amp;#8217;s also a huge difference in speed of the JavaScript engines in the current browsers. IE is still very common and way behind in speed (and more).&lt;/p&gt;
+
+&lt;p&gt;If the problem gets worse I think I will add a very simple custom text based CAPTCHA. I have that on a page that&amp;#8217;s been online and indexed by search engines for 11 years. There&amp;#8217;s still not one single spambot that has figured it out. They sure do try to post though.&lt;/p&gt;
+
+&lt;p&gt;I&amp;#8217;m trying to avoid having to log in (OpenId, Twitter, FB, and so on) to post because I like the idea of it being very simple to comment. Also some commenters may like the anonymity.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>clacke</name>
+    </author>
+    <id>urn:uuid:f284311e-88f4-4d54-addc-97cdcb5449f9</id>
+    <published>2010-05-20T10:39:28+02:00</published>
+    <updated>2010-05-21T09:01:47+02:00</updated>
+    <title type="html">Comment on Blog comment spam taken to the next level? by clacke</title>
+    <link href="http://alicebobandmallory.com/articles/2010/05/19/blog-comment-spam-taken-to-the-next-level#comment-4098" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Are there any thoughts going on regarding hash cash for blog comments? Now that spam bots are able to analyze content, parse and execute javascript and possible pass captchas, is it time to simply make it more time-consuming for them to do so? Or is this idea dead due to a fundamental flaw in the thinking?&lt;/p&gt;
+
+&lt;p&gt;For example, when I want to comment on this article, I could get a hidden field with a checksum of a nonce. Upon submission, I would be required to submit the nonce itself, expensively calculated in JavaScript, and the checksum. The server could quickly verify that I have done the calculation.&lt;/p&gt;
+
+&lt;p&gt;This never took off with mail, but I believe that is partly due to inertia and the needed support in mail clients. In the blog comment case, you control part of the client, so that every javascript-enabled browser has support for the scheme.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Pac</name>
+    </author>
+    <id>urn:uuid:d96a93e9-dc7b-4de4-9880-f780ff11c1b3</id>
+    <published>2010-05-20T10:09:39+02:00</published>
+    <updated>2010-05-21T09:01:46+02:00</updated>
+    <title type="html">Comment on Blog comment spam taken to the next level? by Pac</title>
+    <link href="http://alicebobandmallory.com/articles/2010/05/19/blog-comment-spam-taken-to-the-next-level#comment-4097" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Seeing as the spam-comments are well-spelled and with no obvious (american?) internet-twitter-sms acronyms and misspellings, there&amp;#8217;s no chance a normal internet user could have written them, they must be machine-made! ;)&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas</name>
+    </author>
+    <id>urn:uuid:eca35abe-462e-4f62-a719-bb61957fcfed</id>
+    <published>2010-05-20T08:59:34+02:00</published>
+    <updated>2010-05-20T09:07:36+02:00</updated>
+    <title type="html">Comment on Blog comment spam taken to the next level? by Jonas</title>
+    <link href="http://alicebobandmallory.com/articles/2010/05/19/blog-comment-spam-taken-to-the-next-level#comment-4096" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;@Charles thanks, and yes there are certainly a lot of things I could do to try to stop these. &lt;/p&gt;
+
+&lt;p&gt;In this case the new kind of spams made me curious to find out if they are generated automatically, from the content of my blog, or if some kind of virtual sweatshop is involved. Because if they are purely software based then they are certainly up there with ELIZA, and that&amp;#8217;s a new breed of spam, at least for me.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Charles</name>
+    </author>
+    <id>urn:uuid:bd829146-487b-4639-a145-8788179f1383</id>
+    <published>2010-05-20T01:11:13+02:00</published>
+    <updated>2010-05-20T09:07:29+02:00</updated>
+    <title type="html">Comment on Blog comment spam taken to the next level? by Charles</title>
+    <link href="http://alicebobandmallory.com/articles/2010/05/19/blog-comment-spam-taken-to-the-next-level#comment-4095" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Good article. One of the challenges we faced building &lt;a href="http://www.dirtyphonebook.com"&gt;DirtyPhoneBook&lt;/a&gt;, besides the obvious scaling and legal concerns was how to deal with spam. We took a several tiered approach.&lt;/p&gt;
+
+&lt;p&gt;a) As of now, not auto-linking URLs to decrease the incentive to spam
+b) Rate-limiting commenting.
+c) Using Akismet for spam control and having other services code ready to go if need be.
+d) Having a reporting system for users to report spam
+e) Having a captcha system (which will soon also be a number verification system to remove that captcha)
+f) Making some form data hidden fields change so that robots can&amp;#8217;t easily be programmed to submit comments.&lt;/p&gt;
+
+&lt;p&gt;There are a few other things we did but those are some of the basics and despite a few serious attempts to spam us so far nothing has gone through.&lt;/p&gt;</content>
+  </entry>
+</feed>

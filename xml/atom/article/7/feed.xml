@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: A funny coincidence</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/7/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2007/02/06/a-funny-coincidence" rel="alternate" type="text/html"/>
+  <updated>2007-02-06T17:48:14+01:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:f004d4bf-f39c-4740-a837-ba64172618d2</id>
+    <published>2007-02-06T14:16:00+01:00</published>
+    <updated>2007-02-06T17:48:14+01:00</updated>
+    <title type="html">A funny coincidence</title>
+    <link href="http://alicebobandmallory.com/articles/2007/02/06/a-funny-coincidence" rel="alternate" type="text/html"/>
+    <category label="Security" term="security" scheme="http://alicebobandmallory.com/articles/category/security"/>
+    <summary type="html">&lt;p&gt;This monday &lt;a href="http://computersweden.idg.se/"&gt;Computer Sweden&lt;/a&gt; had an article that says that the &lt;a href="http://www.nordea.fi/sitemod/default/index.aspx?pid=933222"&gt;finnish branch of Nordea&lt;/a&gt; is using something that sounds just like what I described in my earlier &lt;a href="/articles/2007/02/05/trojans-and-one-time-passwords"&gt;post&lt;/a&gt;. Unfortunately I can't provide an URL to the article since it seems to only have been published in the paper version.
+&lt;/p&gt;
+&lt;p&gt;The article says that they randomly chose among 20 codes. To me that sounds a little low. I even find 50 codes a little low and I plan to show why in a later post.&lt;/p&gt;
+</summary>
+    <content type="html">&lt;p&gt;This monday &lt;a href="http://computersweden.idg.se/"&gt;Computer Sweden&lt;/a&gt; had an article that says that the &lt;a href="http://www.nordea.fi/sitemod/default/index.aspx?pid=933222"&gt;finnish branch of Nordea&lt;/a&gt; is using something that sounds just like what I described in my earlier &lt;a href="/articles/2007/02/05/trojans-and-one-time-passwords"&gt;post&lt;/a&gt;. Unfortunately I can't provide an URL to the article since it seems to only have been published in the paper version.
+&lt;/p&gt;
+&lt;p&gt;The article says that they randomly chose among 20 codes. To me that sounds a little low. I even find 50 codes a little low and I plan to show why in a later post.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

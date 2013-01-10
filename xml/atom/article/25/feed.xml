@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: .com</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/25/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2007/03/30/com" rel="alternate" type="text/html"/>
+  <updated>2007-03-30T11:09:18+02:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:e49ebebc-17ef-42c0-888b-9f7fbd462a5a</id>
+    <published>2007-03-30T06:59:00+02:00</published>
+    <updated>2007-03-30T11:09:18+02:00</updated>
+    <title type="html">.com</title>
+    <link href="http://alicebobandmallory.com/articles/2007/03/30/com" rel="alternate" type="text/html"/>
+    <category label="Blogging" term="blogging" scheme="http://alicebobandmallory.com/articles/category/blogging"/>
+    <summary type="html">&lt;p&gt;Now I've got a .com domain, you can reach this blog at &lt;a href="http://alicebobandmallory.com/"&gt;http://alicebobandmallory.com/&lt;/a&gt;.&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;Now I've got a .com domain, you can reach this blog at &lt;a href="http://alicebobandmallory.com/"&gt;http://alicebobandmallory.com/&lt;/a&gt;.&lt;/p&gt;</content>
+  </entry>
+</feed>

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: An average application in the clouds</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/3375/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2009/06/11/an-average-application-in-the-clouds" rel="alternate" type="text/html"/>
+  <updated>2009-07-31T09:44:58+02:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:9e02d487-6a0f-411a-a111-42119d2b76ea</id>
+    <published>2009-06-11T23:03:00+02:00</published>
+    <updated>2009-07-31T09:44:58+02:00</updated>
+    <title type="html">An average application in the clouds</title>
+    <link href="http://alicebobandmallory.com/articles/2009/06/11/an-average-application-in-the-clouds" rel="alternate" type="text/html"/>
+    <category label="Ruby" term="ruby" scheme="http://alicebobandmallory.com/articles/category/ruby"/>
+    <summary type="html">&lt;p&gt;A couple of days ago I published my first applicaiton "in the cloud". I named it &lt;a href="http://average.heroku.com/"&gt;Average&lt;/a&gt; and it's only a tiny little app that I did for fun and learning. It's written in &lt;a href="http://www.ruby-lang.org/en/"&gt;Ruby&lt;/a&gt; with the micro framework &lt;a href="http://www.sinatrarb.com/"&gt;Sinatra&lt;/a&gt;, &lt;a href="http://datamapper.org/doku.php?id=docs"&gt;DataMapper&lt;/a&gt;, &lt;a href="http://haml.hamptoncatlin.com/"&gt;Haml&lt;/a&gt; and published to &lt;a href="http://heroku.com/"&gt;Heroku&lt;/a&gt; with their &lt;a href="http://en.wikipedia.org/wiki/Git_(software)"&gt;git&lt;/a&gt;-based workflow. Except Ruby I hadn't used any of these before.&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The tools&lt;/strong&gt;&lt;br/&gt;
+&lt;a href="http://www.sinatrarb.com/"&gt;Sinatra&lt;/a&gt; will most likely become my favorite tool for quick web hacks in the futute. I've been using Rubys' built-in CGI support for such before, but Sinatra is beyond compare. It may not be very well suited for anything but small projects but it's hand in glove for admin pages, "reports" or REST services.  Still there are some not that small projects on &lt;a href="http://www.sinatrarb.com/wild.html"&gt;http://www.sinatrarb.com/wild.html&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;
+&lt;a href="http://datamapper.org/"&gt;DataMapper&lt;/a&gt; is an &lt;a href="http://en.wikipedia.org/wiki/Object-relational_mapping"&gt;ORM&lt;/a&gt; and at glance it looks a lot like &lt;a href="http://en.wikipedia.org/wiki/ActiveRecord_(Rails)"&gt;ActiveRecord&lt;/a&gt; but it feels more &lt;a href="http://www.actsasflinn.com/2009/01/02/5-reasons-datamapper-will-deprecate-activerecord"&gt;"pure"&lt;/a&gt;. I really like that it uses regular Ruby classes (and methods, no method_missing magic) that you&lt;a href="http://datamapper.org/doku.php?id=docs:properties"&gt; include DataMapper&lt;/a&gt; to. Sadly the documentation is terrible, it's unstructured and missing some crucial bits. Hopefully that will change in the near future and since it's a wiki anyone can help.&lt;br/&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://haml.hamptoncatlin.com/tutorial/"&gt;Haml&lt;/a&gt; is a markup language that generates HTML/XHTML. It makes it very easy to create fully validating XHTML pages. Some parts of Hamls felt kind of strange but after using it for a couple of hours it all seemed to fall into place and I started to like it more and more by the minute. As a disclaimer I have to admit to only have created 8-9 simple &lt;a href="http://haml.hamptoncatlin.com/docs/rdoc/files/FAQ.html"&gt;Haml&lt;/a&gt; templates ever.&lt;br/&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://git-scm.com/"&gt;git&lt;/a&gt; is a distributed revision control tool. It's really fast, faster than any &lt;a href="http://en.wikipedia.org/wiki/Software_configuration_management"&gt;SCM&lt;/a&gt; I've ever used. Git was initially developed by Linus Torvalds and &lt;a href="http://github.com/"&gt;http://github.com/&lt;/a&gt; seems to be a driving force of adoption.&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://heroku.com/"&gt;Heroku&lt;/a&gt; is very impressive! Unparalleled ease of deployment and if you need more power just &lt;a href="http://heroku.com/pricing#blossom-1"&gt;slide the &amp;quot;dyno slider&amp;quot;&lt;/a&gt;! Heroku is free as long as you only use one &lt;a href="http://heroku.com/how/dynos"&gt;dyno&lt;/a&gt;, but if you need more "CPUs", backups, more than 5MB and so on, there's a fee.&lt;br/&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Under the hood&lt;/b&gt;
+&lt;br/&gt;
+&lt;a href="http://average.heroku.com/"&gt;Average&lt;/a&gt;&amp;nbsp;doesn't do much but to its defense it does it in few lines of code. One single Ruby file and some views:&lt;br/&gt;
+&lt;font face=Consolas size=1&gt;$ wc -l average.rb&lt;br/&gt;&amp;nbsp;&amp;nbsp;196 average.rb&lt;br/&gt;$ wc -l views/*.haml&lt;br/&gt;&amp;nbsp;&amp;nbsp;6 views/average.haml&lt;br/&gt;&amp;nbsp;19 views/index.haml&lt;br/&gt;&amp;nbsp;25 views/new.haml&lt;br/&gt;&amp;nbsp;&amp;nbsp;9 views/not&lt;em&gt;enough&lt;/em&gt;data.haml&lt;br/&gt;&amp;nbsp;13 views/poll.haml&lt;br/&gt;&amp;nbsp;16 views/show.haml&lt;br/&gt;&lt;/font&gt;
+284 rows total.
+&lt;br/&gt;And there's nothing more to it because the data model is included in the average.rb:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
+&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
+&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
+&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
+&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
+&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
+&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n21" name="n21"&gt;21&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#080;font-weight:bold"&gt;class&lt;/span&gt; &lt;span style="color:#B06;font-weight:bold"&gt;Average&lt;/span&gt;
+  include &lt;span style="color:#036;font-weight:bold"&gt;DataMapper&lt;/span&gt;::&lt;span style="color:#036;font-weight:bold"&gt;Resource&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:id&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;Integer&lt;/span&gt;, &lt;span style="color:#A60"&gt;:serial&lt;/span&gt; =&amp;gt; &lt;span style="color:#069"&gt;true&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:name&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;String&lt;/span&gt;, &lt;span style="color:#A60"&gt;:length&lt;/span&gt; =&amp;gt; &lt;span style="color:#00D"&gt;50&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:unit&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;String&lt;/span&gt;, &lt;span style="color:#A60"&gt;:length&lt;/span&gt; =&amp;gt; &lt;span style="color:#00D"&gt;50&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:what&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;String&lt;/span&gt;, &lt;span style="color:#A60"&gt;:length&lt;/span&gt; =&amp;gt; &lt;span style="color:#00D"&gt;50&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:public&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;Boolean&lt;/span&gt;, &lt;span style="color:#A60"&gt;:default&lt;/span&gt; =&amp;gt; &lt;span style="color:#069"&gt;true&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:avgthreshold&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;Integer&lt;/span&gt;, &lt;span style="color:#A60"&gt;:default&lt;/span&gt; =&amp;gt; &lt;span style="color:#00D"&gt;0&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:cryptokey&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;String&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:adminkey&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;String&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:allow_multiple&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;Boolean&lt;/span&gt;, &lt;span style="color:#A60"&gt;:default&lt;/span&gt; =&amp;gt; &lt;span style="color:#069"&gt;false&lt;/span&gt;
+  has n, &lt;span style="color:#A60"&gt;:values&lt;/span&gt;
+&lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;
+
+&lt;span style="color:#080;font-weight:bold"&gt;class&lt;/span&gt; &lt;span style="color:#B06;font-weight:bold"&gt;Value&lt;/span&gt;
+  include &lt;span style="color:#036;font-weight:bold"&gt;DataMapper&lt;/span&gt;::&lt;span style="color:#036;font-weight:bold"&gt;Resource&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:id&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;Serial&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:value&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;Float&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:valuekey&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;String&lt;/span&gt;
+  belongs_to &lt;span style="color:#A60"&gt;:average&lt;/span&gt;
+&lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+I only had to type one single SQL statement: &lt;br/&gt;
+&lt;font face=Consolas size=2&gt;CREATE DATABASE average;&lt;/font&gt;&lt;br/&gt;
+The tables were created by executing &lt;font face=Consolas size=2&gt;DataMapper.auto_migrate!&lt;/font&gt; (in irb), it's also possible to migrate table by table: &lt;font face=Consolas size=2&gt;Average.auto_migrate!&lt;/font&gt;. Migrate drops the table so if you want to keep the data you can use &lt;font face=Consolas size=2&gt;Averages.auto_upgrade!&lt;/font&gt;. It's real easy and powerful.&lt;br/&gt;
+Heroku also has a console and there you can run Ruby code in the running production enviroment.&lt;br/&gt;
+&lt;font face=Consolas size=2&gt;
+$ heroku console&lt;br/&gt;
+&amp;gt;&amp;gt; DataMapper.auto_migrate!&lt;br/&gt;
+&lt;/font&gt;&lt;br/&gt;
+To push your local database to the server just:&lt;br/&gt;&lt;font face=Consolas size=2&gt;
+$ heroku db:push mysql://user:pwd@localhost/average&lt;br/&gt;&lt;/font&gt;
+(Heroku runs PostgreSQL but the above translates from a plethora of  databases. I got some kind of problem with Booleans from MySQL though.)&lt;br/&gt;For ActiveRecord there's rake db:...
+&lt;br/&gt;&lt;br/&gt;
+A typical Sinatra Route (a HTTP method paired with a URL matching pattern) could look something like this:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;get &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;/&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt; &lt;span style="color:#080;font-weight:bold"&gt;do&lt;/span&gt;
+  &lt;span style="color:#33B"&gt;@avgs&lt;/span&gt;=&lt;span style="color:#036;font-weight:bold"&gt;Average&lt;/span&gt;.all(&lt;span style="color:#A60"&gt;:public&lt;/span&gt; =&amp;gt; &lt;span style="color:#069"&gt;true&lt;/span&gt;, &lt;span style="color:#A60"&gt;:limit&lt;/span&gt; =&amp;gt; &lt;span style="color:#00D"&gt;25&lt;/span&gt;, &lt;span style="color:#A60"&gt;:order&lt;/span&gt; =&amp;gt; [&lt;span style="color:#A60"&gt;:id&lt;/span&gt;.desc])
+  haml &lt;span style="color:#A60"&gt;:index&lt;/span&gt;
+&lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+My views are written in Haml and it looks something like this:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;%h1= &lt;span style="color:#33B"&gt;@avg&lt;/span&gt;.name
+%p== &lt;span style="color:#036;font-weight:bold"&gt;The&lt;/span&gt; average &lt;span style="color:#777"&gt;#{@avg.what} is #{average} #{@avg.unit} and the sample size is #{sample_size}.&lt;/span&gt;
+- &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; &lt;span style="color:#33B"&gt;@done&lt;/span&gt;==&lt;span style="color:#069"&gt;false&lt;/span&gt; &lt;span style="color:#080;font-weight:bold"&gt;then&lt;/span&gt;
+  %a{&lt;span style="color:#A60"&gt;:href&lt;/span&gt;=&amp;gt;&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;/poll/&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;+&lt;span style="color:#33B"&gt;@avg&lt;/span&gt;.cryptokey} &lt;span style="color:#036;font-weight:bold"&gt;Add&lt;/span&gt; value&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+Heroku uses git to publish the applications and the workflow is:&lt;br/&gt;&lt;font face=Consolas size=2&gt;
+git add.&lt;br/&gt;
+git commit -m &amp;quot;added a before filter&amp;nbsp;for charset utf-8&amp;quot;&lt;br/&gt;
+git push heroku&lt;br/&gt;&lt;/font&gt;
+&lt;br/&gt;
+PS. Peter, look, it validates! &lt;a href="http://validator.w3.org/check?uri=http://average.heroku.com"&gt;http://validator.w3.org/check?uri=http%3A%2F%2Faverage.heroku.com&lt;/a&gt; :) DS&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;A couple of days ago I published my first applicaiton "in the cloud". I named it &lt;a href="http://average.heroku.com/"&gt;Average&lt;/a&gt; and it's only a tiny little app that I did for fun and learning. It's written in &lt;a href="http://www.ruby-lang.org/en/"&gt;Ruby&lt;/a&gt; with the micro framework &lt;a href="http://www.sinatrarb.com/"&gt;Sinatra&lt;/a&gt;, &lt;a href="http://datamapper.org/doku.php?id=docs"&gt;DataMapper&lt;/a&gt;, &lt;a href="http://haml.hamptoncatlin.com/"&gt;Haml&lt;/a&gt; and published to &lt;a href="http://heroku.com/"&gt;Heroku&lt;/a&gt; with their &lt;a href="http://en.wikipedia.org/wiki/Git_(software)"&gt;git&lt;/a&gt;-based workflow. Except Ruby I hadn't used any of these before.&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The tools&lt;/strong&gt;&lt;br/&gt;
+&lt;a href="http://www.sinatrarb.com/"&gt;Sinatra&lt;/a&gt; will most likely become my favorite tool for quick web hacks in the futute. I've been using Rubys' built-in CGI support for such before, but Sinatra is beyond compare. It may not be very well suited for anything but small projects but it's hand in glove for admin pages, "reports" or REST services.  Still there are some not that small projects on &lt;a href="http://www.sinatrarb.com/wild.html"&gt;http://www.sinatrarb.com/wild.html&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;
+&lt;a href="http://datamapper.org/"&gt;DataMapper&lt;/a&gt; is an &lt;a href="http://en.wikipedia.org/wiki/Object-relational_mapping"&gt;ORM&lt;/a&gt; and at glance it looks a lot like &lt;a href="http://en.wikipedia.org/wiki/ActiveRecord_(Rails)"&gt;ActiveRecord&lt;/a&gt; but it feels more &lt;a href="http://www.actsasflinn.com/2009/01/02/5-reasons-datamapper-will-deprecate-activerecord"&gt;"pure"&lt;/a&gt;. I really like that it uses regular Ruby classes (and methods, no method_missing magic) that you&lt;a href="http://datamapper.org/doku.php?id=docs:properties"&gt; include DataMapper&lt;/a&gt; to. Sadly the documentation is terrible, it's unstructured and missing some crucial bits. Hopefully that will change in the near future and since it's a wiki anyone can help.&lt;br/&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://haml.hamptoncatlin.com/tutorial/"&gt;Haml&lt;/a&gt; is a markup language that generates HTML/XHTML. It makes it very easy to create fully validating XHTML pages. Some parts of Hamls felt kind of strange but after using it for a couple of hours it all seemed to fall into place and I started to like it more and more by the minute. As a disclaimer I have to admit to only have created 8-9 simple &lt;a href="http://haml.hamptoncatlin.com/docs/rdoc/files/FAQ.html"&gt;Haml&lt;/a&gt; templates ever.&lt;br/&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://git-scm.com/"&gt;git&lt;/a&gt; is a distributed revision control tool. It's really fast, faster than any &lt;a href="http://en.wikipedia.org/wiki/Software_configuration_management"&gt;SCM&lt;/a&gt; I've ever used. Git was initially developed by Linus Torvalds and &lt;a href="http://github.com/"&gt;http://github.com/&lt;/a&gt; seems to be a driving force of adoption.&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://heroku.com/"&gt;Heroku&lt;/a&gt; is very impressive! Unparalleled ease of deployment and if you need more power just &lt;a href="http://heroku.com/pricing#blossom-1"&gt;slide the &amp;quot;dyno slider&amp;quot;&lt;/a&gt;! Heroku is free as long as you only use one &lt;a href="http://heroku.com/how/dynos"&gt;dyno&lt;/a&gt;, but if you need more "CPUs", backups, more than 5MB and so on, there's a fee.&lt;br/&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Under the hood&lt;/b&gt;
+&lt;br/&gt;
+&lt;a href="http://average.heroku.com/"&gt;Average&lt;/a&gt;&amp;nbsp;doesn't do much but to its defense it does it in few lines of code. One single Ruby file and some views:&lt;br/&gt;
+&lt;font face=Consolas size=1&gt;$ wc -l average.rb&lt;br/&gt;&amp;nbsp;&amp;nbsp;196 average.rb&lt;br/&gt;$ wc -l views/*.haml&lt;br/&gt;&amp;nbsp;&amp;nbsp;6 views/average.haml&lt;br/&gt;&amp;nbsp;19 views/index.haml&lt;br/&gt;&amp;nbsp;25 views/new.haml&lt;br/&gt;&amp;nbsp;&amp;nbsp;9 views/not&lt;em&gt;enough&lt;/em&gt;data.haml&lt;br/&gt;&amp;nbsp;13 views/poll.haml&lt;br/&gt;&amp;nbsp;16 views/show.haml&lt;br/&gt;&lt;/font&gt;
+284 rows total.
+&lt;br/&gt;And there's nothing more to it because the data model is included in the average.rb:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
+&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
+&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
+&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
+&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
+&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
+&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n21" name="n21"&gt;21&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#080;font-weight:bold"&gt;class&lt;/span&gt; &lt;span style="color:#B06;font-weight:bold"&gt;Average&lt;/span&gt;
+  include &lt;span style="color:#036;font-weight:bold"&gt;DataMapper&lt;/span&gt;::&lt;span style="color:#036;font-weight:bold"&gt;Resource&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:id&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;Integer&lt;/span&gt;, &lt;span style="color:#A60"&gt;:serial&lt;/span&gt; =&amp;gt; &lt;span style="color:#069"&gt;true&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:name&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;String&lt;/span&gt;, &lt;span style="color:#A60"&gt;:length&lt;/span&gt; =&amp;gt; &lt;span style="color:#00D"&gt;50&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:unit&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;String&lt;/span&gt;, &lt;span style="color:#A60"&gt;:length&lt;/span&gt; =&amp;gt; &lt;span style="color:#00D"&gt;50&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:what&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;String&lt;/span&gt;, &lt;span style="color:#A60"&gt;:length&lt;/span&gt; =&amp;gt; &lt;span style="color:#00D"&gt;50&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:public&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;Boolean&lt;/span&gt;, &lt;span style="color:#A60"&gt;:default&lt;/span&gt; =&amp;gt; &lt;span style="color:#069"&gt;true&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:avgthreshold&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;Integer&lt;/span&gt;, &lt;span style="color:#A60"&gt;:default&lt;/span&gt; =&amp;gt; &lt;span style="color:#00D"&gt;0&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:cryptokey&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;String&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:adminkey&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;String&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:allow_multiple&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;Boolean&lt;/span&gt;, &lt;span style="color:#A60"&gt;:default&lt;/span&gt; =&amp;gt; &lt;span style="color:#069"&gt;false&lt;/span&gt;
+  has n, &lt;span style="color:#A60"&gt;:values&lt;/span&gt;
+&lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;
+
+&lt;span style="color:#080;font-weight:bold"&gt;class&lt;/span&gt; &lt;span style="color:#B06;font-weight:bold"&gt;Value&lt;/span&gt;
+  include &lt;span style="color:#036;font-weight:bold"&gt;DataMapper&lt;/span&gt;::&lt;span style="color:#036;font-weight:bold"&gt;Resource&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:id&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;Serial&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:value&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;Float&lt;/span&gt;
+  property &lt;span style="color:#A60"&gt;:valuekey&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;String&lt;/span&gt;
+  belongs_to &lt;span style="color:#A60"&gt;:average&lt;/span&gt;
+&lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+I only had to type one single SQL statement: &lt;br/&gt;
+&lt;font face=Consolas size=2&gt;CREATE DATABASE average;&lt;/font&gt;&lt;br/&gt;
+The tables were created by executing &lt;font face=Consolas size=2&gt;DataMapper.auto_migrate!&lt;/font&gt; (in irb), it's also possible to migrate table by table: &lt;font face=Consolas size=2&gt;Average.auto_migrate!&lt;/font&gt;. Migrate drops the table so if you want to keep the data you can use &lt;font face=Consolas size=2&gt;Averages.auto_upgrade!&lt;/font&gt;. It's real easy and powerful.&lt;br/&gt;
+Heroku also has a console and there you can run Ruby code in the running production enviroment.&lt;br/&gt;
+&lt;font face=Consolas size=2&gt;
+$ heroku console&lt;br/&gt;
+&amp;gt;&amp;gt; DataMapper.auto_migrate!&lt;br/&gt;
+&lt;/font&gt;&lt;br/&gt;
+To push your local database to the server just:&lt;br/&gt;&lt;font face=Consolas size=2&gt;
+$ heroku db:push mysql://user:pwd@localhost/average&lt;br/&gt;&lt;/font&gt;
+(Heroku runs PostgreSQL but the above translates from a plethora of  databases. I got some kind of problem with Booleans from MySQL though.)&lt;br/&gt;For ActiveRecord there's rake db:...
+&lt;br/&gt;&lt;br/&gt;
+A typical Sinatra Route (a HTTP method paired with a URL matching pattern) could look something like this:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;get &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;/&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt; &lt;span style="color:#080;font-weight:bold"&gt;do&lt;/span&gt;
+  &lt;span style="color:#33B"&gt;@avgs&lt;/span&gt;=&lt;span style="color:#036;font-weight:bold"&gt;Average&lt;/span&gt;.all(&lt;span style="color:#A60"&gt;:public&lt;/span&gt; =&amp;gt; &lt;span style="color:#069"&gt;true&lt;/span&gt;, &lt;span style="color:#A60"&gt;:limit&lt;/span&gt; =&amp;gt; &lt;span style="color:#00D"&gt;25&lt;/span&gt;, &lt;span style="color:#A60"&gt;:order&lt;/span&gt; =&amp;gt; [&lt;span style="color:#A60"&gt;:id&lt;/span&gt;.desc])
+  haml &lt;span style="color:#A60"&gt;:index&lt;/span&gt;
+&lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+My views are written in Haml and it looks something like this:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;%h1= &lt;span style="color:#33B"&gt;@avg&lt;/span&gt;.name
+%p== &lt;span style="color:#036;font-weight:bold"&gt;The&lt;/span&gt; average &lt;span style="color:#777"&gt;#{@avg.what} is #{average} #{@avg.unit} and the sample size is #{sample_size}.&lt;/span&gt;
+- &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; &lt;span style="color:#33B"&gt;@done&lt;/span&gt;==&lt;span style="color:#069"&gt;false&lt;/span&gt; &lt;span style="color:#080;font-weight:bold"&gt;then&lt;/span&gt;
+  %a{&lt;span style="color:#A60"&gt;:href&lt;/span&gt;=&amp;gt;&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;/poll/&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;+&lt;span style="color:#33B"&gt;@avg&lt;/span&gt;.cryptokey} &lt;span style="color:#036;font-weight:bold"&gt;Add&lt;/span&gt; value&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+Heroku uses git to publish the applications and the workflow is:&lt;br/&gt;&lt;font face=Consolas size=2&gt;
+git add.&lt;br/&gt;
+git commit -m &amp;quot;added a before filter&amp;nbsp;for charset utf-8&amp;quot;&lt;br/&gt;
+git push heroku&lt;br/&gt;&lt;/font&gt;
+&lt;br/&gt;
+PS. Peter, look, it validates! &lt;a href="http://validator.w3.org/check?uri=http://average.heroku.com"&gt;http://validator.w3.org/check?uri=http%3A%2F%2Faverage.heroku.com&lt;/a&gt; :) DS&lt;/p&gt;</content>
+  </entry>
+</feed>

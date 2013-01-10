@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: Swedish hackers</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/3007/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2008/12/31/swedish-hackers" rel="alternate" type="text/html"/>
+  <updated>2008-12-31T00:44:48+01:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:75c0eb80-02fc-4f10-92bf-d0ee90a49986</id>
+    <published>2008-12-31T00:29:00+01:00</published>
+    <updated>2008-12-31T00:44:48+01:00</updated>
+    <title type="html">Swedish hackers</title>
+    <link href="http://alicebobandmallory.com/articles/2008/12/31/swedish-hackers" rel="alternate" type="text/html"/>
+    <category label="Security" term="security" scheme="http://alicebobandmallory.com/articles/category/security"/>
+    <summary type="html">&lt;p&gt;The incident I wrote of in &lt;a href="http://alicebobandmallory.com/articles/2007/02/04/hello-this-is-special-agent-brian"&gt;Hello this is special agent Brian&lt;/a&gt; were covered in a Swedish radio documentary a little more than a month ago.
+It's all in Swedish. You can find out more &lt;a href="http://www.sr.se/cgi-bin/p3/programsidor/artikel.asp?ProgramID=2519&amp;amp;Artikel=2447808"&gt;here&lt;/a&gt; and you can download the documentary from &lt;a href="http://www.sr.se/laddahem/podradio/SR_p3_dokumentar_081116080008.mp3"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I also would like to add that we did not press charges like the police officers says 37 minutes into the documentary. Not because we thought it wasn't a big deal but we knew that a couple of big players already had so we thought we could spend our time better.&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;The incident I wrote of in &lt;a href="http://alicebobandmallory.com/articles/2007/02/04/hello-this-is-special-agent-brian"&gt;Hello this is special agent Brian&lt;/a&gt; were covered in a Swedish radio documentary a little more than a month ago.
+It's all in Swedish. You can find out more &lt;a href="http://www.sr.se/cgi-bin/p3/programsidor/artikel.asp?ProgramID=2519&amp;amp;Artikel=2447808"&gt;here&lt;/a&gt; and you can download the documentary from &lt;a href="http://www.sr.se/laddahem/podradio/SR_p3_dokumentar_081116080008.mp3"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I also would like to add that we did not press charges like the police officers says 37 minutes into the documentary. Not because we thought it wasn't a big deal but we knew that a couple of big players already had so we thought we could spend our time better.&lt;/p&gt;</content>
+  </entry>
+</feed>

@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Get the value of and with using the null-coalescing operator</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../../../xml/atom/article/3302/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../../xml/rss20/article/3302/feed.xml" />
+  <script src="../../../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+       xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+       xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about=""
+    dc:title="Get the value of and with using the null-coalescing operator"
+    dc:identifier="http://alicebobandmallory.com/articles/2009/05/16/get-the-value-of-and-with-using-the-null-coalescing-operator"
+    dc:description="I like the ?? operator that surfaced in C# 2.0. I'm often in environments where null values florish and ?? is a great way to handle them, especially for presentation. A while ago I foun"
+    dc:creator="jonelf"
+    dc:date="2009-05-18T00:02:13+02:00" />
+</rdf:RDF>
+-->
+
+<div class="post" onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_article'); }"  onmouseout="Element.hide('admin_article');" >
+  <a href="http://alicebobandmallory.com/admin/content/edit/3302" class="admintools" id="admin_article" style="display: none">edit</a>
+  <h2>Get the value of and with using the null-coalescing operator</h2>
+  <p class="auth">Posted by Jonas Elfström
+  <span class="typo_date" title="Fri, 15 May 2009 22:38:00 GMT">Fri, 15 May 2009 22:38:00 GMT</span></p>
+  <p>I like the <a href="http://msdn.microsoft.com/en-us/library/ms173224.aspx">?? operator</a> that surfaced in C# 2.0. I'm often in environments where null values florish and ?? is a great way to handle them, especially for presentation. A while ago I found a use for the ?? operator in a way I'd never used it before.</p>
+
+<p>The problem at hand was to return an account number from data that could be described as somewhat inconsistent.</p>
+
+<p>The application had left room for the users to enter accounts in two by two ways. A customer could have multiple subsidiaries and in each subsidiary, by misconception, two different fields had been used as the account number. It was also possible to connect an account to all subsidairies of a customer at the same time as a specific subsidiary of that customer had an account defined.</p>
+
+<p>Only if a unique account could be found it should be returned. All other cases should return a cause of failure so that the users could use that information to clean up the mess.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n1" name="n1">1</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n2" name="n2">2</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n3" name="n3">3</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n4" name="n4">4</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n5" name="n5">5</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n6" name="n6">6</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n7" name="n7">7</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n8" name="n8">8</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n9" name="n9">9</a>
+<strong><a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n10" name="n10">10</a></strong>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n11" name="n11">11</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n12" name="n12">12</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n13" name="n13">13</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n14" name="n14">14</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n15" name="n15">15</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n16" name="n16">16</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n17" name="n17">17</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n18" name="n18">18</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n19" name="n19">19</a>
+<strong><a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n20" name="n20">20</a></strong>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n21" name="n21">21</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n22" name="n22">22</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n23" name="n23">23</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n24" name="n24">24</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n25" name="n25">25</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n26" name="n26">26</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n27" name="n27">27</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n28" name="n28">28</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n29" name="n29">29</a>
+<strong><a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n30" name="n30">30</a></strong>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n31" name="n31">31</a>
+<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#n32" name="n32">32</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#088;font-weight:bold">private</span> <span style="color:#088;font-weight:bold">static</span> Account GetCustomerAccount(Customer customer)
+{
+  bool hasAccount = !<span style="color:#0a5;font-weight:bold">String</span>.IsNullOrEmpty(customer.AccountNo);
+  bool hasAccountNoExtra = !<span style="color:#0a5;font-weight:bold">String</span>.IsNullOrEmpty(customer.AccountNoExtra);
+  bool hasAllSubsAccount = !<span style="color:#0a5;font-weight:bold">String</span>.IsNullOrEmpty(customer.AccountNoAllSubs);
+  bool hasAllSubsAccountNoExtra = 
+       !<span style="color:#0a5;font-weight:bold">String</span>.IsNullOrEmpty(customer.AccountNoExtraAllSubs);
+  var account = <span style="color:#080;font-weight:bold">new</span> Account();
+
+  <span style="color:#080;font-weight:bold">if</span> ((hasAccount || hasAccountNoExtra) &amp;&amp;
+      (hasAllSubsAccount || hasAllSubsAccountNoExtra)) 
+  {
+    account.Status = account.HasBothAllSubsAndSpecific;
+    <span style="color:#080;font-weight:bold">return</span> account;
+  }
+  <span style="color:#080;font-weight:bold">if</span> ((hasAccount &amp;&amp; hasAccountNoExtra) ||   
+      (hasAllSubsAccount &amp;&amp; hasAllSubsAccountNoExtra)) 
+  {
+    account.Status = account.HasBothAccountAndAccountExtra;
+    <span style="color:#080;font-weight:bold">return</span> account;
+  }
+
+  account.AccountNo = customer.AccountNo ??
+                      customer.AccountNoExtra ??
+                      customer.AccountNoAllSubs ??
+                      customer.AccountNoExtraAllSubs;
+
+  <span style="color:#080;font-weight:bold">if</span> (account.AccountNo==<span style="color:#069">null</span>)
+    account.Status=account.HasNoAccountDefined;
+
+  <span style="color:#080;font-weight:bold">return</span> account;
+}</pre></td>
+</tr></table>
+
+<pre></pre>
+
+<p>Notice how AccountNo is set to the first non null value of the four. Imagine that with plain ifs. Here I believe the ??-operator both makes the code clear and saves us from a bunch of nested ifs.</p>
+</div>
+<p class="meta">
+  Posted in <a href="http://alicebobandmallory.com/articles/category/c" rel="noindex, follow, tag">C#</a>&nbsp;<strong>|</strong>&nbsp;<a href="get-the-value-of-and-with-using-the-null-coalescing-operator#comments">no comments</a>
+</p>
+
+  <a name="comments"></a><h4 class="blueblk">Comments</h4>
+    <p class="postmetadata alt">
+      <small><a href="get-the-value-of-and-with-using-the-null-coalescing-operator#respond">Comments closed</a></small>
+    </p>
+  <ol class="comment-list" id="commentList">
+  
+    <li id="dummy_comment" style="display: none"></li>
+  
+  </ol>
+
+
+<p class="postmetadata alt">
+  <small>
+  <a href="../../../../xml/rss20/article/3302/feed.xml" title="RSS Feed">RSS feed for this post</a>
+  </small>
+</p>
+
+
+<p>Comments are closed</p>
+<!--
+  <p>Comments are disabled</p>
+-->
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../../../pages/AboutMe">About me</a>/<a href="../../../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Drive encryption matters</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../../../xml/atom/article/2094/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../../xml/rss20/article/2094/feed.xml" />
+  <script src="../../../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+       xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+       xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about=""
+    dc:title="Drive encryption matters"
+    dc:identifier="http://alicebobandmallory.com/articles/2008/02/12/drive-encryption-matters"
+    dc:description="In a recent release TrueCrypt now supports drive/partition encryption. One reason to encrypt on disk instead of file level is that operating"
+    dc:creator="jonelf"
+    dc:date="2008-02-12T01:01:55+01:00" />
+</rdf:RDF>
+-->
+
+<div class="post" onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_article'); }"  onmouseout="Element.hide('admin_article');" >
+  <a href="http://alicebobandmallory.com/admin/content/edit/2094" class="admintools" id="admin_article" style="display: none">edit</a>
+  <h2>Drive encryption matters</h2>
+  <p class="auth">Posted by Jonas Elfström
+  <span class="typo_date" title="Mon, 11 Feb 2008 23:26:00 GMT">Mon, 11 Feb 2008 23:26:00 GMT</span></p>
+  <p>In a recent release <a href="http://www.truecrypt.org/">TrueCrypt</a> now supports <a href="http://www.truecrypt.org/docs/?s=system-encryption">drive/partition</a> encryption.</p>
+
+<p>One reason to encrypt on disk instead of file level is that operating systems and applications sometimes accidently stores passwords on your hard drive. This can happen in a number of ways and one common mistake applications make is to not prevent to be put on disk by the OS. Modern systems have a <a href="http://en.wikipedia.org/wiki/Paging">page/swap file</a>. If a program gets paged out while holding your clear text password in pageable memory your password will be written to disk. The problem is that there are <a href="http://www.schneier.com/essay-148.html">password recovery tools</a> that can scan your page file for passwords.</p>
+
+<p>You can configure Windows (and surely most other operating systems) to <a href="http://support.microsoft.com/kb/314834">clear the page file</a> on shutdown which will give you better protection (and slower shutdowns). Be aware that if you simply turn off the power the page file will be intact.</p>
+</div>
+<p class="meta">
+  Posted in <a href="http://alicebobandmallory.com/articles/category/security" rel="noindex, follow, tag">Security</a>&nbsp;<strong>|</strong>&nbsp;<a href="drive-encryption-matters#comments">2 comments</a>
+</p>
+
+  <a name="comments"></a><h4 class="blueblk">Comments</h4>
+    <p class="postmetadata alt">
+      <small><a href="drive-encryption-matters#respond">Comments closed</a></small>
+    </p>
+  <ol class="comment-list" id="commentList">
+  
+    <ol id="comments" class="comments">
+  	<li class="comment" id="comment-2175">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Me</cite>
+		<abbr title="2008-03-12T22:35:37+01:00"><span class="typo_date" title="Wed, 12 Mar 2008 21:35:37 GMT">Wed, 12 Mar 2008 21:35:37 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p><a href="http://www.engadget.com/2008/02/21/cold-boot-disk-encryption-attack-is-shockingly-effective/">http://www.engadget.com/2008/02/21/cold-boot-disk-encryption-attack-is-shockingly-effective/</a></p>
+
+<ul>
+<li>cool.</li>
+</ul>
+	  </div>
+	</li>
+		<li class="comment" id="comment-2569">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Me</cite>
+		<abbr title="2008-07-06T15:51:24+02:00"><span class="typo_date" title="Sun, 06 Jul 2008 13:51:24 GMT">Sun, 06 Jul 2008 13:51:24 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p><a href="http://www.schneier.com/blog/archives/2008/07/encrypting_disk.html">http://www.schneier.com/blog/archives/2008/07/encrypting_disk.html</a></p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-2175">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Me</cite>
+		<abbr title="2008-03-12T22:35:37+01:00"><span class="typo_date" title="Wed, 12 Mar 2008 21:35:37 GMT">Wed, 12 Mar 2008 21:35:37 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p><a href="http://www.engadget.com/2008/02/21/cold-boot-disk-encryption-attack-is-shockingly-effective/">http://www.engadget.com/2008/02/21/cold-boot-disk-encryption-attack-is-shockingly-effective/</a></p>
+
+<ul>
+<li>cool.</li>
+</ul>
+	  </div>
+	</li>
+		<li class="comment" id="comment-2569">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Me</cite>
+		<abbr title="2008-07-06T15:51:24+02:00"><span class="typo_date" title="Sun, 06 Jul 2008 13:51:24 GMT">Sun, 06 Jul 2008 13:51:24 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p><a href="http://www.schneier.com/blog/archives/2008/07/encrypting_disk.html">http://www.schneier.com/blog/archives/2008/07/encrypting_disk.html</a></p>
+	  </div>
+	</li>
+	</ol>
+
+  
+  </ol>
+
+
+<p class="postmetadata alt">
+  <small>
+  <a href="../../../../xml/rss20/article/2094/feed.xml" title="RSS Feed">RSS feed for this post</a>
+  </small>
+</p>
+
+
+<p>Comments are closed</p>
+<!--
+  <p>Comments are disabled</p>
+-->
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../../../pages/AboutMe">About me</a>/<a href="../../../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

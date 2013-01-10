@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Leif in Clojure</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../../../xml/atom/article/6692/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../../xml/rss20/article/6692/feed.xml" />
+  <script src="../../../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+       xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+       xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about=""
+    dc:title="Leif in Clojure"
+    dc:identifier="http://alicebobandmallory.com/articles/2011/11/01/leif-in-clojure"
+    dc:description="I've been meaning to learn a functional language for years. I don't know what put me off besides the fear of parentheses and the notion that maybe, just maybe, Ruby"
+    dc:creator="jonelf"
+    dc:date="2013-01-09T10:46:00+01:00" />
+</rdf:RDF>
+-->
+
+<div class="post" onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_article'); }"  onmouseout="Element.hide('admin_article');" >
+  <a href="http://alicebobandmallory.com/admin/content/edit/6692" class="admintools" id="admin_article" style="display: none">edit</a>
+  <h2>Leif in Clojure</h2>
+  <p class="auth">Posted by Jonas Elfström
+  <span class="typo_date" title="Tue, 01 Nov 2011 02:12:00 GMT">Tue, 01 Nov 2011 02:12:00 GMT</span></p>
+  <p>I've been meaning to learn a functional language for years. I don't know what put me off besides the fear of parentheses and the notion that maybe, just maybe, <a href="http://www.randomhacks.net/articles/2005/12/03/why-ruby-is-an-acceptable-lisp">Ruby could be an acceptable Lisp</a>. For all I know, Ruby might be just that, but there's  one thing about Ruby that is starting to get more and more unacceptable to me. </p>
+
+<p>Ruby is actually not very well fit to take advantage of the multi-core world we are living in. The <a href="http://en.wikipedia.org/wiki/Global_Interpreter_Lock">GIL</a> and the prevalent mutable state are two big problems. As web applications go, that's often not a problem since it's almost always possible to scale without threads there. But if you want to use the full potential of your multi-core machine in a singe Ruby process/VM, you are out of luck. There are <a href="https://github.com/tarcieri/celluloid">workarounds</a> that get you somewhere and there are implementations of Ruby without a GIL (JRuby and soon Rubinius). Even without the GIL we still have the problem of having a lot of mutable state. That will, probably, make it hard to scale over multiple cores.</p>
+
+<p>A little more than a week ago I watched the presentation <a href="http://www.infoq.com/presentations/Simple-Made-Easy">Simple Made Easy by Rich Hickey</a>. It's an excellent presentation and one of the best I've seen in years. I was also aware that Hickey is the man who designed <a href="http://en.wikipedia.org/wiki/Clojure">Clojure</a>. Finally, I was able to make a choice. I chose to begin to learn <a href="http://clojure.org/">Clojure</a>.</p>
+
+<p>I'm still very early in this endeavor. Actually, still trying to decide what books I should read. Anyway, the day after I saw the presentation I downloaded <a href="https://github.com/arthuredelstein/clooj">clooj</a> (a simple IDE), read some blogs and some documentation, and started to hack on something. Just to try to get a feel for how hard this was going to be. The parentheses didn't bother me all that much, it was much harder to accept that operators are just functions and that they get no special treatment. It seems you simply have to (+ 31 11) to add 31 and 11. I think I can get over that.</p>
+
+<p>As a side note, it turns out I wrote my first Clojure program on 2011-10-24 and that happened to be the day that <a href="http://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)">John McCarthy</a>, the father of Lisp, died. Yet another of those strange coincidences that <a href="http://youarenotsosmart.com/2010/09/11/the-texas-sharpshooter-fallacy/">seems to happens more often than they should</a>.</p>
+
+<p>The program I wrote is yet another implementation of the stupid simple "algorithm" that I've got to call <a href="http://plea.se/me/Leif.html">Leif</a>. If you take <a href="http://en.wikipedia.org/wiki/Conway's_Game_of_Life">Conway's Game of Life</a>, remove the rules and replace them with randomness, you could end up with something like <a href="http://plea.se/me/leif/canvas_leif.html">Leif</a>. Quite silly, actually.</p>
+
+<p>Hopefully I will have something more interesting to tell in a couple of <strike>weeks</strike>months, after I've got some more experience with Clojure. For now, Leif will have to do. Here it is.</p>
+
+<script src="https://gist.github.com/1335248.js"> </script>
+
+<p>This is what it looks like at the beginning  </p>
+
+<p><img src="http://dl.dropbox.com/u/26840/clojure_leif_couple_of_tenths_of_a_second.png"></p>
+
+<p>and after a couple of minutes it looks like this  </p>
+
+<p><img src="http://dl.dropbox.com/u/26840/clojure_leif_couple_of_minutes_in.png">  </p>
+
+<p>One thing that surprised me is that it seems to use both of my cores even though I put no effort whatsoever in making it do so. Probably just the Java GC or something.</p>
+
+<p><img src="http://dl.dropbox.com/u/26840/clojure_leif_task_manager.png"></p>
+</div>
+<p class="meta">
+  Posted in <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a>, <a href="http://alicebobandmallory.com/articles/category/clojure" rel="noindex, follow, tag">Clojure</a>&nbsp;<strong>|</strong>&nbsp;<a href="leif-in-clojure#comments">2 comments</a>
+</p>
+
+  <a name="comments"></a><h4 class="blueblk">Comments</h4>
+    <p class="postmetadata alt">
+      <small><a href="leif-in-clojure#respond">Comments closed</a></small>
+    </p>
+  <ol class="comment-list" id="commentList">
+  
+    <ol id="comments" class="comments">
+  	<li class="comment" id="comment-7676">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2012-03-22T22:18:30+01:00"><span class="typo_date" title="Thu, 22 Mar 2012 21:18:30 GMT">Thu, 22 Mar 2012 21:18:30 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Labouchère system simulation in Clojure <a href="https://gist.github.com/2164553">https://gist.github.com/2164553</a> 
+If you spot anything crazy going on then please tell me!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7707">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=40e4cbc053bdca8b46b2bda4ad7cd327&amp;size=60" /></div>
+	    <cite><a href="http://ferventnotes.wordpress.com">Dan</a></cite>
+		<abbr title="2012-03-26T22:45:15+02:00"><span class="typo_date" title="Mon, 26 Mar 2012 20:45:15 GMT">Mon, 26 Mar 2012 20:45:15 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Hi Jonas,
+as you are a few months into Clojure, I would suggest you to read &#8220;The Joy of Clojure&#8221; by Michael and Chris. It&#8217;s a lot like On LISP. Once you read the book you will surely appreciate Clojure much more than before.</p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-7676">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2012-03-22T22:18:30+01:00"><span class="typo_date" title="Thu, 22 Mar 2012 21:18:30 GMT">Thu, 22 Mar 2012 21:18:30 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Labouchère system simulation in Clojure <a href="https://gist.github.com/2164553">https://gist.github.com/2164553</a> 
+If you spot anything crazy going on then please tell me!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7707">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=40e4cbc053bdca8b46b2bda4ad7cd327&amp;size=60" /></div>
+	    <cite><a href="http://ferventnotes.wordpress.com">Dan</a></cite>
+		<abbr title="2012-03-26T22:45:15+02:00"><span class="typo_date" title="Mon, 26 Mar 2012 20:45:15 GMT">Mon, 26 Mar 2012 20:45:15 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Hi Jonas,
+as you are a few months into Clojure, I would suggest you to read &#8220;The Joy of Clojure&#8221; by Michael and Chris. It&#8217;s a lot like On LISP. Once you read the book you will surely appreciate Clojure much more than before.</p>
+	  </div>
+	</li>
+	</ol>
+
+  
+  </ol>
+
+
+<p class="postmetadata alt">
+  <small>
+  <a href="../../../../xml/rss20/article/6692/feed.xml" title="RSS Feed">RSS feed for this post</a>
+  </small>
+</p>
+
+
+<p>Comments are closed</p>
+<!--
+  <p>Comments are disabled</p>
+-->
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../../../pages/AboutMe">About me</a>/<a href="../../../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

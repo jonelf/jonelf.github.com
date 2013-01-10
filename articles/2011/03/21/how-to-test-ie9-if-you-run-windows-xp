@@ -1,0 +1,1764 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>How to test IE9 if you run Windows XP</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../../../xml/atom/article/5276/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../../xml/rss20/article/5276/feed.xml" />
+  <script src="../../../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../../../stylesheets/theme/application.css" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+       xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+       xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about=""
+    dc:title="How to test IE9 if you run Windows XP"
+    dc:identifier="http://alicebobandmallory.com/articles/2011/03/21/how-to-test-ie9-if-you-run-windows-xp"
+    dc:description="Edit 2012-01-05 A couple of weeks ago Microsoft finally released Internet Explorer Application Compatibility VPC Images for IE9. Because of this,"
+    dc:creator="jonelf"
+    dc:date="2013-01-10T00:22:28+01:00" />
+</rdf:RDF>
+-->
+
+<div class="post" onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_article'); }"  onmouseout="Element.hide('admin_article');" >
+  <a href="http://alicebobandmallory.com/admin/content/edit/5276" class="admintools" id="admin_article" style="display: none">edit</a>
+  <h2>How to test IE9 if you run Windows XP</h2>
+  <p class="auth">Posted by Jonas Elfström
+  <span class="typo_date" title="Mon, 21 Mar 2011 21:20:00 GMT">Mon, 21 Mar 2011 21:20:00 GMT</span></p>
+  <p><font color="red">Edit 2012-01-05</font><br/>
+A couple of weeks ago Microsoft finally released <a href="http://www.microsoft.com/download/en/details.aspx?id=11575">Internet Explorer Application Compatibility VPC Images for IE9</a>.<br/>
+Because of this, the below procedure is not necessary anymore.</p>
+
+<p>There's one quite strange thing with these images. The Win7+IE8 image is about 2.6GB but the Win7+IE9 is 4.3GB! There's some extra tools in the IE9 one but they certainly do not add up to the 1.7GB size difference. I've had reports of people successfully downloading the Win7+IE8 and then upgrading to IE9. That could be an option if you want to save some download time and disk space.</p>
+
+<p><strike>
+I'm currently at a company still running Windows XP. Last week Internet Explorer 9 was released and it <a href="http://en.wikipedia.org/wiki/Internet_Explorer_9">requires</a> at least Windows Vista. That requirement was a problem because we absolutely had to test our web applications in IE9. Microsoft had released Internet Explorer Application Compatibility VPC Images for earlier versions of IE but not for <a href="http://windows.microsoft.com/en-US/internet-explorer/downloads/ie-9/worldwide-languages">IE9</a>. At least they still offer a VPC running Vista and that was the path we took to solve our testing problems. If you know of an easier way then please tell!</p>
+
+<ul>
+<li><a href="http://www.microsoft.com/windows/virtual-pc/download.aspx">Download</a> and install  Virtual PC.<br/>
+<font color="red">Edit 2011-09-25</font> It seems Microsoft has changed the download page. You can get <a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx">Virtual PC 2007</a> for older versions of Windows <a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx">here</a>.</li>
+<li><a href="http://www.microsoft.com/downloads/en/details.aspx?FamilyID=21eabb90-958f-4b64-b5f1-73d0a413c8ef&amp;displaylang=en">Download</a> and run/unpack  the IE8-VIS VHD.</li>
+<li>Create a new virtual machine and select the VHD as the harddisk.</li>
+<li>In the virtual machine then <a href="http://www.microsoft.com/windows/virtual-pc/download.aspx">download</a> and install Vista SP2.</li>
+<li>Finally, obviously still in the VPC, <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home">download</a> IE9.
+</strike></li>
+</ul>
+</div>
+<p class="meta">
+  
+</p>
+
+  <a name="comments"></a><h4 class="blueblk">Comments</h4>
+    <p class="postmetadata alt">
+      <small><a href="how-to-test-ie9-if-you-run-windows-xp#respond">Comments closed</a></small>
+    </p>
+  <ol class="comment-list" id="commentList">
+  
+    <ol id="comments" class="comments">
+  	<li class="comment" id="comment-5460">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Peter</cite>
+		<abbr title="2011-04-15T16:29:38+02:00"><span class="typo_date" title="Fri, 15 Apr 2011 14:29:38 GMT">Fri, 15 Apr 2011 14:29:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5550">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Olli</cite>
+		<abbr title="2011-04-28T09:59:38+02:00"><span class="typo_date" title="Thu, 28 Apr 2011 07:59:38 GMT">Thu, 28 Apr 2011 07:59:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks, too</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5590">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>bilal@glotechno.com</cite>
+		<abbr title="2011-05-10T11:36:27+02:00"><span class="typo_date" title="Tue, 10 May 2011 09:36:27 GMT">Tue, 10 May 2011 09:36:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>nice:-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6161">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Bah Humbug</cite>
+		<abbr title="2011-07-25T00:56:32+02:00"><span class="typo_date" title="Sun, 24 Jul 2011 22:56:32 GMT">Sun, 24 Jul 2011 22:56:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Unfortunately, when you use the virtual image, you might not be able to connect to the Internet or to a localhost, or to any folders on your hard drive. In the past (2007) that was possible.</p>
+
+<p>So, you may be able to run IE9 on Vista/Windows7 on your XP machine, but it may be VERY slow and totally useless.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6175">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-07-25T16:47:26+02:00"><span class="typo_date" title="Mon, 25 Jul 2011 14:47:26 GMT">Mon, 25 Jul 2011 14:47:26 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I had no such problem while following the steps above. I did not actually try to connect to the host machine but connecting to internet or intranet sites was no problem. Didn&#8217;t feel slow.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6516">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Ryan</cite>
+		<abbr title="2011-09-22T22:32:05+02:00"><span class="typo_date" title="Thu, 22 Sep 2011 20:32:05 GMT">Thu, 22 Sep 2011 20:32:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>The first download link takes you to a virtual pc download that is for windows 7 computers only.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6526">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-09-25T20:17:27+02:00"><span class="typo_date" title="Sun, 25 Sep 2011 18:17:27 GMT">Sun, 25 Sep 2011 18:17:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Ryan It sure seems that way. Did you access the page from an XP or a Windows 7 machine?</p>
+
+<p>You can find an older version of Virtual PC at 
+<a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx">http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6591">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T19:54:43+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 17:54:43 GMT">Wed, 05 Oct 2011 17:54:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I got everything running but it is asking for a password for both accounts, what is the password to get in?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6592">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T20:09:22+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 18:09:22 GMT">Wed, 05 Oct 2011 18:09:22 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>wow, nevermind, its in the Hint sorry</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7069">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c282fd86fe2200d3cc15e0e0c77b66b4&amp;size=60" /></div>
+	    <cite><a href="http://randsco.com">stk</a></cite>
+		<abbr title="2011-12-31T22:48:55+01:00"><span class="typo_date" title="Sat, 31 Dec 2011 21:48:55 GMT">Sat, 31 Dec 2011 21:48:55 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Am in same boat. Appreciate the quick tute. I use IETester, which also won&#8217;t emulate IE9/10 b/c it&#8217;s running on XP.</p>
+
+<p>File under: Too much work. </p>
+
+<p>(Why in the www would MS make a browser O/S-dependent?)  Dumb.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7830">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>horia</cite>
+		<abbr title="2012-04-01T16:42:49+02:00"><span class="typo_date" title="Sun, 01 Apr 2012 14:42:49 GMT">Sun, 01 Apr 2012 14:42:49 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>the VHD for IE9 is using Windows7. The windows 7 version of the VHD is stated in wikipedia as working only with Virtual PC (actual edition) not with virtual pc 2007. The actual edition of Virtual PC does not work with Windows XP.
+so it seems to be still a problem. 
+I am actually trying to use the IE9+win7 pack (VHD) from Microsoft, by using it in the VPC2007 environment, on windows XP Home edition&#8230; If it works, I will tell you.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8233">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c5d7653403ae288e4ace06ff6dbccdde&amp;size=60" /></div>
+	    <cite><a href="http://www.hivedb.org">hivedb</a></cite>
+		<abbr title="2012-04-19T09:09:37+02:00"><span class="typo_date" title="Thu, 19 Apr 2012 07:09:37 GMT">Thu, 19 Apr 2012 07:09:37 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Being a web designer I often have to test websites for browser compatibility. I still use XP for it&#8217;s simplicity and was searching for ie9 for XP. Your Virtual PC solution is a good temporary alternative. Thanks.</p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-5460">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Peter</cite>
+		<abbr title="2011-04-15T16:29:38+02:00"><span class="typo_date" title="Fri, 15 Apr 2011 14:29:38 GMT">Fri, 15 Apr 2011 14:29:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5550">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Olli</cite>
+		<abbr title="2011-04-28T09:59:38+02:00"><span class="typo_date" title="Thu, 28 Apr 2011 07:59:38 GMT">Thu, 28 Apr 2011 07:59:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks, too</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5590">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>bilal@glotechno.com</cite>
+		<abbr title="2011-05-10T11:36:27+02:00"><span class="typo_date" title="Tue, 10 May 2011 09:36:27 GMT">Tue, 10 May 2011 09:36:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>nice:-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6161">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Bah Humbug</cite>
+		<abbr title="2011-07-25T00:56:32+02:00"><span class="typo_date" title="Sun, 24 Jul 2011 22:56:32 GMT">Sun, 24 Jul 2011 22:56:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Unfortunately, when you use the virtual image, you might not be able to connect to the Internet or to a localhost, or to any folders on your hard drive. In the past (2007) that was possible.</p>
+
+<p>So, you may be able to run IE9 on Vista/Windows7 on your XP machine, but it may be VERY slow and totally useless.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6175">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-07-25T16:47:26+02:00"><span class="typo_date" title="Mon, 25 Jul 2011 14:47:26 GMT">Mon, 25 Jul 2011 14:47:26 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I had no such problem while following the steps above. I did not actually try to connect to the host machine but connecting to internet or intranet sites was no problem. Didn&#8217;t feel slow.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6516">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Ryan</cite>
+		<abbr title="2011-09-22T22:32:05+02:00"><span class="typo_date" title="Thu, 22 Sep 2011 20:32:05 GMT">Thu, 22 Sep 2011 20:32:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>The first download link takes you to a virtual pc download that is for windows 7 computers only.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6526">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-09-25T20:17:27+02:00"><span class="typo_date" title="Sun, 25 Sep 2011 18:17:27 GMT">Sun, 25 Sep 2011 18:17:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Ryan It sure seems that way. Did you access the page from an XP or a Windows 7 machine?</p>
+
+<p>You can find an older version of Virtual PC at 
+<a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx">http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6591">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T19:54:43+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 17:54:43 GMT">Wed, 05 Oct 2011 17:54:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I got everything running but it is asking for a password for both accounts, what is the password to get in?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6592">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T20:09:22+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 18:09:22 GMT">Wed, 05 Oct 2011 18:09:22 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>wow, nevermind, its in the Hint sorry</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7069">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c282fd86fe2200d3cc15e0e0c77b66b4&amp;size=60" /></div>
+	    <cite><a href="http://randsco.com">stk</a></cite>
+		<abbr title="2011-12-31T22:48:55+01:00"><span class="typo_date" title="Sat, 31 Dec 2011 21:48:55 GMT">Sat, 31 Dec 2011 21:48:55 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Am in same boat. Appreciate the quick tute. I use IETester, which also won&#8217;t emulate IE9/10 b/c it&#8217;s running on XP.</p>
+
+<p>File under: Too much work. </p>
+
+<p>(Why in the www would MS make a browser O/S-dependent?)  Dumb.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7830">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>horia</cite>
+		<abbr title="2012-04-01T16:42:49+02:00"><span class="typo_date" title="Sun, 01 Apr 2012 14:42:49 GMT">Sun, 01 Apr 2012 14:42:49 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>the VHD for IE9 is using Windows7. The windows 7 version of the VHD is stated in wikipedia as working only with Virtual PC (actual edition) not with virtual pc 2007. The actual edition of Virtual PC does not work with Windows XP.
+so it seems to be still a problem. 
+I am actually trying to use the IE9+win7 pack (VHD) from Microsoft, by using it in the VPC2007 environment, on windows XP Home edition&#8230; If it works, I will tell you.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8233">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c5d7653403ae288e4ace06ff6dbccdde&amp;size=60" /></div>
+	    <cite><a href="http://www.hivedb.org">hivedb</a></cite>
+		<abbr title="2012-04-19T09:09:37+02:00"><span class="typo_date" title="Thu, 19 Apr 2012 07:09:37 GMT">Thu, 19 Apr 2012 07:09:37 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Being a web designer I often have to test websites for browser compatibility. I still use XP for it&#8217;s simplicity and was searching for ie9 for XP. Your Virtual PC solution is a good temporary alternative. Thanks.</p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-5460">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Peter</cite>
+		<abbr title="2011-04-15T16:29:38+02:00"><span class="typo_date" title="Fri, 15 Apr 2011 14:29:38 GMT">Fri, 15 Apr 2011 14:29:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5550">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Olli</cite>
+		<abbr title="2011-04-28T09:59:38+02:00"><span class="typo_date" title="Thu, 28 Apr 2011 07:59:38 GMT">Thu, 28 Apr 2011 07:59:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks, too</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5590">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>bilal@glotechno.com</cite>
+		<abbr title="2011-05-10T11:36:27+02:00"><span class="typo_date" title="Tue, 10 May 2011 09:36:27 GMT">Tue, 10 May 2011 09:36:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>nice:-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6161">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Bah Humbug</cite>
+		<abbr title="2011-07-25T00:56:32+02:00"><span class="typo_date" title="Sun, 24 Jul 2011 22:56:32 GMT">Sun, 24 Jul 2011 22:56:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Unfortunately, when you use the virtual image, you might not be able to connect to the Internet or to a localhost, or to any folders on your hard drive. In the past (2007) that was possible.</p>
+
+<p>So, you may be able to run IE9 on Vista/Windows7 on your XP machine, but it may be VERY slow and totally useless.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6175">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-07-25T16:47:26+02:00"><span class="typo_date" title="Mon, 25 Jul 2011 14:47:26 GMT">Mon, 25 Jul 2011 14:47:26 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I had no such problem while following the steps above. I did not actually try to connect to the host machine but connecting to internet or intranet sites was no problem. Didn&#8217;t feel slow.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6516">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Ryan</cite>
+		<abbr title="2011-09-22T22:32:05+02:00"><span class="typo_date" title="Thu, 22 Sep 2011 20:32:05 GMT">Thu, 22 Sep 2011 20:32:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>The first download link takes you to a virtual pc download that is for windows 7 computers only.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6526">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-09-25T20:17:27+02:00"><span class="typo_date" title="Sun, 25 Sep 2011 18:17:27 GMT">Sun, 25 Sep 2011 18:17:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Ryan It sure seems that way. Did you access the page from an XP or a Windows 7 machine?</p>
+
+<p>You can find an older version of Virtual PC at 
+<a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx">http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6591">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T19:54:43+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 17:54:43 GMT">Wed, 05 Oct 2011 17:54:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I got everything running but it is asking for a password for both accounts, what is the password to get in?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6592">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T20:09:22+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 18:09:22 GMT">Wed, 05 Oct 2011 18:09:22 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>wow, nevermind, its in the Hint sorry</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7069">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c282fd86fe2200d3cc15e0e0c77b66b4&amp;size=60" /></div>
+	    <cite><a href="http://randsco.com">stk</a></cite>
+		<abbr title="2011-12-31T22:48:55+01:00"><span class="typo_date" title="Sat, 31 Dec 2011 21:48:55 GMT">Sat, 31 Dec 2011 21:48:55 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Am in same boat. Appreciate the quick tute. I use IETester, which also won&#8217;t emulate IE9/10 b/c it&#8217;s running on XP.</p>
+
+<p>File under: Too much work. </p>
+
+<p>(Why in the www would MS make a browser O/S-dependent?)  Dumb.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7830">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>horia</cite>
+		<abbr title="2012-04-01T16:42:49+02:00"><span class="typo_date" title="Sun, 01 Apr 2012 14:42:49 GMT">Sun, 01 Apr 2012 14:42:49 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>the VHD for IE9 is using Windows7. The windows 7 version of the VHD is stated in wikipedia as working only with Virtual PC (actual edition) not with virtual pc 2007. The actual edition of Virtual PC does not work with Windows XP.
+so it seems to be still a problem. 
+I am actually trying to use the IE9+win7 pack (VHD) from Microsoft, by using it in the VPC2007 environment, on windows XP Home edition&#8230; If it works, I will tell you.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8233">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c5d7653403ae288e4ace06ff6dbccdde&amp;size=60" /></div>
+	    <cite><a href="http://www.hivedb.org">hivedb</a></cite>
+		<abbr title="2012-04-19T09:09:37+02:00"><span class="typo_date" title="Thu, 19 Apr 2012 07:09:37 GMT">Thu, 19 Apr 2012 07:09:37 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Being a web designer I often have to test websites for browser compatibility. I still use XP for it&#8217;s simplicity and was searching for ie9 for XP. Your Virtual PC solution is a good temporary alternative. Thanks.</p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-5460">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Peter</cite>
+		<abbr title="2011-04-15T16:29:38+02:00"><span class="typo_date" title="Fri, 15 Apr 2011 14:29:38 GMT">Fri, 15 Apr 2011 14:29:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5550">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Olli</cite>
+		<abbr title="2011-04-28T09:59:38+02:00"><span class="typo_date" title="Thu, 28 Apr 2011 07:59:38 GMT">Thu, 28 Apr 2011 07:59:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks, too</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5590">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>bilal@glotechno.com</cite>
+		<abbr title="2011-05-10T11:36:27+02:00"><span class="typo_date" title="Tue, 10 May 2011 09:36:27 GMT">Tue, 10 May 2011 09:36:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>nice:-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6161">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Bah Humbug</cite>
+		<abbr title="2011-07-25T00:56:32+02:00"><span class="typo_date" title="Sun, 24 Jul 2011 22:56:32 GMT">Sun, 24 Jul 2011 22:56:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Unfortunately, when you use the virtual image, you might not be able to connect to the Internet or to a localhost, or to any folders on your hard drive. In the past (2007) that was possible.</p>
+
+<p>So, you may be able to run IE9 on Vista/Windows7 on your XP machine, but it may be VERY slow and totally useless.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6175">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-07-25T16:47:26+02:00"><span class="typo_date" title="Mon, 25 Jul 2011 14:47:26 GMT">Mon, 25 Jul 2011 14:47:26 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I had no such problem while following the steps above. I did not actually try to connect to the host machine but connecting to internet or intranet sites was no problem. Didn&#8217;t feel slow.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6516">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Ryan</cite>
+		<abbr title="2011-09-22T22:32:05+02:00"><span class="typo_date" title="Thu, 22 Sep 2011 20:32:05 GMT">Thu, 22 Sep 2011 20:32:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>The first download link takes you to a virtual pc download that is for windows 7 computers only.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6526">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-09-25T20:17:27+02:00"><span class="typo_date" title="Sun, 25 Sep 2011 18:17:27 GMT">Sun, 25 Sep 2011 18:17:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Ryan It sure seems that way. Did you access the page from an XP or a Windows 7 machine?</p>
+
+<p>You can find an older version of Virtual PC at 
+<a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx">http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6591">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T19:54:43+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 17:54:43 GMT">Wed, 05 Oct 2011 17:54:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I got everything running but it is asking for a password for both accounts, what is the password to get in?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6592">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T20:09:22+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 18:09:22 GMT">Wed, 05 Oct 2011 18:09:22 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>wow, nevermind, its in the Hint sorry</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7069">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c282fd86fe2200d3cc15e0e0c77b66b4&amp;size=60" /></div>
+	    <cite><a href="http://randsco.com">stk</a></cite>
+		<abbr title="2011-12-31T22:48:55+01:00"><span class="typo_date" title="Sat, 31 Dec 2011 21:48:55 GMT">Sat, 31 Dec 2011 21:48:55 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Am in same boat. Appreciate the quick tute. I use IETester, which also won&#8217;t emulate IE9/10 b/c it&#8217;s running on XP.</p>
+
+<p>File under: Too much work. </p>
+
+<p>(Why in the www would MS make a browser O/S-dependent?)  Dumb.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7830">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>horia</cite>
+		<abbr title="2012-04-01T16:42:49+02:00"><span class="typo_date" title="Sun, 01 Apr 2012 14:42:49 GMT">Sun, 01 Apr 2012 14:42:49 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>the VHD for IE9 is using Windows7. The windows 7 version of the VHD is stated in wikipedia as working only with Virtual PC (actual edition) not with virtual pc 2007. The actual edition of Virtual PC does not work with Windows XP.
+so it seems to be still a problem. 
+I am actually trying to use the IE9+win7 pack (VHD) from Microsoft, by using it in the VPC2007 environment, on windows XP Home edition&#8230; If it works, I will tell you.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8233">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c5d7653403ae288e4ace06ff6dbccdde&amp;size=60" /></div>
+	    <cite><a href="http://www.hivedb.org">hivedb</a></cite>
+		<abbr title="2012-04-19T09:09:37+02:00"><span class="typo_date" title="Thu, 19 Apr 2012 07:09:37 GMT">Thu, 19 Apr 2012 07:09:37 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Being a web designer I often have to test websites for browser compatibility. I still use XP for it&#8217;s simplicity and was searching for ie9 for XP. Your Virtual PC solution is a good temporary alternative. Thanks.</p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-5460">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Peter</cite>
+		<abbr title="2011-04-15T16:29:38+02:00"><span class="typo_date" title="Fri, 15 Apr 2011 14:29:38 GMT">Fri, 15 Apr 2011 14:29:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5550">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Olli</cite>
+		<abbr title="2011-04-28T09:59:38+02:00"><span class="typo_date" title="Thu, 28 Apr 2011 07:59:38 GMT">Thu, 28 Apr 2011 07:59:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks, too</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5590">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>bilal@glotechno.com</cite>
+		<abbr title="2011-05-10T11:36:27+02:00"><span class="typo_date" title="Tue, 10 May 2011 09:36:27 GMT">Tue, 10 May 2011 09:36:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>nice:-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6161">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Bah Humbug</cite>
+		<abbr title="2011-07-25T00:56:32+02:00"><span class="typo_date" title="Sun, 24 Jul 2011 22:56:32 GMT">Sun, 24 Jul 2011 22:56:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Unfortunately, when you use the virtual image, you might not be able to connect to the Internet or to a localhost, or to any folders on your hard drive. In the past (2007) that was possible.</p>
+
+<p>So, you may be able to run IE9 on Vista/Windows7 on your XP machine, but it may be VERY slow and totally useless.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6175">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-07-25T16:47:26+02:00"><span class="typo_date" title="Mon, 25 Jul 2011 14:47:26 GMT">Mon, 25 Jul 2011 14:47:26 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I had no such problem while following the steps above. I did not actually try to connect to the host machine but connecting to internet or intranet sites was no problem. Didn&#8217;t feel slow.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6516">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Ryan</cite>
+		<abbr title="2011-09-22T22:32:05+02:00"><span class="typo_date" title="Thu, 22 Sep 2011 20:32:05 GMT">Thu, 22 Sep 2011 20:32:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>The first download link takes you to a virtual pc download that is for windows 7 computers only.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6526">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-09-25T20:17:27+02:00"><span class="typo_date" title="Sun, 25 Sep 2011 18:17:27 GMT">Sun, 25 Sep 2011 18:17:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Ryan It sure seems that way. Did you access the page from an XP or a Windows 7 machine?</p>
+
+<p>You can find an older version of Virtual PC at 
+<a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx">http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6591">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T19:54:43+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 17:54:43 GMT">Wed, 05 Oct 2011 17:54:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I got everything running but it is asking for a password for both accounts, what is the password to get in?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6592">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T20:09:22+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 18:09:22 GMT">Wed, 05 Oct 2011 18:09:22 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>wow, nevermind, its in the Hint sorry</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7069">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c282fd86fe2200d3cc15e0e0c77b66b4&amp;size=60" /></div>
+	    <cite><a href="http://randsco.com">stk</a></cite>
+		<abbr title="2011-12-31T22:48:55+01:00"><span class="typo_date" title="Sat, 31 Dec 2011 21:48:55 GMT">Sat, 31 Dec 2011 21:48:55 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Am in same boat. Appreciate the quick tute. I use IETester, which also won&#8217;t emulate IE9/10 b/c it&#8217;s running on XP.</p>
+
+<p>File under: Too much work. </p>
+
+<p>(Why in the www would MS make a browser O/S-dependent?)  Dumb.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7830">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>horia</cite>
+		<abbr title="2012-04-01T16:42:49+02:00"><span class="typo_date" title="Sun, 01 Apr 2012 14:42:49 GMT">Sun, 01 Apr 2012 14:42:49 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>the VHD for IE9 is using Windows7. The windows 7 version of the VHD is stated in wikipedia as working only with Virtual PC (actual edition) not with virtual pc 2007. The actual edition of Virtual PC does not work with Windows XP.
+so it seems to be still a problem. 
+I am actually trying to use the IE9+win7 pack (VHD) from Microsoft, by using it in the VPC2007 environment, on windows XP Home edition&#8230; If it works, I will tell you.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8233">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c5d7653403ae288e4ace06ff6dbccdde&amp;size=60" /></div>
+	    <cite><a href="http://www.hivedb.org">hivedb</a></cite>
+		<abbr title="2012-04-19T09:09:37+02:00"><span class="typo_date" title="Thu, 19 Apr 2012 07:09:37 GMT">Thu, 19 Apr 2012 07:09:37 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Being a web designer I often have to test websites for browser compatibility. I still use XP for it&#8217;s simplicity and was searching for ie9 for XP. Your Virtual PC solution is a good temporary alternative. Thanks.</p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-5460">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Peter</cite>
+		<abbr title="2011-04-15T16:29:38+02:00"><span class="typo_date" title="Fri, 15 Apr 2011 14:29:38 GMT">Fri, 15 Apr 2011 14:29:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5550">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Olli</cite>
+		<abbr title="2011-04-28T09:59:38+02:00"><span class="typo_date" title="Thu, 28 Apr 2011 07:59:38 GMT">Thu, 28 Apr 2011 07:59:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks, too</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5590">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>bilal@glotechno.com</cite>
+		<abbr title="2011-05-10T11:36:27+02:00"><span class="typo_date" title="Tue, 10 May 2011 09:36:27 GMT">Tue, 10 May 2011 09:36:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>nice:-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6161">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Bah Humbug</cite>
+		<abbr title="2011-07-25T00:56:32+02:00"><span class="typo_date" title="Sun, 24 Jul 2011 22:56:32 GMT">Sun, 24 Jul 2011 22:56:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Unfortunately, when you use the virtual image, you might not be able to connect to the Internet or to a localhost, or to any folders on your hard drive. In the past (2007) that was possible.</p>
+
+<p>So, you may be able to run IE9 on Vista/Windows7 on your XP machine, but it may be VERY slow and totally useless.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6175">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-07-25T16:47:26+02:00"><span class="typo_date" title="Mon, 25 Jul 2011 14:47:26 GMT">Mon, 25 Jul 2011 14:47:26 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I had no such problem while following the steps above. I did not actually try to connect to the host machine but connecting to internet or intranet sites was no problem. Didn&#8217;t feel slow.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6516">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Ryan</cite>
+		<abbr title="2011-09-22T22:32:05+02:00"><span class="typo_date" title="Thu, 22 Sep 2011 20:32:05 GMT">Thu, 22 Sep 2011 20:32:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>The first download link takes you to a virtual pc download that is for windows 7 computers only.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6526">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-09-25T20:17:27+02:00"><span class="typo_date" title="Sun, 25 Sep 2011 18:17:27 GMT">Sun, 25 Sep 2011 18:17:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Ryan It sure seems that way. Did you access the page from an XP or a Windows 7 machine?</p>
+
+<p>You can find an older version of Virtual PC at 
+<a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx">http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6591">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T19:54:43+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 17:54:43 GMT">Wed, 05 Oct 2011 17:54:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I got everything running but it is asking for a password for both accounts, what is the password to get in?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6592">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T20:09:22+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 18:09:22 GMT">Wed, 05 Oct 2011 18:09:22 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>wow, nevermind, its in the Hint sorry</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7069">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c282fd86fe2200d3cc15e0e0c77b66b4&amp;size=60" /></div>
+	    <cite><a href="http://randsco.com">stk</a></cite>
+		<abbr title="2011-12-31T22:48:55+01:00"><span class="typo_date" title="Sat, 31 Dec 2011 21:48:55 GMT">Sat, 31 Dec 2011 21:48:55 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Am in same boat. Appreciate the quick tute. I use IETester, which also won&#8217;t emulate IE9/10 b/c it&#8217;s running on XP.</p>
+
+<p>File under: Too much work. </p>
+
+<p>(Why in the www would MS make a browser O/S-dependent?)  Dumb.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7830">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>horia</cite>
+		<abbr title="2012-04-01T16:42:49+02:00"><span class="typo_date" title="Sun, 01 Apr 2012 14:42:49 GMT">Sun, 01 Apr 2012 14:42:49 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>the VHD for IE9 is using Windows7. The windows 7 version of the VHD is stated in wikipedia as working only with Virtual PC (actual edition) not with virtual pc 2007. The actual edition of Virtual PC does not work with Windows XP.
+so it seems to be still a problem. 
+I am actually trying to use the IE9+win7 pack (VHD) from Microsoft, by using it in the VPC2007 environment, on windows XP Home edition&#8230; If it works, I will tell you.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8233">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c5d7653403ae288e4ace06ff6dbccdde&amp;size=60" /></div>
+	    <cite><a href="http://www.hivedb.org">hivedb</a></cite>
+		<abbr title="2012-04-19T09:09:37+02:00"><span class="typo_date" title="Thu, 19 Apr 2012 07:09:37 GMT">Thu, 19 Apr 2012 07:09:37 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Being a web designer I often have to test websites for browser compatibility. I still use XP for it&#8217;s simplicity and was searching for ie9 for XP. Your Virtual PC solution is a good temporary alternative. Thanks.</p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-5460">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Peter</cite>
+		<abbr title="2011-04-15T16:29:38+02:00"><span class="typo_date" title="Fri, 15 Apr 2011 14:29:38 GMT">Fri, 15 Apr 2011 14:29:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5550">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Olli</cite>
+		<abbr title="2011-04-28T09:59:38+02:00"><span class="typo_date" title="Thu, 28 Apr 2011 07:59:38 GMT">Thu, 28 Apr 2011 07:59:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks, too</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5590">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>bilal@glotechno.com</cite>
+		<abbr title="2011-05-10T11:36:27+02:00"><span class="typo_date" title="Tue, 10 May 2011 09:36:27 GMT">Tue, 10 May 2011 09:36:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>nice:-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6161">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Bah Humbug</cite>
+		<abbr title="2011-07-25T00:56:32+02:00"><span class="typo_date" title="Sun, 24 Jul 2011 22:56:32 GMT">Sun, 24 Jul 2011 22:56:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Unfortunately, when you use the virtual image, you might not be able to connect to the Internet or to a localhost, or to any folders on your hard drive. In the past (2007) that was possible.</p>
+
+<p>So, you may be able to run IE9 on Vista/Windows7 on your XP machine, but it may be VERY slow and totally useless.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6175">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-07-25T16:47:26+02:00"><span class="typo_date" title="Mon, 25 Jul 2011 14:47:26 GMT">Mon, 25 Jul 2011 14:47:26 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I had no such problem while following the steps above. I did not actually try to connect to the host machine but connecting to internet or intranet sites was no problem. Didn&#8217;t feel slow.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6516">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Ryan</cite>
+		<abbr title="2011-09-22T22:32:05+02:00"><span class="typo_date" title="Thu, 22 Sep 2011 20:32:05 GMT">Thu, 22 Sep 2011 20:32:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>The first download link takes you to a virtual pc download that is for windows 7 computers only.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6526">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-09-25T20:17:27+02:00"><span class="typo_date" title="Sun, 25 Sep 2011 18:17:27 GMT">Sun, 25 Sep 2011 18:17:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Ryan It sure seems that way. Did you access the page from an XP or a Windows 7 machine?</p>
+
+<p>You can find an older version of Virtual PC at 
+<a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx">http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6591">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T19:54:43+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 17:54:43 GMT">Wed, 05 Oct 2011 17:54:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I got everything running but it is asking for a password for both accounts, what is the password to get in?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6592">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T20:09:22+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 18:09:22 GMT">Wed, 05 Oct 2011 18:09:22 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>wow, nevermind, its in the Hint sorry</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7069">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c282fd86fe2200d3cc15e0e0c77b66b4&amp;size=60" /></div>
+	    <cite><a href="http://randsco.com">stk</a></cite>
+		<abbr title="2011-12-31T22:48:55+01:00"><span class="typo_date" title="Sat, 31 Dec 2011 21:48:55 GMT">Sat, 31 Dec 2011 21:48:55 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Am in same boat. Appreciate the quick tute. I use IETester, which also won&#8217;t emulate IE9/10 b/c it&#8217;s running on XP.</p>
+
+<p>File under: Too much work. </p>
+
+<p>(Why in the www would MS make a browser O/S-dependent?)  Dumb.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7830">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>horia</cite>
+		<abbr title="2012-04-01T16:42:49+02:00"><span class="typo_date" title="Sun, 01 Apr 2012 14:42:49 GMT">Sun, 01 Apr 2012 14:42:49 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>the VHD for IE9 is using Windows7. The windows 7 version of the VHD is stated in wikipedia as working only with Virtual PC (actual edition) not with virtual pc 2007. The actual edition of Virtual PC does not work with Windows XP.
+so it seems to be still a problem. 
+I am actually trying to use the IE9+win7 pack (VHD) from Microsoft, by using it in the VPC2007 environment, on windows XP Home edition&#8230; If it works, I will tell you.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8233">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c5d7653403ae288e4ace06ff6dbccdde&amp;size=60" /></div>
+	    <cite><a href="http://www.hivedb.org">hivedb</a></cite>
+		<abbr title="2012-04-19T09:09:37+02:00"><span class="typo_date" title="Thu, 19 Apr 2012 07:09:37 GMT">Thu, 19 Apr 2012 07:09:37 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Being a web designer I often have to test websites for browser compatibility. I still use XP for it&#8217;s simplicity and was searching for ie9 for XP. Your Virtual PC solution is a good temporary alternative. Thanks.</p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-5460">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Peter</cite>
+		<abbr title="2011-04-15T16:29:38+02:00"><span class="typo_date" title="Fri, 15 Apr 2011 14:29:38 GMT">Fri, 15 Apr 2011 14:29:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5550">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Olli</cite>
+		<abbr title="2011-04-28T09:59:38+02:00"><span class="typo_date" title="Thu, 28 Apr 2011 07:59:38 GMT">Thu, 28 Apr 2011 07:59:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks, too</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5590">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>bilal@glotechno.com</cite>
+		<abbr title="2011-05-10T11:36:27+02:00"><span class="typo_date" title="Tue, 10 May 2011 09:36:27 GMT">Tue, 10 May 2011 09:36:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>nice:-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6161">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Bah Humbug</cite>
+		<abbr title="2011-07-25T00:56:32+02:00"><span class="typo_date" title="Sun, 24 Jul 2011 22:56:32 GMT">Sun, 24 Jul 2011 22:56:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Unfortunately, when you use the virtual image, you might not be able to connect to the Internet or to a localhost, or to any folders on your hard drive. In the past (2007) that was possible.</p>
+
+<p>So, you may be able to run IE9 on Vista/Windows7 on your XP machine, but it may be VERY slow and totally useless.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6175">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-07-25T16:47:26+02:00"><span class="typo_date" title="Mon, 25 Jul 2011 14:47:26 GMT">Mon, 25 Jul 2011 14:47:26 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I had no such problem while following the steps above. I did not actually try to connect to the host machine but connecting to internet or intranet sites was no problem. Didn&#8217;t feel slow.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6516">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Ryan</cite>
+		<abbr title="2011-09-22T22:32:05+02:00"><span class="typo_date" title="Thu, 22 Sep 2011 20:32:05 GMT">Thu, 22 Sep 2011 20:32:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>The first download link takes you to a virtual pc download that is for windows 7 computers only.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6526">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-09-25T20:17:27+02:00"><span class="typo_date" title="Sun, 25 Sep 2011 18:17:27 GMT">Sun, 25 Sep 2011 18:17:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Ryan It sure seems that way. Did you access the page from an XP or a Windows 7 machine?</p>
+
+<p>You can find an older version of Virtual PC at 
+<a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx">http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6591">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T19:54:43+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 17:54:43 GMT">Wed, 05 Oct 2011 17:54:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I got everything running but it is asking for a password for both accounts, what is the password to get in?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6592">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T20:09:22+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 18:09:22 GMT">Wed, 05 Oct 2011 18:09:22 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>wow, nevermind, its in the Hint sorry</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7069">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c282fd86fe2200d3cc15e0e0c77b66b4&amp;size=60" /></div>
+	    <cite><a href="http://randsco.com">stk</a></cite>
+		<abbr title="2011-12-31T22:48:55+01:00"><span class="typo_date" title="Sat, 31 Dec 2011 21:48:55 GMT">Sat, 31 Dec 2011 21:48:55 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Am in same boat. Appreciate the quick tute. I use IETester, which also won&#8217;t emulate IE9/10 b/c it&#8217;s running on XP.</p>
+
+<p>File under: Too much work. </p>
+
+<p>(Why in the www would MS make a browser O/S-dependent?)  Dumb.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7830">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>horia</cite>
+		<abbr title="2012-04-01T16:42:49+02:00"><span class="typo_date" title="Sun, 01 Apr 2012 14:42:49 GMT">Sun, 01 Apr 2012 14:42:49 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>the VHD for IE9 is using Windows7. The windows 7 version of the VHD is stated in wikipedia as working only with Virtual PC (actual edition) not with virtual pc 2007. The actual edition of Virtual PC does not work with Windows XP.
+so it seems to be still a problem. 
+I am actually trying to use the IE9+win7 pack (VHD) from Microsoft, by using it in the VPC2007 environment, on windows XP Home edition&#8230; If it works, I will tell you.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8233">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c5d7653403ae288e4ace06ff6dbccdde&amp;size=60" /></div>
+	    <cite><a href="http://www.hivedb.org">hivedb</a></cite>
+		<abbr title="2012-04-19T09:09:37+02:00"><span class="typo_date" title="Thu, 19 Apr 2012 07:09:37 GMT">Thu, 19 Apr 2012 07:09:37 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Being a web designer I often have to test websites for browser compatibility. I still use XP for it&#8217;s simplicity and was searching for ie9 for XP. Your Virtual PC solution is a good temporary alternative. Thanks.</p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-5460">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Peter</cite>
+		<abbr title="2011-04-15T16:29:38+02:00"><span class="typo_date" title="Fri, 15 Apr 2011 14:29:38 GMT">Fri, 15 Apr 2011 14:29:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5550">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Olli</cite>
+		<abbr title="2011-04-28T09:59:38+02:00"><span class="typo_date" title="Thu, 28 Apr 2011 07:59:38 GMT">Thu, 28 Apr 2011 07:59:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks, too</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5590">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>bilal@glotechno.com</cite>
+		<abbr title="2011-05-10T11:36:27+02:00"><span class="typo_date" title="Tue, 10 May 2011 09:36:27 GMT">Tue, 10 May 2011 09:36:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>nice:-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6161">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Bah Humbug</cite>
+		<abbr title="2011-07-25T00:56:32+02:00"><span class="typo_date" title="Sun, 24 Jul 2011 22:56:32 GMT">Sun, 24 Jul 2011 22:56:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Unfortunately, when you use the virtual image, you might not be able to connect to the Internet or to a localhost, or to any folders on your hard drive. In the past (2007) that was possible.</p>
+
+<p>So, you may be able to run IE9 on Vista/Windows7 on your XP machine, but it may be VERY slow and totally useless.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6175">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-07-25T16:47:26+02:00"><span class="typo_date" title="Mon, 25 Jul 2011 14:47:26 GMT">Mon, 25 Jul 2011 14:47:26 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I had no such problem while following the steps above. I did not actually try to connect to the host machine but connecting to internet or intranet sites was no problem. Didn&#8217;t feel slow.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6516">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Ryan</cite>
+		<abbr title="2011-09-22T22:32:05+02:00"><span class="typo_date" title="Thu, 22 Sep 2011 20:32:05 GMT">Thu, 22 Sep 2011 20:32:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>The first download link takes you to a virtual pc download that is for windows 7 computers only.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6526">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-09-25T20:17:27+02:00"><span class="typo_date" title="Sun, 25 Sep 2011 18:17:27 GMT">Sun, 25 Sep 2011 18:17:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Ryan It sure seems that way. Did you access the page from an XP or a Windows 7 machine?</p>
+
+<p>You can find an older version of Virtual PC at 
+<a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx">http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6591">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T19:54:43+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 17:54:43 GMT">Wed, 05 Oct 2011 17:54:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I got everything running but it is asking for a password for both accounts, what is the password to get in?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6592">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T20:09:22+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 18:09:22 GMT">Wed, 05 Oct 2011 18:09:22 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>wow, nevermind, its in the Hint sorry</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7069">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c282fd86fe2200d3cc15e0e0c77b66b4&amp;size=60" /></div>
+	    <cite><a href="http://randsco.com">stk</a></cite>
+		<abbr title="2011-12-31T22:48:55+01:00"><span class="typo_date" title="Sat, 31 Dec 2011 21:48:55 GMT">Sat, 31 Dec 2011 21:48:55 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Am in same boat. Appreciate the quick tute. I use IETester, which also won&#8217;t emulate IE9/10 b/c it&#8217;s running on XP.</p>
+
+<p>File under: Too much work. </p>
+
+<p>(Why in the www would MS make a browser O/S-dependent?)  Dumb.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7830">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>horia</cite>
+		<abbr title="2012-04-01T16:42:49+02:00"><span class="typo_date" title="Sun, 01 Apr 2012 14:42:49 GMT">Sun, 01 Apr 2012 14:42:49 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>the VHD for IE9 is using Windows7. The windows 7 version of the VHD is stated in wikipedia as working only with Virtual PC (actual edition) not with virtual pc 2007. The actual edition of Virtual PC does not work with Windows XP.
+so it seems to be still a problem. 
+I am actually trying to use the IE9+win7 pack (VHD) from Microsoft, by using it in the VPC2007 environment, on windows XP Home edition&#8230; If it works, I will tell you.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8233">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c5d7653403ae288e4ace06ff6dbccdde&amp;size=60" /></div>
+	    <cite><a href="http://www.hivedb.org">hivedb</a></cite>
+		<abbr title="2012-04-19T09:09:37+02:00"><span class="typo_date" title="Thu, 19 Apr 2012 07:09:37 GMT">Thu, 19 Apr 2012 07:09:37 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Being a web designer I often have to test websites for browser compatibility. I still use XP for it&#8217;s simplicity and was searching for ie9 for XP. Your Virtual PC solution is a good temporary alternative. Thanks.</p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-5460">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Peter</cite>
+		<abbr title="2011-04-15T16:29:38+02:00"><span class="typo_date" title="Fri, 15 Apr 2011 14:29:38 GMT">Fri, 15 Apr 2011 14:29:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5550">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Olli</cite>
+		<abbr title="2011-04-28T09:59:38+02:00"><span class="typo_date" title="Thu, 28 Apr 2011 07:59:38 GMT">Thu, 28 Apr 2011 07:59:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks, too</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5590">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>bilal@glotechno.com</cite>
+		<abbr title="2011-05-10T11:36:27+02:00"><span class="typo_date" title="Tue, 10 May 2011 09:36:27 GMT">Tue, 10 May 2011 09:36:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>nice:-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6161">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Bah Humbug</cite>
+		<abbr title="2011-07-25T00:56:32+02:00"><span class="typo_date" title="Sun, 24 Jul 2011 22:56:32 GMT">Sun, 24 Jul 2011 22:56:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Unfortunately, when you use the virtual image, you might not be able to connect to the Internet or to a localhost, or to any folders on your hard drive. In the past (2007) that was possible.</p>
+
+<p>So, you may be able to run IE9 on Vista/Windows7 on your XP machine, but it may be VERY slow and totally useless.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6175">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-07-25T16:47:26+02:00"><span class="typo_date" title="Mon, 25 Jul 2011 14:47:26 GMT">Mon, 25 Jul 2011 14:47:26 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I had no such problem while following the steps above. I did not actually try to connect to the host machine but connecting to internet or intranet sites was no problem. Didn&#8217;t feel slow.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6516">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Ryan</cite>
+		<abbr title="2011-09-22T22:32:05+02:00"><span class="typo_date" title="Thu, 22 Sep 2011 20:32:05 GMT">Thu, 22 Sep 2011 20:32:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>The first download link takes you to a virtual pc download that is for windows 7 computers only.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6526">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-09-25T20:17:27+02:00"><span class="typo_date" title="Sun, 25 Sep 2011 18:17:27 GMT">Sun, 25 Sep 2011 18:17:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Ryan It sure seems that way. Did you access the page from an XP or a Windows 7 machine?</p>
+
+<p>You can find an older version of Virtual PC at 
+<a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx">http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6591">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T19:54:43+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 17:54:43 GMT">Wed, 05 Oct 2011 17:54:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I got everything running but it is asking for a password for both accounts, what is the password to get in?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6592">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T20:09:22+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 18:09:22 GMT">Wed, 05 Oct 2011 18:09:22 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>wow, nevermind, its in the Hint sorry</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7069">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c282fd86fe2200d3cc15e0e0c77b66b4&amp;size=60" /></div>
+	    <cite><a href="http://randsco.com">stk</a></cite>
+		<abbr title="2011-12-31T22:48:55+01:00"><span class="typo_date" title="Sat, 31 Dec 2011 21:48:55 GMT">Sat, 31 Dec 2011 21:48:55 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Am in same boat. Appreciate the quick tute. I use IETester, which also won&#8217;t emulate IE9/10 b/c it&#8217;s running on XP.</p>
+
+<p>File under: Too much work. </p>
+
+<p>(Why in the www would MS make a browser O/S-dependent?)  Dumb.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7830">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>horia</cite>
+		<abbr title="2012-04-01T16:42:49+02:00"><span class="typo_date" title="Sun, 01 Apr 2012 14:42:49 GMT">Sun, 01 Apr 2012 14:42:49 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>the VHD for IE9 is using Windows7. The windows 7 version of the VHD is stated in wikipedia as working only with Virtual PC (actual edition) not with virtual pc 2007. The actual edition of Virtual PC does not work with Windows XP.
+so it seems to be still a problem. 
+I am actually trying to use the IE9+win7 pack (VHD) from Microsoft, by using it in the VPC2007 environment, on windows XP Home edition&#8230; If it works, I will tell you.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8233">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c5d7653403ae288e4ace06ff6dbccdde&amp;size=60" /></div>
+	    <cite><a href="http://www.hivedb.org">hivedb</a></cite>
+		<abbr title="2012-04-19T09:09:37+02:00"><span class="typo_date" title="Thu, 19 Apr 2012 07:09:37 GMT">Thu, 19 Apr 2012 07:09:37 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Being a web designer I often have to test websites for browser compatibility. I still use XP for it&#8217;s simplicity and was searching for ie9 for XP. Your Virtual PC solution is a good temporary alternative. Thanks.</p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-5460">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Peter</cite>
+		<abbr title="2011-04-15T16:29:38+02:00"><span class="typo_date" title="Fri, 15 Apr 2011 14:29:38 GMT">Fri, 15 Apr 2011 14:29:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5550">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Olli</cite>
+		<abbr title="2011-04-28T09:59:38+02:00"><span class="typo_date" title="Thu, 28 Apr 2011 07:59:38 GMT">Thu, 28 Apr 2011 07:59:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks, too</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5590">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>bilal@glotechno.com</cite>
+		<abbr title="2011-05-10T11:36:27+02:00"><span class="typo_date" title="Tue, 10 May 2011 09:36:27 GMT">Tue, 10 May 2011 09:36:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>nice:-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6161">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Bah Humbug</cite>
+		<abbr title="2011-07-25T00:56:32+02:00"><span class="typo_date" title="Sun, 24 Jul 2011 22:56:32 GMT">Sun, 24 Jul 2011 22:56:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Unfortunately, when you use the virtual image, you might not be able to connect to the Internet or to a localhost, or to any folders on your hard drive. In the past (2007) that was possible.</p>
+
+<p>So, you may be able to run IE9 on Vista/Windows7 on your XP machine, but it may be VERY slow and totally useless.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6175">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-07-25T16:47:26+02:00"><span class="typo_date" title="Mon, 25 Jul 2011 14:47:26 GMT">Mon, 25 Jul 2011 14:47:26 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I had no such problem while following the steps above. I did not actually try to connect to the host machine but connecting to internet or intranet sites was no problem. Didn&#8217;t feel slow.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6516">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Ryan</cite>
+		<abbr title="2011-09-22T22:32:05+02:00"><span class="typo_date" title="Thu, 22 Sep 2011 20:32:05 GMT">Thu, 22 Sep 2011 20:32:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>The first download link takes you to a virtual pc download that is for windows 7 computers only.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6526">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-09-25T20:17:27+02:00"><span class="typo_date" title="Sun, 25 Sep 2011 18:17:27 GMT">Sun, 25 Sep 2011 18:17:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Ryan It sure seems that way. Did you access the page from an XP or a Windows 7 machine?</p>
+
+<p>You can find an older version of Virtual PC at 
+<a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx">http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6591">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T19:54:43+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 17:54:43 GMT">Wed, 05 Oct 2011 17:54:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I got everything running but it is asking for a password for both accounts, what is the password to get in?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6592">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T20:09:22+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 18:09:22 GMT">Wed, 05 Oct 2011 18:09:22 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>wow, nevermind, its in the Hint sorry</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7069">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c282fd86fe2200d3cc15e0e0c77b66b4&amp;size=60" /></div>
+	    <cite><a href="http://randsco.com">stk</a></cite>
+		<abbr title="2011-12-31T22:48:55+01:00"><span class="typo_date" title="Sat, 31 Dec 2011 21:48:55 GMT">Sat, 31 Dec 2011 21:48:55 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Am in same boat. Appreciate the quick tute. I use IETester, which also won&#8217;t emulate IE9/10 b/c it&#8217;s running on XP.</p>
+
+<p>File under: Too much work. </p>
+
+<p>(Why in the www would MS make a browser O/S-dependent?)  Dumb.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7830">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>horia</cite>
+		<abbr title="2012-04-01T16:42:49+02:00"><span class="typo_date" title="Sun, 01 Apr 2012 14:42:49 GMT">Sun, 01 Apr 2012 14:42:49 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>the VHD for IE9 is using Windows7. The windows 7 version of the VHD is stated in wikipedia as working only with Virtual PC (actual edition) not with virtual pc 2007. The actual edition of Virtual PC does not work with Windows XP.
+so it seems to be still a problem. 
+I am actually trying to use the IE9+win7 pack (VHD) from Microsoft, by using it in the VPC2007 environment, on windows XP Home edition&#8230; If it works, I will tell you.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8233">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c5d7653403ae288e4ace06ff6dbccdde&amp;size=60" /></div>
+	    <cite><a href="http://www.hivedb.org">hivedb</a></cite>
+		<abbr title="2012-04-19T09:09:37+02:00"><span class="typo_date" title="Thu, 19 Apr 2012 07:09:37 GMT">Thu, 19 Apr 2012 07:09:37 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Being a web designer I often have to test websites for browser compatibility. I still use XP for it&#8217;s simplicity and was searching for ie9 for XP. Your Virtual PC solution is a good temporary alternative. Thanks.</p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-5460">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Peter</cite>
+		<abbr title="2011-04-15T16:29:38+02:00"><span class="typo_date" title="Fri, 15 Apr 2011 14:29:38 GMT">Fri, 15 Apr 2011 14:29:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5550">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Olli</cite>
+		<abbr title="2011-04-28T09:59:38+02:00"><span class="typo_date" title="Thu, 28 Apr 2011 07:59:38 GMT">Thu, 28 Apr 2011 07:59:38 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Thanks, too</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5590">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>bilal@glotechno.com</cite>
+		<abbr title="2011-05-10T11:36:27+02:00"><span class="typo_date" title="Tue, 10 May 2011 09:36:27 GMT">Tue, 10 May 2011 09:36:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>nice:-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6161">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Bah Humbug</cite>
+		<abbr title="2011-07-25T00:56:32+02:00"><span class="typo_date" title="Sun, 24 Jul 2011 22:56:32 GMT">Sun, 24 Jul 2011 22:56:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Unfortunately, when you use the virtual image, you might not be able to connect to the Internet or to a localhost, or to any folders on your hard drive. In the past (2007) that was possible.</p>
+
+<p>So, you may be able to run IE9 on Vista/Windows7 on your XP machine, but it may be VERY slow and totally useless.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6175">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-07-25T16:47:26+02:00"><span class="typo_date" title="Mon, 25 Jul 2011 14:47:26 GMT">Mon, 25 Jul 2011 14:47:26 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I had no such problem while following the steps above. I did not actually try to connect to the host machine but connecting to internet or intranet sites was no problem. Didn&#8217;t feel slow.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6516">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Ryan</cite>
+		<abbr title="2011-09-22T22:32:05+02:00"><span class="typo_date" title="Thu, 22 Sep 2011 20:32:05 GMT">Thu, 22 Sep 2011 20:32:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>The first download link takes you to a virtual pc download that is for windows 7 computers only.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6526">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-09-25T20:17:27+02:00"><span class="typo_date" title="Sun, 25 Sep 2011 18:17:27 GMT">Sun, 25 Sep 2011 18:17:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Ryan It sure seems that way. Did you access the page from an XP or a Windows 7 machine?</p>
+
+<p>You can find an older version of Virtual PC at 
+<a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx">http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6591">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T19:54:43+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 17:54:43 GMT">Wed, 05 Oct 2011 17:54:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I got everything running but it is asking for a password for both accounts, what is the password to get in?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6592">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>chris</cite>
+		<abbr title="2011-10-05T20:09:22+02:00"><span class="typo_date" title="Wed, 05 Oct 2011 18:09:22 GMT">Wed, 05 Oct 2011 18:09:22 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>wow, nevermind, its in the Hint sorry</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7069">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c282fd86fe2200d3cc15e0e0c77b66b4&amp;size=60" /></div>
+	    <cite><a href="http://randsco.com">stk</a></cite>
+		<abbr title="2011-12-31T22:48:55+01:00"><span class="typo_date" title="Sat, 31 Dec 2011 21:48:55 GMT">Sat, 31 Dec 2011 21:48:55 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Am in same boat. Appreciate the quick tute. I use IETester, which also won&#8217;t emulate IE9/10 b/c it&#8217;s running on XP.</p>
+
+<p>File under: Too much work. </p>
+
+<p>(Why in the www would MS make a browser O/S-dependent?)  Dumb.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-7830">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>horia</cite>
+		<abbr title="2012-04-01T16:42:49+02:00"><span class="typo_date" title="Sun, 01 Apr 2012 14:42:49 GMT">Sun, 01 Apr 2012 14:42:49 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>the VHD for IE9 is using Windows7. The windows 7 version of the VHD is stated in wikipedia as working only with Virtual PC (actual edition) not with virtual pc 2007. The actual edition of Virtual PC does not work with Windows XP.
+so it seems to be still a problem. 
+I am actually trying to use the IE9+win7 pack (VHD) from Microsoft, by using it in the VPC2007 environment, on windows XP Home edition&#8230; If it works, I will tell you.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8233">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c5d7653403ae288e4ace06ff6dbccdde&amp;size=60" /></div>
+	    <cite><a href="http://www.hivedb.org">hivedb</a></cite>
+		<abbr title="2012-04-19T09:09:37+02:00"><span class="typo_date" title="Thu, 19 Apr 2012 07:09:37 GMT">Thu, 19 Apr 2012 07:09:37 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Being a web designer I often have to test websites for browser compatibility. I still use XP for it&#8217;s simplicity and was searching for ie9 for XP. Your Virtual PC solution is a good temporary alternative. Thanks.</p>
+	  </div>
+	</li>
+	</ol>
+
+  
+  </ol>
+
+
+<p class="postmetadata alt">
+  <small>
+  <a href="../../../../xml/rss20/article/5276/feed.xml" title="RSS Feed">RSS feed for this post</a>
+  </small>
+</p>
+
+
+<p>Comments are closed</p>
+<!--
+  <p>Comments are disabled</p>
+-->
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../../../pages/AboutMe">About me</a>/<a href="../../../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

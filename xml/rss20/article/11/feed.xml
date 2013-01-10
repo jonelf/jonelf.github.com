@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: SETL, Ruby and list comprehensions</title>
+    <link>http://alicebobandmallory.com/articles/2007/02/09/setl-ruby-and-list-comprehensions</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>SETL, Ruby and list comprehensions</title>
+      <description>&lt;p&gt;Someone mentioned SETL and I didn't even know what it was so I googled it. Ended up at &lt;a href="http://en.wikipedia.org/wiki/SETL#Sample_code"&gt;http://en.wikipedia.org/wiki/SETL#Sample_code&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;Print all prime numbers from 2 to N&lt;/cite&gt;&lt;/p&gt;&lt;div class="typocode"&gt;&lt;pre&gt;&lt;code class="typocode_default "&gt;  print({n in {2..N} | forall m in {2..n - 1} | n mod m &amp;gt; 0});&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;cite&gt;The notation is similar to list comprehension.&lt;/cite&gt;
+&lt;/p&gt;
+&lt;p&gt;Interesting! In Ruby you could do that something like this:&lt;/p&gt;
+&lt;div class="typocode"&gt;&lt;pre&gt;&lt;code class="typocode_ruby "&gt;&lt;span class="constant"&gt;N&lt;/span&gt;&lt;span class="punct"&gt;=&lt;/span&gt;&lt;span class="number"&gt;42&lt;/span&gt;
+&lt;span class="number"&gt;2&lt;/span&gt;&lt;span class="punct"&gt;.&lt;/span&gt;&lt;span class="ident"&gt;upto&lt;/span&gt;&lt;span class="punct"&gt;(&lt;/span&gt;&lt;span class="constant"&gt;N&lt;/span&gt;&lt;span class="punct"&gt;)&lt;/span&gt; &lt;span class="punct"&gt;{|&lt;/span&gt;&lt;span class="ident"&gt;n&lt;/span&gt;&lt;span class="punct"&gt;|&lt;/span&gt; &lt;span class="ident"&gt;puts&lt;/span&gt; &lt;span class="ident"&gt;n&lt;/span&gt; &lt;span class="keyword"&gt;if&lt;/span&gt; &lt;span class="punct"&gt;(&lt;/span&gt;&lt;span class="number"&gt;2&lt;/span&gt;&lt;span class="punct"&gt;..&lt;/span&gt;&lt;span class="ident"&gt;n&lt;/span&gt;&lt;span class="punct"&gt;-&lt;/span&gt;&lt;span class="number"&gt;1&lt;/span&gt;&lt;span class="punct"&gt;).&lt;/span&gt;&lt;span class="ident"&gt;all?&lt;/span&gt; &lt;span class="punct"&gt;{|&lt;/span&gt;&lt;span class="ident"&gt;m&lt;/span&gt;&lt;span class="punct"&gt;|&lt;/span&gt; &lt;span class="ident"&gt;n&lt;/span&gt;&lt;span class="punct"&gt;.&lt;/span&gt;&lt;span class="ident"&gt;modulo&lt;/span&gt;&lt;span class="punct"&gt;(&lt;/span&gt;&lt;span class="ident"&gt;m&lt;/span&gt;&lt;span class="punct"&gt;)&amp;gt;&lt;/span&gt;&lt;span class="number"&gt;0&lt;/span&gt;&lt;span class="punct"&gt;}&lt;/span&gt; &lt;span class="punct"&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The SETL example at wikipedia actually iterates way too much.&lt;/p&gt;
+&lt;div class="typocode"&gt;&lt;pre&gt;&lt;code class="typocode_ruby "&gt;&lt;span class="constant"&gt;N&lt;/span&gt;&lt;span class="punct"&gt;=&lt;/span&gt;&lt;span class="number"&gt;42&lt;/span&gt;
+&lt;span class="ident"&gt;puts&lt;/span&gt; &lt;span class="number"&gt;2&lt;/span&gt;
+&lt;span class="number"&gt;3&lt;/span&gt;&lt;span class="punct"&gt;.&lt;/span&gt;&lt;span class="ident"&gt;step&lt;/span&gt;&lt;span class="punct"&gt;(&lt;/span&gt;&lt;span class="constant"&gt;N&lt;/span&gt;&lt;span class="punct"&gt;,&lt;/span&gt;&lt;span class="number"&gt;2&lt;/span&gt;&lt;span class="punct"&gt;)&lt;/span&gt; &lt;span class="punct"&gt;{|&lt;/span&gt;&lt;span class="ident"&gt;n&lt;/span&gt;&lt;span class="punct"&gt;|&lt;/span&gt; &lt;span class="ident"&gt;puts&lt;/span&gt; &lt;span class="ident"&gt;n&lt;/span&gt; &lt;span class="keyword"&gt;if&lt;/span&gt; &lt;span class="punct"&gt;(&lt;/span&gt;&lt;span class="number"&gt;2&lt;/span&gt;&lt;span class="punct"&gt;..&lt;/span&gt;&lt;span class="ident"&gt;n&lt;/span&gt;&lt;span class="punct"&gt;/&lt;/span&gt;&lt;span class="number"&gt;3&lt;/span&gt;&lt;span class="punct"&gt;).&lt;/span&gt;&lt;span class="ident"&gt;all?&lt;/span&gt; &lt;span class="punct"&gt;{|&lt;/span&gt;&lt;span class="ident"&gt;m&lt;/span&gt;&lt;span class="punct"&gt;|&lt;/span&gt; &lt;span class="ident"&gt;n&lt;/span&gt;&lt;span class="punct"&gt;.&lt;/span&gt;&lt;span class="ident"&gt;modulo&lt;/span&gt;&lt;span class="punct"&gt;(&lt;/span&gt;&lt;span class="ident"&gt;m&lt;/span&gt;&lt;span class="punct"&gt;)&amp;gt;&lt;/span&gt;&lt;span class="number"&gt;0&lt;/span&gt;&lt;span class="punct"&gt;}&lt;/span&gt; &lt;span class="punct"&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I realize this is not purist &lt;a href="http://en.wikipedia.org/wiki/List_comprehension"&gt;list comprehension&lt;/a&gt;, well actually it isn't lc at all. Ruby does not have lc in the same sense as Python and others, but you can do almost everything you can with lc with the fantastic collection of methods in &lt;a href="http://www.ruby-doc.org/core/classes/Enumerable.html"&gt;Enumerable&lt;/a&gt;. If that isn't enough you could always expand Ruby with a more general support for list comprehension like described &lt;a href="http://tinyurl.com/3ypwnk"&gt;here&lt;/a&gt;.
+&lt;/p&gt;
+</description>
+      <pubDate>Fri, 09 Feb 2007 01:11:00 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:cb7e5da5-b5f0-4678-8bde-60a081e3a38e</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2007/02/09/setl-ruby-and-list-comprehensions</link>
+      <category>Ruby</category>
+    </item>
+  </channel>
+</rss>

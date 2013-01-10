@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Alice, Bob, and Mallory</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../xml/atom/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../xml/rss20/feed.xml" />
+  <script src="../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <div class="atomentry" id="article-3017">
+  <h2 class="title">
+    <a href="../2009/01/29/predicate-matches-me">Predicate<T> matches me</a> 
+    <span class="comment_count">1</span>
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2009-01-29T21:29:00+01:00"><span class="typo_date" title="Thu, 29 Jan 2009 20:29:00 GMT">Thu, 29 Jan 2009 20:29:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>I really like the Predicate(T) delegates that were added to the generic collections and lists in .NET 2.0. With the later addition of lambda expressions came cleanliness and readability.</p>
+
+<p>Today we faced a quite simple problem that were made even simpler by the dear predicates. We had a kind of event log and wanted to filter it client side (Windows Forms) using a list of criterias. We began by implementing to filter by a number of categories. It ended up being only one row (in Visual Studio, for obvious reasons not here):</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="7#n1" name="n1">1</a>
+<a href="7#n2" name="n2">2</a>
+<a href="7#n3" name="n3">3</a>
+<a href="7#n4" name="n4">4</a>
+<a href="7#n5" name="n5">5</a>
+<a href="7#n6" name="n6">6</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#088;font-weight:bold">private</span> <span style="color:#0a5;font-weight:bold">List</span>&lt;Events&gt; FilterEventsByCategory(<span style="color:#0a5;font-weight:bold">List</span>&lt;Events&gt; events,
+                                        <span style="color:#0a5;font-weight:bold">List</span>&lt;Category&gt; categories) 
+{
+  <span style="color:#080;font-weight:bold">return</span> events.FindAll(event =&gt; 
+      categories.Exists(category =&gt; category.CategoryId==event.CategoryId)); 
+}</pre></td>
+</tr></table>
+
+<pre></pre>
+
+<p>Neat!</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/c" rel="noindex, follow, tag">C#</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2009/01/29/predicate-matches-me#comments">1 comment</a>,
+      <a href="../2009/01/29/predicate-matches-me" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/3017/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/3017/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-3007">
+  <h2 class="title">
+    <a href="../2008/12/31/swedish-hackers">Swedish hackers</a> 
+    
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2008-12-31T00:29:00+01:00"><span class="typo_date" title="Tue, 30 Dec 2008 23:29:00 GMT">Tue, 30 Dec 2008 23:29:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>The incident I wrote of in <a href="../2007/02/04/hello-this-is-special-agent-brian">Hello this is special agent Brian</a> were covered in a Swedish radio documentary a little more than a month ago.
+It's all in Swedish. You can find out more <a href="http://www.sr.se/cgi-bin/p3/programsidor/artikel.asp?ProgramID=2519&amp;Artikel=2447808">here</a> and you can download the documentary from <a href="http://www.sr.se/laddahem/podradio/SR_p3_dokumentar_081116080008.mp3">here</a>.</p>
+
+<p>I also would like to add that we did not press charges like the police officers says 37 minutes into the documentary. Not because we thought it wasn't a big deal but we knew that a couple of big players already had so we thought we could spend our time better.</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/security" rel="noindex, follow, tag">Security</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2008/12/31/swedish-hackers#comments">no comments</a>,
+      <a href="../2008/12/31/swedish-hackers" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/3007/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/3007/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-2958">
+  <h2 class="title">
+    <a href="../2008/11/15/death-from-lack-of-content">Death from lack of content</a> 
+    
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2008-11-15T02:21:00+01:00"><span class="typo_date" title="Sat, 15 Nov 2008 01:21:00 GMT">Sat, 15 Nov 2008 01:21:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>I'm sorry to admit that this blog has died from lack of content and I have absolutely no guarantees to give you that it will ever come alive again.</p>
+
+<p>At least I'm still alive and last night I <a href="http://www.plea.se/me/Leif.html">had some fun</a> with C, <a href="http://www.codeblocks.org/">Code::Blocks</a> and <a href="http://www.libsdl.org/">SDL</a>.</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/blogging" rel="noindex, follow, tag">Blogging</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2008/11/15/death-from-lack-of-content#comments">no comments</a>,
+      <a href="../2008/11/15/death-from-lack-of-content" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/2958/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/2958/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-2333">
+  <h2 class="title">
+    <a href="../2008/05/05/unit-testing-strains">Unit testing strains</a> 
+    <span class="comment_count">3</span>
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2008-05-05T21:17:00+02:00"><span class="typo_date" title="Mon, 05 May 2008 19:17:00 GMT">Mon, 05 May 2008 19:17:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>I've felt it and I've heard it from colleagues several times. Writing unit tests can be hard work. Especially adding unit tests to an existing code base is, at best, cumbersome. Also it's one of those things with delayed gratification. Sometimes it's not even you that will benefit from them being there because the biggest win can be long down the road, when changes to the system has to be made. </p>
+
+<p>Tests may seem to be isolated and it's even considered a good thing to keep them that way. Even so the tests of your application has a correlation to what the system aims to do on a bigger scale.  This one of the things <a href="http://en.wikipedia.org/wiki/Behavior_driven_development">BDD</a>  focuses on. I think that one of the biggest advantages is that you in one process writes a specification and tests that ensures that the spec. is met. Testing becomes a natural part of the development process. This way it clearly shows that BDD and  <a href="http://en.wikipedia.org/wiki/Test-driven_development">TDD</a> are design processes and that it's certainly not all about adding unit tests.</p>
+
+<p>Find out more about BDD on: <a href="http://behaviour-driven.org">BehaviourDrivenDevelopment</a><br/>
+<em>It must be stressed that BDD is a rephrasing of existing good practice, it is not a radically new departure. Its aim is to bring together existing, well-established techniques under a common banner and with a consistent and unambiguous terminology.</em></p>
+
+<p>For Ruby <a href="http://rspec.info/">RSpec</a> has almost become the de facto standard for BDD. The concepts Story, Scenario, and Test feels natural and the syntax is short and easy to read.</p>
+
+<p>In languages like Java or C# the tests often becomes much more cluttered and some of that clutter is the extra code that comes with static typing. I believe that dynamically typed and overall dynamic languages like Ruby or Python could find a nice little niche here. They could become <a href="http://en.wikipedia.org/wiki/Domain-specific_programming_language">DSL's</a> for testing.</p>
+
+<p>RSpec is on it's way for .NET/C# via <a href="http://en.wikipedia.org/wiki/IronRuby">IronRuby</a> and for Java via <a href="http://jruby.codehaus.org/">JRuby</a> but don't hold your breath because they are still in alpha and beta.</p>
+
+<p><strong>.NET / C#</strong><br/>
+<a href="http://rubydoes.net/2008/02/21/testing-net-with-ironrubys-mini_rspecrb/">Testing .NET with IronRuby...</a><br/>
+<a href="http://bgeek.net/2008/02/14/nspecify-rspec-well-closer-anyway/">NSpecify => RSpec… well closer anyway</a></p>
+
+<p><strong>Java</strong><br/>
+<a href="http://pivots.pivotallabs.com/users/pzabelin/blog/articles/375-functional-tests-for-java-project-rspec-jruby">Java Functional Testing with JRuby and RSpec</a><br/>
+<a href="http://jtestr.codehaus.org/">JtestR</a></p>
+
+<p><strong>Ruby</strong><br/>
+<a href="http://socialface.com/slapp/">Slapp</a> - A simple chat wall Merb tutorial. With nice exampes of using RSpec.<br/>
+<a href="http://www.ibm.com/developerworks/web/library/wa-rspec/">Behavior-driven testing with RSpec</a></p>
+
+<p><strong>ASP.NET MVC</strong><br/>
+<a href="http://blogs.msdn.com/webdevtools/archive/2008/03/06/asp-net-mvc-test-framework-integration-demo.aspx">ASP.NET MVC Test Framework Integration Walkthrough</a><br/>
+<a href="http://www.asp.net/learn/3.5-extensions-videos/video-271.aspx">MVC Preview - Testing</a><br/>
+<a href="http://www.hanselman.com/blog/ASPNETMVCSessionAtMix08TDDAndMvcMockHelpers.aspx">ASP.NET MVC Session at Mix08, TDD and MvcMockHelpers</a></p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a>, <a href="http://alicebobandmallory.com/articles/category/c" rel="noindex, follow, tag">C#</a>, <a href="http://alicebobandmallory.com/articles/category/java" rel="noindex, follow, tag">Java</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2008/05/05/unit-testing-strains#comments">3 comments</a>,
+      <a href="../2008/05/05/unit-testing-strains" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/2333/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/2333/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-2094">
+  <h2 class="title">
+    <a href="../2008/02/12/drive-encryption-matters">Drive encryption matters</a> 
+    <span class="comment_count">2</span>
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2008-02-12T00:26:00+01:00"><span class="typo_date" title="Mon, 11 Feb 2008 23:26:00 GMT">Mon, 11 Feb 2008 23:26:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>In a recent release <a href="http://www.truecrypt.org/">TrueCrypt</a> now supports <a href="http://www.truecrypt.org/docs/?s=system-encryption">drive/partition</a> encryption.</p>
+
+<p>One reason to encrypt on disk instead of file level is that operating systems and applications sometimes accidently stores passwords on your hard drive. This can happen in a number of ways and one common mistake applications make is to not prevent to be put on disk by the OS. Modern systems have a <a href="http://en.wikipedia.org/wiki/Paging">page/swap file</a>. If a program gets paged out while holding your clear text password in pageable memory your password will be written to disk. The problem is that there are <a href="http://www.schneier.com/essay-148.html">password recovery tools</a> that can scan your page file for passwords.</p>
+
+<p>You can configure Windows (and surely most other operating systems) to <a href="http://support.microsoft.com/kb/314834">clear the page file</a> on shutdown which will give you better protection (and slower shutdowns). Be aware that if you simply turn off the power the page file will be intact.</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/security" rel="noindex, follow, tag">Security</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2008/02/12/drive-encryption-matters#comments">2 comments</a>,
+      <a href="../2008/02/12/drive-encryption-matters" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/2094/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/2094/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+
+
+<p class="pagination">Older posts: <a href="1">1</a> ...  <a href="5">5</a> <a href="6">6</a> 7 <a href="8">8</a> <a href="9">9</a>  ... <a href="12">12</a></p>
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../pages/AboutMe">About me</a>/<a href="../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

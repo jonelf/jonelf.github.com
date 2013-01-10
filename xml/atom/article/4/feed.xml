@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: Who's that girl?</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/4/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2007/02/03/whos-that-girl" rel="alternate" type="text/html"/>
+  <updated>2007-02-08T07:32:17+01:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:b58e73b4-3fe1-4a1c-b6af-254f684d7b9a</id>
+    <published>2007-02-03T18:56:00+01:00</published>
+    <updated>2007-02-08T07:32:17+01:00</updated>
+    <title type="html">Who's that girl?</title>
+    <link href="http://alicebobandmallory.com/articles/2007/02/03/whos-that-girl" rel="alternate" type="text/html"/>
+    <category label="Security" term="security" scheme="http://alicebobandmallory.com/articles/category/security"/>
+    <summary type="html">&lt;p&gt;So who's Alice? If you found this blog because of your interest in computer security it's a good chance that you already knew that in cryptography &lt;a href="http://en.wikipedia.org/wiki/Alice_and_Bob"&gt;Alice, Bob &lt;/a&gt;and Mallory are often used as placeholders for common actors in different scenarios.
+I guess it's simpler to remember Alice and Bob than "The sender A wants to identify itself to receiver B" and alike. Alice usually wants to send data to Bob. If there exists an eavesdropper she is  often called Eve. Mallory is a more dangerous animal than Eve because he has control over Alice's messages in such a way that he can change or resend then.&lt;/p&gt;
+
+&lt;p&gt;The first posting I had in mind for this blog involved Alice, Bob and Mallory and suddenly the blog had a name. &lt;strike&gt;That "article" isn't quite finished yet.&lt;/strike&gt; Now &lt;a href="/articles/2007/02/05/trojans-and-one-time-passwords"&gt;it&lt;/a&gt; is.&lt;/p&gt;
+
+&lt;p&gt;This blog will most certainly not be about IT Security alone. I have been known to post some &lt;a href="http://plea.se/me/http2ftp.html"&gt;Ruby-snippets&lt;/a&gt;, &lt;a href="http://plea.se/me/validatePnum.html"&gt;JavaScripts&lt;/a&gt; and such in the past and will try to keep that up.&lt;/p&gt;
+</summary>
+    <content type="html">&lt;p&gt;So who's Alice? If you found this blog because of your interest in computer security it's a good chance that you already knew that in cryptography &lt;a href="http://en.wikipedia.org/wiki/Alice_and_Bob"&gt;Alice, Bob &lt;/a&gt;and Mallory are often used as placeholders for common actors in different scenarios.
+I guess it's simpler to remember Alice and Bob than "The sender A wants to identify itself to receiver B" and alike. Alice usually wants to send data to Bob. If there exists an eavesdropper she is  often called Eve. Mallory is a more dangerous animal than Eve because he has control over Alice's messages in such a way that he can change or resend then.&lt;/p&gt;
+
+&lt;p&gt;The first posting I had in mind for this blog involved Alice, Bob and Mallory and suddenly the blog had a name. &lt;strike&gt;That "article" isn't quite finished yet.&lt;/strike&gt; Now &lt;a href="/articles/2007/02/05/trojans-and-one-time-passwords"&gt;it&lt;/a&gt; is.&lt;/p&gt;
+
+&lt;p&gt;This blog will most certainly not be about IT Security alone. I have been known to post some &lt;a href="http://plea.se/me/http2ftp.html"&gt;Ruby-snippets&lt;/a&gt;, &lt;a href="http://plea.se/me/validatePnum.html"&gt;JavaScripts&lt;/a&gt; and such in the past and will try to keep that up.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

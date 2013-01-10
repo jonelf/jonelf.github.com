@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Change your default passwords!</title>
+    <link>http://alicebobandmallory.com/articles/2007/02/26/change-your-default-passwords</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Change your default passwords!</title>
+      <description>&lt;p&gt;It has recently been reported that by simply opening the wrong web page you could be in trouble if you haven't changed the default password of your home router. The page could contain a JavaScript that changes the DNS-settings. Schneier blogs about it &lt;a href="http://www.schneier.com/blog/archives/2007/02/driveby_pharmin.html"&gt;here&lt;/a&gt; and today he posted a &lt;a href="http://www.phenoelit.de/dpl/dpl.html
+"&gt;link&lt;/a&gt; to a page containing default passwords for most of the home routers on the market.&lt;/p&gt;
+&lt;h5&gt;Change it now!&lt;/h5&gt;
+&lt;p&gt;Recently I helped a friend to change the password on his router. He knew that he could administer his router with a web interface but he did not know where to point his browser. He's running Windows and if you are in the same situation as my friend you could almost always find out the address by:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Click Start&lt;/li&gt;
+&lt;li&gt;choose Run... &lt;/li&gt;
+&lt;li&gt;Enter cmd, click ok.&lt;/li&gt; 
+&lt;li&gt;Type ipconfig + enter.&lt;/li&gt;
+&lt;li&gt;Open your &lt;a href="http://www.mozilla.com/"&gt;favorite web browser&lt;/a&gt; and type http:// + the Default Gateway IP-address. Chances are it's &lt;a href="http://192.168.0.1/"&gt;http://192.168.0.1/&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Mon, 26 Feb 2007 17:01:00 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:eae9d223-d848-4d26-a972-a7bb7f6fd071</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2007/02/26/change-your-default-passwords</link>
+      <category>Security</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Death from lack of content</title>
+    <link>http://alicebobandmallory.com/articles/2008/11/15/death-from-lack-of-content</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Death from lack of content</title>
+      <description>&lt;p&gt;I'm sorry to admit that this blog has died from lack of content and I have absolutely no guarantees to give you that it will ever come alive again.&lt;/p&gt;
+
+&lt;p&gt;At least I'm still alive and last night I &lt;a href="http://www.plea.se/me/Leif.html"&gt;had some fun&lt;/a&gt; with C, &lt;a href="http://www.codeblocks.org/"&gt;Code::Blocks&lt;/a&gt; and &lt;a href="http://www.libsdl.org/"&gt;SDL&lt;/a&gt;.&lt;/p&gt;</description>
+      <pubDate>Sat, 15 Nov 2008 02:21:00 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:ef2bb361-e7c7-4c25-ad94-4da019368c1f</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2008/11/15/death-from-lack-of-content</link>
+      <category>Blogging</category>
+    </item>
+  </channel>
+</rss>

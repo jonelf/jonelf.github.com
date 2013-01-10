@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: Blowfish in the URL</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/1682/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2007/11/15/blowfish-in-the-url" rel="alternate" type="text/html"/>
+  <updated>2010-09-27T19:16:45+02:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:9071a4d1-aaf0-4f17-a796-4ecd65976d64</id>
+    <published>2007-11-15T22:38:00+01:00</published>
+    <updated>2010-09-27T19:16:45+02:00</updated>
+    <title type="html">Blowfish in the URL</title>
+    <link href="http://alicebobandmallory.com/articles/2007/11/15/blowfish-in-the-url" rel="alternate" type="text/html"/>
+    <category label="Security" term="security" scheme="http://alicebobandmallory.com/articles/category/security"/>
+    <category label="Ruby" term="ruby" scheme="http://alicebobandmallory.com/articles/category/ruby"/>
+    <category label="Cryptography" term="cryptography" scheme="http://alicebobandmallory.com/articles/category/cryptography"/>
+    <summary type="html">&lt;p&gt;Sometimes you do not want to show the database id for a row in the URL. The reason could be that you do not want someone to be able to scan through all the data.&lt;/p&gt;
+
+&lt;p&gt;One solution is to use &lt;a href="http://en.wikipedia.org/wiki/Globally_Unique_Identifier"&gt;GUID's&lt;/a&gt; but they have drawbacks and one of them is that they add a considerable length to the URL. The shortest URL-safe representation of a GUID I've seen is &lt;a href="http://tools.assembla.com/breakout/wiki/FreeSoftware"&gt;22 characters&lt;/a&gt; but usually they are 36 characters.&lt;/p&gt;
+
+&lt;p&gt;Depending on how your id's are implemented a much shorter way could be to simply to encrypt them.&lt;/p&gt;
+
+&lt;p&gt;Here's a &lt;a href="http://www.ruby-lang.org/"&gt;Ruby&lt;/a&gt;-example that Blowfish encrypts, Base64 encodes and URL-encodes an integer value. You can get crypt as a gem:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;gem install crypt&lt;/code&gt;&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;require &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;rubygems&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;
+require &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;crypt/blowfish&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;
+require &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;Base64&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;
+blowfish = &lt;span style="color:#036;font-weight:bold"&gt;Crypt&lt;/span&gt;::&lt;span style="color:#036;font-weight:bold"&gt;Blowfish&lt;/span&gt;.new(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;A key up to 56 bytes long&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;)
+plainId=&lt;span style="color:#00D"&gt;123456&lt;/span&gt;
+encrypted = blowfish.encrypt_block(plainId.to_s.ljust(&lt;span style="color:#00D"&gt;8&lt;/span&gt;))
+idForURL = &lt;span style="color:#036;font-weight:bold"&gt;URI&lt;/span&gt;.escape((&lt;span style="color:#036;font-weight:bold"&gt;Base64&lt;/span&gt;.encode64(encrypted).strip))
+decryptedId = blowfish.decrypt_block(  
+                          &lt;span style="color:#036;font-weight:bold"&gt;Base64&lt;/span&gt;.decode64(  
+                          &lt;span style="color:#036;font-weight:bold"&gt;URI&lt;/span&gt;.unescape(idForURL))).
+                          strip.to_i&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+The .ljust(8) is because &lt;a href="http://www.schneier.com/blowfish.html"&gt;Blowfish&lt;/a&gt; is a 64-bit block &lt;a href="http://en.wikipedia.org/wiki/Blowfish_(cipher)"&gt;cipher&lt;/a&gt; and the &lt;a href="http://crypt.rubyforge.org/"&gt;Ruby-implementation&lt;/a&gt; does not pad the data itself.&lt;/p&gt;
+
+&lt;p&gt;The id in the URL in this case would be &lt;code&gt;c2PSXWgky40=&lt;/code&gt;. Its 12 characters long (11 if you skip the equal sign) and that's 10 or 24 characters shorter than a GUID. Also there is zero percent chance of collusion and if you want to you can even decrypt it.&lt;/p&gt;
+
+&lt;p&gt;This is not a super safe implementation but if you start your id's at a random and not too low number you are making it a bit harder for someone to crack the 56-bit key. Actually a truly random and at least 64-bit big number would be a better choice as it would have no connection to the true id at all. You would have to check for uniqueness before storing those in the database though.&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;Sometimes you do not want to show the database id for a row in the URL. The reason could be that you do not want someone to be able to scan through all the data.&lt;/p&gt;
+
+&lt;p&gt;One solution is to use &lt;a href="http://en.wikipedia.org/wiki/Globally_Unique_Identifier"&gt;GUID's&lt;/a&gt; but they have drawbacks and one of them is that they add a considerable length to the URL. The shortest URL-safe representation of a GUID I've seen is &lt;a href="http://tools.assembla.com/breakout/wiki/FreeSoftware"&gt;22 characters&lt;/a&gt; but usually they are 36 characters.&lt;/p&gt;
+
+&lt;p&gt;Depending on how your id's are implemented a much shorter way could be to simply to encrypt them.&lt;/p&gt;
+
+&lt;p&gt;Here's a &lt;a href="http://www.ruby-lang.org/"&gt;Ruby&lt;/a&gt;-example that Blowfish encrypts, Base64 encodes and URL-encodes an integer value. You can get crypt as a gem:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;gem install crypt&lt;/code&gt;&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;require &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;rubygems&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;
+require &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;crypt/blowfish&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;
+require &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;Base64&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;
+blowfish = &lt;span style="color:#036;font-weight:bold"&gt;Crypt&lt;/span&gt;::&lt;span style="color:#036;font-weight:bold"&gt;Blowfish&lt;/span&gt;.new(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;A key up to 56 bytes long&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;)
+plainId=&lt;span style="color:#00D"&gt;123456&lt;/span&gt;
+encrypted = blowfish.encrypt_block(plainId.to_s.ljust(&lt;span style="color:#00D"&gt;8&lt;/span&gt;))
+idForURL = &lt;span style="color:#036;font-weight:bold"&gt;URI&lt;/span&gt;.escape((&lt;span style="color:#036;font-weight:bold"&gt;Base64&lt;/span&gt;.encode64(encrypted).strip))
+decryptedId = blowfish.decrypt_block(  
+                          &lt;span style="color:#036;font-weight:bold"&gt;Base64&lt;/span&gt;.decode64(  
+                          &lt;span style="color:#036;font-weight:bold"&gt;URI&lt;/span&gt;.unescape(idForURL))).
+                          strip.to_i&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+The .ljust(8) is because &lt;a href="http://www.schneier.com/blowfish.html"&gt;Blowfish&lt;/a&gt; is a 64-bit block &lt;a href="http://en.wikipedia.org/wiki/Blowfish_(cipher)"&gt;cipher&lt;/a&gt; and the &lt;a href="http://crypt.rubyforge.org/"&gt;Ruby-implementation&lt;/a&gt; does not pad the data itself.&lt;/p&gt;
+
+&lt;p&gt;The id in the URL in this case would be &lt;code&gt;c2PSXWgky40=&lt;/code&gt;. Its 12 characters long (11 if you skip the equal sign) and that's 10 or 24 characters shorter than a GUID. Also there is zero percent chance of collusion and if you want to you can even decrypt it.&lt;/p&gt;
+
+&lt;p&gt;This is not a super safe implementation but if you start your id's at a random and not too low number you are making it a bit harder for someone to crack the 56-bit key. Actually a truly random and at least 64-bit big number would be a better choice as it would have no connection to the true id at all. You would have to check for uniqueness before storing those in the database though.&lt;/p&gt;</content>
+  </entry>
+</feed>

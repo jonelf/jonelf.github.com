@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: What one-way hash function to use?</title>
+    <link>http://alicebobandmallory.com/articles/2007/02/27/what-one-way-hash-function-to-use</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>What one-way hash function to use?</title>
+      <description>&lt;p&gt;Cryptographic hash function takes a message of any length as input and outputs a very large but fixed length number. That number is called a message digest, fingerprint, or sometimes a cryptographic hash. They can be used to represent passwords without having to know the actual password. Such a hash can also be used as signature that makes it possible to verify that the content of a message hasn't been tampered with.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/MD5"&gt;MD5&lt;/a&gt; got into problems over 10 years ago and &lt;a href="http://en.wikipedia.org/wiki/SHA-1#Cryptanalysis_of_SHA-1"&gt;SHA-1&lt;/a&gt; could to be heading the same way. Until the &lt;a href="http://www.schneier.com/blog/archives/2007/02/a_new_secure_ha.html"&gt;new standard&lt;/a&gt; is published I would follow the cryptographic experts advice and use SHA-2.&lt;/p&gt;
+
+&lt;h5&gt;Ruby&lt;/h5&gt;&lt;div class="typocode"&gt;&lt;pre&gt;&lt;code class="typocode_ruby "&gt;&lt;span class="ident"&gt;require&lt;/span&gt; &lt;span class="punct"&gt;'&lt;/span&gt;&lt;span class="string"&gt;digest/sha2&lt;/span&gt;&lt;span class="punct"&gt;'&lt;/span&gt;
+&lt;span class="ident"&gt;quickfox&lt;/span&gt;&lt;span class="punct"&gt;=&amp;quot;&lt;/span&gt;&lt;span class="string"&gt;The quick brown fox jumps over the lazy dog&lt;/span&gt;&lt;span class="punct"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="constant"&gt;Digest&lt;/span&gt;&lt;span class="punct"&gt;::&lt;/span&gt;&lt;span class="constant"&gt;SHA256&lt;/span&gt;&lt;span class="punct"&gt;.&lt;/span&gt;&lt;span class="ident"&gt;hexdigest&lt;/span&gt;&lt;span class="punct"&gt;(&lt;/span&gt;&lt;span class="ident"&gt;quickfox&lt;/span&gt;&lt;span class="punct"&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ =&gt; "d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592"
+
+
+&lt;h5&gt;C#&lt;/h5&gt;
+
+&lt;div class="typocode"&gt;&lt;pre&gt;&lt;code class="typocode_C# "&gt;using System.Security.Cryptography;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;...&lt;/p&gt;
+
+&lt;div class="typocode"&gt;&lt;pre&gt;&lt;code class="typocode_C# "&gt; ASCIIEncoding byteConverter = new ASCIIEncoding();
+ string quickfox=&amp;quot;The quick brown fox jumps over the lazy dog&amp;quot;;
+ HashAlgorithm sha256 = new SHA256Managed();
+ byte[] hash = sha256.ComputeHash(byteConverter.GetBytes(quickfox));
+ crypt.Text = Convert.ToBase64String(hash);           &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      <pubDate>Tue, 27 Feb 2007 17:01:00 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:5159f23a-0740-45e0-b264-b6b6e6f94972</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2007/02/27/what-one-way-hash-function-to-use</link>
+      <category>Security</category>
+      <category>Ruby</category>
+      <category>C#</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: Find primes in regexp</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/26/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2007/03/30/find-primes-in-regexp" rel="alternate" type="text/html"/>
+  <updated>2011-04-06T10:40:28+02:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:511a2ff5-ab23-4fb0-bba6-7a574882563d</id>
+    <published>2007-03-30T07:33:00+02:00</published>
+    <updated>2011-04-06T10:40:28+02:00</updated>
+    <title type="html">Find primes in regexp</title>
+    <link href="http://alicebobandmallory.com/articles/2007/03/30/find-primes-in-regexp" rel="alternate" type="text/html"/>
+    <category label="Ruby" term="ruby" scheme="http://alicebobandmallory.com/articles/category/ruby"/>
+    <category label="Math" term="math" scheme="http://alicebobandmallory.com/articles/category/math"/>
+    <summary type="html">&lt;p&gt;In an earlier &lt;a href="/articles/2007/02/09/setl-ruby-and-list-comprehensions"&gt;post&lt;/a&gt; the example code did find prime numbers. Recently I &lt;a href="http://groups.google.com/group/ruby-talk-google/browse_thread/thread/3deebb518a454bc4"&gt;stumbled&lt;/a&gt; over a really cool regexp hack that also deals with primes. This is how you execute that regexp in Ruby:&lt;/p&gt;
+
+&lt;div class="typocode"&gt;&lt;pre&gt;&lt;code class="typocode_ruby "&gt;&lt;span class="ident"&gt;puts&lt;/span&gt; &lt;span class="punct"&gt;'&lt;/span&gt;&lt;span class="string"&gt;Prime&lt;/span&gt;&lt;span class="punct"&gt;'&lt;/span&gt; &lt;span class="keyword"&gt;unless&lt;/span&gt; &lt;span class="punct"&gt;('&lt;/span&gt;&lt;span class="string"&gt;1&lt;/span&gt;&lt;span class="punct"&gt;'&lt;/span&gt; &lt;span class="punct"&gt;*&lt;/span&gt; &lt;span class="number"&gt;43&lt;/span&gt;&lt;span class="punct"&gt;)&lt;/span&gt; &lt;span class="punct"&gt;=~&lt;/span&gt; &lt;span class="punct"&gt;/&lt;/span&gt;&lt;span class="regex"&gt;^1$|^(11+?)&lt;span class="escape"&gt;\1&lt;/span&gt;+$&lt;/span&gt;&lt;span class="punct"&gt;/&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Change 43 to whatever you like and you will get Prime as output if it's a prime number.
+&lt;br&gt;
+&lt;br&gt;
+&lt;strong&gt;EDIT:&lt;/strong&gt; As you can see in the comments &lt;a href="http://montreal.pm.org/tech/neil_kandalgaonkar.shtml"&gt;Neil Kandalonkar&lt;/a&gt; explained how the regexp by Abigail works.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;EDIT 2011-04-06:&lt;/strong&gt;
+I happened to stumble upon what I believe is the first time Abigail showed this to the world. It's in &lt;a href="http://groups.google.com/group/comp.lang.perl.misc/msg/149b99453d113730"&gt;a post&lt;/a&gt; in comp.lang.perl.misc back in 1997.
+I also found that at &lt;a href="http://www.cpan.org/misc/japh"&gt;http://www.cpan.org/misc/japh&lt;/a&gt; there's a couple more&lt;/p&gt;
+
+&lt;div class="typocode"&gt;&lt;pre&gt;&lt;code class="typocode_ruby "&gt;&lt;span class="ident"&gt;perl&lt;/span&gt; &lt;span class="punct"&gt;-&lt;/span&gt;&lt;span class="ident"&gt;wle&lt;/span&gt; &lt;span class="punct"&gt;'&lt;/span&gt;&lt;span class="string"&gt;print &amp;quot;Prime&amp;quot; if (0 x shift) !~ m 0^\0?$|^(\0\0+?)\1+$0&lt;/span&gt;&lt;span class="punct"&gt;'&lt;/span&gt;
+&lt;span class="ident"&gt;perl&lt;/span&gt; &lt;span class="punct"&gt;-&lt;/span&gt;&lt;span class="ident"&gt;wle&lt;/span&gt; &lt;span class="punct"&gt;'&lt;/span&gt;&lt;span class="string"&gt;print &amp;quot;Prime&amp;quot; if (&amp;quot;m&amp;quot; x shift) !~ m m^\m?$|^(\m\m+?)\1+$mm&lt;/span&gt;&lt;span class="punct"&gt;'&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary>
+    <content type="html">&lt;p&gt;In an earlier &lt;a href="/articles/2007/02/09/setl-ruby-and-list-comprehensions"&gt;post&lt;/a&gt; the example code did find prime numbers. Recently I &lt;a href="http://groups.google.com/group/ruby-talk-google/browse_thread/thread/3deebb518a454bc4"&gt;stumbled&lt;/a&gt; over a really cool regexp hack that also deals with primes. This is how you execute that regexp in Ruby:&lt;/p&gt;
+
+&lt;div class="typocode"&gt;&lt;pre&gt;&lt;code class="typocode_ruby "&gt;&lt;span class="ident"&gt;puts&lt;/span&gt; &lt;span class="punct"&gt;'&lt;/span&gt;&lt;span class="string"&gt;Prime&lt;/span&gt;&lt;span class="punct"&gt;'&lt;/span&gt; &lt;span class="keyword"&gt;unless&lt;/span&gt; &lt;span class="punct"&gt;('&lt;/span&gt;&lt;span class="string"&gt;1&lt;/span&gt;&lt;span class="punct"&gt;'&lt;/span&gt; &lt;span class="punct"&gt;*&lt;/span&gt; &lt;span class="number"&gt;43&lt;/span&gt;&lt;span class="punct"&gt;)&lt;/span&gt; &lt;span class="punct"&gt;=~&lt;/span&gt; &lt;span class="punct"&gt;/&lt;/span&gt;&lt;span class="regex"&gt;^1$|^(11+?)&lt;span class="escape"&gt;\1&lt;/span&gt;+$&lt;/span&gt;&lt;span class="punct"&gt;/&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Change 43 to whatever you like and you will get Prime as output if it's a prime number.
+&lt;br&gt;
+&lt;br&gt;
+&lt;strong&gt;EDIT:&lt;/strong&gt; As you can see in the comments &lt;a href="http://montreal.pm.org/tech/neil_kandalgaonkar.shtml"&gt;Neil Kandalonkar&lt;/a&gt; explained how the regexp by Abigail works.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;EDIT 2011-04-06:&lt;/strong&gt;
+I happened to stumble upon what I believe is the first time Abigail showed this to the world. It's in &lt;a href="http://groups.google.com/group/comp.lang.perl.misc/msg/149b99453d113730"&gt;a post&lt;/a&gt; in comp.lang.perl.misc back in 1997.
+I also found that at &lt;a href="http://www.cpan.org/misc/japh"&gt;http://www.cpan.org/misc/japh&lt;/a&gt; there's a couple more&lt;/p&gt;
+
+&lt;div class="typocode"&gt;&lt;pre&gt;&lt;code class="typocode_ruby "&gt;&lt;span class="ident"&gt;perl&lt;/span&gt; &lt;span class="punct"&gt;-&lt;/span&gt;&lt;span class="ident"&gt;wle&lt;/span&gt; &lt;span class="punct"&gt;'&lt;/span&gt;&lt;span class="string"&gt;print &amp;quot;Prime&amp;quot; if (0 x shift) !~ m 0^\0?$|^(\0\0+?)\1+$0&lt;/span&gt;&lt;span class="punct"&gt;'&lt;/span&gt;
+&lt;span class="ident"&gt;perl&lt;/span&gt; &lt;span class="punct"&gt;-&lt;/span&gt;&lt;span class="ident"&gt;wle&lt;/span&gt; &lt;span class="punct"&gt;'&lt;/span&gt;&lt;span class="string"&gt;print &amp;quot;Prime&amp;quot; if (&amp;quot;m&amp;quot; x shift) !~ m m^\m?$|^(\m\m+?)\1+$mm&lt;/span&gt;&lt;span class="punct"&gt;'&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:7bdf841a-9da4-43db-96bf-3fd8e81e3002</id>
+    <published>2012-01-12T12:59:13+01:00</published>
+    <updated>2012-01-13T00:19:29+01:00</updated>
+    <title type="html">Comment on Find primes in regexp by Jonas Elfström</title>
+    <link href="http://alicebobandmallory.com/articles/2007/03/30/find-primes-in-regexp#comment-7166" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Peteris Krumins explanation of how this works can be found at &lt;a href="http://www.catonmat.net/blog/perl-regex-that-matches-prime-numbers/"&gt;http://www.catonmat.net/blog/perl-regex-that-matches-prime-numbers/&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:a6732e44-9ac3-4bf4-9f12-3ad1c0ee643e</id>
+    <published>2010-08-04T09:44:05+02:00</published>
+    <updated>2010-08-13T20:16:57+02:00</updated>
+    <title type="html">Comment on Find primes in regexp by Jonas Elfström</title>
+    <link href="http://alicebobandmallory.com/articles/2007/03/30/find-primes-in-regexp#comment-4220" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;&lt;a href="http://zmievski.org/2010/08/the-prime-that-wasnt"&gt;The prime that wasn&amp;#8217;t&lt;/a&gt; - explains how it works, it&amp;#8217;s inefficiency and why PHP reported 22201 as prime. &lt;/p&gt;
+
+&lt;p&gt;The Ruby implementation of RegEx differs in that aspect but I don&amp;#8217;t know if it has a set limit or if it&amp;#8217;s just limited to virtual memory of the machine.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; ('1' * 222201) =~ /^1$|^(11+?)\1+$/
+=&amp;gt; 0
+&amp;gt; ('1' * 222199) =~ /^1$|^(11+?)\1+$/
+=&amp;gt; nil
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;222201 is not prime but 222199 is and that is what the above shows. The second expression took a couple of minutes to run.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:6c0e4551-f064-49db-a78b-f520108e0899</id>
+    <published>2010-01-18T21:46:43+01:00</published>
+    <updated>2010-03-15T10:49:59+01:00</updated>
+    <title type="html">Comment on Find primes in regexp by Jonas Elfström</title>
+    <link href="http://alicebobandmallory.com/articles/2007/03/30/find-primes-in-regexp#comment-3931" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;&lt;a href="http://stackoverflow.com/questions/20448/what-is-the-most-brilliant-regex-youve-ever-used/20546#20546"&gt;http://stackoverflow.com/questions/20448/what-is-the-most-brilliant-regex-youve-ever-used/20546#20546&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;And it was created by &lt;a href="http://www.abigail.be/"&gt;http://www.abigail.be/&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:66e1430c-bc81-4fae-97a7-4e7c4118fc17</id>
+    <published>2009-09-20T23:07:14+02:00</published>
+    <updated>2009-10-07T08:16:47+02:00</updated>
+    <title type="html">Comment on Find primes in regexp by Jonas Elfström</title>
+    <link href="http://alicebobandmallory.com/articles/2007/03/30/find-primes-in-regexp#comment-3609" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Seems Neils site has gone missing. Here&amp;#8217;s another nice explanation: &lt;a href="http://paddy3118.blogspot.com/2009/08/story-of-regexp-and-primes.html"&gt;http://paddy3118.blogspot.com/2009/08/story-of-regexp-and-primes.html&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:99f59cae-bda5-4b75-b5b5-e71059234e73</id>
+    <published>2007-05-28T00:53:36+02:00</published>
+    <updated>2007-10-02T09:59:47+02:00</updated>
+    <title type="html">Comment on Find primes in regexp by Jonas Elfström</title>
+    <link href="http://alicebobandmallory.com/articles/2007/03/30/find-primes-in-regexp#comment-691" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Sorry, now it has been corrected.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Neil Kandalgaonkar</name>
+    </author>
+    <id>urn:uuid:3e4d1569-f69f-4608-8dbf-eb351b70d792</id>
+    <published>2007-05-26T22:43:37+02:00</published>
+    <updated>2007-05-28T00:47:25+02:00</updated>
+    <title type="html">Comment on Find primes in regexp by Neil Kandalgaonkar</title>
+    <link href="http://alicebobandmallory.com/articles/2007/03/30/find-primes-in-regexp#comment-690" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;As the page makes clear, credit should go to Abigail. I merely explained it.&lt;/p&gt;</content>
+  </entry>
+</feed>

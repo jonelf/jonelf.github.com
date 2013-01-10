@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: Death from lack of content</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/2958/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2008/11/15/death-from-lack-of-content" rel="alternate" type="text/html"/>
+  <updated>2008-11-15T02:27:03+01:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:ef2bb361-e7c7-4c25-ad94-4da019368c1f</id>
+    <published>2008-11-15T02:21:00+01:00</published>
+    <updated>2008-11-15T02:27:03+01:00</updated>
+    <title type="html">Death from lack of content</title>
+    <link href="http://alicebobandmallory.com/articles/2008/11/15/death-from-lack-of-content" rel="alternate" type="text/html"/>
+    <category label="Blogging" term="blogging" scheme="http://alicebobandmallory.com/articles/category/blogging"/>
+    <summary type="html">&lt;p&gt;I'm sorry to admit that this blog has died from lack of content and I have absolutely no guarantees to give you that it will ever come alive again.&lt;/p&gt;
+
+&lt;p&gt;At least I'm still alive and last night I &lt;a href="http://www.plea.se/me/Leif.html"&gt;had some fun&lt;/a&gt; with C, &lt;a href="http://www.codeblocks.org/"&gt;Code::Blocks&lt;/a&gt; and &lt;a href="http://www.libsdl.org/"&gt;SDL&lt;/a&gt;.&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;I'm sorry to admit that this blog has died from lack of content and I have absolutely no guarantees to give you that it will ever come alive again.&lt;/p&gt;
+
+&lt;p&gt;At least I'm still alive and last night I &lt;a href="http://www.plea.se/me/Leif.html"&gt;had some fun&lt;/a&gt; with C, &lt;a href="http://www.codeblocks.org/"&gt;Code::Blocks&lt;/a&gt; and &lt;a href="http://www.libsdl.org/"&gt;SDL&lt;/a&gt;.&lt;/p&gt;</content>
+  </entry>
+</feed>

@@ -1,0 +1,329 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Lazy evaluation is no friend of mutable state</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../../../xml/atom/article/5205/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../../xml/rss20/article/5205/feed.xml" />
+  <script src="../../../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+       xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+       xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about=""
+    dc:title="Lazy evaluation is no friend of mutable state"
+    dc:identifier="http://alicebobandmallory.com/articles/2011/01/01/lazy-evaluation-is-no-friend-of-mutable-state"
+    dc:description="A couple of days ago I accidentally landed on a page about implementing merge sort in C#. I thought it would be a nice exercise to try"
+    dc:creator="jonelf"
+    dc:date="2011-01-03T01:08:10+01:00" />
+</rdf:RDF>
+-->
+
+<div class="post" onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_article'); }"  onmouseout="Element.hide('admin_article');" >
+  <a href="http://alicebobandmallory.com/admin/content/edit/5205" class="admintools" id="admin_article" style="display: none">edit</a>
+  <h2>Lazy evaluation is no friend of mutable state</h2>
+  <p class="auth">Posted by Jonas Elfström
+  <span class="typo_date" title="Sat, 01 Jan 2011 16:08:00 GMT">Sat, 01 Jan 2011 16:08:00 GMT</span></p>
+  <p>A couple of days ago I accidentally landed on <a href="http://www.cs.nyu.edu/~vs667/articles/mergesort/">a page</a> about implementing <a href="http://en.wikipedia.org/wiki/Merge_sort">merge sort</a> in C#.  I thought it would be a nice exercise to try to <a href="http://stackoverflow.com/questions/4545090/listt-and-ienumerable-difference">implement that</a> as a generic method and so I did. <a href="http://www.sorting-algorithms.com/merge-sort"><img title="merge sort" src="http://www.sorting-algorithms.com/animation/40/random-initial-order/merge-sort.gif" style="display: inline-block; float:right" border="0"></a> </p>
+
+<p>I also wanted to learn more about the characteristics of <a href="http://msdn.microsoft.com/en-us/library/9eekhta0.aspx">IEnumerable</a> so I used <code>IEnumerable&lt;T&gt;</code> instead of <code>List&lt;T&gt;</code>. That choice got me in trouble and I opted for help on <a href="http://www.stackoverflow.com/">Stack Overflow</a>.</p>
+
+<p>People said it was sorting correctly but <a href="http://stackoverflow.com/questions/4545090/listt-and-ienumerable-difference/4545170#4545170">Jon Skeet also asked if I tested it correctly</a> and that I did not. I digged deeper into the problem and extended the question on SO. I had a hunch that it was the mutable state of <code>List&lt;T&gt;</code> and the lazy evaluation of <code>IEnumerable</code> that was the problem but I couldn't quite figure out how. </p>
+
+<p>Along came <a href="http://stackoverflow.com/users/7586/kobi">Kobi</a> and <a href="http://stackoverflow.com/questions/4545090/listt-and-ienumerable-difference/4565811#4565811">his answer</a> finally made me understand why a <code>.Sort()</code> of the list messed up the result of my sorting. </p>
+
+<p>I then changed the implementation to be fully lazy evaluated and now it looks like this.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="lazy-evaluation-is-no-friend-of-mutable-state#n1" name="n1">1</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n2" name="n2">2</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n3" name="n3">3</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n4" name="n4">4</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n5" name="n5">5</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n6" name="n6">6</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n7" name="n7">7</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n8" name="n8">8</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n9" name="n9">9</a>
+<strong><a href="lazy-evaluation-is-no-friend-of-mutable-state#n10" name="n10">10</a></strong>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n11" name="n11">11</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n12" name="n12">12</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n13" name="n13">13</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n14" name="n14">14</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n15" name="n15">15</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n16" name="n16">16</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n17" name="n17">17</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n18" name="n18">18</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n19" name="n19">19</a>
+<strong><a href="lazy-evaluation-is-no-friend-of-mutable-state#n20" name="n20">20</a></strong>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n21" name="n21">21</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n22" name="n22">22</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n23" name="n23">23</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n24" name="n24">24</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n25" name="n25">25</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n26" name="n26">26</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n27" name="n27">27</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n28" name="n28">28</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n29" name="n29">29</a>
+<strong><a href="lazy-evaluation-is-no-friend-of-mutable-state#n30" name="n30">30</a></strong>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n31" name="n31">31</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n32" name="n32">32</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n33" name="n33">33</a>
+</pre></td>
+  <td class="code"><pre>public class MergeSort&lt;T&gt;
+{
+    public IEnumerable&lt;T&gt; Sort(IEnumerable&lt;T&gt; arr)
+    {
+        <span style="color:#080;font-weight:bold">if</span> (arr.Count() &lt;= <span style="color:#00D">1</span>) <span style="color:#080;font-weight:bold">return</span> arr;
+
+        <span style="color:#0a5;font-weight:bold">int</span> middle = arr.Count() / <span style="color:#00D">2</span>;
+        var left = arr.Take(middle);
+        var right = arr.Skip(middle);
+        <span style="color:#080;font-weight:bold">return</span> Merge(Sort(left), Sort(right));
+    }
+
+    private <span style="color:#088;font-weight:bold">static</span> IEnumerable&lt;T&gt; Merge(IEnumerable&lt;T&gt; left, IEnumerable&lt;T&gt; right)
+    {
+        IEnumerable&lt;T&gt; arrSorted = Enumerable.Empty&lt;T&gt;();
+
+        <span style="color:#080;font-weight:bold">while</span> (left.Count() &gt; <span style="color:#00D">0</span> &amp;&amp; right.Count() &gt; <span style="color:#00D">0</span>)
+        {
+            <span style="color:#080;font-weight:bold">if</span> (Comparer&lt;T&gt;.Default.Compare(left.First(), right.First()) &lt; <span style="color:#00D">0</span>)
+            {
+                arrSorted=arrSorted.Concat(left.Take(<span style="color:#00D">1</span>));
+                left = left.Skip(<span style="color:#00D">1</span>);
+            }
+            <span style="color:#080;font-weight:bold">else</span>
+            {
+                arrSorted=arrSorted.Concat(right.Take(<span style="color:#00D">1</span>));
+                right = right.Skip(<span style="color:#00D">1</span>);
+            }
+        }
+
+        <span style="color:#080;font-weight:bold">return</span> arrSorted.Concat(left).Concat(right);
+    }
+}</pre></td>
+</tr></table>
+
+<p><br>
+Please be aware that this is but an exercise and not very efficient.</p>
+
+<p>Now to the problems that you can encounter with the above and an explanation to the title of the post. Let's MergeSort a simple <code>List&lt;int&gt;</code> followed by a  call to the built-in <code>.Sort()</code> on <code>List&lt;T&gt;</code>.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="lazy-evaluation-is-no-friend-of-mutable-state#n1" name="n1">1</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n2" name="n2">2</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n3" name="n3">3</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n4" name="n4">4</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n5" name="n5">5</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n6" name="n6">6</a>
+</pre></td>
+  <td class="code"><pre>var ints = new List&lt;<span style="color:#0a5;font-weight:bold">int</span>&gt; { <span style="color:#00D">2</span>, <span style="color:#00D">3</span>, <span style="color:#00D">1</span> };
+var mergeSortInt = new MergeSort&lt;<span style="color:#0a5;font-weight:bold">int</span>&gt;();
+var sortedInts = mergeSortInt.Sort(ints);
+<span style="color:#777">// sortedInts.ToList() is {1, 2, 3}</span>
+ints.Sort();
+<span style="color:#777">// sortedInts.ToList() is {3, 1, 2}</span></pre></td>
+</tr></table>
+
+<p><br>
+So what's going on here? As far as I can tell it's something like this. <code>sortedInts</code> isn't evaluated until the first call to <code>MoveNext()</code> (or <code>Tolist()</code> or any of those). Before that it only has lazy pointers to the original enumerable values. <code>ints.Sort()</code> messes up the beauty of lazy evaluation by changing the underlying data structure. It can do that because <code>List&lt;T&gt;</code> is mutable (writeable).</p>
+
+<p>But why {3, 1, 2}  after <code>ints.Sort()</code>?   The original sequence was { 2, 3, 1} and that is what the MergeSort sorted, not by creating a new sequence but only by lazy pointers. </p>
+
+<p>At first the MergeSort sorts like this </p>
+
+<p><img title="diagram before .Sort()" src="http://dl.dropbox.com/u/26840/beforeSort.png" border="0"/></p>
+
+<p>but after the source list has been sorted/changed it will do this
+<img title="diagram after .Sort()" src="http://dl.dropbox.com/u/26840/afterSort.png" border="0"/></p>
+
+<p>What can you do to stop this to happening to you? The boring way is to never use lazy evaluation but that is kind of hard if you happen to use <a href="http://en.wikipedia.org/wiki/Language_Integrated_Query">LINQ</a> (and you should, it's great). Another way is to use immutable data structures and that is how functional languages tackles this problem. In C# we have the <a href="http://msdn.microsoft.com/en-us/library/ms132474.aspx">ReadOnlyCollection<T></a> and it obviously has no <code>Sort()</code> method. </p>
+
+<p>A nice feature of the MergeSort above is that it has no problems with an immutable collection.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="lazy-evaluation-is-no-friend-of-mutable-state#n1" name="n1">1</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n2" name="n2">2</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n3" name="n3">3</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n4" name="n4">4</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n5" name="n5">5</a>
+</pre></td>
+  <td class="code"><pre>var rints = new ReadOnlyCollection&lt;<span style="color:#0a5;font-weight:bold">int</span>&gt;(ints);
+var sortedRints = mergeSortInt.Sort(rints);
+<span style="color:#777">// sortedRints.ToList() is {1, 2, 3}</span>
+ints.Sort();
+<span style="color:#777">// sortedRints.ToList() is {3, 1, 2}</span></pre></td>
+</tr></table>
+
+<p><br>
+What?! How could an immutable collection get messed up like this? It turns out that <code>ReadOnlyCollection&lt;T&gt;</code> is only <a href="http://blogs.msdn.com/b/jaredpar/archive/2008/04/22/api-design-readonlycollection-t.aspx">a facade for mutable collections</a> and that is what bit us here. You have to pass a copy of the list. Example follows.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="lazy-evaluation-is-no-friend-of-mutable-state#n1" name="n1">1</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n2" name="n2">2</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n3" name="n3">3</a>
+</pre></td>
+  <td class="code"><pre>var rints = new ReadOnlyCollection&lt;<span style="color:#0a5;font-weight:bold">int</span>&gt;(new List&lt;<span style="color:#0a5;font-weight:bold">int</span>&gt;(ints));
+var sortedRints = mergeSortInt.Sort(rints);
+ints.Sort();</pre></td>
+</tr></table>
+
+<p><br>
+That also works for <code>List&lt;T&gt;</code>.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="lazy-evaluation-is-no-friend-of-mutable-state#n1" name="n1">1</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n2" name="n2">2</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n3" name="n3">3</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n4" name="n4">4</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n5" name="n5">5</a>
+<a href="lazy-evaluation-is-no-friend-of-mutable-state#n6" name="n6">6</a>
+</pre></td>
+  <td class="code"><pre>var ints = new List&lt;<span style="color:#0a5;font-weight:bold">int</span>&gt; { <span style="color:#00D">2</span>, <span style="color:#00D">3</span>, <span style="color:#00D">1</span> };
+var mergeSortInt = new MergeSort&lt;<span style="color:#0a5;font-weight:bold">int</span>&gt;();
+var sortedInts = mergeSortInt.Sort(new List&lt;<span style="color:#0a5;font-weight:bold">int</span>&gt;(ints));
+<span style="color:#777">// sortedInts.ToList() is {1, 2, 3}</span>
+ints.Sort();
+<span style="color:#777">// sortedInts.ToList() is {1, 2, 3}</span></pre></td>
+</tr></table>
+
+<p><br></p>
+
+<p>Finally I would like to send a big thank you to <a href="https://twitter.com/Kobi">Kobi</a> for sorting out my problems with the original solution.</p>
+</div>
+<p class="meta">
+  Posted in <a href="http://alicebobandmallory.com/articles/category/c" rel="noindex, follow, tag">C#</a>&nbsp;<strong>|</strong>&nbsp;<a href="lazy-evaluation-is-no-friend-of-mutable-state#comments">1 comment</a>
+</p>
+
+  <a name="comments"></a><h4 class="blueblk">Comments</h4>
+    <p class="postmetadata alt">
+      <small><a href="lazy-evaluation-is-no-friend-of-mutable-state#respond">Comments closed</a></small>
+    </p>
+  <ol class="comment-list" id="commentList">
+  
+    <ol id="comments" class="comments">
+  	<li class="comment" id="comment-9464">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas</cite>
+		<abbr title="2012-12-20T07:51:46+01:00"><span class="typo_date" title="Thu, 20 Dec 2012 06:51:46 GMT">Thu, 20 Dec 2012 06:51:46 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Today the .NET team released a preview of Immutable Collections. 
+<a href="http://blogs.msdn.com/b/bclteam/archive/2012/12/18/preview-of-immutable-collections-released-on-nuget.aspx">http://blogs.msdn.com/b/bclteam/archive/2012/12/18/preview-of-immutable-collections-released-on-nuget.aspx</a></p>
+	  </div>
+	</li>
+	</ol>
+
+  
+  </ol>
+
+
+<p class="postmetadata alt">
+  <small>
+  <a href="../../../../xml/rss20/article/5205/feed.xml" title="RSS Feed">RSS feed for this post</a>
+  </small>
+</p>
+
+
+<p>Comments are closed</p>
+<!--
+  <p>Comments are disabled</p>
+-->
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../../../pages/AboutMe">About me</a>/<a href="../../../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

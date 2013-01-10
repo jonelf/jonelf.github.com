@@ -1,0 +1,316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Alice, Bob, and Mallory</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../xml/atom/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../xml/rss20/feed.xml" />
+  <script src="../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <div class="atomentry" id="article-17">
+  <h2 class="title">
+    <a href="../2007/02/26/change-your-default-passwords">Change your default passwords!</a> 
+    
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2007-02-26T17:01:00+01:00"><span class="typo_date" title="Mon, 26 Feb 2007 16:01:00 GMT">Mon, 26 Feb 2007 16:01:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>It has recently been reported that by simply opening the wrong web page you could be in trouble if you haven't changed the default password of your home router. The page could contain a JavaScript that changes the DNS-settings. Schneier blogs about it <a href="http://www.schneier.com/blog/archives/2007/02/driveby_pharmin.html">here</a> and today he posted a <a href="http://www.phenoelit.de/dpl/dpl.html
+">link</a> to a page containing default passwords for most of the home routers on the market.</p>
+<h5>Change it now!</h5>
+<p>Recently I helped a friend to change the password on his router. He knew that he could administer his router with a web interface but he did not know where to point his browser. He's running Windows and if you are in the same situation as my friend you could almost always find out the address by:</p>
+<ul>
+<li>Click Start</li>
+<li>choose Run... </li>
+<li>Enter cmd, click ok.</li> 
+<li>Type ipconfig + enter.</li>
+<li>Open your <a href="http://www.mozilla.com/">favorite web browser</a> and type http:// + the Default Gateway IP-address. Chances are it's <a href="http://192.168.0.1/">http://192.168.0.1/</a>.</li>
+</ul>
+
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/security" rel="noindex, follow, tag">Security</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2007/02/26/change-your-default-passwords#comments">no comments</a>,
+      <a href="../2007/02/26/change-your-default-passwords" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/17/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/17/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-13">
+  <h2 class="title">
+    <a href="../2007/02/12/randomly-chosen-otps-defaced">Randomly chosen OTPs defaced</a> 
+    
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2007-02-12T19:45:00+01:00"><span class="typo_date" title="Mon, 12 Feb 2007 18:45:00 GMT">Mon, 12 Feb 2007 18:45:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p><a href="../2007/02/05/trojans-and-one-time-passwords#comments">Gunnar  Kreitz</a> has shown that random chosen OTPs aren't nearly as good as I first thought. Against the current trojan they work just fine but Kreitz describes how a modified and more advanced trojan could be effective.</p>
+<p>It seems that in the end the protocol only forces the trojan be more complex, adds a time span for the validity of the OTP and makes the attack more likely to fail (there is no guarantee that the user will enter a second OTP or that he will do it in time). I suppose the attacker also would have to make the trojan completely automated or have a 24/7 staff waiting. If the user has opted in to have the <i>n</i> presented as a CAPTCHA it would force the evildoers to have that 24/7 staff.</p>
+<h5>Advantages:</h5> <ul><li>
+A TTL (time to live) for OTPs.</li>
+<li>Demands more resources and higher complexity from the attacker.</li></ul>
+<h5>Disadvantages:</h5>
+<ul>
+<li>A little harder to use (finding the challenged OTP).</li>
+<li>In theory not that much more secure.</li>
+</ul>
+<p>
+My bank has support for sending OTPs by SMS but a trojan that works like the one described by Kreitz would have no problem with that one either.
+</p>
+<p>The protection against phising, as in redirecting the user to a fake login page, is still much greater with randomly chosen OTPs.</p>
+<p>I find it a bit ironic that the bank in question actually is going to implement something that sounds like <i>randomly chosen OTPs</i>. They recently announced a change in their login procedure: 
+<cite>"Vilken engångskod från kodkortet du ska använda framgår på inloggningssidan." / "What one-time password you are  supposed to enter will be presented on the login page."</cite>
+</p>
+<p>
+Personally I think the security tokens with signing abilities sounds more and more reasonable.
+</p>
+
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/security" rel="noindex, follow, tag">Security</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2007/02/12/randomly-chosen-otps-defaced#comments">no comments</a>,
+      <a href="../2007/02/12/randomly-chosen-otps-defaced" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/13/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/13/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-11">
+  <h2 class="title">
+    <a href="../2007/02/09/setl-ruby-and-list-comprehensions">SETL, Ruby and list comprehensions</a> 
+    
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2007-02-09T01:11:00+01:00"><span class="typo_date" title="Fri, 09 Feb 2007 00:11:00 GMT">Fri, 09 Feb 2007 00:11:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>Someone mentioned SETL and I didn't even know what it was so I googled it. Ended up at <a href="http://en.wikipedia.org/wiki/SETL#Sample_code">http://en.wikipedia.org/wiki/SETL#Sample_code</a>:</p>
+<p><cite>Print all prime numbers from 2 to N</cite></p><div class="typocode"><pre><code class="typocode_default ">  print({n in {2..N} | forall m in {2..n - 1} | n mod m &gt; 0});</code></pre></div><p><cite>The notation is similar to list comprehension.</cite>
+</p>
+<p>Interesting! In Ruby you could do that something like this:</p>
+<div class="typocode"><pre><code class="typocode_ruby "><span class="constant">N</span><span class="punct">=</span><span class="number">42</span>
+<span class="number">2</span><span class="punct">.</span><span class="ident">upto</span><span class="punct">(</span><span class="constant">N</span><span class="punct">)</span> <span class="punct">{|</span><span class="ident">n</span><span class="punct">|</span> <span class="ident">puts</span> <span class="ident">n</span> <span class="keyword">if</span> <span class="punct">(</span><span class="number">2</span><span class="punct">..</span><span class="ident">n</span><span class="punct">-</span><span class="number">1</span><span class="punct">).</span><span class="ident">all?</span> <span class="punct">{|</span><span class="ident">m</span><span class="punct">|</span> <span class="ident">n</span><span class="punct">.</span><span class="ident">modulo</span><span class="punct">(</span><span class="ident">m</span><span class="punct">)&gt;</span><span class="number">0</span><span class="punct">}</span> <span class="punct">}</span></code></pre></div>
+<p>The SETL example at wikipedia actually iterates way too much.</p>
+<div class="typocode"><pre><code class="typocode_ruby "><span class="constant">N</span><span class="punct">=</span><span class="number">42</span>
+<span class="ident">puts</span> <span class="number">2</span>
+<span class="number">3</span><span class="punct">.</span><span class="ident">step</span><span class="punct">(</span><span class="constant">N</span><span class="punct">,</span><span class="number">2</span><span class="punct">)</span> <span class="punct">{|</span><span class="ident">n</span><span class="punct">|</span> <span class="ident">puts</span> <span class="ident">n</span> <span class="keyword">if</span> <span class="punct">(</span><span class="number">2</span><span class="punct">..</span><span class="ident">n</span><span class="punct">/</span><span class="number">3</span><span class="punct">).</span><span class="ident">all?</span> <span class="punct">{|</span><span class="ident">m</span><span class="punct">|</span> <span class="ident">n</span><span class="punct">.</span><span class="ident">modulo</span><span class="punct">(</span><span class="ident">m</span><span class="punct">)&gt;</span><span class="number">0</span><span class="punct">}</span> <span class="punct">}</span></code></pre></div>
+
+<p>I realize this is not purist <a href="http://en.wikipedia.org/wiki/List_comprehension">list comprehension</a>, well actually it isn't lc at all. Ruby does not have lc in the same sense as Python and others, but you can do almost everything you can with lc with the fantastic collection of methods in <a href="http://www.ruby-doc.org/core/classes/Enumerable.html">Enumerable</a>. If that isn't enough you could always expand Ruby with a more general support for list comprehension like described <a href="http://tinyurl.com/3ypwnk">here</a>.
+</p>
+
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2007/02/09/setl-ruby-and-list-comprehensions#comments">no comments</a>,
+      <a href="../2007/02/09/setl-ruby-and-list-comprehensions" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/11/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/11/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-8">
+  <h2 class="title">
+    <a href="../2007/02/06/randomly-chosen-otps">Randomly chosen OTPs</a> 
+    
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2007-02-06T16:59:00+01:00"><span class="typo_date" title="Tue, 06 Feb 2007 15:59:00 GMT">Tue, 06 Feb 2007 15:59:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>In this post I hope to answer some questions I got about the one-time password protocol I described in <a href="../2007/02/05/trojans-and-one-time-passwords">"Trojans and one-time passwords"</a>.
+</p>
+<p>The scenario is that the attacker has got at least one OTP by using a trojan or some other means.</p>
+<p><cite>Couldn't the attacker just reload the login page until he is asked to enter an OTP that he has?</cite><br/>
+- No, he could not. All decent login procedures has a max number of tries before blocking the account. Also the OTP is asked for in the page following the login-page and failure to enter or to enter a faulty OTP there should count as a failed login attempt.
+</p>
+<p><cite>Couldn't the trojan record all OTPs entered and then it knows it's only one left redirect the login attempt and then login itself with that OTP?</cite><br/>
+- This is a real concern. To counterfeit this you have to have more OTPs than you will actually use or the numbered list could go on and on and not begin from 1 for every new sheet of OTPs. In either way the trojan will have a hard time to find out how many OTPs there are left.</p>
+<p>In theory you could also present the number of the OTP as a <a href="http://www.captcha.net/">CAPTCHA</a> but I would recommend against it for usability reasons and because it locks out people with certain <a href="http://www.w3.org/TR/turingtest/#conclusion">disabilities</a>.
+</p>
+<h3>Probability of success</h3>
+<p>Let's say the trojan has succeeded in getting hold of two OTPs. What is the probability that it will hit the correct OTP if the user has a list of 20, 50 and 200 OTPs and if three login tries are allowed?</p>
+<div class="typocode"><pre><code class="typocode_default ">20: (1-(18/20*17/19*16/18))*100 = 28.4%
+50: (1-(48/50*47/49*46/48))*100 = 11.8%
+200: (1-(198/200*197/199*196/198))*100 = 3.0%</code></pre></div>
+<p>This is why it is important to make it hard or impossible for the trojan to count how many OTPs there are left.</p>
+<p>If you add a second round of OTP check like I suggested in my earlier <a href="../2007/02/05/trojans-and-one-time-passwords">post </a> life gets a lot harder for Mallory.</p>
+
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/security" rel="noindex, follow, tag">Security</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2007/02/06/randomly-chosen-otps#comments">no comments</a>,
+      <a href="../2007/02/06/randomly-chosen-otps" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/8/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/8/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-7">
+  <h2 class="title">
+    <a href="../2007/02/06/a-funny-coincidence">A funny coincidence</a> 
+    
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2007-02-06T14:16:00+01:00"><span class="typo_date" title="Tue, 06 Feb 2007 13:16:00 GMT">Tue, 06 Feb 2007 13:16:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>This monday <a href="http://computersweden.idg.se/">Computer Sweden</a> had an article that says that the <a href="http://www.nordea.fi/sitemod/default/index.aspx?pid=933222">finnish branch of Nordea</a> is using something that sounds just like what I described in my earlier <a href="../2007/02/05/trojans-and-one-time-passwords">post</a>. Unfortunately I can't provide an URL to the article since it seems to only have been published in the paper version.
+</p>
+<p>The article says that they randomly chose among 20 codes. To me that sounds a little low. I even find 50 codes a little low and I plan to show why in a later post.</p>
+
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/security" rel="noindex, follow, tag">Security</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2007/02/06/a-funny-coincidence#comments">no comments</a>,
+      <a href="../2007/02/06/a-funny-coincidence" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/7/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/7/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+
+
+<p class="pagination">Older posts: <a href="1">1</a> ...  <a href="9">9</a> <a href="10">10</a> 11 <a href="12">12</a> </p>
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../pages/AboutMe">About me</a>/<a href="../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,630 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>String concatenation in Ruby</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../../../xml/atom/article/3977/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../../xml/rss20/article/3977/feed.xml" />
+  <script src="../../../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+       xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+       xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about=""
+    dc:title="String concatenation in Ruby"
+    dc:identifier="http://alicebobandmallory.com/articles/2010/02/02/string-concatenation-in-ruby"
+    dc:description="There's no StringBuilder class in Ruby because the &lt;a href=&quot;http://ruby-doc.org/cor"
+    dc:creator="jonelf"
+    dc:date="2010-04-06T16:49:20+02:00" />
+</rdf:RDF>
+-->
+
+<div class="post" onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_article'); }"  onmouseout="Element.hide('admin_article');" >
+  <a href="http://alicebobandmallory.com/admin/content/edit/3977" class="admintools" id="admin_article" style="display: none">edit</a>
+  <h2>String concatenation in Ruby</h2>
+  <p class="auth">Posted by Jonas Elfström
+  <span class="typo_date" title="Mon, 01 Feb 2010 23:04:00 GMT">Mon, 01 Feb 2010 23:04:00 GMT</span></p>
+  <p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Knit-schematic.png/200px-Knit-schematic.png" style="display: inline-block; float:right"/>
+There's no <code>StringBuilder</code> class in Ruby because the <a href="http://ruby-doc.org/core/classes/String.html">String</a> class has the <a href="http://ruby-doc.org/core/classes/String.html#M000807">&lt;&lt;</a> for appending. The problem is that not every Ruby programmer seems to be aware of it. Recently I've seen <code>+=</code> being used to append to strings where <code>&lt;&lt;</code> would have been a much better choice.</p>
+
+<p>The problem with using <code>+=</code> is that it creates a new String instance and if you do that in a loop you can get really horrible performance.</p>
+
+<p>If you are dealing with an array you don't even have to use <code>&lt;&lt;</code> because <a href="http://ruby-doc.org/core/classes/Array.html#M002182">Array#join</a> is even faster and shows intent in a nice way.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="string-concatenation-in-ruby#n1" name="n1">1</a>
+<a href="string-concatenation-in-ruby#n2" name="n2">2</a>
+<a href="string-concatenation-in-ruby#n3" name="n3">3</a>
+<a href="string-concatenation-in-ruby#n4" name="n4">4</a>
+<a href="string-concatenation-in-ruby#n5" name="n5">5</a>
+<a href="string-concatenation-in-ruby#n6" name="n6">6</a>
+<a href="string-concatenation-in-ruby#n7" name="n7">7</a>
+<a href="string-concatenation-in-ruby#n8" name="n8">8</a>
+<a href="string-concatenation-in-ruby#n9" name="n9">9</a>
+<strong><a href="string-concatenation-in-ruby#n10" name="n10">10</a></strong>
+<a href="string-concatenation-in-ruby#n11" name="n11">11</a>
+<a href="string-concatenation-in-ruby#n12" name="n12">12</a>
+<a href="string-concatenation-in-ruby#n13" name="n13">13</a>
+<a href="string-concatenation-in-ruby#n14" name="n14">14</a>
+<a href="string-concatenation-in-ruby#n15" name="n15">15</a>
+<a href="string-concatenation-in-ruby#n16" name="n16">16</a>
+<a href="string-concatenation-in-ruby#n17" name="n17">17</a>
+<a href="string-concatenation-in-ruby#n18" name="n18">18</a>
+<a href="string-concatenation-in-ruby#n19" name="n19">19</a>
+<strong><a href="string-concatenation-in-ruby#n20" name="n20">20</a></strong>
+<a href="string-concatenation-in-ruby#n21" name="n21">21</a>
+<a href="string-concatenation-in-ruby#n22" name="n22">22</a>
+</pre></td>
+  <td class="code"><pre>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">benchmark</span><span style="color:#710">'</span></span>
+
+array_of_rnd_strings=(<span style="color:#00D">0</span>...<span style="color:#00D">262144</span>).map{<span style="color:#00D">65</span>.+(rand(<span style="color:#00D">25</span>)).chr}
+                                 .join.scan(<span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">.{1,8}</span><span style="color:#404">/</span><span style="color:#C2C">m</span></span>)
+
+<span style="color:#036;font-weight:bold">Benchmark</span>.bm <span style="color:#080;font-weight:bold">do</span> |benchmark|
+  benchmark.report <span style="color:#080;font-weight:bold">do</span>
+    str=array_of_rnd_strings.join
+  <span style="color:#080;font-weight:bold">end</span>
+  benchmark.report <span style="color:#080;font-weight:bold">do</span>
+    str2=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#710">&quot;</span></span>
+    array_of_rnd_strings.each <span style="color:#080;font-weight:bold">do</span> |s|
+      str2&lt;&lt;s
+    <span style="color:#080;font-weight:bold">end</span>
+  <span style="color:#080;font-weight:bold">end</span>
+  benchmark.report <span style="color:#080;font-weight:bold">do</span>
+    str3=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#710">&quot;</span></span>
+    array_of_rnd_strings.each <span style="color:#080;font-weight:bold">do</span> |s|
+      str3+=s
+    <span style="color:#080;font-weight:bold">end</span>
+  <span style="color:#080;font-weight:bold">end</span>
+<span style="color:#080;font-weight:bold">end</span></pre></td>
+</tr></table>
+
+
+The array_of_rnd_strings is an array of 32768 8 characters long random strings.
+<br/>
+<br/>
+<table>
+<thead><tr>
+<td><b>user</b></td><td><b>system</b></td><td><b>total</b></td><td><b>real</b></td>
+</tr>
+</thead>
+<tbody>
+<tr>    
+<td>0.030000</td><td>0.000000</td><td>0.030000</td><td>(  0.027184)</td>
+</tr>
+<tr>
+    <td>0.160000</td><td>0.010000</td><td>0.170000</td><td>(  0.190277)</td>
+</tr>
+<tr>
+<td>106.020000</td><td>0.300000</td><td>106.320000</td><td>(113.457793)</td>
+</tr>
+</tbody>
+</table>
+
+<p><br/></p>
+
+<p>The performance of <code>+=</code> was even <strong>worse</strong> than I imagined!</p>
+</div>
+<p class="meta">
+  Posted in <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a>&nbsp;<strong>|</strong>&nbsp;<a href="string-concatenation-in-ruby#comments">5 comments</a>
+</p>
+
+  <a name="comments"></a><h4 class="blueblk">Comments</h4>
+    <p class="postmetadata alt">
+      <small><a href="string-concatenation-in-ruby#respond">Comments closed</a></small>
+    </p>
+  <ol class="comment-list" id="commentList">
+  
+    <ol id="comments" class="comments">
+  	<li class="comment" id="comment-4029">
+	  <div class="author">
+	    
+	    <cite>Jimmy</cite>
+		<abbr title="2010-04-06T15:10:42+02:00"><span class="typo_date" title="Tue, 06 Apr 2010 13:10:42 GMT">Tue, 06 Apr 2010 13:10:42 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Sweet</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5185">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>sapphire</cite>
+		<abbr title="2010-12-15T12:26:08+01:00"><span class="typo_date" title="Wed, 15 Dec 2010 11:26:08 GMT">Wed, 15 Dec 2010 11:26:08 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>BUT, if our strings are a discrete and well known collection (they are not in an array), the proper method in terms of speed is &lt;&lt; or +, not join.</p>
+
+<p><a href="http://stackoverflow.com/questions/4402336/array-join-versus-string-concatenation-efficiency">http://stackoverflow.com/questions/4402336/array-join-versus-string-concatenation-efficiency</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5187">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas</cite>
+		<abbr title="2010-12-15T23:22:46+01:00"><span class="typo_date" title="Wed, 15 Dec 2010 22:22:46 GMT">Wed, 15 Dec 2010 22:22:46 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@sapphire I&#8217;m not sure so I like that benchmark. The join example first builds an array and then joins. The concatenation example just concatenates &#8220;foobar&#8221; over and over. I can&#8217;t really map that to a real world scenario. If you can, please show me.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5188">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>sapphire</cite>
+		<abbr title="2010-12-16T16:52:12+01:00"><span class="typo_date" title="Thu, 16 Dec 2010 15:52:12 GMT">Thu, 16 Dec 2010 15:52:12 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>just wanted to clarify that there are are different cases.
+in your benchmarking, you measure the time to join an array, correctly concluding that the best method is join.</p>
+
+<p>however, join is not the universal method to join strings (as a ruby noob may think), so i put the stackoverflow hyperlink.</p>
+
+<p>so i you previously have strings in an array, then .join() them.
+but if you have a discrete well-known number of strings (a, b and c), join them as:</p>
+
+<blockquote>
+    <p>a &lt;&lt; b &lt;&lt; c</p>
+    
+    <p>&#8221;#{a}#{b}#{c}&#8221;</p>
+</blockquote>
+
+<p>or</p>
+
+<blockquote>
+    <p>a + b + c</p>
+</blockquote>
+
+<p>but never compose an array and then join them</p>
+
+<blockquote>
+    <p>[a,b,c].join</p>
+</blockquote>
+
+<p>hope my point is clear now :)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5189">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas</cite>
+		<abbr title="2010-12-17T00:18:14+01:00"><span class="typo_date" title="Thu, 16 Dec 2010 23:18:14 GMT">Thu, 16 Dec 2010 23:18:14 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@sapphire Great explanation and I totally agree.</p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-4029">
+	  <div class="author">
+	    
+	    <cite>Jimmy</cite>
+		<abbr title="2010-04-06T15:10:42+02:00"><span class="typo_date" title="Tue, 06 Apr 2010 13:10:42 GMT">Tue, 06 Apr 2010 13:10:42 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Sweet</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5185">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>sapphire</cite>
+		<abbr title="2010-12-15T12:26:08+01:00"><span class="typo_date" title="Wed, 15 Dec 2010 11:26:08 GMT">Wed, 15 Dec 2010 11:26:08 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>BUT, if our strings are a discrete and well known collection (they are not in an array), the proper method in terms of speed is &lt;&lt; or +, not join.</p>
+
+<p><a href="http://stackoverflow.com/questions/4402336/array-join-versus-string-concatenation-efficiency">http://stackoverflow.com/questions/4402336/array-join-versus-string-concatenation-efficiency</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5187">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas</cite>
+		<abbr title="2010-12-15T23:22:46+01:00"><span class="typo_date" title="Wed, 15 Dec 2010 22:22:46 GMT">Wed, 15 Dec 2010 22:22:46 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@sapphire I&#8217;m not sure so I like that benchmark. The join example first builds an array and then joins. The concatenation example just concatenates &#8220;foobar&#8221; over and over. I can&#8217;t really map that to a real world scenario. If you can, please show me.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5188">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>sapphire</cite>
+		<abbr title="2010-12-16T16:52:12+01:00"><span class="typo_date" title="Thu, 16 Dec 2010 15:52:12 GMT">Thu, 16 Dec 2010 15:52:12 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>just wanted to clarify that there are are different cases.
+in your benchmarking, you measure the time to join an array, correctly concluding that the best method is join.</p>
+
+<p>however, join is not the universal method to join strings (as a ruby noob may think), so i put the stackoverflow hyperlink.</p>
+
+<p>so i you previously have strings in an array, then .join() them.
+but if you have a discrete well-known number of strings (a, b and c), join them as:</p>
+
+<blockquote>
+    <p>a &lt;&lt; b &lt;&lt; c</p>
+    
+    <p>&#8221;#{a}#{b}#{c}&#8221;</p>
+</blockquote>
+
+<p>or</p>
+
+<blockquote>
+    <p>a + b + c</p>
+</blockquote>
+
+<p>but never compose an array and then join them</p>
+
+<blockquote>
+    <p>[a,b,c].join</p>
+</blockquote>
+
+<p>hope my point is clear now :)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5189">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas</cite>
+		<abbr title="2010-12-17T00:18:14+01:00"><span class="typo_date" title="Thu, 16 Dec 2010 23:18:14 GMT">Thu, 16 Dec 2010 23:18:14 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@sapphire Great explanation and I totally agree.</p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-4029">
+	  <div class="author">
+	    
+	    <cite>Jimmy</cite>
+		<abbr title="2010-04-06T15:10:42+02:00"><span class="typo_date" title="Tue, 06 Apr 2010 13:10:42 GMT">Tue, 06 Apr 2010 13:10:42 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Sweet</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5185">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>sapphire</cite>
+		<abbr title="2010-12-15T12:26:08+01:00"><span class="typo_date" title="Wed, 15 Dec 2010 11:26:08 GMT">Wed, 15 Dec 2010 11:26:08 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>BUT, if our strings are a discrete and well known collection (they are not in an array), the proper method in terms of speed is &lt;&lt; or +, not join.</p>
+
+<p><a href="http://stackoverflow.com/questions/4402336/array-join-versus-string-concatenation-efficiency">http://stackoverflow.com/questions/4402336/array-join-versus-string-concatenation-efficiency</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5187">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas</cite>
+		<abbr title="2010-12-15T23:22:46+01:00"><span class="typo_date" title="Wed, 15 Dec 2010 22:22:46 GMT">Wed, 15 Dec 2010 22:22:46 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@sapphire I&#8217;m not sure so I like that benchmark. The join example first builds an array and then joins. The concatenation example just concatenates &#8220;foobar&#8221; over and over. I can&#8217;t really map that to a real world scenario. If you can, please show me.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5188">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>sapphire</cite>
+		<abbr title="2010-12-16T16:52:12+01:00"><span class="typo_date" title="Thu, 16 Dec 2010 15:52:12 GMT">Thu, 16 Dec 2010 15:52:12 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>just wanted to clarify that there are are different cases.
+in your benchmarking, you measure the time to join an array, correctly concluding that the best method is join.</p>
+
+<p>however, join is not the universal method to join strings (as a ruby noob may think), so i put the stackoverflow hyperlink.</p>
+
+<p>so i you previously have strings in an array, then .join() them.
+but if you have a discrete well-known number of strings (a, b and c), join them as:</p>
+
+<blockquote>
+    <p>a &lt;&lt; b &lt;&lt; c</p>
+    
+    <p>&#8221;#{a}#{b}#{c}&#8221;</p>
+</blockquote>
+
+<p>or</p>
+
+<blockquote>
+    <p>a + b + c</p>
+</blockquote>
+
+<p>but never compose an array and then join them</p>
+
+<blockquote>
+    <p>[a,b,c].join</p>
+</blockquote>
+
+<p>hope my point is clear now :)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5189">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas</cite>
+		<abbr title="2010-12-17T00:18:14+01:00"><span class="typo_date" title="Thu, 16 Dec 2010 23:18:14 GMT">Thu, 16 Dec 2010 23:18:14 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@sapphire Great explanation and I totally agree.</p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-4029">
+	  <div class="author">
+	    
+	    <cite>Jimmy</cite>
+		<abbr title="2010-04-06T15:10:42+02:00"><span class="typo_date" title="Tue, 06 Apr 2010 13:10:42 GMT">Tue, 06 Apr 2010 13:10:42 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Sweet</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5185">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>sapphire</cite>
+		<abbr title="2010-12-15T12:26:08+01:00"><span class="typo_date" title="Wed, 15 Dec 2010 11:26:08 GMT">Wed, 15 Dec 2010 11:26:08 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>BUT, if our strings are a discrete and well known collection (they are not in an array), the proper method in terms of speed is &lt;&lt; or +, not join.</p>
+
+<p><a href="http://stackoverflow.com/questions/4402336/array-join-versus-string-concatenation-efficiency">http://stackoverflow.com/questions/4402336/array-join-versus-string-concatenation-efficiency</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5187">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas</cite>
+		<abbr title="2010-12-15T23:22:46+01:00"><span class="typo_date" title="Wed, 15 Dec 2010 22:22:46 GMT">Wed, 15 Dec 2010 22:22:46 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@sapphire I&#8217;m not sure so I like that benchmark. The join example first builds an array and then joins. The concatenation example just concatenates &#8220;foobar&#8221; over and over. I can&#8217;t really map that to a real world scenario. If you can, please show me.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5188">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>sapphire</cite>
+		<abbr title="2010-12-16T16:52:12+01:00"><span class="typo_date" title="Thu, 16 Dec 2010 15:52:12 GMT">Thu, 16 Dec 2010 15:52:12 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>just wanted to clarify that there are are different cases.
+in your benchmarking, you measure the time to join an array, correctly concluding that the best method is join.</p>
+
+<p>however, join is not the universal method to join strings (as a ruby noob may think), so i put the stackoverflow hyperlink.</p>
+
+<p>so i you previously have strings in an array, then .join() them.
+but if you have a discrete well-known number of strings (a, b and c), join them as:</p>
+
+<blockquote>
+    <p>a &lt;&lt; b &lt;&lt; c</p>
+    
+    <p>&#8221;#{a}#{b}#{c}&#8221;</p>
+</blockquote>
+
+<p>or</p>
+
+<blockquote>
+    <p>a + b + c</p>
+</blockquote>
+
+<p>but never compose an array and then join them</p>
+
+<blockquote>
+    <p>[a,b,c].join</p>
+</blockquote>
+
+<p>hope my point is clear now :)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5189">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas</cite>
+		<abbr title="2010-12-17T00:18:14+01:00"><span class="typo_date" title="Thu, 16 Dec 2010 23:18:14 GMT">Thu, 16 Dec 2010 23:18:14 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@sapphire Great explanation and I totally agree.</p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-4029">
+	  <div class="author">
+	    
+	    <cite>Jimmy</cite>
+		<abbr title="2010-04-06T15:10:42+02:00"><span class="typo_date" title="Tue, 06 Apr 2010 13:10:42 GMT">Tue, 06 Apr 2010 13:10:42 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Sweet</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5185">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>sapphire</cite>
+		<abbr title="2010-12-15T12:26:08+01:00"><span class="typo_date" title="Wed, 15 Dec 2010 11:26:08 GMT">Wed, 15 Dec 2010 11:26:08 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>BUT, if our strings are a discrete and well known collection (they are not in an array), the proper method in terms of speed is &lt;&lt; or +, not join.</p>
+
+<p><a href="http://stackoverflow.com/questions/4402336/array-join-versus-string-concatenation-efficiency">http://stackoverflow.com/questions/4402336/array-join-versus-string-concatenation-efficiency</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5187">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas</cite>
+		<abbr title="2010-12-15T23:22:46+01:00"><span class="typo_date" title="Wed, 15 Dec 2010 22:22:46 GMT">Wed, 15 Dec 2010 22:22:46 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@sapphire I&#8217;m not sure so I like that benchmark. The join example first builds an array and then joins. The concatenation example just concatenates &#8220;foobar&#8221; over and over. I can&#8217;t really map that to a real world scenario. If you can, please show me.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5188">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>sapphire</cite>
+		<abbr title="2010-12-16T16:52:12+01:00"><span class="typo_date" title="Thu, 16 Dec 2010 15:52:12 GMT">Thu, 16 Dec 2010 15:52:12 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>just wanted to clarify that there are are different cases.
+in your benchmarking, you measure the time to join an array, correctly concluding that the best method is join.</p>
+
+<p>however, join is not the universal method to join strings (as a ruby noob may think), so i put the stackoverflow hyperlink.</p>
+
+<p>so i you previously have strings in an array, then .join() them.
+but if you have a discrete well-known number of strings (a, b and c), join them as:</p>
+
+<blockquote>
+    <p>a &lt;&lt; b &lt;&lt; c</p>
+    
+    <p>&#8221;#{a}#{b}#{c}&#8221;</p>
+</blockquote>
+
+<p>or</p>
+
+<blockquote>
+    <p>a + b + c</p>
+</blockquote>
+
+<p>but never compose an array and then join them</p>
+
+<blockquote>
+    <p>[a,b,c].join</p>
+</blockquote>
+
+<p>hope my point is clear now :)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5189">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas</cite>
+		<abbr title="2010-12-17T00:18:14+01:00"><span class="typo_date" title="Thu, 16 Dec 2010 23:18:14 GMT">Thu, 16 Dec 2010 23:18:14 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@sapphire Great explanation and I totally agree.</p>
+	  </div>
+	</li>
+	</ol>
+
+  
+  </ol>
+
+
+<p class="postmetadata alt">
+  <small>
+  <a href="../../../../xml/rss20/article/3977/feed.xml" title="RSS Feed">RSS feed for this post</a>
+  </small>
+</p>
+
+
+<p>Comments are closed</p>
+<!--
+  <p>Comments are disabled</p>
+-->
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../../../pages/AboutMe">About me</a>/<a href="../../../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: Get the value of and with using the null-coalescing operator</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/3302/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2009/05/16/get-the-value-of-and-with-using-the-null-coalescing-operator" rel="alternate" type="text/html"/>
+  <updated>2009-05-18T00:02:13+02:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:41954150-6016-4a3f-a30e-c1324acfc4a4</id>
+    <published>2009-05-16T00:38:00+02:00</published>
+    <updated>2009-05-18T00:02:13+02:00</updated>
+    <title type="html">Get the value of and with using the null-coalescing operator</title>
+    <link href="http://alicebobandmallory.com/articles/2009/05/16/get-the-value-of-and-with-using-the-null-coalescing-operator" rel="alternate" type="text/html"/>
+    <category label="C#" term="c" scheme="http://alicebobandmallory.com/articles/category/c"/>
+    <summary type="html">&lt;p&gt;I like the &lt;a href="http://msdn.microsoft.com/en-us/library/ms173224.aspx"&gt;?? operator&lt;/a&gt; that surfaced in C# 2.0. I'm often in environments where null values florish and ?? is a great way to handle them, especially for presentation. A while ago I found a use for the ?? operator in a way I'd never used it before.&lt;/p&gt;
+
+&lt;p&gt;The problem at hand was to return an account number from data that could be described as somewhat inconsistent.&lt;/p&gt;
+
+&lt;p&gt;The application had left room for the users to enter accounts in two by two ways. A customer could have multiple subsidiaries and in each subsidiary, by misconception, two different fields had been used as the account number. It was also possible to connect an account to all subsidairies of a customer at the same time as a specific subsidiary of that customer had an account defined.&lt;/p&gt;
+
+&lt;p&gt;Only if a unique account could be found it should be returned. All other cases should return a cause of failure so that the users could use that information to clean up the mess.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
+&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
+&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
+&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
+&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
+&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
+&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n21" name="n21"&gt;21&lt;/a&gt;
+&lt;a href="#n22" name="n22"&gt;22&lt;/a&gt;
+&lt;a href="#n23" name="n23"&gt;23&lt;/a&gt;
+&lt;a href="#n24" name="n24"&gt;24&lt;/a&gt;
+&lt;a href="#n25" name="n25"&gt;25&lt;/a&gt;
+&lt;a href="#n26" name="n26"&gt;26&lt;/a&gt;
+&lt;a href="#n27" name="n27"&gt;27&lt;/a&gt;
+&lt;a href="#n28" name="n28"&gt;28&lt;/a&gt;
+&lt;a href="#n29" name="n29"&gt;29&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n30" name="n30"&gt;30&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n31" name="n31"&gt;31&lt;/a&gt;
+&lt;a href="#n32" name="n32"&gt;32&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; Account GetCustomerAccount(Customer customer)
+{
+  bool hasAccount = !&lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt;.IsNullOrEmpty(customer.AccountNo);
+  bool hasAccountNoExtra = !&lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt;.IsNullOrEmpty(customer.AccountNoExtra);
+  bool hasAllSubsAccount = !&lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt;.IsNullOrEmpty(customer.AccountNoAllSubs);
+  bool hasAllSubsAccountNoExtra = 
+       !&lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt;.IsNullOrEmpty(customer.AccountNoExtraAllSubs);
+  var account = &lt;span style="color:#080;font-weight:bold"&gt;new&lt;/span&gt; Account();
+
+  &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; ((hasAccount || hasAccountNoExtra) &amp;amp;&amp;amp;
+      (hasAllSubsAccount || hasAllSubsAccountNoExtra)) 
+  {
+    account.Status = account.HasBothAllSubsAndSpecific;
+    &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; account;
+  }
+  &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; ((hasAccount &amp;amp;&amp;amp; hasAccountNoExtra) ||   
+      (hasAllSubsAccount &amp;amp;&amp;amp; hasAllSubsAccountNoExtra)) 
+  {
+    account.Status = account.HasBothAccountAndAccountExtra;
+    &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; account;
+  }
+
+  account.AccountNo = customer.AccountNo ??
+                      customer.AccountNoExtra ??
+                      customer.AccountNoAllSubs ??
+                      customer.AccountNoExtraAllSubs;
+
+  &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (account.AccountNo==&lt;span style="color:#069"&gt;null&lt;/span&gt;)
+    account.Status=account.HasNoAccountDefined;
+
+  &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; account;
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;pre&gt;&lt;/pre&gt;
+
+&lt;p&gt;Notice how AccountNo is set to the first non null value of the four. Imagine that with plain ifs. Here I believe the ??-operator both makes the code clear and saves us from a bunch of nested ifs.&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;I like the &lt;a href="http://msdn.microsoft.com/en-us/library/ms173224.aspx"&gt;?? operator&lt;/a&gt; that surfaced in C# 2.0. I'm often in environments where null values florish and ?? is a great way to handle them, especially for presentation. A while ago I found a use for the ?? operator in a way I'd never used it before.&lt;/p&gt;
+
+&lt;p&gt;The problem at hand was to return an account number from data that could be described as somewhat inconsistent.&lt;/p&gt;
+
+&lt;p&gt;The application had left room for the users to enter accounts in two by two ways. A customer could have multiple subsidiaries and in each subsidiary, by misconception, two different fields had been used as the account number. It was also possible to connect an account to all subsidairies of a customer at the same time as a specific subsidiary of that customer had an account defined.&lt;/p&gt;
+
+&lt;p&gt;Only if a unique account could be found it should be returned. All other cases should return a cause of failure so that the users could use that information to clean up the mess.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
+&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
+&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
+&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
+&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
+&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
+&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n21" name="n21"&gt;21&lt;/a&gt;
+&lt;a href="#n22" name="n22"&gt;22&lt;/a&gt;
+&lt;a href="#n23" name="n23"&gt;23&lt;/a&gt;
+&lt;a href="#n24" name="n24"&gt;24&lt;/a&gt;
+&lt;a href="#n25" name="n25"&gt;25&lt;/a&gt;
+&lt;a href="#n26" name="n26"&gt;26&lt;/a&gt;
+&lt;a href="#n27" name="n27"&gt;27&lt;/a&gt;
+&lt;a href="#n28" name="n28"&gt;28&lt;/a&gt;
+&lt;a href="#n29" name="n29"&gt;29&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n30" name="n30"&gt;30&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n31" name="n31"&gt;31&lt;/a&gt;
+&lt;a href="#n32" name="n32"&gt;32&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; Account GetCustomerAccount(Customer customer)
+{
+  bool hasAccount = !&lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt;.IsNullOrEmpty(customer.AccountNo);
+  bool hasAccountNoExtra = !&lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt;.IsNullOrEmpty(customer.AccountNoExtra);
+  bool hasAllSubsAccount = !&lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt;.IsNullOrEmpty(customer.AccountNoAllSubs);
+  bool hasAllSubsAccountNoExtra = 
+       !&lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt;.IsNullOrEmpty(customer.AccountNoExtraAllSubs);
+  var account = &lt;span style="color:#080;font-weight:bold"&gt;new&lt;/span&gt; Account();
+
+  &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; ((hasAccount || hasAccountNoExtra) &amp;amp;&amp;amp;
+      (hasAllSubsAccount || hasAllSubsAccountNoExtra)) 
+  {
+    account.Status = account.HasBothAllSubsAndSpecific;
+    &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; account;
+  }
+  &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; ((hasAccount &amp;amp;&amp;amp; hasAccountNoExtra) ||   
+      (hasAllSubsAccount &amp;amp;&amp;amp; hasAllSubsAccountNoExtra)) 
+  {
+    account.Status = account.HasBothAccountAndAccountExtra;
+    &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; account;
+  }
+
+  account.AccountNo = customer.AccountNo ??
+                      customer.AccountNoExtra ??
+                      customer.AccountNoAllSubs ??
+                      customer.AccountNoExtraAllSubs;
+
+  &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (account.AccountNo==&lt;span style="color:#069"&gt;null&lt;/span&gt;)
+    account.Status=account.HasNoAccountDefined;
+
+  &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; account;
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;pre&gt;&lt;/pre&gt;
+
+&lt;p&gt;Notice how AccountNo is set to the first non null value of the four. Imagine that with plain ifs. Here I believe the ??-operator both makes the code clear and saves us from a bunch of nested ifs.&lt;/p&gt;</content>
+  </entry>
+</feed>

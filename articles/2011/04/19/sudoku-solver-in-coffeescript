@@ -1,0 +1,665 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Sudoku solver in CoffeeScript</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../../../xml/atom/article/5485/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../../xml/rss20/article/5485/feed.xml" />
+  <script src="../../../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+       xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+       xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about=""
+    dc:title="Sudoku solver in CoffeeScript"
+    dc:identifier="http://alicebobandmallory.com/articles/2011/04/19/sudoku-solver-in-coffeescript"
+    dc:description="CoffeeScript is inspired by Ruby and Python but what's most peculiar with it is that it compiles to JavaScript. The generated JavaScript isn't all that bad and it even passes &lt;a href=&quot;http://www.j"
+    dc:creator="jonelf"
+    dc:date="2011-06-02T23:21:31+02:00" />
+</rdf:RDF>
+-->
+
+<div class="post" onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_article'); }"  onmouseout="Element.hide('admin_article');" >
+  <a href="http://alicebobandmallory.com/admin/content/edit/5485" class="admintools" id="admin_article" style="display: none">edit</a>
+  <h2>Sudoku solver in CoffeeScript</h2>
+  <p class="auth">Posted by Jonas Elfström
+  <span class="typo_date" title="Tue, 19 Apr 2011 13:46:00 GMT">Tue, 19 Apr 2011 13:46:00 GMT</span></p>
+  <p><a href="http://jashkenas.github.com/coffee-script/">CoffeeScript</a> is inspired by Ruby and Python but what's most peculiar with it is that it compiles to JavaScript. The generated JavaScript isn't all that bad and it even passes <a href="http://www.javascriptlint.com/">JavaScript lint</a> without warnings.</p>
+
+<p>"Underneath all of those embarrassing braces and semicolons, JavaScript has always had a gorgeous object model at its heart." - Jeremy Ashkenas</p>
+
+<p>About a week ago I stumbled on the very clever <a href="http://norvig.com/sudoku.html">Sudoku solver by Peter Norvig</a>. I have nothing (or at least not much) against Python but I pretty soon checked out the Ruby translations of the solver. I then <a href="https://gist.github.com/914326">refactored one</a> of the solutions to get a chance to get to know the algorithm better.</p>
+
+<p>Now that I finally <a href="http://jashkenas.github.com/coffee-script/#installation">installed CoffeeScript</a> the Sudoku solver came to mind. I dived in head first and got in trouble pretty soon. It turns out that Array Comprehensions in CoffeeScript differs some from the List Comprehensions in Python.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="sudoku-solver-in-coffeescript#n1" name="n1">1</a>
+<a href="sudoku-solver-in-coffeescript#n2" name="n2">2</a>
+<a href="sudoku-solver-in-coffeescript#n3" name="n3">3</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">cross</span>(<span style="color:#036;font-weight:bold">A</span>, <span style="color:#036;font-weight:bold">B</span>):
+       <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Cross product of elements in A and elements in B.</span><span style="color:#710">&quot;</span></span>
+       <span style="color:#080;font-weight:bold">return</span> [a+b <span style="color:#080;font-weight:bold">for</span> a <span style="color:#080;font-weight:bold">in</span> <span style="color:#036;font-weight:bold">A</span> <span style="color:#080;font-weight:bold">for</span> b <span style="color:#080;font-weight:bold">in</span> <span style="color:#036;font-weight:bold">B</span>]</pre></td>
+</tr></table>
+
+<p>returns an one-dimensional array if you call it with two arrays (or strings).</p>
+
+<p>But in CoffeeScript </p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>
+</pre></td>
+  <td class="code"><pre>cross = (<span style="color:#036;font-weight:bold">A</span>, <span style="color:#036;font-weight:bold">B</span>) -&gt; (a+b <span style="color:#080;font-weight:bold">for</span> a <span style="color:#080;font-weight:bold">in</span> <span style="color:#036;font-weight:bold">A</span> <span style="color:#080;font-weight:bold">for</span> b <span style="color:#080;font-weight:bold">in</span> <span style="color:#036;font-weight:bold">B</span>)</pre></td>
+</tr></table>
+
+<p>returns a two-dimensional array.</p>
+
+<p><a href="https://github.com/jashkenas/coffee-script/issues/1191">The jury</a> is still out on <a href="http://stackoverflow.com/questions/5685449/nested-array-comprehensions-in-coffeescript">if this is intended</a> or not but either way the <a href="http://en.wikipedia.org/wiki/List_comprehension">array  comprehensions</a> in CoffeeScript are still very useful.</p>
+
+<div style="background-color: #F0F0F0">
+<font color="red">EDIT 2011-06-02</font><br>
+It's been decided that this is by design. The issue has been closed.
+</div>
+
+<p><br>
+ For the <code>cross</code>-function I ended up with</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="sudoku-solver-in-coffeescript#n1" name="n1">1</a>
+<a href="sudoku-solver-in-coffeescript#n2" name="n2">2</a>
+<a href="sudoku-solver-in-coffeescript#n3" name="n3">3</a>
+<a href="sudoku-solver-in-coffeescript#n4" name="n4">4</a>
+<a href="sudoku-solver-in-coffeescript#n5" name="n5">5</a>
+<a href="sudoku-solver-in-coffeescript#n6" name="n6">6</a>
+</pre></td>
+  <td class="code"><pre>cross = (<span style="color:#036;font-weight:bold">A</span>, <span style="color:#036;font-weight:bold">B</span>) -&gt;
+  results = []
+  <span style="color:#080;font-weight:bold">for</span> a <span style="color:#080;font-weight:bold">in</span> <span style="color:#036;font-weight:bold">A</span>
+    <span style="color:#080;font-weight:bold">for</span> b <span style="color:#080;font-weight:bold">in</span> <span style="color:#036;font-weight:bold">B</span>
+      results.push a + b
+  results</pre></td>
+</tr></table>
+
+<p><br/></p>
+
+<div style="background-color: #F0F0F0">
+<font color="red">EDIT 2011-06-02</font><br>
+Using `map` I could have got much closer to the Ruby version.
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="sudoku-solver-in-coffeescript#n1" name="n1">1</a>
+<a href="sudoku-solver-in-coffeescript#n2" name="n2">2</a>
+</pre></td>
+  <td class="code"><pre>cross = (cols, rows) -&gt;
+  [].concat (cols.map (x) -&gt; rows.map (y) -&gt; y+x)...</pre></td>
+</tr></table>
+
+I'm still more of a map/reduce guy than a list comprehension ninja.
+</div>
+
+<p><br><br>
+You can find the <a href="https://gist.github.com/927782">CoffeScript Sudoku solver as a Gist</a>. <strike>Compile it with<br/>
+<code>coffee -c sudoku.coffee</code><br/>
+and then run it with<br/>
+<code>node sudoku.js</code></strike></p>
+
+<p>I don't know how I missed it but as Trevor pointed out below all you have to do is<br/>
+<code>coffee sudoku.coffee</code></p>
+
+<pre>
+    1 2 3 4 5 6 7 8 9
+  |------+-----+-----|
+A | 4 8 3|9 2 1|6 5 7|
+B | 9 6 7|3 4 5|8 2 1|
+C | 2 5 1|8 7 6|4 9 3|
+  |------+-----+-----|
+D | 5 4 8|1 3 2|9 7 6|
+E | 7 2 9|5 6 4|1 3 8|
+F | 1 3 6|7 9 8|2 4 5|
+  |------+-----+-----|
+G | 3 7 2|6 8 9|5 1 4|
+H | 8 1 4|2 5 3|7 6 9|
+I | 6 9 5|4 1 7|3 8 2|
+  |------+-----+-----|
+</pre>
+
+<p><a href="../../../../sudoku.js.html">Here's</a> the generated <a href="../../../../sudoku.js.html">sudoku.js</a>.</p>
+
+<p>This is the only CoffeeScript I've ever written but I already like it (more than JavaScript). Please correct me if I strayed from the CoffeeScript way. </p>
+</div>
+<p class="meta">
+  Posted in <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a>, <a href="http://alicebobandmallory.com/articles/category/javascript" rel="noindex, follow, tag">JavaScript</a>&nbsp;<strong>|</strong>&nbsp;<a href="sudoku-solver-in-coffeescript#comments">6 comments</a>
+</p>
+
+  <a name="comments"></a><h4 class="blueblk">Comments</h4>
+    <p class="postmetadata alt">
+      <small><a href="sudoku-solver-in-coffeescript#respond">Comments closed</a></small>
+    </p>
+  <ol class="comment-list" id="commentList">
+  
+    <ol id="comments" class="comments">
+  	<li class="comment" id="comment-5491">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=34a9fc8f846a8645cf4df511e8ec2c49&amp;size=60" /></div>
+	    <cite><a href="http://trevorburnham.com">Trevor Burnham</a></cite>
+		<abbr title="2011-04-20T21:01:01+02:00"><span class="typo_date" title="Wed, 20 Apr 2011 19:01:01 GMT">Wed, 20 Apr 2011 19:01:01 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Nice post. By the way, you can just do <code>coffee sudoku.coffee</code> instead of <code>coffee -c sudoku.coffee; node sudoku.js</code>.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5492">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-04-20T21:35:18+02:00"><span class="typo_date" title="Wed, 20 Apr 2011 19:35:18 GMT">Wed, 20 Apr 2011 19:35:18 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Didn&#8217;t know that. Thanks!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5578">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-05-04T21:32:59+02:00"><span class="typo_date" title="Wed, 04 May 2011 19:32:59 GMT">Wed, 04 May 2011 19:32:59 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I didn&#8217;t write nearly enough about why I like CoffeeScript. Fortunately Trevor sums it up very good at <a href="http://www.pragprog.com/magazines/2011-05/a-coffeescript-intervention">http://www.pragprog.com/magazines/2011-05/a-coffeescript-intervention</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5617">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-05-19T20:49:27+02:00"><span class="typo_date" title="Thu, 19 May 2011 18:49:27 GMT">Thu, 19 May 2011 18:49:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>&#8220;CoffeeScript is well done and more convenient to use than JS, provided you buy into the Python-esque significant space and the costs of generating JS from another source language. But semantically it’s still JS.&#8221; - Brendan Eich <a href="http://brendaneich.com/2011/01/harmony-of-my-dreams/">http://brendaneich.com/2011/01/harmony-of-my-dreams/</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5640">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=420430937af91f300a417cb0343fe8c9&amp;size=60" /></div>
+	    <cite><a href="http://www.natami.net/">Jakob Eriksson</a></cite>
+		<abbr title="2011-05-25T08:59:39+02:00"><span class="typo_date" title="Wed, 25 May 2011 06:59:39 GMT">Wed, 25 May 2011 06:59:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I also think your blog is so wonderful to keep sight of! :-P</p>
+
+<p>Spambottarna smickrar, trevligt.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6426">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-09-13T16:02:21+02:00"><span class="typo_date" title="Tue, 13 Sep 2011 14:02:21 GMT">Tue, 13 Sep 2011 14:02:21 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>The list comprehension issue has been reopened because of this post 
+<a href="http://brehaut.net/blog/2011/coffeescript_comprehensions">CoffeeScript Comprehensions Are Broken</a></p>
+
+<p><a href="http://brehaut.net/blog/2011/coffeescript_comprehensions_reply">A reply from Trevor Burnham</a></p>
+
+<p><a href="https://github.com/jashkenas/coffee-script/issues/1191#issuecomment-2081256">The issue</a></p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-5491">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=34a9fc8f846a8645cf4df511e8ec2c49&amp;size=60" /></div>
+	    <cite><a href="http://trevorburnham.com">Trevor Burnham</a></cite>
+		<abbr title="2011-04-20T21:01:01+02:00"><span class="typo_date" title="Wed, 20 Apr 2011 19:01:01 GMT">Wed, 20 Apr 2011 19:01:01 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Nice post. By the way, you can just do <code>coffee sudoku.coffee</code> instead of <code>coffee -c sudoku.coffee; node sudoku.js</code>.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5492">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-04-20T21:35:18+02:00"><span class="typo_date" title="Wed, 20 Apr 2011 19:35:18 GMT">Wed, 20 Apr 2011 19:35:18 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Didn&#8217;t know that. Thanks!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5578">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-05-04T21:32:59+02:00"><span class="typo_date" title="Wed, 04 May 2011 19:32:59 GMT">Wed, 04 May 2011 19:32:59 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I didn&#8217;t write nearly enough about why I like CoffeeScript. Fortunately Trevor sums it up very good at <a href="http://www.pragprog.com/magazines/2011-05/a-coffeescript-intervention">http://www.pragprog.com/magazines/2011-05/a-coffeescript-intervention</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5617">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-05-19T20:49:27+02:00"><span class="typo_date" title="Thu, 19 May 2011 18:49:27 GMT">Thu, 19 May 2011 18:49:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>&#8220;CoffeeScript is well done and more convenient to use than JS, provided you buy into the Python-esque significant space and the costs of generating JS from another source language. But semantically it’s still JS.&#8221; - Brendan Eich <a href="http://brendaneich.com/2011/01/harmony-of-my-dreams/">http://brendaneich.com/2011/01/harmony-of-my-dreams/</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5640">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=420430937af91f300a417cb0343fe8c9&amp;size=60" /></div>
+	    <cite><a href="http://www.natami.net/">Jakob Eriksson</a></cite>
+		<abbr title="2011-05-25T08:59:39+02:00"><span class="typo_date" title="Wed, 25 May 2011 06:59:39 GMT">Wed, 25 May 2011 06:59:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I also think your blog is so wonderful to keep sight of! :-P</p>
+
+<p>Spambottarna smickrar, trevligt.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6426">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-09-13T16:02:21+02:00"><span class="typo_date" title="Tue, 13 Sep 2011 14:02:21 GMT">Tue, 13 Sep 2011 14:02:21 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>The list comprehension issue has been reopened because of this post 
+<a href="http://brehaut.net/blog/2011/coffeescript_comprehensions">CoffeeScript Comprehensions Are Broken</a></p>
+
+<p><a href="http://brehaut.net/blog/2011/coffeescript_comprehensions_reply">A reply from Trevor Burnham</a></p>
+
+<p><a href="https://github.com/jashkenas/coffee-script/issues/1191#issuecomment-2081256">The issue</a></p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-5491">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=34a9fc8f846a8645cf4df511e8ec2c49&amp;size=60" /></div>
+	    <cite><a href="http://trevorburnham.com">Trevor Burnham</a></cite>
+		<abbr title="2011-04-20T21:01:01+02:00"><span class="typo_date" title="Wed, 20 Apr 2011 19:01:01 GMT">Wed, 20 Apr 2011 19:01:01 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Nice post. By the way, you can just do <code>coffee sudoku.coffee</code> instead of <code>coffee -c sudoku.coffee; node sudoku.js</code>.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5492">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-04-20T21:35:18+02:00"><span class="typo_date" title="Wed, 20 Apr 2011 19:35:18 GMT">Wed, 20 Apr 2011 19:35:18 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Didn&#8217;t know that. Thanks!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5578">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-05-04T21:32:59+02:00"><span class="typo_date" title="Wed, 04 May 2011 19:32:59 GMT">Wed, 04 May 2011 19:32:59 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I didn&#8217;t write nearly enough about why I like CoffeeScript. Fortunately Trevor sums it up very good at <a href="http://www.pragprog.com/magazines/2011-05/a-coffeescript-intervention">http://www.pragprog.com/magazines/2011-05/a-coffeescript-intervention</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5617">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-05-19T20:49:27+02:00"><span class="typo_date" title="Thu, 19 May 2011 18:49:27 GMT">Thu, 19 May 2011 18:49:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>&#8220;CoffeeScript is well done and more convenient to use than JS, provided you buy into the Python-esque significant space and the costs of generating JS from another source language. But semantically it’s still JS.&#8221; - Brendan Eich <a href="http://brendaneich.com/2011/01/harmony-of-my-dreams/">http://brendaneich.com/2011/01/harmony-of-my-dreams/</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5640">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=420430937af91f300a417cb0343fe8c9&amp;size=60" /></div>
+	    <cite><a href="http://www.natami.net/">Jakob Eriksson</a></cite>
+		<abbr title="2011-05-25T08:59:39+02:00"><span class="typo_date" title="Wed, 25 May 2011 06:59:39 GMT">Wed, 25 May 2011 06:59:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I also think your blog is so wonderful to keep sight of! :-P</p>
+
+<p>Spambottarna smickrar, trevligt.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6426">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-09-13T16:02:21+02:00"><span class="typo_date" title="Tue, 13 Sep 2011 14:02:21 GMT">Tue, 13 Sep 2011 14:02:21 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>The list comprehension issue has been reopened because of this post 
+<a href="http://brehaut.net/blog/2011/coffeescript_comprehensions">CoffeeScript Comprehensions Are Broken</a></p>
+
+<p><a href="http://brehaut.net/blog/2011/coffeescript_comprehensions_reply">A reply from Trevor Burnham</a></p>
+
+<p><a href="https://github.com/jashkenas/coffee-script/issues/1191#issuecomment-2081256">The issue</a></p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-5491">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=34a9fc8f846a8645cf4df511e8ec2c49&amp;size=60" /></div>
+	    <cite><a href="http://trevorburnham.com">Trevor Burnham</a></cite>
+		<abbr title="2011-04-20T21:01:01+02:00"><span class="typo_date" title="Wed, 20 Apr 2011 19:01:01 GMT">Wed, 20 Apr 2011 19:01:01 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Nice post. By the way, you can just do <code>coffee sudoku.coffee</code> instead of <code>coffee -c sudoku.coffee; node sudoku.js</code>.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5492">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-04-20T21:35:18+02:00"><span class="typo_date" title="Wed, 20 Apr 2011 19:35:18 GMT">Wed, 20 Apr 2011 19:35:18 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Didn&#8217;t know that. Thanks!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5578">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-05-04T21:32:59+02:00"><span class="typo_date" title="Wed, 04 May 2011 19:32:59 GMT">Wed, 04 May 2011 19:32:59 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I didn&#8217;t write nearly enough about why I like CoffeeScript. Fortunately Trevor sums it up very good at <a href="http://www.pragprog.com/magazines/2011-05/a-coffeescript-intervention">http://www.pragprog.com/magazines/2011-05/a-coffeescript-intervention</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5617">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-05-19T20:49:27+02:00"><span class="typo_date" title="Thu, 19 May 2011 18:49:27 GMT">Thu, 19 May 2011 18:49:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>&#8220;CoffeeScript is well done and more convenient to use than JS, provided you buy into the Python-esque significant space and the costs of generating JS from another source language. But semantically it’s still JS.&#8221; - Brendan Eich <a href="http://brendaneich.com/2011/01/harmony-of-my-dreams/">http://brendaneich.com/2011/01/harmony-of-my-dreams/</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5640">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=420430937af91f300a417cb0343fe8c9&amp;size=60" /></div>
+	    <cite><a href="http://www.natami.net/">Jakob Eriksson</a></cite>
+		<abbr title="2011-05-25T08:59:39+02:00"><span class="typo_date" title="Wed, 25 May 2011 06:59:39 GMT">Wed, 25 May 2011 06:59:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I also think your blog is so wonderful to keep sight of! :-P</p>
+
+<p>Spambottarna smickrar, trevligt.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6426">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-09-13T16:02:21+02:00"><span class="typo_date" title="Tue, 13 Sep 2011 14:02:21 GMT">Tue, 13 Sep 2011 14:02:21 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>The list comprehension issue has been reopened because of this post 
+<a href="http://brehaut.net/blog/2011/coffeescript_comprehensions">CoffeeScript Comprehensions Are Broken</a></p>
+
+<p><a href="http://brehaut.net/blog/2011/coffeescript_comprehensions_reply">A reply from Trevor Burnham</a></p>
+
+<p><a href="https://github.com/jashkenas/coffee-script/issues/1191#issuecomment-2081256">The issue</a></p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-5491">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=34a9fc8f846a8645cf4df511e8ec2c49&amp;size=60" /></div>
+	    <cite><a href="http://trevorburnham.com">Trevor Burnham</a></cite>
+		<abbr title="2011-04-20T21:01:01+02:00"><span class="typo_date" title="Wed, 20 Apr 2011 19:01:01 GMT">Wed, 20 Apr 2011 19:01:01 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Nice post. By the way, you can just do <code>coffee sudoku.coffee</code> instead of <code>coffee -c sudoku.coffee; node sudoku.js</code>.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5492">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-04-20T21:35:18+02:00"><span class="typo_date" title="Wed, 20 Apr 2011 19:35:18 GMT">Wed, 20 Apr 2011 19:35:18 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Didn&#8217;t know that. Thanks!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5578">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-05-04T21:32:59+02:00"><span class="typo_date" title="Wed, 04 May 2011 19:32:59 GMT">Wed, 04 May 2011 19:32:59 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I didn&#8217;t write nearly enough about why I like CoffeeScript. Fortunately Trevor sums it up very good at <a href="http://www.pragprog.com/magazines/2011-05/a-coffeescript-intervention">http://www.pragprog.com/magazines/2011-05/a-coffeescript-intervention</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5617">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-05-19T20:49:27+02:00"><span class="typo_date" title="Thu, 19 May 2011 18:49:27 GMT">Thu, 19 May 2011 18:49:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>&#8220;CoffeeScript is well done and more convenient to use than JS, provided you buy into the Python-esque significant space and the costs of generating JS from another source language. But semantically it’s still JS.&#8221; - Brendan Eich <a href="http://brendaneich.com/2011/01/harmony-of-my-dreams/">http://brendaneich.com/2011/01/harmony-of-my-dreams/</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5640">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=420430937af91f300a417cb0343fe8c9&amp;size=60" /></div>
+	    <cite><a href="http://www.natami.net/">Jakob Eriksson</a></cite>
+		<abbr title="2011-05-25T08:59:39+02:00"><span class="typo_date" title="Wed, 25 May 2011 06:59:39 GMT">Wed, 25 May 2011 06:59:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I also think your blog is so wonderful to keep sight of! :-P</p>
+
+<p>Spambottarna smickrar, trevligt.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6426">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-09-13T16:02:21+02:00"><span class="typo_date" title="Tue, 13 Sep 2011 14:02:21 GMT">Tue, 13 Sep 2011 14:02:21 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>The list comprehension issue has been reopened because of this post 
+<a href="http://brehaut.net/blog/2011/coffeescript_comprehensions">CoffeeScript Comprehensions Are Broken</a></p>
+
+<p><a href="http://brehaut.net/blog/2011/coffeescript_comprehensions_reply">A reply from Trevor Burnham</a></p>
+
+<p><a href="https://github.com/jashkenas/coffee-script/issues/1191#issuecomment-2081256">The issue</a></p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-5491">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=34a9fc8f846a8645cf4df511e8ec2c49&amp;size=60" /></div>
+	    <cite><a href="http://trevorburnham.com">Trevor Burnham</a></cite>
+		<abbr title="2011-04-20T21:01:01+02:00"><span class="typo_date" title="Wed, 20 Apr 2011 19:01:01 GMT">Wed, 20 Apr 2011 19:01:01 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Nice post. By the way, you can just do <code>coffee sudoku.coffee</code> instead of <code>coffee -c sudoku.coffee; node sudoku.js</code>.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5492">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-04-20T21:35:18+02:00"><span class="typo_date" title="Wed, 20 Apr 2011 19:35:18 GMT">Wed, 20 Apr 2011 19:35:18 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Didn&#8217;t know that. Thanks!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5578">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-05-04T21:32:59+02:00"><span class="typo_date" title="Wed, 04 May 2011 19:32:59 GMT">Wed, 04 May 2011 19:32:59 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I didn&#8217;t write nearly enough about why I like CoffeeScript. Fortunately Trevor sums it up very good at <a href="http://www.pragprog.com/magazines/2011-05/a-coffeescript-intervention">http://www.pragprog.com/magazines/2011-05/a-coffeescript-intervention</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5617">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2011-05-19T20:49:27+02:00"><span class="typo_date" title="Thu, 19 May 2011 18:49:27 GMT">Thu, 19 May 2011 18:49:27 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>&#8220;CoffeeScript is well done and more convenient to use than JS, provided you buy into the Python-esque significant space and the costs of generating JS from another source language. But semantically it’s still JS.&#8221; - Brendan Eich <a href="http://brendaneich.com/2011/01/harmony-of-my-dreams/">http://brendaneich.com/2011/01/harmony-of-my-dreams/</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5640">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=420430937af91f300a417cb0343fe8c9&amp;size=60" /></div>
+	    <cite><a href="http://www.natami.net/">Jakob Eriksson</a></cite>
+		<abbr title="2011-05-25T08:59:39+02:00"><span class="typo_date" title="Wed, 25 May 2011 06:59:39 GMT">Wed, 25 May 2011 06:59:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>I also think your blog is so wonderful to keep sight of! :-P</p>
+
+<p>Spambottarna smickrar, trevligt.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6426">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-09-13T16:02:21+02:00"><span class="typo_date" title="Tue, 13 Sep 2011 14:02:21 GMT">Tue, 13 Sep 2011 14:02:21 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>The list comprehension issue has been reopened because of this post 
+<a href="http://brehaut.net/blog/2011/coffeescript_comprehensions">CoffeeScript Comprehensions Are Broken</a></p>
+
+<p><a href="http://brehaut.net/blog/2011/coffeescript_comprehensions_reply">A reply from Trevor Burnham</a></p>
+
+<p><a href="https://github.com/jashkenas/coffee-script/issues/1191#issuecomment-2081256">The issue</a></p>
+	  </div>
+	</li>
+	</ol>
+
+  
+  </ol>
+
+
+<p class="postmetadata alt">
+  <small>
+  <a href="../../../../xml/rss20/article/5485/feed.xml" title="RSS Feed">RSS feed for this post</a>
+  </small>
+</p>
+
+
+<p>Comments are closed</p>
+<!--
+  <p>Comments are disabled</p>
+-->
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../../../pages/AboutMe">About me</a>/<a href="../../../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

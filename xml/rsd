@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rsd version="1.0" xmlns="http://archipelago.phrasewise.com/rsd">
+  <service>
+    <engineName>Typo</engineName>
+    <engineLink>http://www.typosphere.org</engineLink>
+    <homePageLink>http://alicebobandmallory.com/</homePageLink>
+    <apis>
+      <api name="Movable Type" apiLink="http://alicebobandmallory.com/backend/xmlrpc" preferred="true" blogID="1"/>
+      <api name="MetaWeblog" apiLink="http://alicebobandmallory.com/backend/xmlrpc" preferred="false" blogID="1"/>
+      <api name="Blogger" apiLink="http://alicebobandmallory.com/backend/xmlrpc" preferred="false" blogID="1"/>
+    </apis>
+  </service>
+</rsd>

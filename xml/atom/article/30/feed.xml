@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: Client side security</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/30/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2007/04/30/client-side-security" rel="alternate" type="text/html"/>
+  <updated>2007-12-04T23:37:47+01:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:7b56bd9d-b073-4e6e-981c-eb40edd121e8</id>
+    <published>2007-04-30T12:54:00+02:00</published>
+    <updated>2007-12-04T23:37:47+01:00</updated>
+    <title type="html">Client side security</title>
+    <link href="http://alicebobandmallory.com/articles/2007/04/30/client-side-security" rel="alternate" type="text/html"/>
+    <category label="Security" term="security" scheme="http://alicebobandmallory.com/articles/category/security"/>
+    <summary type="html">&lt;p&gt;Recently a friend of mine got problems while trying to book a hotel room online. The JavaScript-driven calendar was IE-only and he is on Mac OS X. My friend then checked the source and saw that the JavaScript actually just set a value to an hidden input field. He fired up &lt;a href="http://www.getfirebug.com/"&gt;Firebug&lt;/a&gt; and edited the field manually and then submitted the form. When he got the confirmation of the booking he saw that he accidently had typed 2006 instead of 2007. The only protection against booking at dates in the past, already fully booked or in the year 2100 were the JavaScript that ran the calendar.&lt;/p&gt;
+
+&lt;p&gt;When building a web application you can never ever trust that any of the data from the client will be untampered with. &lt;/p&gt;
+
+&lt;p&gt;Some problems I've seen in the past:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Relying on JavaScript-validation. JavaScript can be turned off or ran through a debugger.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Having sensitive data in hidden input fields.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Storing sensitive data in cookies. &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This is not a very common problem since almost all web application frameworks handles this for you by only storing a session id in the cookie and the actual data on the server.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    <content type="html">&lt;p&gt;Recently a friend of mine got problems while trying to book a hotel room online. The JavaScript-driven calendar was IE-only and he is on Mac OS X. My friend then checked the source and saw that the JavaScript actually just set a value to an hidden input field. He fired up &lt;a href="http://www.getfirebug.com/"&gt;Firebug&lt;/a&gt; and edited the field manually and then submitted the form. When he got the confirmation of the booking he saw that he accidently had typed 2006 instead of 2007. The only protection against booking at dates in the past, already fully booked or in the year 2100 were the JavaScript that ran the calendar.&lt;/p&gt;
+
+&lt;p&gt;When building a web application you can never ever trust that any of the data from the client will be untampered with. &lt;/p&gt;
+
+&lt;p&gt;Some problems I've seen in the past:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Relying on JavaScript-validation. JavaScript can be turned off or ran through a debugger.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Having sensitive data in hidden input fields.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Storing sensitive data in cookies. &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This is not a very common problem since almost all web application frameworks handles this for you by only storing a session id in the cookie and the actual data on the server.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+  </entry>
+</feed>

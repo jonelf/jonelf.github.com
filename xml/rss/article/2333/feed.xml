@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Unit testing strains</title>
+    <link>http://alicebobandmallory.com/articles/2008/05/05/unit-testing-strains</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Unit testing strains</title>
+      <description>&lt;p&gt;I've felt it and I've heard it from colleagues several times. Writing unit tests can be hard work. Especially adding unit tests to an existing code base is, at best, cumbersome. Also it's one of those things with delayed gratification. Sometimes it's not even you that will benefit from them being there because the biggest win can be long down the road, when changes to the system has to be made. &lt;/p&gt;
+
+&lt;p&gt;Tests may seem to be isolated and it's even considered a good thing to keep them that way. Even so the tests of your application has a correlation to what the system aims to do on a bigger scale.  This one of the things &lt;a href="http://en.wikipedia.org/wiki/Behavior_driven_development"&gt;BDD&lt;/a&gt;  focuses on. I think that one of the biggest advantages is that you in one process writes a specification and tests that ensures that the spec. is met. Testing becomes a natural part of the development process. This way it clearly shows that BDD and  &lt;a href="http://en.wikipedia.org/wiki/Test-driven_development"&gt;TDD&lt;/a&gt; are design processes and that it's certainly not all about adding unit tests.&lt;/p&gt;
+
+&lt;p&gt;Find out more about BDD on: &lt;a href="http://behaviour-driven.org"&gt;BehaviourDrivenDevelopment&lt;/a&gt;&lt;br/&gt;
+&lt;em&gt;It must be stressed that BDD is a rephrasing of existing good practice, it is not a radically new departure. Its aim is to bring together existing, well-established techniques under a common banner and with a consistent and unambiguous terminology.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;For Ruby &lt;a href="http://rspec.info/"&gt;RSpec&lt;/a&gt; has almost become the de facto standard for BDD. The concepts Story, Scenario, and Test feels natural and the syntax is short and easy to read.&lt;/p&gt;
+
+&lt;p&gt;In languages like Java or C# the tests often becomes much more cluttered and some of that clutter is the extra code that comes with static typing. I believe that dynamically typed and overall dynamic languages like Ruby or Python could find a nice little niche here. They could become &lt;a href="http://en.wikipedia.org/wiki/Domain-specific_programming_language"&gt;DSL's&lt;/a&gt; for testing.&lt;/p&gt;
+
+&lt;p&gt;RSpec is on it's way for .NET/C# via &lt;a href="http://en.wikipedia.org/wiki/IronRuby"&gt;IronRuby&lt;/a&gt; and for Java via &lt;a href="http://jruby.codehaus.org/"&gt;JRuby&lt;/a&gt; but don't hold your breath because they are still in alpha and beta.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;.NET / C#&lt;/strong&gt;&lt;br/&gt;
+&lt;a href="http://rubydoes.net/2008/02/21/testing-net-with-ironrubys-mini_rspecrb/"&gt;Testing .NET with IronRuby...&lt;/a&gt;&lt;br/&gt;
+&lt;a href="http://bgeek.net/2008/02/14/nspecify-rspec-well-closer-anyway/"&gt;NSpecify =&gt; RSpec… well closer anyway&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Java&lt;/strong&gt;&lt;br/&gt;
+&lt;a href="http://pivots.pivotallabs.com/users/pzabelin/blog/articles/375-functional-tests-for-java-project-rspec-jruby"&gt;Java Functional Testing with JRuby and RSpec&lt;/a&gt;&lt;br/&gt;
+&lt;a href="http://jtestr.codehaus.org/"&gt;JtestR&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Ruby&lt;/strong&gt;&lt;br/&gt;
+&lt;a href="http://socialface.com/slapp/"&gt;Slapp&lt;/a&gt; - A simple chat wall Merb tutorial. With nice exampes of using RSpec.&lt;br/&gt;
+&lt;a href="http://www.ibm.com/developerworks/web/library/wa-rspec/"&gt;Behavior-driven testing with RSpec&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ASP.NET MVC&lt;/strong&gt;&lt;br/&gt;
+&lt;a href="http://blogs.msdn.com/webdevtools/archive/2008/03/06/asp-net-mvc-test-framework-integration-demo.aspx"&gt;ASP.NET MVC Test Framework Integration Walkthrough&lt;/a&gt;&lt;br/&gt;
+&lt;a href="http://www.asp.net/learn/3.5-extensions-videos/video-271.aspx"&gt;MVC Preview - Testing&lt;/a&gt;&lt;br/&gt;
+&lt;a href="http://www.hanselman.com/blog/ASPNETMVCSessionAtMix08TDDAndMvcMockHelpers.aspx"&gt;ASP.NET MVC Session at Mix08, TDD and MvcMockHelpers&lt;/a&gt;&lt;/p&gt;</description>
+      <pubDate>Mon, 05 May 2008 21:17:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:89da439e-a963-4880-9501-16902abf9b31</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2008/05/05/unit-testing-strains</link>
+      <category>Ruby</category>
+      <category>C#</category>
+      <category>Java</category>
+    </item>
+    <item>
+      <title>"Unit testing strains" by jonelf</title>
+      <description>&lt;p&gt;It&amp;#8217;s getting closer: &lt;a href="http://blog.jimmy.schementi.com/#ir06cucumber"&gt;http://blog.jimmy.schementi.com/#ir06cucumber&lt;/a&gt;&lt;/p&gt;</description>
+      <pubDate>Tue, 07 Jul 2009 22:56:37 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:692e9297-81e3-4d5e-a640-465a539f11fb</guid>
+      <link>http://alicebobandmallory.com/articles/2008/05/05/unit-testing-strains#comment-3388</link>
+    </item>
+    <item>
+      <title>"Unit testing strains" by jonelf</title>
+      <description>&lt;p&gt;&lt;a href="http://drnicwilliams.com/2008/07/04/unit-testing-iphone-apps-with-ruby-rbiphonetest/"&gt;http://drnicwilliams.com/2008/07/04/unit-testing-iphone-apps-with-ruby-rbiphonetest/&lt;/a&gt; - testing Objective-C with Ruby&lt;/p&gt;</description>
+      <pubDate>Mon, 07 Jul 2008 02:07:13 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:ddab7d18-54d7-43f0-be53-e182100b5289</guid>
+      <link>http://alicebobandmallory.com/articles/2008/05/05/unit-testing-strains#comment-2570</link>
+    </item>
+    <item>
+      <title>"Unit testing strains" by jonelf</title>
+      <description>&lt;p&gt;For Ruby you could also check out Shoulda, an extension for Test::Unit. 
+&lt;a href="http://www.thoughtbot.com/projects/shoulda"&gt;http://www.thoughtbot.com/projects/shoulda&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://pragdave.blogs.pragprog.com/pragdave/2008/04/shoulda-used-th.html"&gt;http://pragdave.blogs.pragprog.com/pragdave/2008/04/shoulda-used-th.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://pragdave.blogs.pragprog.com/pragdave/2008/05/silly-shoulda-t.html"&gt;http://pragdave.blogs.pragprog.com/pragdave/2008/05/silly-shoulda-t.html&lt;/a&gt;&lt;/p&gt;</description>
+      <pubDate>Sat, 17 May 2008 07:29:28 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:026753a5-b39e-4f37-a329-d14398e4a890</guid>
+      <link>http://alicebobandmallory.com/articles/2008/05/05/unit-testing-strains#comment-2361</link>
+    </item>
+  </channel>
+</rss>

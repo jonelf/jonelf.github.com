@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: The Thrush combinator in C#</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/3703/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2009/10/06/the-thrush-combinator-in-c" rel="alternate" type="text/html"/>
+  <updated>2011-03-09T13:13:30+01:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:b02ff8f0-44fb-44ca-a309-eb0fd074a495</id>
+    <published>2009-10-06T20:35:00+02:00</published>
+    <updated>2011-03-09T13:13:30+01:00</updated>
+    <title type="html">The Thrush combinator in C#</title>
+    <link href="http://alicebobandmallory.com/articles/2009/10/06/the-thrush-combinator-in-c" rel="alternate" type="text/html"/>
+    <category label="Ruby" term="ruby" scheme="http://alicebobandmallory.com/articles/category/ruby"/>
+    <category label="C#" term="c" scheme="http://alicebobandmallory.com/articles/category/c"/>
+    <summary type="html">&lt;p&gt;Last year I read &lt;a href="http://github.com/raganwald/homoiconic/blob/master/README.markdown"&gt;Reg "Raganwald'" Braithwaite's&lt;/a&gt; excellent post &lt;a href="http://github.com/raganwald/homoiconic/blob/master/2008-10-30/thrush.markdown#readme"&gt;The Thrush&lt;/a&gt; and he  explains it as &lt;/p&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;The thrush is written Txy = yx. It reverses evaluation.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Back then I didn't even consider trying to implement it in C#. That was before I digged deeper into &lt;a href="http://msdn.microsoft.com/en-us/library/bb397687.aspx"&gt;lambda expressions&lt;/a&gt; and &lt;a href="http://msdn.microsoft.com/en-us/library/bb383977.aspx"&gt;extension methods&lt;/a&gt; in C# 3.0 and way before last night when I read Debasish Ghosh's post on how to &lt;a href="http://debasishg.blogspot.com/2009/09/thrush-combinator-in-scala.html"&gt;implement the Thrush in Scala&lt;/a&gt;. After reading that my first thought was if it was possible to do the same in C#. Here's my attempt.&lt;/p&gt;
+
+&lt;p&gt;At first I struggled with the static typing and headed for an easy way out using Object in the extension method of Object:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;public &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; object Into(this Object obj, 
+                        Func&amp;lt;object, object&amp;gt; f)
+{  &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; f.Invoke(obj); }&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+My goal was to translate the Ruby example&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;(&lt;span style="color:#00D"&gt;1&lt;/span&gt;..&lt;span style="color:#00D"&gt;100&lt;/span&gt;).select(&amp;amp;&lt;span style="color:#A60"&gt;:odd?&lt;/span&gt;).inject(&amp;amp;&lt;span style="color:#A60"&gt;:+&lt;/span&gt;).into { |x| x * x }&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+in Raganwald's post to C#.&lt;/p&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;Which reads "Take the numbers from 1 to 100, keep the odd ones, take the sum of those, and then answer the square of that number."&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;But with the Object based extension method I had to do some ugly casts.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var r = Enumerable.Range(&lt;span style="color:#00D"&gt;1&lt;/span&gt;, &lt;span style="color:#00D"&gt;100&lt;/span&gt;).Where(x =&amp;gt; Odd(x)).Sum().Into(x =&amp;gt; (&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;)x * (&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;)x);&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+With som added typing I could do: &lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var result = Enumerable.Range(&lt;span style="color:#00D"&gt;1&lt;/span&gt;, &lt;span style="color:#00D"&gt;100&lt;/span&gt;).Where(x =&amp;gt; Odd(x)).Sum().Into(x =&amp;gt; x * x);&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+That merely moved the cast to the extension method and also made it work for integers only.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;public &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; &lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; Into(this Object obj, Func&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;, &lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt; f)
+{ &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; f.Invoke((&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;)obj); }&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+Then I remembered generics and method type inference which finally led to a decent Thrush combinator in C#.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;public &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; T Into&amp;lt;T&amp;gt;(this T obj, Func&amp;lt;T, T&amp;gt; f)
+{ &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; f(obj); }&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+The casts are gone and it's also, as far as I can see, as flexible as the one in Ruby.&lt;br&gt;&lt;br&gt;
+Contrived example follows:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var test = &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;ball&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;
+var ball = test.Into(s =&amp;gt; &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Are we having a &lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; + s + &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt; yet?&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+&lt;strong&gt;The odd part&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;em&gt;Odd(x)&lt;/em&gt; method call in the calculation above is a plain static method.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;private &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; &lt;span style="color:#0a5;font-weight:bold"&gt;bool&lt;/span&gt; Odd(&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; n)
+{ &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; (n % &lt;span style="color:#00D"&gt;2&lt;/span&gt; != &lt;span style="color:#00D"&gt;0&lt;/span&gt;); }&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+If you want an even more terse syntax you could try an ext. method on IEnumerable like this:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;public &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; IEnumerable&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt; Odd(this IEnumerable&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt; en)
+{ &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; en.Where(n =&amp;gt; n % &lt;span style="color:#00D"&gt;2&lt;/span&gt; != &lt;span style="color:#00D"&gt;0&lt;/span&gt;); }&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+Gives:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var result = Enumerable.Range(&lt;span style="color:#00D"&gt;1&lt;/span&gt;, &lt;span style="color:#00D"&gt;100&lt;/span&gt;).Odd().Sum().Into(x =&amp;gt; x * x);&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+&lt;!--Also as a general alternative to &lt;code&gt;.Sum()&lt;/code&gt; I could have used &lt;code&gt;.Aggregate((x, y) =&amp;gt; x + y))&lt;/code&gt; but I found it a bit verbose.--&gt;
+In C# I don't think it's possible to pull off the Symbol#to_proc stuff that Ruby does. That's the &lt;em&gt;&amp;amp;:&lt;/em&gt; in the &lt;em&gt;select(&amp;amp;:odd?)&lt;/em&gt; and the &lt;em&gt;inject(&amp;amp;:+)&lt;/em&gt; in the Ruby example. Raganwald has a great &lt;a href="http://weblog.raganwald.com/2007/11/fun-with-symboltoproc.html"&gt;post&lt;/a&gt; on that too.&lt;/p&gt;
+
+&lt;p&gt;&lt;font style="color:red;font-weight:bold"&gt;Edit&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;Check out &lt;a href="http://stackoverflow.com/questions/1528319/operators-as-method-parameters-in-c-and-the-thrush-combinator"&gt;Jon Skeet's nice answer&lt;/a&gt; on StackOverflow to my question on how to make this even more Ruby-like. I have to try out that Operator class later though.&lt;/p&gt;
+
+&lt;p&gt;&lt;font style="color:red;font-weight:bold"&gt;Edit 2009-10-07&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;One thing I found a bit surprising is that by implementing the Into ext. method in this way it not only works for all objects based on &lt;code&gt;System.Object&lt;/code&gt; but it also works  for &lt;a href="http://msdn.microsoft.com/en-us/library/s1ax56ch.aspx"&gt;value types&lt;/a&gt;.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; n=&lt;span style="color:#00D"&gt;4711&lt;/span&gt;;
+&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; oddOrZero = n.Into(x =&amp;gt; x % &lt;span style="color:#00D"&gt;2&lt;/span&gt; !=&lt;span style="color:#00D"&gt;0&lt;/span&gt; ? x : &lt;span style="color:#00D"&gt;0&lt;/span&gt;); &lt;span style="color:#777"&gt;// 4711&lt;/span&gt;
+n = &lt;span style="color:#00D"&gt;4712&lt;/span&gt;;
+oddOrZero = n.Into(x =&amp;gt; x % &lt;span style="color:#00D"&gt;2&lt;/span&gt; != &lt;span style="color:#00D"&gt;0&lt;/span&gt; ? x : &lt;span style="color:#00D"&gt;0&lt;/span&gt;); &lt;span style="color:#777"&gt;// 0&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+&lt;font style="color:red;font-weight:bold"&gt;Edit 2009-10-12&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;My confusion did stem from my lack of understanding of &lt;a href="http://msdn.microsoft.com/en-us/library/bb383977(loband).aspx"&gt;extension methods&lt;/a&gt;. Ex. methods are in fact not extending &lt;code&gt;System.Object&lt;/code&gt; or any other type, they are "&lt;a href="http://blogs.msdn.com/ericlippert/about.aspx"&gt;nothing more than a pleasant syntax for calling a static method&lt;/a&gt;" in  case no instance method with the same name can be found.&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;Last year I read &lt;a href="http://github.com/raganwald/homoiconic/blob/master/README.markdown"&gt;Reg "Raganwald'" Braithwaite's&lt;/a&gt; excellent post &lt;a href="http://github.com/raganwald/homoiconic/blob/master/2008-10-30/thrush.markdown#readme"&gt;The Thrush&lt;/a&gt; and he  explains it as &lt;/p&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;The thrush is written Txy = yx. It reverses evaluation.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Back then I didn't even consider trying to implement it in C#. That was before I digged deeper into &lt;a href="http://msdn.microsoft.com/en-us/library/bb397687.aspx"&gt;lambda expressions&lt;/a&gt; and &lt;a href="http://msdn.microsoft.com/en-us/library/bb383977.aspx"&gt;extension methods&lt;/a&gt; in C# 3.0 and way before last night when I read Debasish Ghosh's post on how to &lt;a href="http://debasishg.blogspot.com/2009/09/thrush-combinator-in-scala.html"&gt;implement the Thrush in Scala&lt;/a&gt;. After reading that my first thought was if it was possible to do the same in C#. Here's my attempt.&lt;/p&gt;
+
+&lt;p&gt;At first I struggled with the static typing and headed for an easy way out using Object in the extension method of Object:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;public &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; object Into(this Object obj, 
+                        Func&amp;lt;object, object&amp;gt; f)
+{  &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; f.Invoke(obj); }&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+My goal was to translate the Ruby example&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;(&lt;span style="color:#00D"&gt;1&lt;/span&gt;..&lt;span style="color:#00D"&gt;100&lt;/span&gt;).select(&amp;amp;&lt;span style="color:#A60"&gt;:odd?&lt;/span&gt;).inject(&amp;amp;&lt;span style="color:#A60"&gt;:+&lt;/span&gt;).into { |x| x * x }&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+in Raganwald's post to C#.&lt;/p&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;Which reads "Take the numbers from 1 to 100, keep the odd ones, take the sum of those, and then answer the square of that number."&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;But with the Object based extension method I had to do some ugly casts.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var r = Enumerable.Range(&lt;span style="color:#00D"&gt;1&lt;/span&gt;, &lt;span style="color:#00D"&gt;100&lt;/span&gt;).Where(x =&amp;gt; Odd(x)).Sum().Into(x =&amp;gt; (&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;)x * (&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;)x);&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+With som added typing I could do: &lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var result = Enumerable.Range(&lt;span style="color:#00D"&gt;1&lt;/span&gt;, &lt;span style="color:#00D"&gt;100&lt;/span&gt;).Where(x =&amp;gt; Odd(x)).Sum().Into(x =&amp;gt; x * x);&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+That merely moved the cast to the extension method and also made it work for integers only.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;public &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; &lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; Into(this Object obj, Func&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;, &lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt; f)
+{ &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; f.Invoke((&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;)obj); }&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+Then I remembered generics and method type inference which finally led to a decent Thrush combinator in C#.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;public &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; T Into&amp;lt;T&amp;gt;(this T obj, Func&amp;lt;T, T&amp;gt; f)
+{ &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; f(obj); }&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+The casts are gone and it's also, as far as I can see, as flexible as the one in Ruby.&lt;br&gt;&lt;br&gt;
+Contrived example follows:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var test = &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;ball&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;
+var ball = test.Into(s =&amp;gt; &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Are we having a &lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; + s + &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt; yet?&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+&lt;strong&gt;The odd part&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;em&gt;Odd(x)&lt;/em&gt; method call in the calculation above is a plain static method.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;private &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; &lt;span style="color:#0a5;font-weight:bold"&gt;bool&lt;/span&gt; Odd(&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; n)
+{ &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; (n % &lt;span style="color:#00D"&gt;2&lt;/span&gt; != &lt;span style="color:#00D"&gt;0&lt;/span&gt;); }&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+If you want an even more terse syntax you could try an ext. method on IEnumerable like this:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;public &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; IEnumerable&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt; Odd(this IEnumerable&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt; en)
+{ &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; en.Where(n =&amp;gt; n % &lt;span style="color:#00D"&gt;2&lt;/span&gt; != &lt;span style="color:#00D"&gt;0&lt;/span&gt;); }&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+Gives:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var result = Enumerable.Range(&lt;span style="color:#00D"&gt;1&lt;/span&gt;, &lt;span style="color:#00D"&gt;100&lt;/span&gt;).Odd().Sum().Into(x =&amp;gt; x * x);&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+&lt;!--Also as a general alternative to &lt;code&gt;.Sum()&lt;/code&gt; I could have used &lt;code&gt;.Aggregate((x, y) =&amp;gt; x + y))&lt;/code&gt; but I found it a bit verbose.--&gt;
+In C# I don't think it's possible to pull off the Symbol#to_proc stuff that Ruby does. That's the &lt;em&gt;&amp;amp;:&lt;/em&gt; in the &lt;em&gt;select(&amp;amp;:odd?)&lt;/em&gt; and the &lt;em&gt;inject(&amp;amp;:+)&lt;/em&gt; in the Ruby example. Raganwald has a great &lt;a href="http://weblog.raganwald.com/2007/11/fun-with-symboltoproc.html"&gt;post&lt;/a&gt; on that too.&lt;/p&gt;
+
+&lt;p&gt;&lt;font style="color:red;font-weight:bold"&gt;Edit&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;Check out &lt;a href="http://stackoverflow.com/questions/1528319/operators-as-method-parameters-in-c-and-the-thrush-combinator"&gt;Jon Skeet's nice answer&lt;/a&gt; on StackOverflow to my question on how to make this even more Ruby-like. I have to try out that Operator class later though.&lt;/p&gt;
+
+&lt;p&gt;&lt;font style="color:red;font-weight:bold"&gt;Edit 2009-10-07&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;One thing I found a bit surprising is that by implementing the Into ext. method in this way it not only works for all objects based on &lt;code&gt;System.Object&lt;/code&gt; but it also works  for &lt;a href="http://msdn.microsoft.com/en-us/library/s1ax56ch.aspx"&gt;value types&lt;/a&gt;.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; n=&lt;span style="color:#00D"&gt;4711&lt;/span&gt;;
+&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; oddOrZero = n.Into(x =&amp;gt; x % &lt;span style="color:#00D"&gt;2&lt;/span&gt; !=&lt;span style="color:#00D"&gt;0&lt;/span&gt; ? x : &lt;span style="color:#00D"&gt;0&lt;/span&gt;); &lt;span style="color:#777"&gt;// 4711&lt;/span&gt;
+n = &lt;span style="color:#00D"&gt;4712&lt;/span&gt;;
+oddOrZero = n.Into(x =&amp;gt; x % &lt;span style="color:#00D"&gt;2&lt;/span&gt; != &lt;span style="color:#00D"&gt;0&lt;/span&gt; ? x : &lt;span style="color:#00D"&gt;0&lt;/span&gt;); &lt;span style="color:#777"&gt;// 0&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+&lt;font style="color:red;font-weight:bold"&gt;Edit 2009-10-12&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;My confusion did stem from my lack of understanding of &lt;a href="http://msdn.microsoft.com/en-us/library/bb383977(loband).aspx"&gt;extension methods&lt;/a&gt;. Ex. methods are in fact not extending &lt;code&gt;System.Object&lt;/code&gt; or any other type, they are "&lt;a href="http://blogs.msdn.com/ericlippert/about.aspx"&gt;nothing more than a pleasant syntax for calling a static method&lt;/a&gt;" in  case no instance method with the same name can be found.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Reginald Braithwaite</name>
+    </author>
+    <id>urn:uuid:4c174538-229a-47b1-9f05-b7a856d9deb8</id>
+    <published>2009-10-07T00:52:31+02:00</published>
+    <updated>2009-10-07T08:06:59+02:00</updated>
+    <title type="html">Comment on The Thrush combinator in C# by Reginald Braithwaite</title>
+    <link href="http://alicebobandmallory.com/articles/2009/10/06/the-thrush-combinator-in-c#comment-3707" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Great post!&lt;/p&gt;</content>
+  </entry>
+</feed>

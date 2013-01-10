@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Did Little Bobby Tables migrate to Sweden?</title>
+    <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Did Little Bobby Tables migrate to Sweden?</title>
+      <description>&lt;p&gt;As you may have heard, we've had a &lt;a href="http://www.thelocal.se/29172/20100922/"&gt;very close election&lt;/a&gt; here in Sweden. Today the Swedish Election Authority published the &lt;a href="http://www.val.se/val/val2010/handskrivna/handskrivna.skv"&gt;hand written votes&lt;/a&gt;. While scanning through them I happened to notice &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;R;13;Hallands län;80;Halmstad;01;Halmstads västra valkrets;0904;Söndrum 4;&lt;/code&gt;&lt;font style="background-color:#ffffaa"&gt;pwn DROP TABLE VALJ&lt;/font&gt;&lt;code&gt;;1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The second to last field&lt;sup&gt;1&lt;/sup&gt; is the actual text on the ballot&lt;sup&gt;2&lt;/sup&gt;. Could it be that &lt;a href="http://xkcd.com/327/"&gt;Little Bobby Tables&lt;/a&gt; is all grown up and has migrated to Sweden? Well, it's probably just a joke but even so it brings questions since an &lt;a href="http://en.wikipedia.org/wiki/SQL_injection"&gt;SQL-injection&lt;/a&gt; on election data would be very serious.&lt;/p&gt;
+
+&lt;p&gt;Someone even tried to get some JavaScript in there:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;R;14;Västra Götalands län;80;Göteborg;03;Göteborg, Centrum;0722;Centrum, Övre Johanneberg;&lt;/code&gt;&lt;font style="background-color:#ffffaa"&gt;(Script src=http://hittepa.webs.com/x.txt)&lt;/font&gt;&lt;code&gt;;1&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I'm pleased to see that they published the list as text and not HTML. This hacker/joker voter &lt;a href="http://hittepa.webs.com/"&gt;seems to think&lt;/a&gt;&lt;sup&gt;3&lt;/sup&gt; they "censored" his vote/script. I'm not so sure about that, a more reasonable explanation is that they couldn't enter  &lt;a href="http://en.wikipedia.org/wiki/Bracket#Uses_of_.22.3C.22_and_.22.3E.22"&gt;brackets&lt;/a&gt;, quotation marks, and so on.&lt;/p&gt;
+
+&lt;p&gt;There are also a couple of URL:s to online retailers and three votes on a conspiracy friendly site. I chose not to link to any of those.&lt;/p&gt;
+
+&lt;p&gt;This time the &lt;a href="http://news.ycombinator.com/item?id=1722043"&gt;pen and paper scripting attack&lt;/a&gt; failed. Let's hope it stays that way.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;
+PS. Someone noticed that there are no votes from Stockholm in &lt;a href="http://www.val.se/val/val2010/handskrivna/handskrivna.skv"&gt;there&lt;/a&gt; right now (&lt;a href="http://en.wikipedia.org/wiki/ISO_8601"&gt;2010-09-24&lt;/a&gt;). I asked the Swedish Election Authority about this and it turns out that The County Administrative Board (Länsstyrelsen) gets two months to register all the handwritten votes. There's a good chance that those will bring more attempts like the ones above. DS.
+&lt;br&gt;&lt;br&gt;
+&lt;font color="red"&gt;EDIT 2010-09-24&lt;/font&gt;&lt;br&gt;
+Links:&lt;br&gt;
+&lt;a href="http://www.aftonbladet.se/nyheter/valet2010/article7844634.ab"&gt;Aftonbladet&lt;/a&gt; &lt;a href="http://www.dn.se/nyheter/valet2010/forsokte-hacka-valet-med-rostsedlar-1.1176677"&gt;DN&lt;/a&gt; &lt;a href="http://www.svd.se/nyheter/politik/valet2010/forsokte-hacka-valet-med-rostsedlar_5394833.svd"&gt;SvD&lt;/a&gt; &lt;a href="http://www.expressen.se/nyheter/val2010/1.2149620/forsokte-hacka-valet-med-rostsedlar"&gt;Expressen&lt;/a&gt;  &lt;a href="http://svt.se/2.128339/1.2162040/forsokte_hacka_valet_med_rostsedlar"&gt;SVT&lt;/a&gt; - all in Swedish.&lt;br/&gt;
+&lt;a href="http://politics.slashdot.org/story/10/09/24/0221217/Swedes-Cast-Write-In-Votes-for-SQL-Injection-Donald-Duck"&gt;Slashdot&lt;/a&gt; &lt;a href="http://www.bbc.co.uk/blogs/seealso/2010/09/tech_brief_95.html"&gt;BBC&lt;/a&gt; &lt;a href="http://www.wired.co.uk/news/archive/2010-09/24/sweden-election-hack"&gt;Wired&lt;/a&gt;
+&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;sup&gt;1&lt;/sup&gt;The name of the party, not a name of a person.&lt;br/&gt;
+&lt;sup&gt;2&lt;/sup&gt;Almost all Swedish voters use the preprinted ballots but you are allowed to write your own by hand.&lt;br/&gt;
+&lt;sup&gt;3&lt;/sup&gt;The site disappeared after this post was published.&lt;/p&gt;</description>
+      <pubDate>Thu, 23 Sep 2010 22:36:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:74c5afa7-34a0-4f5e-93ef-30af7231ee15</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden</link>
+      <category>Security</category>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Dan</title>
+      <description>&lt;p&gt;I wonder if little Bobby Tables is planning to migrate to the US as the 2012 presidential election is just a few months away. HA!&lt;/p&gt;</description>
+      <pubDate>Fri, 30 Mar 2012 04:35:07 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:e4a0413d-b69d-49ed-85ae-38c0fffd8e6d</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-7762</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Ian Best</title>
+      <description>&lt;p&gt;Haha, nice idea, will start a party and try to get on the ballot. A win with predefined margin is guaranteed :)&lt;/p&gt;</description>
+      <pubDate>Sat, 24 Mar 2012 04:08:11 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:59a4869d-2386-4f94-bf39-459f31e58916</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-7693</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Dom</title>
+      <description>&lt;p&gt;Haha wicked!&lt;/p&gt;</description>
+      <pubDate>Tue, 19 Apr 2011 14:35:12 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:079f1923-c969-4a80-b7b8-2a36db1a8626</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-5484</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Jan Tagesgeld</title>
+      <description>&lt;p&gt;Are there any legal implications with votes trying to mess up the voting system? I guess, there authorities are not too happy with these attempts but as nothing happened and the votes are anonymous, there is nothing, they can do :) And at first, I thought that &amp;#8220;hittepa&amp;#8221; was an attempt to write &amp;#8220;http&amp;#8221;, hehe.&lt;/p&gt;</description>
+      <pubDate>Fri, 26 Nov 2010 12:09:53 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:e82f2d56-d5af-4e71-a422-28dadc58ca63</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-5059</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Jonas Elfström</title>
+      <description>&lt;p&gt;Yes they did. They actually answered in a couple of hours.&lt;/p&gt;</description>
+      <pubDate>Wed, 03 Nov 2010 10:22:09 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:f6bb4c29-77a6-4a74-93e9-9d78d689fe25</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4413</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Headboards for beds</title>
+      <description>&lt;p&gt;The Swedish Election Authority actually got back to you? Kudos!&lt;/p&gt;</description>
+      <pubDate>Wed, 03 Nov 2010 04:35:29 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:dd95dadd-3aa1-48a3-aed4-f5e1b427167f</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4412</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Security Tester</title>
+      <description>&lt;p&gt;Lurker&amp;#8230;.character encoding might just work &lt;/p&gt;</description>
+      <pubDate>Fri, 15 Oct 2010 16:25:32 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:42e00b98-df98-4bda-85d5-96eb0e8e30ed</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4393</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Jonas Elfström</title>
+      <description>&lt;p&gt;@Lurker111 There are a lot of good advice on how to prevent SQL injection on &lt;a href="http://en.wikipedia.org/wiki/SQLinjection#Parameterizedstatements"&gt;Wikipedia&lt;/a&gt;.&lt;/p&gt;</description>
+      <pubDate>Fri, 15 Oct 2010 12:45:55 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:bdd97a51-990d-463b-ba35-25035deeaef0</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4390</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Lurker111</title>
+      <description>&lt;p&gt;I occasionally code SQL to interface with customer data-bases.  It had never occurred to me that the syntax of the overall SQL statement could be short-circuited in this way.  Now that I think of it, it is rather obvious.  One thing I do before accepting a character field is run it against a routine to double quote marks&amp;#8211;this may prevent the attack.  Does anyone know?&lt;/p&gt;
+
+&lt;p&gt;(Naturally, quote marks &amp;amp; special characters in a numeric field trigger an edit error right away.)&lt;/p&gt;</description>
+      <pubDate>Fri, 15 Oct 2010 02:09:42 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:f7efd5dd-cefa-493d-80c6-80dd32cc04d7</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4383</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Thomas</title>
+      <description>&lt;p&gt;If those findings show anything, than that: your swedish voting software seems to be secure in terms of Web Application Security. Be proud! &lt;/p&gt;</description>
+      <pubDate>Mon, 27 Sep 2010 12:43:21 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:06afe14e-7ad7-46b8-810d-e79d09512426</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4355</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Been there, done that</title>
+      <description>&lt;p&gt;&lt;a href="http://bit.ly/by6uDd"&gt;http://bit.ly/by6uDd&lt;/a&gt;&lt;/p&gt;</description>
+      <pubDate>Sat, 25 Sep 2010 00:43:41 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:32c25dfd-3cea-4534-b8f5-0a2f775dcc16</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4351</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by pipe</title>
+      <description>&lt;p&gt;Argh. Someone should recall their &amp;#8220;utgivningsbevis&amp;#8221;. This is so stupid.&lt;/p&gt;</description>
+      <pubDate>Fri, 24 Sep 2010 18:43:53 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:85432bbe-7e62-4c83-b073-8f0567c910ac</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4348</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Jonas Elfström</title>
+      <description>&lt;p&gt;&lt;a href="http://www.dn.se/nyheter/valet2010/forsokte-hacka-valet-med-rostsedlar-1.1176677"&gt;http://www.dn.se/nyheter/valet2010/forsokte-hacka-valet-med-rostsedlar-1.1176677&lt;/a&gt;&lt;/p&gt;</description>
+      <pubDate>Fri, 24 Sep 2010 18:36:15 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:a8f503f2-96cc-4183-b862-cc6f23411df8</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4347</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Finnjävel, not the previous one</title>
+      <description>&lt;p&gt;Same thing in the Finnish IT press:
+&lt;a href="http://www.mikropc.net/kaikki_uutiset/article506116.ece"&gt;http://www.mikropc.net/kaikki_uutiset/article506116.ece&lt;/a&gt;
+&lt;a href="http://www.tietoviikko.fi/kehittaja/article506196.ece"&gt;http://www.tietoviikko.fi/kehittaja/article506196.ece&lt;/a&gt;&lt;/p&gt;</description>
+      <pubDate>Fri, 24 Sep 2010 17:56:41 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:a20b3c65-2459-459f-b451-855701440ab4</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4346</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Jonas Elfström</title>
+      <description>&lt;p&gt;This is big news here in Sweden and totally blown out of proportion.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.aftonbladet.se/nyheter/valet2010/article7844634.ab"&gt;http://www.aftonbladet.se/nyheter/valet2010/article7844634.ab&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.svd.se/nyheter/politik/valet2010/forsokte-hacka-valet-med-rostsedlar_5394833.svd"&gt;http://www.svd.se/nyheter/politik/valet2010/forsokte-hacka-valet-med-rostsedlar_5394833.svd&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.expressen.se/nyheter/val2010/1.2149620/forsokte-hacka-valet-med-rostsedlar"&gt;http://www.expressen.se/nyheter/val2010/1.2149620/forsokte-hacka-valet-med-rostsedlar&lt;/a&gt;&lt;/p&gt;</description>
+      <pubDate>Fri, 24 Sep 2010 17:00:47 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:582d8a60-a8a1-459b-8893-b9cb234787fd</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4345</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Name</title>
+      <description>&lt;p&gt;@yaw and others: Thank you for correcting me, I did not know that. So, @Uwe, good luck with your project :)&lt;/p&gt;</description>
+      <pubDate>Fri, 24 Sep 2010 16:43:30 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:0f416f74-252d-4cdd-b763-f6c3d62a3b51</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4343</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by humus</title>
+      <description>&lt;p&gt;@finnjävel igen &amp;#8220;Kalle Anka&amp;#8221; is the name of donald duck in sweden ;D but your name sounds scandinavian..u probably know that already ^^&lt;/p&gt;</description>
+      <pubDate>Fri, 24 Sep 2010 16:04:45 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:922320c4-76c8-4223-950c-e71c00df82ea</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4342</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Finnjävel Igen</title>
+      <description>&lt;p&gt;Haha, candidate called Kalle Anka got 178 handwritten votes, which is quite a lot in a situation where 800 votes made a difference between majority and minority:-)&lt;/p&gt;</description>
+      <pubDate>Fri, 24 Sep 2010 15:19:42 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:0652e6bc-b0ac-4d84-a3b2-d3ab598c52dd</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4341</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Jonas Elfström</title>
+      <description>&lt;p&gt;@Martin Thanks! Corrected.&lt;/p&gt;</description>
+      <pubDate>Fri, 24 Sep 2010 14:18:55 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:97aebbb2-6fa2-4dff-b9a8-153dfa90dd1a</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4340</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Super</title>
+      <description>&lt;blockquote&gt;
+    &lt;p&gt;I would recommend that you place your vote on a real party instead.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Why cast 1 vote when you could cast 10 :)&lt;/p&gt;</description>
+      <pubDate>Fri, 24 Sep 2010 13:44:51 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:d7156aa2-0f0c-4b76-8fc2-5d04c3678dc7</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4339</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Ivar</title>
+      <description>&lt;p&gt;So I should have voted for &amp;#8220;Myself;1000000&amp;#8221; to get a million votes?&lt;/p&gt;</description>
+      <pubDate>Fri, 24 Sep 2010 13:44:38 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:72f6c4e5-34e6-458a-ac3c-a8908c160a54</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4338</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Martin</title>
+      <description>&lt;p&gt;Haha, that&amp;#8217;s about the only good thing this election has brought us.&lt;/p&gt;
+
+&lt;p&gt;However, unless you possess the ability to time travel (kudos if you do), I&amp;#8217;d say that now should probably be 2010-09-24 and not 2010-10-24.&lt;/p&gt;</description>
+      <pubDate>Fri, 24 Sep 2010 13:16:06 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:b1da629b-60c2-420b-9472-b760f3b035fc</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4337</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Stefan</title>
+      <description>&lt;p&gt;@Name: Elections for mayors, at least in Germany&amp;#8217;s federal state of Baden-Wuerttemberg allow voters to put a handwritten name on the ballot. So this idea is applicable in Germany as well.&lt;/p&gt;</description>
+      <pubDate>Fri, 24 Sep 2010 11:47:09 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:8c7ce67b-023b-4a13-b40b-fdd22fd71063</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4333</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by Rias</title>
+      <description>&lt;p&gt;@yaw&lt;/p&gt;
+
+&lt;p&gt;you could also start a party and try to get on the ballot. You need about 2000 signatures in one Bundesland &amp;#8230; As far as I know der no juristic restrictions on the party name ;)&lt;/p&gt;</description>
+      <pubDate>Fri, 24 Sep 2010 11:04:15 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:714be22e-60d0-4b08-8436-4001e7ac50e3</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4331</link>
+    </item>
+    <item>
+      <title>"Did Little Bobby Tables migrate to Sweden?" by killswitch</title>
+      <description>&lt;p&gt;@ name: in some of germany&amp;#8217;s federal states you can propose your own candidate if it&amp;#8217;s a mayoral election in a small commune&lt;/p&gt;
+
+&lt;p&gt;@ topic: gogo gadget javascript&lt;/p&gt;</description>
+      <pubDate>Fri, 24 Sep 2010 10:49:36 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:cfc2976d-798d-444c-ae20-758b17391be9</guid>
+      <link>http://alicebobandmallory.com/articles/2010/09/23/did-little-bobby-tables-migrate-to-sweden#comment-4330</link>
+    </item>
+  </channel>
+</rss>

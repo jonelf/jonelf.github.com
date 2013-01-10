@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>A simple loop</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../../../xml/atom/article/4171/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../../xml/rss20/article/4171/feed.xml" />
+  <script src="../../../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+       xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+       xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about=""
+    dc:title="A simple loop"
+    dc:identifier="http://alicebobandmallory.com/articles/2010/06/21/a-simple-loop"
+    dc:description="There's more than one way to skin a cat and the same is true for looping in Ruby. This is a silly post with a silly number of ways to print the integers from 1 to 10. If you're a BASIC-programmer and are"
+    dc:creator="jonelf"
+    dc:date="2010-06-21T23:07:35+02:00" />
+</rdf:RDF>
+-->
+
+<div class="post" onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_article'); }"  onmouseout="Element.hide('admin_article');" >
+  <a href="http://alicebobandmallory.com/admin/content/edit/4171" class="admintools" id="admin_article" style="display: none">edit</a>
+  <h2>A simple loop</h2>
+  <p class="auth">Posted by Jonas Elfström
+  <span class="typo_date" title="Mon, 21 Jun 2010 19:56:00 GMT">Mon, 21 Jun 2010 19:56:00 GMT</span></p>
+  <p>There's more than one way to skin a cat and the same is true for looping in Ruby. This is a silly post with a silly number of ways to  </p>
+
+<blockquote>
+    <p>print the integers from 1 to 10.</p>
+</blockquote>
+
+<p>If you're a BASIC-programmer and are getting your feet wet with Ruby,  you might end up with something like this.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="a-simple-loop#n1" name="n1">1</a>
+<a href="a-simple-loop#n2" name="n2">2</a>
+<a href="a-simple-loop#n3" name="n3">3</a>
+<a href="a-simple-loop#n4" name="n4">4</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#080;font-weight:bold">while</span> i&lt;=<span style="color:#00D">10</span> <span style="color:#080;font-weight:bold">do</span>
+   puts i
+   i+=<span style="color:#00D">1</span>
+<span style="color:#080;font-weight:bold">end</span></pre></td>
+</tr></table>
+
+<p><br/>
+That and the following <code>for</code>-loop is not the usual Ruby way of looping.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="a-simple-loop#n1" name="n1">1</a>
+<a href="a-simple-loop#n2" name="n2">2</a>
+<a href="a-simple-loop#n3" name="n3">3</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#080;font-weight:bold">for</span> i <span style="color:#080;font-weight:bold">in</span> <span style="color:#00D">1</span>..<span style="color:#00D">10</span>
+ puts i
+<span style="color:#080;font-weight:bold">end</span></pre></td>
+</tr></table>
+
+<p><br/>
+Instead rubyists often iterates over <a href="http://ruby-doc.org/core/classes/Range.html">ranges</a> or <a href="http://ruby-doc.org/core/classes/Array.html">arrays</a> with <code>each</code>.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>
+</pre></td>
+  <td class="code"><pre>(<span style="color:#00D">1</span>..<span style="color:#00D">10</span>).each {|i| puts i }</pre></td>
+</tr></table>
+
+<p><br/>
+But for simple integer loops like this, we also have <code>upto</code></p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>
+</pre></td>
+  <td class="code"><pre><span style="color:#00D">1</span>.upto(<span style="color:#00D">10</span>) {|i| puts i }</pre></td>
+</tr></table>
+
+<p><br/>
+ and <code>times</code>.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>
+</pre></td>
+  <td class="code"><pre><span style="color:#00D">10</span>.times {|i| puts i+<span style="color:#00D">1</span>}</pre></td>
+</tr></table>
+
+<p><br/>
+Here's where I should've stopped but I can't help myself, I just have to show off with some <a href="http://weblog.raganwald.com/2008/02/1100inject.html">Symbol#to_proc</a> "magic".</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>
+</pre></td>
+  <td class="code"><pre>(<span style="color:#00D">0</span>..<span style="color:#00D">10</span>).inject(&amp;<span style="color:#A60">:p</span>)</pre></td>
+</tr></table>
+
+<p><br/>
+The above works because <code>p</code> is an alias of <code>puts</code> and <code>&amp;</code> converts the symbol <code>:p</code> to a proc that is called with the numbers in the range as parameters.</p>
+
+<p>The alias <code>p</code> also gives us, what I think has to be, the shortest possible way.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>
+</pre></td>
+  <td class="code"><pre>p *<span style="color:#00D">1</span>..<span style="color:#00D">10</span></pre></td>
+</tr></table>
+
+<p><br/></p>
+
+<p>You could argue that it's a bad thing that there are so many ways to do something as simple as this. But I see no big problem here, if any at all, even though these are hardly all possible ways to loop over integers in Ruby.</p>
+</div>
+<p class="meta">
+  Posted in <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a>&nbsp;<strong>|</strong>&nbsp;<a href="a-simple-loop#comments">no comments</a>
+</p>
+
+  <a name="comments"></a><h4 class="blueblk">Comments</h4>
+    <p class="postmetadata alt">
+      <small><a href="a-simple-loop#respond">Comments closed</a></small>
+    </p>
+  <ol class="comment-list" id="commentList">
+  
+    <li id="dummy_comment" style="display: none"></li>
+  
+  </ol>
+
+
+<p class="postmetadata alt">
+  <small>
+  <a href="../../../../xml/rss20/article/4171/feed.xml" title="RSS Feed">RSS feed for this post</a>
+  </small>
+</p>
+
+
+<p>Comments are closed</p>
+<!--
+  <p>Comments are disabled</p>
+-->
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../../../pages/AboutMe">About me</a>/<a href="../../../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: The Zodiac Killer Cipher</title>
+    <link>http://alicebobandmallory.com/articles/2007/05/25/the-zodiac-killer-crypto</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>The Zodiac Killer Cipher</title>
+      <description>&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Zodiac_Killer"&gt;The Zodiac Killer&lt;/a&gt; was a serial  killer in the late sixties and maybe early seventies. He sent a number of letters to the press, including four ciphers or cryptograms and only one of them has been solved. The killer's identity remains unknown.&lt;/p&gt;
+
+&lt;p&gt;Chris McCarthy has a nice &lt;a href="http://www.dtm.ciw.edu/chris/z/"&gt;page&lt;/a&gt; about the cipher and he also has an &lt;a href="http://www.dtm.ciw.edu/chris/z/340.ascii"&gt;ASCII version&lt;/a&gt; of the cipher.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://alicebobandmallory.com/zodiac.html"&gt;Here's&lt;/a&gt; a small Ruby hack that calculates the character frequency using the &lt;a href="http://www.dtm.ciw.edu/chris/z/340.ascii"&gt;ASCII version&lt;/a&gt; of the cipher. Feel free to use it if you like to have a go at cracking it!&lt;/p&gt;
+
+&lt;p&gt;EDIT: At &lt;a href="http://oranchak.com/zodiac/webtoy/"&gt;this page&lt;/a&gt; you can have a go at cracking it real-time. I am not convinced it's really a &lt;a href="http://en.wikipedia.org/wiki/Substitution_cipher#Homophonic_substitution"&gt;homophonic substition&lt;/a&gt; cipher since the frequency analysis shows that the 340 does not have a flat frequency distribution. &lt;/p&gt;
+
+&lt;p&gt;It would be nice to know what cryptographic literature was available for the public in northern California in the late sixties.&lt;/p&gt;</description>
+      <pubDate>Fri, 25 May 2007 18:31:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:4ca66a74-73f3-4ff8-a7d4-c35c39f4db7a</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2007/05/25/the-zodiac-killer-crypto</link>
+      <category>Ruby</category>
+      <category>Cryptography</category>
+    </item>
+    <item>
+      <title>"The Zodiac Killer Cipher" by Jonas Elfström</title>
+      <description>&lt;p&gt;Corey Starliper claims to have solved the 340-character Zodiac Killer but it seems to be a hoax. &lt;a href="http://oranchak.com/zodiac/corey/hoax.html"&gt;http://oranchak.com/zodiac/corey/hoax.html&lt;/a&gt;&lt;/p&gt;</description>
+      <pubDate>Fri, 19 Aug 2011 16:07:56 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:296020f1-790b-4a62-a7a7-775565e14f25</guid>
+      <link>http://alicebobandmallory.com/articles/2007/05/25/the-zodiac-killer-crypto#comment-6327</link>
+    </item>
+    <item>
+      <title>"The Zodiac Killer Cipher" by Jonas Elfström</title>
+      <description>&lt;p&gt;Nice to see &lt;a href="http://en.wikipedia.org/wiki/John_Graham-Cumming"&gt;John Graham-Cumming&lt;/a&gt; having a go at it:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://blog.jgc.org/2011/06/how-zodiac-enciphered-zodiac-408-cipher.html"&gt;http://blog.jgc.org/2011/06/how-zodiac-enciphered-zodiac-408-cipher.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://blog.jgc.org/2011/06/identification-of-homophone-sequences.html"&gt;http://blog.jgc.org/2011/06/identification-of-homophone-sequences.html&lt;/a&gt;&lt;/p&gt;</description>
+      <pubDate>Thu, 23 Jun 2011 11:49:12 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:88664e95-6401-470e-86e5-f71668b7e129</guid>
+      <link>http://alicebobandmallory.com/articles/2007/05/25/the-zodiac-killer-crypto#comment-5818</link>
+    </item>
+    <item>
+      <title>"The Zodiac Killer Cipher" by Jonas Elfström</title>
+      <description>&lt;p&gt;&lt;a href="http://www.reddit.com/r/IAmA/comments/i6b1o/update_im_the_guy_who_took_3_days_off_of_work_in/c21azoo"&gt;I&amp;#8217;m the guy who took 3 days off of work in an attempt to crack the Zodiac serial killer&amp;#8217;s last remaining undeciphered message.&lt;/a&gt; - A quite confused and confusing try.&lt;/p&gt;</description>
+      <pubDate>Thu, 23 Jun 2011 11:46:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:e425fe01-0425-46a3-ba7d-250c21eceb0f</guid>
+      <link>http://alicebobandmallory.com/articles/2007/05/25/the-zodiac-killer-crypto#comment-5817</link>
+    </item>
+    <item>
+      <title>"The Zodiac Killer Cipher" by NewGuy</title>
+      <description>&lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;It would be nice to know what cryptographic literature was available for the public in northern California in the late sixties.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I don&amp;#8217;t want to seem like a smarta**, but it would have had to be something printed before or during the late 60s.
+The 408 was a simple substitution cipher.  The 340 is most likely a substitution+transposition cipher.  The number of permutations to test for this is enormous.
+I suggest testing in that area.&lt;/p&gt;
+
+&lt;p&gt;NewGuy&lt;/p&gt;</description>
+      <pubDate>Thu, 01 Jan 2009 01:10:59 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:7d860ad0-9b98-432a-bb13-9f2915a03e21</guid>
+      <link>http://alicebobandmallory.com/articles/2007/05/25/the-zodiac-killer-crypto#comment-3008</link>
+    </item>
+    <item>
+      <title>"The Zodiac Killer Cipher" by jonelf</title>
+      <description>&lt;p&gt;&lt;a href="http://www.cs.chalmers.se/Cs/Grundutb/Kurser/krypto/en_stat.html"&gt;Mono-, Bi and Trigram Frequency for English&lt;/a&gt;&lt;/p&gt;</description>
+      <pubDate>Wed, 30 May 2007 13:42:06 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:0520eeb9-6758-4133-9e08-2061c0b37fcc</guid>
+      <link>http://alicebobandmallory.com/articles/2007/05/25/the-zodiac-killer-crypto#comment-692</link>
+    </item>
+  </channel>
+</rss>

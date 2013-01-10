@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Sierpinski's shoes</title>
+    <link>http://alicebobandmallory.com/articles/2007/11/14/sierpinskis-shoes</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Sierpinski's shoes</title>
+      <description>&lt;p&gt;There were no cross-platform windowing toolkits for Ruby so &lt;a href="http://en.wikipedia.org/wiki/Why_the_lucky_stiff"&gt;_why&lt;/a&gt; made one and he calls it &lt;a href="http://code.whytheluckystiff.net/shoes/"&gt;Shoes&lt;/a&gt;. Not even close to 1.0, it's already yummy in a chunky kind of way and since it came from _why I simply had to try it out. Something simple.&lt;/p&gt;
+
+&lt;div class="typocode"&gt;&lt;pre&gt;&lt;code class="typocode_ruby "&gt;&lt;span class="constant"&gt;Shoes&lt;/span&gt;&lt;span class="punct"&gt;.&lt;/span&gt;&lt;span class="ident"&gt;app&lt;/span&gt; &lt;span class="symbol"&gt;:width&lt;/span&gt; &lt;span class="punct"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="number"&gt;1024&lt;/span&gt;&lt;span class="punct"&gt;,&lt;/span&gt; &lt;span class="symbol"&gt;:height&lt;/span&gt; &lt;span class="punct"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="number"&gt;768&lt;/span&gt; &lt;span class="keyword"&gt;do&lt;/span&gt;  
+  &lt;span class="ident"&gt;corners&lt;/span&gt; &lt;span class="punct"&gt;=&lt;/span&gt; &lt;span class="punct"&gt;[&lt;/span&gt; &lt;span class="punct"&gt;{&lt;/span&gt;&lt;span class="symbol"&gt;:x&lt;/span&gt; &lt;span class="punct"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="number"&gt;256&lt;/span&gt;&lt;span class="punct"&gt;,&lt;/span&gt; &lt;span class="symbol"&gt;:y&lt;/span&gt; &lt;span class="punct"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="number"&gt;10&lt;/span&gt;&lt;span class="punct"&gt;},&lt;/span&gt; &lt;span class="punct"&gt;{&lt;/span&gt;&lt;span class="symbol"&gt;:x&lt;/span&gt; &lt;span class="punct"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="number"&gt;12&lt;/span&gt;&lt;span class="punct"&gt;,&lt;/span&gt; &lt;span class="symbol"&gt;:y&lt;/span&gt; &lt;span class="punct"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="number"&gt;378&lt;/span&gt;&lt;span class="punct"&gt;},&lt;/span&gt; &lt;span class="punct"&gt;{&lt;/span&gt;&lt;span class="symbol"&gt;:x&lt;/span&gt; &lt;span class="punct"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="number"&gt;506&lt;/span&gt;&lt;span class="punct"&gt;,&lt;/span&gt; &lt;span class="symbol"&gt;:y&lt;/span&gt; &lt;span class="punct"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="number"&gt;378&lt;/span&gt;&lt;span class="punct"&gt;}&lt;/span&gt; &lt;span class="punct"&gt;]&lt;/span&gt;
+  &lt;span class="ident"&gt;xpos&lt;/span&gt;&lt;span class="punct"&gt;,&lt;/span&gt;&lt;span class="ident"&gt;ypos&lt;/span&gt;&lt;span class="punct"&gt;,&lt;/span&gt;&lt;span class="ident"&gt;c&lt;/span&gt; &lt;span class="punct"&gt;=&lt;/span&gt; &lt;span class="number"&gt;256&lt;/span&gt;&lt;span class="punct"&gt;,&lt;/span&gt;&lt;span class="number"&gt;10&lt;/span&gt;&lt;span class="punct"&gt;,&lt;/span&gt;&lt;span class="number"&gt;0&lt;/span&gt;
+  &lt;span class="ident"&gt;srand&lt;/span&gt;
+  &lt;span class="number"&gt;2111&lt;/span&gt;&lt;span class="punct"&gt;.&lt;/span&gt;&lt;span class="ident"&gt;times&lt;/span&gt; &lt;span class="keyword"&gt;do&lt;/span&gt;
+      &lt;span class="ident"&gt;c&lt;/span&gt;&lt;span class="punct"&gt;=&lt;/span&gt;&lt;span class="ident"&gt;rand&lt;/span&gt;&lt;span class="punct"&gt;(&lt;/span&gt;&lt;span class="number"&gt;3&lt;/span&gt;&lt;span class="punct"&gt;)&lt;/span&gt;
+      &lt;span class="ident"&gt;xpos&lt;/span&gt; &lt;span class="punct"&gt;+=&lt;/span&gt; &lt;span class="punct"&gt;(&lt;/span&gt;&lt;span class="ident"&gt;corners&lt;/span&gt;&lt;span class="punct"&gt;[&lt;/span&gt;&lt;span class="ident"&gt;c&lt;/span&gt;&lt;span class="punct"&gt;][&lt;/span&gt;&lt;span class="symbol"&gt;:x&lt;/span&gt;&lt;span class="punct"&gt;]-&lt;/span&gt;&lt;span class="ident"&gt;xpos&lt;/span&gt;&lt;span class="punct"&gt;)&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="number"&gt;1&lt;/span&gt;
+      &lt;span class="ident"&gt;ypos&lt;/span&gt; &lt;span class="punct"&gt;+=&lt;/span&gt; &lt;span class="punct"&gt;(&lt;/span&gt;&lt;span class="ident"&gt;corners&lt;/span&gt;&lt;span class="punct"&gt;[&lt;/span&gt;&lt;span class="ident"&gt;c&lt;/span&gt;&lt;span class="punct"&gt;][&lt;/span&gt;&lt;span class="symbol"&gt;:y&lt;/span&gt;&lt;span class="punct"&gt;]-&lt;/span&gt;&lt;span class="ident"&gt;ypos&lt;/span&gt;&lt;span class="punct"&gt;)&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="number"&gt;1&lt;/span&gt;
+      &lt;span class="ident"&gt;star&lt;/span&gt; &lt;span class="ident"&gt;xpos&lt;/span&gt;&lt;span class="punct"&gt;,&lt;/span&gt; &lt;span class="ident"&gt;ypos&lt;/span&gt;&lt;span class="punct"&gt;,&lt;/span&gt; &lt;span class="number"&gt;5&lt;/span&gt;&lt;span class="punct"&gt;,&lt;/span&gt; &lt;span class="number"&gt;10&lt;/span&gt;
+  &lt;span class="keyword"&gt;end&lt;/span&gt;
+&lt;span class="keyword"&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;a href="/sierpinskis_shoes.png"&gt;result&lt;/a&gt;.&lt;/p&gt;</description>
+      <pubDate>Wed, 14 Nov 2007 23:50:00 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:2c9a77e9-a013-4c99-8562-90d8c1a6b265</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2007/11/14/sierpinskis-shoes</link>
+      <category>Ruby</category>
+      <category>Math</category>
+    </item>
+    <item>
+      <title>"Sierpinski's shoes" by Ruben Berenguel</title>
+      <description>&lt;p&gt;Okay, the first thought I got was &amp;#8220;Oh my God, is full of stars!&amp;#8221;. I guess I am too geeky.&lt;/p&gt;
+
+&lt;p&gt;I think this is the first time I&amp;#8217;ve seen ruby code! For some reason or other, I have been avoiding the language.&lt;/p&gt;
+
+&lt;p&gt;Cheers, &lt;/p&gt;
+
+&lt;p&gt;Ruben&lt;/p&gt;</description>
+      <pubDate>Thu, 23 Sep 2010 23:28:25 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:f5dc8342-d6b4-41fb-8711-ac8a9c7d7fea</guid>
+      <link>http://alicebobandmallory.com/articles/2007/11/14/sierpinskis-shoes#comment-4323</link>
+    </item>
+  </channel>
+</rss>

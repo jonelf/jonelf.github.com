@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: A strict directed graph</title>
+    <link>http://alicebobandmallory.com/articles/2010/10/24/a-strict-directed-graph</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>A strict directed graph</title>
+      <description>&lt;p&gt;Recently N. asked a question on a list that made my geek-senses tingle. He had a test with 12 levels of questions. The testee should answer 10 questions. If a question was answered correctly the level would go up and if it was not correct it would go down. If a level 12 was answered correctly, another level 12 would be asked and vice versa. The first question would be a level 6. N. wanted to know how many questions of each level he needed.&lt;/p&gt;
+
+&lt;p&gt;Pretty soon he got a correct answer and several wrong. One of the incorrect answers was, and I don't like to admit this, provided by me. I took the recursive route (which I very seldom do) and then tried to present the result in ASCII. I failed. The result from the algorithm in itself was correct but the presentation was simplified so much it failed to deliver the correct answer. Here it is:&lt;pre&gt;
+             06
+            05 07
+          04 06 08
+         03 05 07 09
+       02 04 06 08 10
+      01 03 05 07 09 11
+    01 02 04 06 08 10 12
+   01 02 03 05 07 09 11 12
+ 01 02 03 04 06 08 10 11 12
+01 02 03 04 05 07 09 10 11 12
+&lt;/pre&gt;&lt;/p&gt;
+
+&lt;p&gt;The problem is that this result can be read as if the testee could get two level 2 questions in a row but the rules forbids that.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://kafka.mine.nu/g.png" target="_blank"&gt;&lt;img title="Click to show full size." src="http://kafka.mine.nu/me/pics/RootedBinaryDirectedAcyclicGraph.png" style="display: inline-block; float:right" border="0"/&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Then I remembered reading about &lt;a href="http://www.graphviz.org/"&gt;Graphviz&lt;/a&gt; and especially &lt;a href="http://github.com/glejeune/Ruby-Graphviz/"&gt;Ruby-Graphviz&lt;/a&gt;. That's what I used to generate the graph to the right. The graph itself is nothing but a visualization of all the possible question sequences. To find the answer that N. was looking for you can follow a level from top to bottom and count the number of times it can occur. I have to admit that it's far from the most convenient way but it works.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The result&lt;/strong&gt;&lt;br/&gt;
+5 of level 1, 5, 6 &amp;amp; 7.&lt;br/&gt;
+4 of level 3, 4, 8, 9  &amp;amp; 12.&lt;br/&gt;
+3 of level 2, 10 &amp;amp; 11.&lt;/p&gt;
+
+&lt;p&gt;I had to jump a few hurdles to get there. First my old Ubuntu-install, for unknown reasons, had some ancient version of &lt;code&gt;libfreetype&lt;/code&gt; in &lt;code&gt;/usr/local/lib/&lt;/code&gt; that I had to remove. In the end an &lt;code&gt;rm /usr/local/lib/libfreetype*&lt;/code&gt; would have been good. I also did a &lt;code&gt;sudo ldconfig&lt;/code&gt; but I'm not sure that was necessary. Let's just hope you're on a modern system where a &lt;code&gt;sudo apt-get install graphviz&lt;/code&gt; followed by &lt;code&gt;sudo gem install ruby-graphviz&lt;/code&gt; will be enough.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href="http://gist.github.com/639589"&gt;recursive code&lt;/a&gt; I wrote produces every single path the testee can take. A graph of that would be quite big since it's 1023 nodes. I then &lt;a href="http://www.graphviz.org/Documentation.php"&gt;found out&lt;/a&gt; about &lt;em&gt;strict digraph&lt;/em&gt; in the Graphviz &lt;a href="http://en.wikipedia.org/wiki/DOT_language"&gt;DOT language&lt;/a&gt;. It sounded like a perfect fit and it was! One problem though, Ruby-Graphviz didn't seem to know about it. The power of open source software let me patch &lt;code&gt;ruby-graphviz-0.9.18/lib/graphviz/constants.rb&lt;/code&gt; so that &lt;code&gt;GRAPHTYPE&lt;/code&gt; included it&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#777"&gt;## Const: graphs type&lt;/span&gt;
+ &lt;span style="color:#036;font-weight:bold"&gt;GRAPHTYPE&lt;/span&gt; = [
+   &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;digraph&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;graph&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;strict digraph&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;
+ ]&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+Another awesome power of open source is &lt;a href="http://algorithmique.net/about.html"&gt;Grégoire Lejeune&lt;/a&gt; because only hours after me contacting him he &lt;a href="http://github.com/glejeune/Ruby-Graphviz/commit/b8d10d28e0c2a58e57bab4fe9c859b114e02e8a8"&gt;added it&lt;/a&gt; to the GitHub repository.&lt;/p&gt;
+
+&lt;p&gt;Here's the code that produced the Rooted Binary &lt;a href="http://en.wikipedia.org/wiki/Directed_acyclic_graph"&gt;Directed Acyclic Graph&lt;/a&gt; (or is it Rooted Directed Binary Acyclic Graph?).&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
+&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
+&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
+&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
+&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
+&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
+&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n21" name="n21"&gt;21&lt;/a&gt;
+&lt;a href="#n22" name="n22"&gt;22&lt;/a&gt;
+&lt;a href="#n23" name="n23"&gt;23&lt;/a&gt;
+&lt;a href="#n24" name="n24"&gt;24&lt;/a&gt;
+&lt;a href="#n25" name="n25"&gt;25&lt;/a&gt;
+&lt;a href="#n26" name="n26"&gt;26&lt;/a&gt;
+&lt;a href="#n27" name="n27"&gt;27&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;require &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;rubygems&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;
+require &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;graphviz&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;
+
+&lt;span style="color:#33B"&gt;@min_level&lt;/span&gt;=&lt;span style="color:#00D"&gt;1&lt;/span&gt;
+&lt;span style="color:#33B"&gt;@max_level&lt;/span&gt;=&lt;span style="color:#00D"&gt;12&lt;/span&gt;
+&lt;span style="color:#33B"&gt;@max_depth&lt;/span&gt;=&lt;span style="color:#00D"&gt;10&lt;/span&gt;
+start_level=&lt;span style="color:#00D"&gt;6&lt;/span&gt;
+
+&lt;span style="color:#33B"&gt;@g&lt;/span&gt; = &lt;span style="color:#036;font-weight:bold"&gt;GraphViz&lt;/span&gt;.new(&lt;span style="color:#A60"&gt;:G&lt;/span&gt;, &lt;span style="color:#A60"&gt;:type&lt;/span&gt; =&amp;gt; &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;strict digraph&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; )
+
+&lt;span style="color:#080;font-weight:bold"&gt;def&lt;/span&gt; &lt;span style="color:#06B;font-weight:bold"&gt;add_node&lt;/span&gt;(level, depth, parent)
+  &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; depth&amp;lt;&lt;span style="color:#33B"&gt;@max_depth&lt;/span&gt;
+    current=[level, depth].join(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;,&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;)
+
+    sub=level&amp;lt;=&amp;gt;&lt;span style="color:#33B"&gt;@min_level&lt;/span&gt;
+    add=&lt;span style="color:#33B"&gt;@max_level&lt;/span&gt;&amp;lt;=&amp;gt;level
+    add_node(level-sub, depth+&lt;span style="color:#00D"&gt;1&lt;/span&gt;, current)
+    add_node(level+add, depth+&lt;span style="color:#00D"&gt;1&lt;/span&gt;, current)
+
+    &lt;span style="color:#33B"&gt;@g&lt;/span&gt;.add_node(current).label=level.to_s
+    &lt;span style="color:#33B"&gt;@g&lt;/span&gt;.add_edge(parent, current) &lt;span style="color:#080;font-weight:bold"&gt;unless&lt;/span&gt; parent==&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;00&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;
+  &lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;
+&lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;
+
+add_node(start_level, &lt;span style="color:#00D"&gt;0&lt;/span&gt;, &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;00&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;)
+
+&lt;span style="color:#33B"&gt;@g&lt;/span&gt;.output( &lt;span style="color:#A60"&gt;:png&lt;/span&gt; =&amp;gt; &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;graph.png&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; )&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+With the current parameters this problem might not be the most exciting but I believe that by just modifying them slightly we would, again, reach a wall of complexity.&lt;/p&gt;</description>
+      <pubDate>Sun, 24 Oct 2010 00:39:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:c534b2b5-4895-4979-af10-6673ee6810b9</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2010/10/24/a-strict-directed-graph</link>
+      <category>Ruby</category>
+      <category>Math</category>
+    </item>
+  </channel>
+</rss>

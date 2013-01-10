@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: To hack a Superpower</title>
+    <link>http://alicebobandmallory.com/articles/2010/10/14/to-hack-a-superpower</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>To hack a Superpower</title>
+      <description>&lt;p&gt;I was interviewed in a swedish documentary called &lt;a href="http://svt.se/2.122744/1.2172403/att-hacka-en-stormakt?lid=20101014&amp;amp;lpos=SVT2_0000_sitelink&amp;amp;from=tabla"&gt;Att hacka en stormakt&lt;/a&gt; (To hack a Superpower). It's mostly in swedish but &lt;a href="http://alicebobandmallory.com/articles/2007/02/04/hello-this-is-special-agent-brian"&gt;Brian Koref&lt;/a&gt; (US AF) and Tom Talleur (NASA) are interviewed in english. It can be &lt;a href="http://svtplay.se/v/2175727/dokumentarfilm/att_hacka_en_stormakt"&gt;streamed from SVTPlay&lt;/a&gt; (at least if you live in Sweden) until 2010-11-09.&lt;/p&gt;
+
+&lt;p&gt;It covers the cracking frenzy of a couple Swedish youths back in 1996. They happened to break into a server I was responsible for and from that server they logged in to a machine with a .mil-address. That's how we got involved.&lt;/p&gt;
+
+&lt;p&gt;The event has been covered before in a &lt;a href="http://sverigesradio.se/sida/artikel.aspx?ProgramID=2519&amp;amp;Artikel=2447808"&gt;radio documentary&lt;/a&gt; called &lt;i&gt;Svenska hackers&lt;/i&gt; (Swedish hackers).&lt;/p&gt;</description>
+      <pubDate>Thu, 14 Oct 2010 21:57:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:3638307e-12fd-4e27-899f-8c612277b1f1</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2010/10/14/to-hack-a-superpower</link>
+      <category>Security</category>
+    </item>
+    <item>
+      <title>"To hack a Superpower" by Multivariate Testing</title>
+      <description>&lt;p&gt;That&amp;#8217;s really cool that you were interviewed in the documentary. You must have been devastated when your server was hacked. I&amp;#8217;m always trying to protect my server against hackers, but unfortunately, even the toughest barriers can be cracked sometimes.&lt;/p&gt;</description>
+      <pubDate>Fri, 14 Jan 2011 23:58:09 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:3e56c7c1-78e8-4748-bc00-8f7b064a22c4</guid>
+      <link>http://alicebobandmallory.com/articles/2010/10/14/to-hack-a-superpower#comment-5210</link>
+    </item>
+  </channel>
+</rss>

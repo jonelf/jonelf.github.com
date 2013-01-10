@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Comparing instance variables in Ruby</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../../../xml/atom/article/3815/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../../xml/rss20/article/3815/feed.xml" />
+  <script src="../../../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+       xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+       xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about=""
+    dc:title="Comparing instance variables in Ruby"
+    dc:identifier="http://alicebobandmallory.com/articles/2009/11/02/comparing-instance-variables-in-ruby"
+    dc:description="Say you have two objects of the same class and you want to know what differs between them. Well actually you just want to know the instance variables in object b that differs from the ones in object a."
+    dc:creator="jonelf"
+    dc:date="2009-11-03T00:07:50+01:00" />
+</rdf:RDF>
+-->
+
+<div class="post" onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_article'); }"  onmouseout="Element.hide('admin_article');" >
+  <a href="http://alicebobandmallory.com/admin/content/edit/3815" class="admintools" id="admin_article" style="display: none">edit</a>
+  <h2>Comparing instance variables in Ruby</h2>
+  <p class="auth">Posted by Jonas Elfström
+  <span class="typo_date" title="Mon, 02 Nov 2009 21:50:00 GMT">Mon, 02 Nov 2009 21:50:00 GMT</span></p>
+  <p>Say you have two objects of the same class and you want to know what differs between them. Well actually you just want to know the instance variables in object <em><strong>b</strong></em> that differs from the ones in object <em><strong>a</strong></em>.</p>
+
+<p>To begin with, we need a class. I like cheese.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="comparing-instance-variables-in-ruby#n1" name="n1">1</a>
+<a href="comparing-instance-variables-in-ruby#n2" name="n2">2</a>
+<a href="comparing-instance-variables-in-ruby#n3" name="n3">3</a>
+<a href="comparing-instance-variables-in-ruby#n4" name="n4">4</a>
+<a href="comparing-instance-variables-in-ruby#n5" name="n5">5</a>
+<a href="comparing-instance-variables-in-ruby#n6" name="n6">6</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">Cheese</span>
+  attr_accessor <span style="color:#A60">:name</span>, <span style="color:#A60">:weight</span>, <span style="color:#A60">:expire_date</span>
+  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">initialize</span>(name, weight, expire_date)
+    <span style="color:#33B">@name</span>, <span style="color:#33B">@weight</span>, <span style="color:#33B">@expire_date</span> = name, weight, expire_date
+  <span style="color:#080;font-weight:bold">end</span>
+<span style="color:#080;font-weight:bold">end</span></pre></td>
+</tr></table>
+
+<pre></pre>
+
+<p>Then we need some <strike>cheese</strike> objects.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="comparing-instance-variables-in-ruby#n1" name="n1">1</a>
+<a href="comparing-instance-variables-in-ruby#n2" name="n2">2</a>
+</pre></td>
+  <td class="code"><pre>stilton=<span style="color:#036;font-weight:bold">Cheese</span>.new(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Stilton</span><span style="color:#710">'</span></span>, <span style="color:#00D">250</span>, <span style="color:#036;font-weight:bold">Date</span>.parse(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">2009-11-02</span><span style="color:#710">&quot;</span></span>))
+gorgonzola=<span style="color:#036;font-weight:bold">Cheese</span>.new(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Gorgonzola</span><span style="color:#710">'</span></span>, <span style="color:#00D">250</span>, <span style="color:#036;font-weight:bold">Date</span>.parse(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">2009-11-17</span><span style="color:#710">&quot;</span></span>))</pre></td>
+</tr></table>
+
+<pre></pre>
+
+<p>With only <em>name</em>, <em>weight</em> and an <em>expiration date</em> it would be easy to compare those but imagine that these two objects has 42 properties. It does not stop there, you are being asked to compare 24 different classes in this way. Are you cringing yet?</p>
+
+<p><code>Object#instance_variables</code> to the rescue! Well, that and a small hack by me. Below I add a new method called <code>instance_variables_compare</code> to <code>Object</code>. The long method name is because I wanted to follow the naming already in place. Usually I prefer to do these kind of things as a <code>module</code> and then <code>include</code> them where appropriate but in this case I find that a <a href="http://en.wikipedia.org/wiki/Monkey_patch">monkey patch</a> will do.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="comparing-instance-variables-in-ruby#n1" name="n1">1</a>
+<a href="comparing-instance-variables-in-ruby#n2" name="n2">2</a>
+<a href="comparing-instance-variables-in-ruby#n3" name="n3">3</a>
+<a href="comparing-instance-variables-in-ruby#n4" name="n4">4</a>
+<a href="comparing-instance-variables-in-ruby#n5" name="n5">5</a>
+<a href="comparing-instance-variables-in-ruby#n6" name="n6">6</a>
+<a href="comparing-instance-variables-in-ruby#n7" name="n7">7</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">Object</span>
+  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">instance_variables_compare</span>(o)
+    <span style="color:#036;font-weight:bold">Hash</span>[*<span style="color:#069">self</span>.instance_variables.map {|v|
+      <span style="color:#069">self</span>.instance_variable_get(v)!=o.instance_variable_get(v) ? 
+      [v,o.instance_variable_get(v)] : []}.flatten]
+  <span style="color:#080;font-weight:bold">end</span>
+<span style="color:#080;font-weight:bold">end</span></pre></td>
+</tr></table>
+
+<pre></pre>
+
+<p>It returns the instance variables that differs as a <a href="http://ruby-doc.org/core/classes/Hash.html">hash</a> because it's handy and because I like it that way.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="comparing-instance-variables-in-ruby#n1" name="n1">1</a>
+<a href="comparing-instance-variables-in-ruby#n2" name="n2">2</a>
+<a href="comparing-instance-variables-in-ruby#n3" name="n3">3</a>
+<a href="comparing-instance-variables-in-ruby#n4" name="n4">4</a>
+<a href="comparing-instance-variables-in-ruby#n5" name="n5">5</a>
+<a href="comparing-instance-variables-in-ruby#n6" name="n6">6</a>
+<a href="comparing-instance-variables-in-ruby#n7" name="n7">7</a>
+<a href="comparing-instance-variables-in-ruby#n8" name="n8">8</a>
+<a href="comparing-instance-variables-in-ruby#n9" name="n9">9</a>
+<strong><a href="comparing-instance-variables-in-ruby#n10" name="n10">10</a></strong>
+</pre></td>
+  <td class="code"><pre>&gt;&gt; stilton.instance_variables_compare(gorgonzola)
+=&gt; {<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">@name</span><span style="color:#710">&quot;</span></span>=&gt;<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Gorgonzola</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">@expire_date</span><span style="color:#710">&quot;</span></span>=&gt;<span style="color:#777">#&lt;Date: 4910305/2,0,2299161&gt;}</span>
+&gt;&gt; gorgonzola.instance_variables_compare(stilton)
+=&gt; {<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">@name</span><span style="color:#710">&quot;</span></span>=&gt;<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Stilton</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">@expire_date</span><span style="color:#710">&quot;</span></span>=&gt;<span style="color:#777">#&lt;Date: 4910275/2,0,2299161&gt;}</span>
+&gt;&gt; stilton.expire_date=gorgonzola.expire_date
+=&gt; <span style="color:#777">#&lt;Date: 4910305/2,0,2299161&gt;</span>
+&gt;&gt; stilton.instance_variables_compare(gorgonzola)
+=&gt; {<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">@name</span><span style="color:#710">&quot;</span></span>=&gt;<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Gorgonzola</span><span style="color:#710">&quot;</span></span>}
+&gt;&gt; stilton.instance_variables_compare(stilton)
+=&gt; {}</pre></td>
+</tr></table>
+
+<pre></pre>
+
+<p>If you ever think of using this code you should be aware of two things.</p>
+
+<ol>
+<li>This code is very untested and comes with no guarantees.</li>
+<li>Since instance variables <strong>spring into life the first time they are assigned to</strong> you either have to work with objects that always initialize everything or you have to change <code>instance_variables_compare</code> to handle this.</li>
+</ol>
+</div>
+<p class="meta">
+  Posted in <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a>&nbsp;<strong>|</strong>&nbsp;<a href="comparing-instance-variables-in-ruby#comments">no comments</a>
+</p>
+
+  <a name="comments"></a><h4 class="blueblk">Comments</h4>
+    <p class="postmetadata alt">
+      <small><a href="comparing-instance-variables-in-ruby#respond">Comments closed</a></small>
+    </p>
+  <ol class="comment-list" id="commentList">
+  
+    <li id="dummy_comment" style="display: none"></li>
+  
+  </ol>
+
+
+<p class="postmetadata alt">
+  <small>
+  <a href="../../../../xml/rss20/article/3815/feed.xml" title="RSS Feed">RSS feed for this post</a>
+  </small>
+</p>
+
+
+<p>Comments are closed</p>
+<!--
+  <p>Comments are disabled</p>
+-->
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../../../pages/AboutMe">About me</a>/<a href="../../../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

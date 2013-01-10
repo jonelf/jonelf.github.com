@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: To hack a Superpower</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/4389/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2010/10/14/to-hack-a-superpower" rel="alternate" type="text/html"/>
+  <updated>2010-10-15T15:27:11+02:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:3638307e-12fd-4e27-899f-8c612277b1f1</id>
+    <published>2010-10-14T21:57:00+02:00</published>
+    <updated>2010-10-15T15:27:11+02:00</updated>
+    <title type="html">To hack a Superpower</title>
+    <link href="http://alicebobandmallory.com/articles/2010/10/14/to-hack-a-superpower" rel="alternate" type="text/html"/>
+    <category label="Security" term="security" scheme="http://alicebobandmallory.com/articles/category/security"/>
+    <summary type="html">&lt;p&gt;I was interviewed in a swedish documentary called &lt;a href="http://svt.se/2.122744/1.2172403/att-hacka-en-stormakt?lid=20101014&amp;amp;lpos=SVT2_0000_sitelink&amp;amp;from=tabla"&gt;Att hacka en stormakt&lt;/a&gt; (To hack a Superpower). It's mostly in swedish but &lt;a href="http://alicebobandmallory.com/articles/2007/02/04/hello-this-is-special-agent-brian"&gt;Brian Koref&lt;/a&gt; (US AF) and Tom Talleur (NASA) are interviewed in english. It can be &lt;a href="http://svtplay.se/v/2175727/dokumentarfilm/att_hacka_en_stormakt"&gt;streamed from SVTPlay&lt;/a&gt; (at least if you live in Sweden) until 2010-11-09.&lt;/p&gt;
+
+&lt;p&gt;It covers the cracking frenzy of a couple Swedish youths back in 1996. They happened to break into a server I was responsible for and from that server they logged in to a machine with a .mil-address. That's how we got involved.&lt;/p&gt;
+
+&lt;p&gt;The event has been covered before in a &lt;a href="http://sverigesradio.se/sida/artikel.aspx?ProgramID=2519&amp;amp;Artikel=2447808"&gt;radio documentary&lt;/a&gt; called &lt;i&gt;Svenska hackers&lt;/i&gt; (Swedish hackers).&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;I was interviewed in a swedish documentary called &lt;a href="http://svt.se/2.122744/1.2172403/att-hacka-en-stormakt?lid=20101014&amp;amp;lpos=SVT2_0000_sitelink&amp;amp;from=tabla"&gt;Att hacka en stormakt&lt;/a&gt; (To hack a Superpower). It's mostly in swedish but &lt;a href="http://alicebobandmallory.com/articles/2007/02/04/hello-this-is-special-agent-brian"&gt;Brian Koref&lt;/a&gt; (US AF) and Tom Talleur (NASA) are interviewed in english. It can be &lt;a href="http://svtplay.se/v/2175727/dokumentarfilm/att_hacka_en_stormakt"&gt;streamed from SVTPlay&lt;/a&gt; (at least if you live in Sweden) until 2010-11-09.&lt;/p&gt;
+
+&lt;p&gt;It covers the cracking frenzy of a couple Swedish youths back in 1996. They happened to break into a server I was responsible for and from that server they logged in to a machine with a .mil-address. That's how we got involved.&lt;/p&gt;
+
+&lt;p&gt;The event has been covered before in a &lt;a href="http://sverigesradio.se/sida/artikel.aspx?ProgramID=2519&amp;amp;Artikel=2447808"&gt;radio documentary&lt;/a&gt; called &lt;i&gt;Svenska hackers&lt;/i&gt; (Swedish hackers).&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Multivariate Testing</name>
+    </author>
+    <id>urn:uuid:3e56c7c1-78e8-4748-bc00-8f7b064a22c4</id>
+    <published>2011-01-14T23:58:09+01:00</published>
+    <updated>2011-10-27T20:51:58+02:00</updated>
+    <title type="html">Comment on To hack a Superpower by Multivariate Testing</title>
+    <link href="http://alicebobandmallory.com/articles/2010/10/14/to-hack-a-superpower#comment-5210" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;That&amp;#8217;s really cool that you were interviewed in the documentary. You must have been devastated when your server was hacked. I&amp;#8217;m always trying to protect my server against hackers, but unfortunately, even the toughest barriers can be cracked sometimes.&lt;/p&gt;</content>
+  </entry>
+</feed>

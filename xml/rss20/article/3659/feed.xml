@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: A case for using only three different digits in keypad codes</title>
+    <link>http://alicebobandmallory.com/articles/2009/09/27/a-case-for-using-only-three-different-digits-in-keypad-codes</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>A case for using only three different digits in keypad codes</title>
+      <description>&lt;p&gt;Keypads have obvious security problems and keypads accepting a stream of digits with no # or enter in between, while checking for the four digit long code, are even worse.&lt;/p&gt;
+
+&lt;p&gt;The important part is to not leak the digits in the code &lt;a href="http://www.schneier.com/blog/archives/2009/07/information_lea_1.html"&gt;by wear&lt;/a&gt; or intentional markings because if they leak it's suddenly very far from 10000 combinations.&lt;/p&gt;
+
+&lt;p&gt;If the "lock picker" only knows that the code contains four digits there are 10000 combinations. Keypads accepting a stream of digits can then be opened in a maximum of 10003 keystrokes using the &lt;a href="http://en.wikipedia.org/wiki/De_Bruijn_sequence#Uses"&gt;De
+Bruijn sequence&lt;/a&gt;. That is still quite a lot.&lt;/p&gt;
+
+&lt;p&gt;Below is a Ruby implementation of the &lt;a href="http://www.hakank.org/comb/debruijn.cgi"&gt;De
+Bruijn sequence&lt;/a&gt;.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
+&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
+&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
+&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
+&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
+&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
+&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n21" name="n21"&gt;21&lt;/a&gt;
+&lt;a href="#n22" name="n22"&gt;22&lt;/a&gt;
+&lt;a href="#n23" name="n23"&gt;23&lt;/a&gt;
+&lt;a href="#n24" name="n24"&gt;24&lt;/a&gt;
+&lt;a href="#n25" name="n25"&gt;25&lt;/a&gt;
+&lt;a href="#n26" name="n26"&gt;26&lt;/a&gt;
+&lt;a href="#n27" name="n27"&gt;27&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#777"&gt;# De Bruijn sequence&lt;/span&gt;
+&lt;span style="color:#777"&gt;# Original implementation by Frank Ruskey (1994)&lt;/span&gt;
+&lt;span style="color:#777"&gt;# translated to C by Joe Sawada&lt;/span&gt;
+&lt;span style="color:#777"&gt;# translated to Ruby by Jonas Elfström (2009)&lt;/span&gt;
+
+&lt;span style="color:#33B"&gt;@n&lt;/span&gt;=&lt;span style="color:#00D"&gt;4&lt;/span&gt;
+&lt;span style="color:#33B"&gt;@k&lt;/span&gt;=&lt;span style="color:#00D"&gt;10&lt;/span&gt;
+&lt;span style="color:#33B"&gt;@a&lt;/span&gt;=[&lt;span style="color:#00D"&gt;0&lt;/span&gt;]
+&lt;span style="color:#33B"&gt;@sequence&lt;/span&gt;=[]
+
+&lt;span style="color:#080;font-weight:bold"&gt;def&lt;/span&gt; &lt;span style="color:#06B;font-weight:bold"&gt;debruijn&lt;/span&gt;(t, p)
+  &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; t&amp;gt;&lt;span style="color:#33B"&gt;@n&lt;/span&gt;
+    &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; &lt;span style="color:#33B"&gt;@n&lt;/span&gt;%p==&lt;span style="color:#00D"&gt;0&lt;/span&gt;
+      &lt;span style="color:#00D"&gt;1&lt;/span&gt;.upto(p) {|j| &lt;span style="color:#33B"&gt;@sequence&lt;/span&gt;&amp;lt;&amp;lt;&lt;span style="color:#33B"&gt;@a&lt;/span&gt;[j]}
+    &lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;
+  &lt;span style="color:#080;font-weight:bold"&gt;else&lt;/span&gt;
+    &lt;span style="color:#33B"&gt;@a&lt;/span&gt;[t]=&lt;span style="color:#33B"&gt;@a&lt;/span&gt;[t-p]
+    debruijn(t+&lt;span style="color:#00D"&gt;1&lt;/span&gt;,p)
+    (&lt;span style="color:#33B"&gt;@a&lt;/span&gt;[t-p]+&lt;span style="color:#00D"&gt;1&lt;/span&gt;).upto(&lt;span style="color:#33B"&gt;@k&lt;/span&gt;-&lt;span style="color:#00D"&gt;1&lt;/span&gt;) {|j|
+      &lt;span style="color:#33B"&gt;@a&lt;/span&gt;[t]=j
+      debruijn(t+&lt;span style="color:#00D"&gt;1&lt;/span&gt;,t)
+    }
+  &lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;
+&lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;
+
+debruijn(&lt;span style="color:#00D"&gt;1&lt;/span&gt;,&lt;span style="color:#00D"&gt;1&lt;/span&gt;)
+print &lt;span style="color:#33B"&gt;@sequence&lt;/span&gt;.join&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+It's not uncommon to find keypads with 4 of the 10 keys worn down and if you do you can be pretty sure that the code contains those four different digits. The number of possible combinations are 4! = 4x3x2x1 = 24. I got curious to see if there's a kind of &lt;a href="http://mathworld.wolfram.com/deBruijnSequence.html"&gt;De Bruijn sequence&lt;/a&gt; for this that brings down the 4*24=96 keystrokes. By scribbling in a &lt;a href="http://www.scintilla.org/SciTE.html"&gt;text editor&lt;/a&gt; I quickly realized there's not a clean sequence. Not clean in the way that a sequence following the rules can be created. Also it's probably even quite daunting to present it as mathematically dense and beautiful as the &lt;a href="http://www.stefangeens.com/2004/10/the-de-bruijn-c.html"&gt;De Bruijn&lt;/a&gt; but that could be my less than great &lt;a href="http://en.wikipedia.org/wiki/Combinatorics"&gt;combinatorics&lt;/a&gt; speaking.&lt;/p&gt;
+
+&lt;p&gt;I made a quick and dirty brute force hack to try to find a shorter sequence.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
+&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
+&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
+&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
+&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
+&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
+&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n21" name="n21"&gt;21&lt;/a&gt;
+&lt;a href="#n22" name="n22"&gt;22&lt;/a&gt;
+&lt;a href="#n23" name="n23"&gt;23&lt;/a&gt;
+&lt;a href="#n24" name="n24"&gt;24&lt;/a&gt;
+&lt;a href="#n25" name="n25"&gt;25&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;seq=[]
+&lt;span style="color:#00D"&gt;1&lt;/span&gt;.upto(&lt;span style="color:#00D"&gt;4&lt;/span&gt;) {|a| &lt;span style="color:#00D"&gt;1&lt;/span&gt;.upto(&lt;span style="color:#00D"&gt;4&lt;/span&gt;) {|b| &lt;span style="color:#00D"&gt;1&lt;/span&gt;.upto(&lt;span style="color:#00D"&gt;4&lt;/span&gt;) {|c| &lt;span style="color:#00D"&gt;1&lt;/span&gt;.upto(&lt;span style="color:#00D"&gt;4&lt;/span&gt;) {|d|
+  seq &amp;lt;&amp;lt; &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;%d%d%d%d&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; % [a,b,c,d] &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; !(a==b || a==c || a==d || b==c || b==d || c==d)
+}}}}
+
+s=seq[&lt;span style="color:#00D"&gt;0&lt;/span&gt;]
+seq.delete_at(&lt;span style="color:#00D"&gt;0&lt;/span&gt;)
+&lt;span style="color:#080;font-weight:bold"&gt;while&lt;/span&gt; (seq.length&amp;gt;&lt;span style="color:#00D"&gt;0&lt;/span&gt;)
+  next_code=(seq.select {|c| c[&lt;span style="color:#00D"&gt;0&lt;/span&gt;..&lt;span style="color:#00D"&gt;2&lt;/span&gt;]==s[&lt;span style="color:#00D"&gt;-3&lt;/span&gt;..&lt;span style="color:#00D"&gt;-1&lt;/span&gt;]})
+  &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; next_code.empty?
+    next_code=(seq.select {|c| c[&lt;span style="color:#00D"&gt;0&lt;/span&gt;..&lt;span style="color:#00D"&gt;1&lt;/span&gt;]==s[&lt;span style="color:#00D"&gt;-2&lt;/span&gt;..&lt;span style="color:#00D"&gt;-1&lt;/span&gt;]})
+    &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; next_code.empty? 
+      next_code=(seq.select {|c| c[&lt;span style="color:#00D"&gt;0&lt;/span&gt;]==s[&lt;span style="color:#00D"&gt;-1&lt;/span&gt;]})
+      s+=next_code[&lt;span style="color:#00D"&gt;0&lt;/span&gt;][&lt;span style="color:#00D"&gt;1&lt;/span&gt;..&lt;span style="color:#00D"&gt;3&lt;/span&gt;]
+      seq.delete_at(seq.index(next_code[&lt;span style="color:#00D"&gt;0&lt;/span&gt;]))
+    &lt;span style="color:#080;font-weight:bold"&gt;else&lt;/span&gt;
+      s+=next_code[&lt;span style="color:#00D"&gt;0&lt;/span&gt;][&lt;span style="color:#00D"&gt;2&lt;/span&gt;..&lt;span style="color:#00D"&gt;3&lt;/span&gt;]
+      seq.delete_at(seq.index(next_code[&lt;span style="color:#00D"&gt;0&lt;/span&gt;]))
+    &lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;
+  &lt;span style="color:#080;font-weight:bold"&gt;else&lt;/span&gt;
+    next_code=(seq.select {|c| c[&lt;span style="color:#00D"&gt;0&lt;/span&gt;..&lt;span style="color:#00D"&gt;2&lt;/span&gt;]==s[&lt;span style="color:#00D"&gt;-3&lt;/span&gt;..&lt;span style="color:#00D"&gt;-1&lt;/span&gt;]})
+    s+=next_code[&lt;span style="color:#00D"&gt;0&lt;/span&gt;][&lt;span style="color:#00D"&gt;3&lt;/span&gt;].chr
+    seq.delete_at(seq.index(next_code[&lt;span style="color:#00D"&gt;0&lt;/span&gt;]))
+  &lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;
+&lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+The above code takes the first code "1234" of the 24 and then searches the rest of the array for a code beginning with "234". It finds "2341" and adds "1" to the end of &lt;em&gt;s&lt;/em&gt; and continues to look for "341" and so on. Relatively soon there is no three digit match and then it tries two digits and eventually even that fails and then it gets the first one digit match. The resulting sequence is: &lt;/p&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;123412314231243121342132413214321&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;From 96 to 33 keystrokes. Not as effective as De Bruijn but still significant. Unlike De Bruijn I have absolutely no proof that this is the shortest one possible but it seems likely. Also notice that in the middle of the sequence we find "3121" and "1213". Those break the criteria of four different digits but they seem to be necessary to be able to enter the reversed mode. Try reading the sequence forward and backwards to see what I mean.&lt;/p&gt;
+
+&lt;p&gt;If the code only contains two digits it's gets even more trivial to try them all. There are 14 possible codes and by &lt;em&gt;compressing&lt;/em&gt; those to one sequence you get down to 20 keystrokes. &lt;/p&gt;
+
+&lt;p&gt;Things get a little more interesting if only three buttons are worn. It turns out that the repeated digits can be placed in the code in six different ways.&lt;/p&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;0012,1002,1200,0102,0120,1020&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;That's 6x2x3=36 combinations and, maybe a little unintuitive, 12 more than if you are using four different digits. I compressed it down to 49 key strokes (16 more than with four different digits). Unlike the sequence for four different digits I can't find it with google and I know it's kind of security by obscurity but I still chose not to publish it here.&lt;/p&gt;
+
+&lt;p&gt;Be aware that if an attacker knows you are using a 0012-like code he gets a smaller space to search. 6x8x9x10=4320 instead of 10000. You have to weight the risk of button leaks against a code protocol leak.
+&lt;br&gt;&lt;br&gt;
+&lt;font color="red"&gt;Edit 2010-10-25&lt;/font&gt;&lt;br&gt;
+&lt;a href="http://stackoverflow.com/questions/4008603/how-to-compute-de-bruijn-sequences-for-non-power-of-two-sized-alphabets/4009417#4009417"&gt;Uckelman noticed&lt;/a&gt; that the &lt;code&gt;alike&lt;/code&gt; variable in the former version of the debruijn-script wasn't used so I removed it.&lt;/p&gt;</description>
+      <pubDate>Sun, 27 Sep 2009 21:02:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:9e10d05b-1a1d-46a1-82da-0ba366d32035</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2009/09/27/a-case-for-using-only-three-different-digits-in-keypad-codes</link>
+      <category>Security</category>
+      <category>Ruby</category>
+    </item>
+    <item>
+      <title>"A case for using only three different digits in keypad codes" by Jonas Elfström</title>
+      <description>&lt;p&gt;Presh Talwalkar got the same idea: 
+&lt;a href="http://mindyourdecisions.com/blog/2011/01/27/game-theory-and-probability-of-iphone-passwords/"&gt;http://mindyourdecisions.com/blog/2011/01/27/game-theory-and-probability-of-iphone-passwords/&lt;/a&gt;&lt;/p&gt;</description>
+      <pubDate>Mon, 20 Jun 2011 14:07:58 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:9c0ca3c1-39cf-408f-b9c4-ba83de3c7d69</guid>
+      <link>http://alicebobandmallory.com/articles/2009/09/27/a-case-for-using-only-three-different-digits-in-keypad-codes#comment-5801</link>
+    </item>
+    <item>
+      <title>"A case for using only three different digits in keypad codes" by Jonas Elfström</title>
+      <description>&lt;p&gt;It&amp;#8217;s 12 ways if you know the repeated digit. Otherwise you have 0012, 1102, 2210 and so on.&lt;/p&gt;</description>
+      <pubDate>Thu, 01 Oct 2009 21:50:11 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:6cf0996d-079b-45d3-a4ba-37b8e2158723</guid>
+      <link>http://alicebobandmallory.com/articles/2009/09/27/a-case-for-using-only-three-different-digits-in-keypad-codes#comment-3678</link>
+    </item>
+    <item>
+      <title>"A case for using only three different digits in keypad codes" by BruceA</title>
+      <description>&lt;p&gt;Shouldn&amp;#8217;t that be just 6x2 = 12 ways? After you have placed the repeated digits in each of the six possible positions, you have two possible ways (for each) of arranging the remaining two digits.&lt;/p&gt;
+
+&lt;p&gt;In any case, you&amp;#8217;ve proven that these keypads are not very secure, regardless of which combination is chosen.&lt;/p&gt;</description>
+      <pubDate>Thu, 01 Oct 2009 21:20:51 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:0dd20f7f-e18c-4b69-9c10-b701f45abea1</guid>
+      <link>http://alicebobandmallory.com/articles/2009/09/27/a-case-for-using-only-three-different-digits-in-keypad-codes#comment-3676</link>
+    </item>
+    <item>
+      <title>"A case for using only three different digits in keypad codes" by Uffe</title>
+      <description>&lt;p&gt;Jag tror att du glömde en etta ;)&lt;/p&gt;</description>
+      <pubDate>Mon, 28 Sep 2009 13:37:45 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:21768e43-bf08-4404-9c37-6dd6b4df13a6</guid>
+      <link>http://alicebobandmallory.com/articles/2009/09/27/a-case-for-using-only-three-different-digits-in-keypad-codes#comment-3665</link>
+    </item>
+  </channel>
+</rss>

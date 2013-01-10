@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Drive encryption matters</title>
+    <link>http://alicebobandmallory.com/articles/2008/02/12/drive-encryption-matters</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Drive encryption matters</title>
+      <description>&lt;p&gt;In a recent release &lt;a href="http://www.truecrypt.org/"&gt;TrueCrypt&lt;/a&gt; now supports &lt;a href="http://www.truecrypt.org/docs/?s=system-encryption"&gt;drive/partition&lt;/a&gt; encryption.&lt;/p&gt;
+
+&lt;p&gt;One reason to encrypt on disk instead of file level is that operating systems and applications sometimes accidently stores passwords on your hard drive. This can happen in a number of ways and one common mistake applications make is to not prevent to be put on disk by the OS. Modern systems have a &lt;a href="http://en.wikipedia.org/wiki/Paging"&gt;page/swap file&lt;/a&gt;. If a program gets paged out while holding your clear text password in pageable memory your password will be written to disk. The problem is that there are &lt;a href="http://www.schneier.com/essay-148.html"&gt;password recovery tools&lt;/a&gt; that can scan your page file for passwords.&lt;/p&gt;
+
+&lt;p&gt;You can configure Windows (and surely most other operating systems) to &lt;a href="http://support.microsoft.com/kb/314834"&gt;clear the page file&lt;/a&gt; on shutdown which will give you better protection (and slower shutdowns). Be aware that if you simply turn off the power the page file will be intact.&lt;/p&gt;</description>
+      <pubDate>Tue, 12 Feb 2008 00:26:00 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:fc149744-6fac-475d-8a37-f548b4db2403</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2008/02/12/drive-encryption-matters</link>
+      <category>Security</category>
+    </item>
+    <item>
+      <title>"Drive encryption matters" by Me</title>
+      <description>&lt;p&gt;&lt;a href="http://www.schneier.com/blog/archives/2008/07/encrypting_disk.html"&gt;http://www.schneier.com/blog/archives/2008/07/encrypting_disk.html&lt;/a&gt;&lt;/p&gt;</description>
+      <pubDate>Sun, 06 Jul 2008 15:51:24 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:aa49deba-bfab-459d-846e-e76f088748e0</guid>
+      <link>http://alicebobandmallory.com/articles/2008/02/12/drive-encryption-matters#comment-2569</link>
+    </item>
+    <item>
+      <title>"Drive encryption matters" by Me</title>
+      <description>&lt;p&gt;&lt;a href="http://www.engadget.com/2008/02/21/cold-boot-disk-encryption-attack-is-shockingly-effective/"&gt;http://www.engadget.com/2008/02/21/cold-boot-disk-encryption-attack-is-shockingly-effective/&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;cool.&lt;/li&gt;
+&lt;/ul&gt;</description>
+      <pubDate>Wed, 12 Mar 2008 22:35:37 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:45063623-b4db-4356-a53d-9969b1ed0305</guid>
+      <link>http://alicebobandmallory.com/articles/2008/02/12/drive-encryption-matters#comment-2175</link>
+    </item>
+  </channel>
+</rss>

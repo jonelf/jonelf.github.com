@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: A simple loop</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/4171/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2010/06/21/a-simple-loop" rel="alternate" type="text/html"/>
+  <updated>2010-06-21T23:07:35+02:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:f6e3d9ac-2271-4371-a87d-5a89303735e6</id>
+    <published>2010-06-21T21:56:00+02:00</published>
+    <updated>2010-06-21T23:07:35+02:00</updated>
+    <title type="html">A simple loop</title>
+    <link href="http://alicebobandmallory.com/articles/2010/06/21/a-simple-loop" rel="alternate" type="text/html"/>
+    <category label="Ruby" term="ruby" scheme="http://alicebobandmallory.com/articles/category/ruby"/>
+    <summary type="html">&lt;p&gt;There's more than one way to skin a cat and the same is true for looping in Ruby. This is a silly post with a silly number of ways to  &lt;/p&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;print the integers from 1 to 10.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If you're a BASIC-programmer and are getting your feet wet with Ruby,  you might end up with something like this.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#080;font-weight:bold"&gt;while&lt;/span&gt; i&amp;lt;=&lt;span style="color:#00D"&gt;10&lt;/span&gt; &lt;span style="color:#080;font-weight:bold"&gt;do&lt;/span&gt;
+   puts i
+   i+=&lt;span style="color:#00D"&gt;1&lt;/span&gt;
+&lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+That and the following &lt;code&gt;for&lt;/code&gt;-loop is not the usual Ruby way of looping.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; i &lt;span style="color:#080;font-weight:bold"&gt;in&lt;/span&gt; &lt;span style="color:#00D"&gt;1&lt;/span&gt;..&lt;span style="color:#00D"&gt;10&lt;/span&gt;
+ puts i
+&lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+Instead rubyists often iterates over &lt;a href="http://ruby-doc.org/core/classes/Range.html"&gt;ranges&lt;/a&gt; or &lt;a href="http://ruby-doc.org/core/classes/Array.html"&gt;arrays&lt;/a&gt; with &lt;code&gt;each&lt;/code&gt;.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;(&lt;span style="color:#00D"&gt;1&lt;/span&gt;..&lt;span style="color:#00D"&gt;10&lt;/span&gt;).each {|i| puts i }&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+But for simple integer loops like this, we also have &lt;code&gt;upto&lt;/code&gt;&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#00D"&gt;1&lt;/span&gt;.upto(&lt;span style="color:#00D"&gt;10&lt;/span&gt;) {|i| puts i }&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+ and &lt;code&gt;times&lt;/code&gt;.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#00D"&gt;10&lt;/span&gt;.times {|i| puts i+&lt;span style="color:#00D"&gt;1&lt;/span&gt;}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+Here's where I should've stopped but I can't help myself, I just have to show off with some &lt;a href="http://weblog.raganwald.com/2008/02/1100inject.html"&gt;Symbol#to_proc&lt;/a&gt; "magic".&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;(&lt;span style="color:#00D"&gt;0&lt;/span&gt;..&lt;span style="color:#00D"&gt;10&lt;/span&gt;).inject(&amp;amp;&lt;span style="color:#A60"&gt;:p&lt;/span&gt;)&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+The above works because &lt;code&gt;p&lt;/code&gt; is an alias of &lt;code&gt;puts&lt;/code&gt; and &lt;code&gt;&amp;amp;&lt;/code&gt; converts the symbol &lt;code&gt;:p&lt;/code&gt; to a proc that is called with the numbers in the range as parameters.&lt;/p&gt;
+
+&lt;p&gt;The alias &lt;code&gt;p&lt;/code&gt; also gives us, what I think has to be, the shortest possible way.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;p *&lt;span style="color:#00D"&gt;1&lt;/span&gt;..&lt;span style="color:#00D"&gt;10&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;You could argue that it's a bad thing that there are so many ways to do something as simple as this. But I see no big problem here, if any at all, even though these are hardly all possible ways to loop over integers in Ruby.&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;There's more than one way to skin a cat and the same is true for looping in Ruby. This is a silly post with a silly number of ways to  &lt;/p&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;print the integers from 1 to 10.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If you're a BASIC-programmer and are getting your feet wet with Ruby,  you might end up with something like this.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#080;font-weight:bold"&gt;while&lt;/span&gt; i&amp;lt;=&lt;span style="color:#00D"&gt;10&lt;/span&gt; &lt;span style="color:#080;font-weight:bold"&gt;do&lt;/span&gt;
+   puts i
+   i+=&lt;span style="color:#00D"&gt;1&lt;/span&gt;
+&lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+That and the following &lt;code&gt;for&lt;/code&gt;-loop is not the usual Ruby way of looping.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; i &lt;span style="color:#080;font-weight:bold"&gt;in&lt;/span&gt; &lt;span style="color:#00D"&gt;1&lt;/span&gt;..&lt;span style="color:#00D"&gt;10&lt;/span&gt;
+ puts i
+&lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+Instead rubyists often iterates over &lt;a href="http://ruby-doc.org/core/classes/Range.html"&gt;ranges&lt;/a&gt; or &lt;a href="http://ruby-doc.org/core/classes/Array.html"&gt;arrays&lt;/a&gt; with &lt;code&gt;each&lt;/code&gt;.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;(&lt;span style="color:#00D"&gt;1&lt;/span&gt;..&lt;span style="color:#00D"&gt;10&lt;/span&gt;).each {|i| puts i }&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+But for simple integer loops like this, we also have &lt;code&gt;upto&lt;/code&gt;&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#00D"&gt;1&lt;/span&gt;.upto(&lt;span style="color:#00D"&gt;10&lt;/span&gt;) {|i| puts i }&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+ and &lt;code&gt;times&lt;/code&gt;.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#00D"&gt;10&lt;/span&gt;.times {|i| puts i+&lt;span style="color:#00D"&gt;1&lt;/span&gt;}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+Here's where I should've stopped but I can't help myself, I just have to show off with some &lt;a href="http://weblog.raganwald.com/2008/02/1100inject.html"&gt;Symbol#to_proc&lt;/a&gt; "magic".&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;(&lt;span style="color:#00D"&gt;0&lt;/span&gt;..&lt;span style="color:#00D"&gt;10&lt;/span&gt;).inject(&amp;amp;&lt;span style="color:#A60"&gt;:p&lt;/span&gt;)&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+The above works because &lt;code&gt;p&lt;/code&gt; is an alias of &lt;code&gt;puts&lt;/code&gt; and &lt;code&gt;&amp;amp;&lt;/code&gt; converts the symbol &lt;code&gt;:p&lt;/code&gt; to a proc that is called with the numbers in the range as parameters.&lt;/p&gt;
+
+&lt;p&gt;The alias &lt;code&gt;p&lt;/code&gt; also gives us, what I think has to be, the shortest possible way.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;p *&lt;span style="color:#00D"&gt;1&lt;/span&gt;..&lt;span style="color:#00D"&gt;10&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;You could argue that it's a bad thing that there are so many ways to do something as simple as this. But I see no big problem here, if any at all, even though these are hardly all possible ways to loop over integers in Ruby.&lt;/p&gt;</content>
+  </entry>
+</feed>

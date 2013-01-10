@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Swedish hackers</title>
+    <link>http://alicebobandmallory.com/articles/2008/12/31/swedish-hackers</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Swedish hackers</title>
+      <description>&lt;p&gt;The incident I wrote of in &lt;a href="http://alicebobandmallory.com/articles/2007/02/04/hello-this-is-special-agent-brian"&gt;Hello this is special agent Brian&lt;/a&gt; were covered in a Swedish radio documentary a little more than a month ago.
+It's all in Swedish. You can find out more &lt;a href="http://www.sr.se/cgi-bin/p3/programsidor/artikel.asp?ProgramID=2519&amp;amp;Artikel=2447808"&gt;here&lt;/a&gt; and you can download the documentary from &lt;a href="http://www.sr.se/laddahem/podradio/SR_p3_dokumentar_081116080008.mp3"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I also would like to add that we did not press charges like the police officers says 37 minutes into the documentary. Not because we thought it wasn't a big deal but we knew that a couple of big players already had so we thought we could spend our time better.&lt;/p&gt;</description>
+      <pubDate>Wed, 31 Dec 2008 00:29:00 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:75c0eb80-02fc-4f10-92bf-d0ee90a49986</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2008/12/31/swedish-hackers</link>
+      <category>Security</category>
+    </item>
+  </channel>
+</rss>

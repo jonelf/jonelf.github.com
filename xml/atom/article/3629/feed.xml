@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: Why you should use four different digits for keypad locks</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/3629/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2009/09/23/why-you-should-use-four-different-digits-for-keypad-locks" rel="alternate" type="text/html"/>
+  <updated>2009-09-27T22:05:27+02:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:327947c8-2f2d-4ca7-9ddf-bdd8b74cd9f4</id>
+    <published>2009-09-23T19:49:00+02:00</published>
+    <updated>2009-09-27T22:05:27+02:00</updated>
+    <title type="html">Why you should use four different digits for keypad locks</title>
+    <link href="http://alicebobandmallory.com/articles/2009/09/23/why-you-should-use-four-different-digits-for-keypad-locks" rel="alternate" type="text/html"/>
+    <category label="Security" term="security" scheme="http://alicebobandmallory.com/articles/category/security"/>
+    <category label="Ruby" term="ruby" scheme="http://alicebobandmallory.com/articles/category/ruby"/>
+    <summary type="html">&lt;p&gt;I made a couple of very bad mistakes in this article so I took it down. Hopefully I'm more on track in the &lt;a href="http://alicebobandmallory.com/articles/2009/09/27/a-case-for-using-only-three-different-digits-in-keypad-codes"&gt;sequel&lt;/a&gt;.&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;I made a couple of very bad mistakes in this article so I took it down. Hopefully I'm more on track in the &lt;a href="http://alicebobandmallory.com/articles/2009/09/27/a-case-for-using-only-three-different-digits-in-keypad-codes"&gt;sequel&lt;/a&gt;.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Fredrik Mansfeld</name>
+    </author>
+    <id>urn:uuid:1d3c7131-d133-4f84-a13c-83ceb0219b57</id>
+    <published>2009-09-24T09:47:32+02:00</published>
+    <updated>2009-10-07T08:16:54+02:00</updated>
+    <title type="html">Comment on Why you should use four different digits for keypad locks by Fredrik Mansfeld</title>
+    <link href="http://alicebobandmallory.com/articles/2009/09/23/why-you-should-use-four-different-digits-for-keypad-locks#comment-3636" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Just a minor correction: I think De Brujin&amp;#8217;s method needs 10003 keystrokes in the worst case. The interesting thing is that the sequence itself is only 10000 digits. If you havn&amp;#8217;t had any luck when you reach the end you just start over from the beginning to get the last three combinations.
+You can see it in your example too. The combinations 1114, 1144 and 1444 is missing, but you get them if you start over from the beginning when you reach the end.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>jberryman</name>
+    </author>
+    <id>urn:uuid:f844d522-9dd6-4a3d-973f-1e41cf62bd97</id>
+    <published>2009-09-24T06:22:35+02:00</published>
+    <updated>2009-10-07T08:16:52+02:00</updated>
+    <title type="html">Comment on Why you should use four different digits for keypad locks by jberryman</title>
+    <link href="http://alicebobandmallory.com/articles/2009/09/23/why-you-should-use-four-different-digits-for-keypad-locks#comment-3634" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;This was really interesting to read! I just discovered De Brujin sequences two days ago and was just working on a blog post when I read this.&lt;/p&gt;
+
+&lt;p&gt;I implemented two binary De Brujin algorithms in haskell and &lt;a href="http://coder.bsimmons.name/blog/2009/09/cracking-a-lock-in-haskell-with-the-de-bruijn-sequence-pt-1/"&gt;wrote about it here&lt;/a&gt;.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:f0794f5b-e9a2-47c8-acc2-5bc3f1804e08</id>
+    <published>2009-09-23T23:14:42+02:00</published>
+    <updated>2009-10-07T08:16:46+02:00</updated>
+    <title type="html">Comment on Why you should use four different digits for keypad locks by Jonas Elfström</title>
+    <link href="http://alicebobandmallory.com/articles/2009/09/23/why-you-should-use-four-different-digits-for-keypad-locks#comment-3630" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;An even more sinister approach would be to use an infrared meter a couple of seconds after someone just touched the keypad.&lt;/p&gt;</content>
+  </entry>
+</feed>

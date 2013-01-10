@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: Scary tools</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/1835/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2007/12/12/scary-tools" rel="alternate" type="text/html"/>
+  <updated>2007-12-17T17:45:45+01:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:a8894523-e498-4a14-9ea2-45acb0672dbf</id>
+    <published>2007-12-12T17:15:00+01:00</published>
+    <updated>2007-12-17T17:45:45+01:00</updated>
+    <title type="html">Scary tools</title>
+    <link href="http://alicebobandmallory.com/articles/2007/12/12/scary-tools" rel="alternate" type="text/html"/>
+    <category label="Security" term="security" scheme="http://alicebobandmallory.com/articles/category/security"/>
+    <summary type="html">&lt;p&gt;I recently attended a session held by &lt;a href="http://truesecurity.se/blogs/murray/"&gt;Marcus Murray&lt;/a&gt;. It seems it was kind of a compressed version of the &lt;a href="http://truesecurity.se/blogs/murray/archive/2007/06/05/session-notes-sec-310-why-i-can-hack-your-network-in-a-day-teched-us-2007-part-1.aspx#comments"&gt;session&lt;/a&gt; he held at TechEd earlier this year. Murray is witty, charismatic and has a broad and deep understanding of IT-security issues. He cracks jokes and practices a little social engineering to keep the audience attentive.
+If you and your IT-staff wants to be briefed (and scared) with the latest in IT-security I could easily recommend Murray.&lt;/p&gt;
+
+&lt;p&gt;He demonstrated a couple of tools that both impressed and scared me. First he demonstrated how to set up a mail based attack using the commercial &lt;a href="http://www.coresecurity.com/?module=ContentMod&amp;amp;action=item&amp;amp;id=32"&gt;Core IMPACT&lt;/a&gt;. It's a very impressive tool and mail based attacks are only one out of many attacks this software has the ability to execute. Before seeing this I could never have guessed there are tools this advanced and this easy to use. The lists of exploits it can test, in an all automated fashion, were long and seemed to be up to date.&lt;/p&gt;
+
+&lt;p&gt;Murray also demonstrated &lt;a href="http://www.grc.com/nat/arp.htm"&gt;ARP poisoning&lt;/a&gt; and hijacking of a RDP session by using the free &lt;a href="http://www.oxid.it/index.html"&gt;Cain &amp;amp; Abel &lt;/a&gt; tool. You could feel the discomfort in the air as it dawned on the audience how easy this is to set up.&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;I recently attended a session held by &lt;a href="http://truesecurity.se/blogs/murray/"&gt;Marcus Murray&lt;/a&gt;. It seems it was kind of a compressed version of the &lt;a href="http://truesecurity.se/blogs/murray/archive/2007/06/05/session-notes-sec-310-why-i-can-hack-your-network-in-a-day-teched-us-2007-part-1.aspx#comments"&gt;session&lt;/a&gt; he held at TechEd earlier this year. Murray is witty, charismatic and has a broad and deep understanding of IT-security issues. He cracks jokes and practices a little social engineering to keep the audience attentive.
+If you and your IT-staff wants to be briefed (and scared) with the latest in IT-security I could easily recommend Murray.&lt;/p&gt;
+
+&lt;p&gt;He demonstrated a couple of tools that both impressed and scared me. First he demonstrated how to set up a mail based attack using the commercial &lt;a href="http://www.coresecurity.com/?module=ContentMod&amp;amp;action=item&amp;amp;id=32"&gt;Core IMPACT&lt;/a&gt;. It's a very impressive tool and mail based attacks are only one out of many attacks this software has the ability to execute. Before seeing this I could never have guessed there are tools this advanced and this easy to use. The lists of exploits it can test, in an all automated fashion, were long and seemed to be up to date.&lt;/p&gt;
+
+&lt;p&gt;Murray also demonstrated &lt;a href="http://www.grc.com/nat/arp.htm"&gt;ARP poisoning&lt;/a&gt; and hijacking of a RDP session by using the free &lt;a href="http://www.oxid.it/index.html"&gt;Cain &amp;amp; Abel &lt;/a&gt; tool. You could feel the discomfort in the air as it dawned on the audience how easy this is to set up.&lt;/p&gt;</content>
+  </entry>
+</feed>

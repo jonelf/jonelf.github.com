@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: Man in the browser</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/1736/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2007/11/26/man-in-the-browser" rel="alternate" type="text/html"/>
+  <updated>2007-12-05T00:00:41+01:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:4a0b5d22-29f0-418a-b9df-1fe703ad3fdb</id>
+    <published>2007-11-26T21:40:00+01:00</published>
+    <updated>2007-12-05T00:00:41+01:00</updated>
+    <title type="html">Man in the browser</title>
+    <link href="http://alicebobandmallory.com/articles/2007/11/26/man-in-the-browser" rel="alternate" type="text/html"/>
+    <category label="Security" term="security" scheme="http://alicebobandmallory.com/articles/category/security"/>
+    <summary type="html">&lt;p&gt;There's some buzz about a new trojan technique called &lt;a href="http://www.f-secure.com/f-secure/pressroom/news/fs_news_20071122_1_eng.html"&gt;"Man in the browser"&lt;/a&gt;.  The trojan plugs itself into the users browser and then it intercepts the HTML. This have all sorts of implications, for instance the SSL certificate will seem to be valid. &lt;/p&gt;
+
+&lt;p&gt;Even if your virus protection does not detect the "Man in the browser" there are still ways to be quite safe. If your bank uses a security token which you not only logs in with but also use to sign your transactions, the attack will most likely fail. One problem is that it is up to you, the user, to actually verify that you are signing the expected amount to the expected accounts. To get protection against someone who has complete control over your computer the security protocol must "communicate" with the security token both ways. &lt;/p&gt;
+
+&lt;p&gt;It is not enough to only let the user enter the total value of the transactions because the tokens answer to such a simple value could be reused (during a short period of time) also the attack could be crafted to create the correct amount but to other accounts. By asking the user to also sign every new account the attacker will not be able to hide a transaction to his account.&lt;/p&gt;
+
+&lt;p&gt;The challenge is to make the security protocol clear and &lt;a href="/articles/2007/03/27/secure-and-simple-security-tokens-needed"&gt;simple&lt;/a&gt; enough so that the user can understand what he would expect the bank to respond and expect from him.&lt;/p&gt;
+
+&lt;p&gt;It's the usual three: have a firewall, an updated virus protection and a secure bank with a &lt;a href="http://en.wikipedia.org/wiki/Security_token#Digital_signatures"&gt;digital security token&lt;/a&gt; were you sign your transactions and maybe you can sleep a little better.&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;There's some buzz about a new trojan technique called &lt;a href="http://www.f-secure.com/f-secure/pressroom/news/fs_news_20071122_1_eng.html"&gt;"Man in the browser"&lt;/a&gt;.  The trojan plugs itself into the users browser and then it intercepts the HTML. This have all sorts of implications, for instance the SSL certificate will seem to be valid. &lt;/p&gt;
+
+&lt;p&gt;Even if your virus protection does not detect the "Man in the browser" there are still ways to be quite safe. If your bank uses a security token which you not only logs in with but also use to sign your transactions, the attack will most likely fail. One problem is that it is up to you, the user, to actually verify that you are signing the expected amount to the expected accounts. To get protection against someone who has complete control over your computer the security protocol must "communicate" with the security token both ways. &lt;/p&gt;
+
+&lt;p&gt;It is not enough to only let the user enter the total value of the transactions because the tokens answer to such a simple value could be reused (during a short period of time) also the attack could be crafted to create the correct amount but to other accounts. By asking the user to also sign every new account the attacker will not be able to hide a transaction to his account.&lt;/p&gt;
+
+&lt;p&gt;The challenge is to make the security protocol clear and &lt;a href="/articles/2007/03/27/secure-and-simple-security-tokens-needed"&gt;simple&lt;/a&gt; enough so that the user can understand what he would expect the bank to respond and expect from him.&lt;/p&gt;
+
+&lt;p&gt;It's the usual three: have a firewall, an updated virus protection and a secure bank with a &lt;a href="http://en.wikipedia.org/wiki/Security_token#Digital_signatures"&gt;digital security token&lt;/a&gt; were you sign your transactions and maybe you can sleep a little better.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:e539e146-90ef-4ec2-beb7-4674514e2b32</id>
+    <published>2009-10-01T21:35:06+02:00</published>
+    <updated>2009-10-07T08:16:51+02:00</updated>
+    <title type="html">Comment on Man in the browser by Jonas Elfström</title>
+    <link href="http://alicebobandmallory.com/articles/2007/11/26/man-in-the-browser#comment-3677" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;MITB is not dead. &lt;a href="https://financialcryptography.com/mt/archives/001190.html"&gt;https://financialcryptography.com/mt/archives/001190.html&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+</feed>

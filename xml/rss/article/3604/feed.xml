@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Breaking simple ciphers</title>
+    <link>http://alicebobandmallory.com/articles/2009/09/16/breaking-simple-ciphers</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Breaking simple ciphers</title>
+      <description>&lt;p&gt;The last few days I've happened to stumble over a couple of ciphers and I just couldn't help myself from trying to break them.&lt;/p&gt;
+
+&lt;h3&gt;The Lost Symbol&lt;/h3&gt;
+
+&lt;p&gt;Dan Brown has a new book coming out and part of the promotion is this  cipher text "AOFACFSOA FSZWBEIC EIOA ZOHSFWQWOA OQQSDW". 
+The WQW, QQ and three of the words ending with an A made me believe we could be dealing with a substitution cipher and maybe even a Caesar cipher, the most simple of them all.&lt;/p&gt;
+
+&lt;p&gt;My usual tool of choice is Ruby and in this case the splendid Interactive Ruby Shell.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
+&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
+&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
+&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
+&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
+&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
+&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n21" name="n21"&gt;21&lt;/a&gt;
+&lt;a href="#n22" name="n22"&gt;22&lt;/a&gt;
+&lt;a href="#n23" name="n23"&gt;23&lt;/a&gt;
+&lt;a href="#n24" name="n24"&gt;24&lt;/a&gt;
+&lt;a href="#n25" name="n25"&gt;25&lt;/a&gt;
+&lt;a href="#n26" name="n26"&gt;26&lt;/a&gt;
+&lt;a href="#n27" name="n27"&gt;27&lt;/a&gt;
+&lt;a href="#n28" name="n28"&gt;28&lt;/a&gt;
+&lt;a href="#n29" name="n29"&gt;29&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n30" name="n30"&gt;30&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n31" name="n31"&gt;31&lt;/a&gt;
+&lt;a href="#n32" name="n32"&gt;32&lt;/a&gt;
+&lt;a href="#n33" name="n33"&gt;33&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#F00;background-color:#FAA"&gt;$&lt;/span&gt; irb
+&amp;gt;&amp;gt; s=&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;AOFACFSOA FSZWBEIC EIOA ZOHSFWQWOA OQQSDW&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;
+=&amp;gt; &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;AOFACFSOA FSZWBEIC EIOA ZOHSFWQWOA OQQSDW&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&amp;gt;&amp;gt; &lt;span style="color:#080;font-weight:bold"&gt;def&lt;/span&gt; &lt;span style="color:#06B;font-weight:bold"&gt;caesar&lt;/span&gt;(text,n)
+&amp;gt;&amp;gt;   alphas=(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;A&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;..&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;Z&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;).to_a*&lt;span style="color:#00D"&gt;2&lt;/span&gt;
+&amp;gt;&amp;gt;   text.tr(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;A-Z&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;, alphas[n..n+&lt;span style="color:#00D"&gt;26&lt;/span&gt;].join)
+&amp;gt;&amp;gt; &lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;
+&amp;gt;&amp;gt; &lt;span style="color:#00D"&gt;1&lt;/span&gt;.upto(&lt;span style="color:#00D"&gt;25&lt;/span&gt;) &lt;span style="color:#080;font-weight:bold"&gt;do&lt;/span&gt; |n| puts &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;%2d. %s&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; % [n, caesar(s,n)] &lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;
+ &lt;span style="color:#00D"&gt;1&lt;/span&gt;. BPGBDGTPB &lt;span style="color:#036;font-weight:bold"&gt;GTAXCFJD&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;FJPB&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;APITGXRXPB&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;PRRTEX&lt;/span&gt;
+ &lt;span style="color:#00D"&gt;2&lt;/span&gt;. CQHCEHUQC &lt;span style="color:#036;font-weight:bold"&gt;HUBYDGKE&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;GKQC&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;BQJUHYSYQC&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;QSSUFY&lt;/span&gt;
+ &lt;span style="color:#00D"&gt;3&lt;/span&gt;. DRIDFIVRD &lt;span style="color:#036;font-weight:bold"&gt;IVCZEHLF&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;HLRD&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;CRKVIZTZRD&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;RTTVGZ&lt;/span&gt;
+ &lt;span style="color:#00D"&gt;4&lt;/span&gt;. ESJEGJWSE &lt;span style="color:#036;font-weight:bold"&gt;JWDAFIMG&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;IMSE&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;DSLWJAUASE&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;SUUWHA&lt;/span&gt;
+ &lt;span style="color:#00D"&gt;5&lt;/span&gt;. FTKFHKXTF &lt;span style="color:#036;font-weight:bold"&gt;KXEBGJNH&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;JNTF&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;ETMXKBVBTF&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;TVVXIB&lt;/span&gt;
+ &lt;span style="color:#00D"&gt;6&lt;/span&gt;. GULGILYUG &lt;span style="color:#036;font-weight:bold"&gt;LYFCHKOI&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;KOUG&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;FUNYLCWCUG&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;UWWYJC&lt;/span&gt;
+ &lt;span style="color:#00D"&gt;7&lt;/span&gt;. HVMHJMZVH &lt;span style="color:#036;font-weight:bold"&gt;MZGDILPJ&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;LPVH&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;GVOZMDXDVH&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;VXXZKD&lt;/span&gt;
+ &lt;span style="color:#00D"&gt;8&lt;/span&gt;. IWNIKNAWI &lt;span style="color:#036;font-weight:bold"&gt;NAHEJMQK&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;MQWI&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;HWPANEYEWI&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;WYYALE&lt;/span&gt;
+ &lt;span style="color:#00D"&gt;9&lt;/span&gt;. JXOJLOBXJ &lt;span style="color:#036;font-weight:bold"&gt;OBIFKNRL&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;NRXJ&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;IXQBOFZFXJ&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;XZZBMF&lt;/span&gt;
+&lt;span style="color:#00D"&gt;10&lt;/span&gt;. KYPKMPCYK &lt;span style="color:#036;font-weight:bold"&gt;PCJGLOSM&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;OSYK&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;JYRCPGAGYK&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;YAACNG&lt;/span&gt;
+&lt;span style="color:#00D"&gt;11&lt;/span&gt;. LZQLNQDZL &lt;span style="color:#036;font-weight:bold"&gt;QDKHMPTN&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;PTZL&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;KZSDQHBHZL&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;ZBBDOH&lt;/span&gt;
+&lt;span style="color:#00D"&gt;12&lt;/span&gt;. MARMOREAM &lt;span style="color:#036;font-weight:bold"&gt;RELINQUO&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;QUAM&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;LATERICIAM&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;ACCEPI&lt;/span&gt;
+&lt;span style="color:#00D"&gt;13&lt;/span&gt;. NBSNPSFBN &lt;span style="color:#036;font-weight:bold"&gt;SFMJORVP&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;RVBN&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;MBUFSJDJBN&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;BDDFQJ&lt;/span&gt;
+&lt;span style="color:#00D"&gt;14&lt;/span&gt;. OCTOQTGCO &lt;span style="color:#036;font-weight:bold"&gt;TGNKPSWQ&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;SWCO&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;NCVGTKEKCO&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;CEEGRK&lt;/span&gt;
+&lt;span style="color:#00D"&gt;15&lt;/span&gt;. PDUPRUHDP &lt;span style="color:#036;font-weight:bold"&gt;UHOLQTXR&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;TXDP&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;ODWHULFLDP&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;DFFHSL&lt;/span&gt;
+&lt;span style="color:#00D"&gt;16&lt;/span&gt;. QEVQSVIEQ &lt;span style="color:#036;font-weight:bold"&gt;VIPMRUYS&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;UYEQ&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;PEXIVMGMEQ&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;EGGITM&lt;/span&gt;
+&lt;span style="color:#00D"&gt;17&lt;/span&gt;. RFWRTWJFR &lt;span style="color:#036;font-weight:bold"&gt;WJQNSVZT&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;VZFR&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;QFYJWNHNFR&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;FHHJUN&lt;/span&gt;
+&lt;span style="color:#00D"&gt;18&lt;/span&gt;. SGXSUXKGS &lt;span style="color:#036;font-weight:bold"&gt;XKROTWAU&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;WAGS&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;RGZKXOIOGS&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;GIIKVO&lt;/span&gt;
+&lt;span style="color:#00D"&gt;19&lt;/span&gt;. THYTVYLHT &lt;span style="color:#036;font-weight:bold"&gt;YLSPUXBV&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;XBHT&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;SHALYPJPHT&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;HJJLWP&lt;/span&gt;
+&lt;span style="color:#00D"&gt;20&lt;/span&gt;. UIZUWZMIU &lt;span style="color:#036;font-weight:bold"&gt;ZMTQVYCW&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;YCIU&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;TIBMZQKQIU&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;IKKMXQ&lt;/span&gt;
+&lt;span style="color:#00D"&gt;21&lt;/span&gt;. VJAVXANJV &lt;span style="color:#036;font-weight:bold"&gt;ANURWZDX&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;ZDJV&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;UJCNARLRJV&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;JLLNYR&lt;/span&gt;
+&lt;span style="color:#00D"&gt;22&lt;/span&gt;. WKBWYBOKW &lt;span style="color:#036;font-weight:bold"&gt;BOVSXAEY&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;AEKW&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;VKDOBSMSKW&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;KMMOZS&lt;/span&gt;
+&lt;span style="color:#00D"&gt;23&lt;/span&gt;. XLCXZCPLX &lt;span style="color:#036;font-weight:bold"&gt;CPWTYBFZ&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;BFLX&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;WLEPCTNTLX&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;LNNPAT&lt;/span&gt;
+&lt;span style="color:#00D"&gt;24&lt;/span&gt;. YMDYADQMY &lt;span style="color:#036;font-weight:bold"&gt;DQXUZCGA&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;CGMY&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;XMFQDUOUMY&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;MOOQBU&lt;/span&gt;
+&lt;span style="color:#00D"&gt;25&lt;/span&gt;. ZNEZBERNZ &lt;span style="color:#036;font-weight:bold"&gt;ERYVADHB&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;DHNZ&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;YNGREVPVNZ&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;NPPRCV&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Take a closer look at row 12.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;MARMOREAM RELINQUO QUAM LATERICIAM ACCEPI&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;I found Rome a city of bricks and left it a city of marble.&lt;/em&gt; - Google tells me it's Augustus.&lt;/p&gt;
+
+&lt;p&gt;The code is not the most clear I've written but if you read Ruby in your sleep you can skip this part.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;('A'..'Z')&lt;/strong&gt; is a range in Ruby. Another, maybe more obvious, example of a range is &lt;strong&gt;(0..7)&lt;/strong&gt;. &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;.to_a&lt;/strong&gt; could be read as to_array and unsurprisingly it converts a range to an array. &lt;strong&gt;(0..7).to_a&lt;/strong&gt; will create  &lt;strong&gt;[0, 1, 2, 3, 4, 5, 6, 7]&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The operator * for arrays appends n copies of the array. Thus &lt;strong&gt;[0,1,2]*2&lt;/strong&gt; will create  &lt;strong&gt;[0,1,2,0,1,2]&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://ruby-doc.org/core/classes/String.html#M000845"&gt;String#tr&lt;/a&gt; works the same way as the Unix command tr, it translates the characters in the string according to the from and to parameters. &lt;/p&gt;
+
+&lt;p&gt;At last &lt;strong&gt;.join&lt;/strong&gt; converts the array to a string.&lt;/p&gt;
+
+&lt;h3&gt;The recruiting agency&lt;/h3&gt;
+
+&lt;p&gt;A government agency responsible for signals intelligence is hiring. Among the qualifications they are looking for is the ability to break a certain cipher. I will not publish their cipher here but instead one of my own, constructed in the same way as theirs.&lt;pre&gt;"VGhpcyBpcyBleGNsdXNpdmUgZm9yIHlvdSwgb3I/IGMNR0d
+LCkZPXgpTRV8K\nTENEQ1lCCkhfXgpoT1NFRElPCkNZCksKSE9eXk
+9YCklYU1peRU1YS1pCT1gK\nXkJLRAp5SUJET0NPWAQ="&lt;/pre&gt;
+At first glance it looked like Base64 and the ending "=" made it even more likely.&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#F00;background-color:#FAA"&gt;$&lt;/span&gt; irb
+&amp;gt;&amp;gt; require &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;base64&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;
+&amp;gt;&amp;gt; cipher = &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;VGhpcyBpcyBleGNsdXNpdmUgZm9yIHlvdSwgb3I/IGMNR0dLCkZPXgpTRV8K&lt;/span&gt;&lt;span style="color:#b0b"&gt;\n&lt;/span&gt;&lt;span style="color:#D20"&gt;TENEQ1lCCkhfXgpoT1NFRElPCkNZCksKSE9eXk9YCklYU1peRU1YS1pCT1gK&lt;/span&gt;&lt;span style="color:#b0b"&gt;\n&lt;/span&gt;&lt;span style="color:#D20"&gt;XkJLRAp5SUJET0NPWAQ=&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&amp;gt;&amp;gt; decoded=&lt;span style="color:#036;font-weight:bold"&gt;Base64&lt;/span&gt;.decode64(cipher)
+=&amp;gt; &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;This is exclusive for you, or? c&lt;/span&gt;&lt;span style="color:#b0b"&gt;\r&lt;/span&gt;&lt;span style="color:#D20"&gt;GGK&lt;/span&gt;&lt;span style="color:#b0b"&gt;\n&lt;/span&gt;&lt;span style="color:#D20"&gt;FO^&lt;/span&gt;&lt;span style="color:#b0b"&gt;\n&lt;/span&gt;&lt;span style="color:#D20"&gt;SE&lt;em&gt;&lt;/span&gt;&lt;span style="color:#b0b"&gt;\n&lt;/span&gt;&lt;span style="color:#D20"&gt;LCDCYB&lt;/span&gt;&lt;span style="color:#b0b"&gt;\n&lt;/span&gt;&lt;span style="color:#D20"&gt;H&lt;/em&gt;^&lt;/span&gt;&lt;span style="color:#b0b"&gt;\n&lt;/span&gt;&lt;span style="color:#D20"&gt;hOSEDIO&lt;/span&gt;&lt;span style="color:#b0b"&gt;\n&lt;/span&gt;&lt;span style="color:#D20"&gt;CY&lt;/span&gt;&lt;span style="color:#b0b"&gt;\n&lt;/span&gt;&lt;span style="color:#D20"&gt;K&lt;/span&gt;&lt;span style="color:#b0b"&gt;\n&lt;/span&gt;&lt;span style="color:#D20"&gt;HO^^OX&lt;/span&gt;&lt;span style="color:#b0b"&gt;\n&lt;/span&gt;&lt;span style="color:#D20"&gt;IXSZ^EMXKZBOX&lt;/span&gt;&lt;span style="color:#b0b"&gt;\n&lt;/span&gt;&lt;span style="color:#D20"&gt;^BKD&lt;/span&gt;&lt;span style="color:#b0b"&gt;\n&lt;/span&gt;&lt;span style="color:#D20"&gt;yIBDOCOX&lt;/span&gt;&lt;span style="color:#b0b"&gt;\004&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;&lt;/p&gt;
+
+&lt;p&gt;So it's Base64 but to no surprise it didn't end there. The "This is exclusive for you, or?" hinted at XOR so I tried XORing the text with 0-255.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&amp;gt;&amp;gt; code=decoded[&lt;span style="color:#00D"&gt;31&lt;/span&gt;..decoded.length].split(&lt;span style="background-color:hsla(300,100%,50%,0.06)"&gt;&lt;span style="color:#404"&gt;/&lt;/span&gt;&lt;span style="color:#404"&gt;/&lt;/span&gt;&lt;/span&gt;)
+&amp;gt;&amp;gt; &lt;span style="color:#036;font-weight:bold"&gt;File&lt;/span&gt;.open(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;xor.txt&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;,&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;w&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;) { |file|
+&lt;span style="color:#00D"&gt;?&amp;gt;&lt;/span&gt;   &lt;span style="color:#00D"&gt;0&lt;/span&gt;.upto(&lt;span style="color:#00D"&gt;255&lt;/span&gt;) {|n|
+&lt;span style="color:#00D"&gt;?&amp;gt;&lt;/span&gt;     file.write(n.to_s + &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt; &lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;)
+&amp;gt;&amp;gt;     code.each {|c| file.write( (c[&lt;span style="color:#00D"&gt;0&lt;/span&gt;]^n).chr ) }
+&amp;gt;&amp;gt;     file.write(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#b0b"&gt;\n&lt;/span&gt;&lt;span style="color:#b0b"&gt;\n&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;)
+&amp;gt;&amp;gt;   }
+&amp;gt;&amp;gt; }&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;A quick look in the file told me that XORing with 42 was the solution.&lt;/p&gt;
+
+&lt;p&gt;Now you know how to break two of the most simple cipher methods. Use the knowledge wisely. :)&lt;/p&gt;</description>
+      <pubDate>Wed, 16 Sep 2009 20:19:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:bfe9c11f-97c5-458b-a238-2304814e7794</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2009/09/16/breaking-simple-ciphers</link>
+      <category>Ruby</category>
+      <category>Cryptography</category>
+    </item>
+    <item>
+      <title>"Breaking simple ciphers" by Jonas Elfström</title>
+      <description>&lt;p&gt;I just ran the same frequency analysis on the longer &amp;#8220;The Red-headed League&amp;#8221; (76713 characters) and guess what came out on top?  &lt;/p&gt;
+
+&lt;p&gt;&amp;#8221; th&amp;#8221; =&gt; 363&lt;br /&gt;
+&amp;#8220;he &amp;#8221; =&gt; 307&lt;br /&gt;
+&amp;#8220;the&amp;#8221; =&gt; 296&lt;br /&gt;
+&amp;#8220;and&amp;#8221; =&gt; 163  &lt;/p&gt;
+
+&lt;p&gt;That&amp;#8217;s exactly the same order as for &amp;#8220;A Scandal in Bohemia&amp;#8221; but then something strange happened &lt;/p&gt;
+
+&lt;p&gt;&amp;#8220;nd &amp;#8221; =&gt; 159&lt;br /&gt;
+&amp;#8221; an&amp;#8221; =&gt; 151&lt;br /&gt;
+&amp;#8220;to &amp;#8221; =&gt; 140&lt;br /&gt;
+&amp;#8220;ed &amp;#8221; =&gt; 139&lt;br /&gt;
+&amp;#8221; to&amp;#8221; =&gt; 139&lt;br /&gt;
+&amp;#8220;ing&amp;#8221; =&gt; 134  &lt;/p&gt;
+
+&lt;p&gt;and not until then we find  &lt;/p&gt;
+
+&lt;p&gt;&amp;#8221; of&amp;#8221; =&gt; 120&lt;/p&gt;
+
+&lt;p&gt;Until more texts has been analyzed like this I can&amp;#8217;t say if it&amp;#8217;s a problem or an anomaly.&lt;/p&gt;</description>
+      <pubDate>Tue, 12 Apr 2011 00:06:18 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:2392b37a-0913-4ae5-8d73-2ed58a7654f8</guid>
+      <link>http://alicebobandmallory.com/articles/2009/09/16/breaking-simple-ciphers#comment-5397</link>
+    </item>
+    <item>
+      <title>"Breaking simple ciphers" by Jonas Elfström</title>
+      <description>&lt;p&gt;How about grouping the characters in three and do a frequency analysis on that instead? The reasoning is that 6+6+6+6=24 and 24/8=3. Most probably only useful if it&amp;#8217;s Caesar and not a longer key. It also seems likely that you would need quite a long chiphertext before this kind of frequency analysis would give anything useful.&lt;/p&gt;
+
+&lt;p&gt;I tested the hypothesis at &lt;a href="https://gist.github.com/912723"&gt;https://gist.github.com/912723&lt;/a&gt;
+and the histograms for the cipher and the plaintext are the same.&lt;/p&gt;
+
+&lt;p&gt;For &amp;#8220;A Scandal in Bohemia&amp;#8221; by Sir Arthur Conan Doyle (19119 characters) the number of occurrences for the top five are:&lt;br /&gt;
+&amp;#8221; th&amp;#8221; =&gt; 80&lt;br /&gt;
+&amp;#8220;he &amp;#8221; =&gt; 63&lt;br /&gt;
+&amp;#8220;the&amp;#8221; =&gt; 54&lt;br /&gt;
+&amp;#8220;and&amp;#8221; =&gt; 46&lt;br /&gt;
+&amp;#8221; of&amp;#8221; =&gt; 38  &lt;/p&gt;</description>
+      <pubDate>Sun, 10 Apr 2011 23:25:40 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:3b7df91b-34a4-4116-8471-c12e6baf56a1</guid>
+      <link>http://alicebobandmallory.com/articles/2009/09/16/breaking-simple-ciphers#comment-5365</link>
+    </item>
+    <item>
+      <title>"Breaking simple ciphers" by Mihai</title>
+      <description>&lt;p&gt;If our priority is not to compare apples to oranges we have to do what you propose.&lt;/p&gt;
+
+&lt;p&gt;But in order for an external entity (code breaker) to do it he needs a corpus of data similar to the one being transmitted with which to compare histograms: base64encode(criptogram) compared to base64encode(corpus).&lt;/p&gt;
+
+&lt;p&gt;If we assume we need to compare the criptogram statistics to a given corpus and not the initial message (to which the code breaker could not have access to) some other method must be devised.&lt;/p&gt;
+
+&lt;p&gt;The main issue is that the &amp;#8220;simple mono-alphabetic cipher&amp;#8221; we apply on the base64encoded level generates a &amp;#8220;poli-alphabetic cipher&amp;#8221;.&lt;/p&gt;
+
+&lt;p&gt;Any 8 bit entity is partially replaced during the enciphering stage, i.e. only 4-6 bits of it&amp;#8217;s data is replaced. These replacements may generate 8 bit entities that were not present in the original message.&lt;/p&gt;
+
+&lt;p&gt;Hence the histogram gets stretched over some new symbols as well as redistributed over the old symbols.&lt;/p&gt;
+
+&lt;p&gt;My findings were that the histogram maximum of 18% frequency of spaces in the message dropped to a maximum of 3% frequency of some other symbol in the criptogram. The histogram is heavily redistributed.&lt;/p&gt;</description>
+      <pubDate>Fri, 08 Apr 2011 03:01:04 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:914b3564-1556-4d8f-810d-97faa8be5423</guid>
+      <link>http://alicebobandmallory.com/articles/2009/09/16/breaking-simple-ciphers#comment-5340</link>
+    </item>
+    <item>
+      <title>"Breaking simple ciphers" by Jonas Elfström</title>
+      <description>&lt;p&gt;I think you already answered the question. The problem is that you are encrypting the message in 6 bits chunks but the actual data is 8 bits per character (or is it?).
+I&amp;#8217;m sure there&amp;#8217;s a way to analyze this but at a glance it seems a lot harder than to compare histograms for a plaintext and a Caesar ciphertext.&lt;/p&gt;
+
+&lt;p&gt;I don&amp;#8217;t know if it&amp;#8217;s of use to you but 
+histogram(caesar(base64encode(message))) is the same as for histogram(base64encode(message))&lt;/p&gt;
+
+&lt;p&gt;Code example here: &lt;a href="https://gist.github.com/908911"&gt;https://gist.github.com/908911&lt;/a&gt;&lt;/p&gt;</description>
+      <pubDate>Fri, 08 Apr 2011 00:21:49 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:f5bf0734-099d-4a79-a422-a9955e688da4</guid>
+      <link>http://alicebobandmallory.com/articles/2009/09/16/breaking-simple-ciphers#comment-5339</link>
+    </item>
+    <item>
+      <title>"Breaking simple ciphers" by Mihai</title>
+      <description>&lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;I am working on a statistical analysis of a simple Vigenère cipher for school, let&amp;#8217;s say the Caesar cipher because it&amp;#8217;s a subclass of Vigenère ciphers.&lt;/p&gt;
+
+&lt;p&gt;My task is to prove that letter frequencies in a message are equal to letter frequencies in a criptogram (just on different letters).
+histogram(message) == histogram(caesar(message));&lt;/p&gt;
+
+&lt;p&gt;Within a 27 character alphabet ([A-Z\s]) all of this is easy enough. But i wanted to take this assignment up a notch and not limit the input alphabet.&lt;/p&gt;
+
+&lt;p&gt;So i used base64 encode to bring any input string to a common alphabet of 64 characters.&lt;/p&gt;
+
+&lt;p&gt;I can then apply the cipher on the encoded string using a 64 character alphabet ([A-Za-z\+\/]).&lt;/p&gt;
+
+&lt;p&gt;Base64 reads 6bits from the input and writes one character. When doing this to 8bit letters the results become 2 bit shifted on every letter.&lt;/p&gt;
+
+&lt;p&gt;Now i&amp;#8217;m racking my brain to figure out how to analyse the text statistically because.
+histogram(base64&lt;em&gt;decode(caesar(base64&lt;/em&gt;encode(message)))) !== histogram(message);&lt;/p&gt;
+
+&lt;p&gt;Do you have any ideeas?&lt;/p&gt;</description>
+      <pubDate>Thu, 07 Apr 2011 03:05:38 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:46b4afb4-2029-4295-bad1-46957e7ac5a2</guid>
+      <link>http://alicebobandmallory.com/articles/2009/09/16/breaking-simple-ciphers#comment-5317</link>
+    </item>
+    <item>
+      <title>"Breaking simple ciphers" by Jonas Elfström</title>
+      <description>&lt;p&gt;Thanks!&lt;/p&gt;</description>
+      <pubDate>Sat, 07 Nov 2009 00:02:21 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:69efe5cb-dfff-41e0-a0c2-e02a92627363</guid>
+      <link>http://alicebobandmallory.com/articles/2009/09/16/breaking-simple-ciphers#comment-3818</link>
+    </item>
+    <item>
+      <title>"Breaking simple ciphers" by Romy</title>
+      <description>&lt;p&gt;This post was teh bomb.&lt;/p&gt;
+
+&lt;p&gt;I &amp;lt;3 ruby.
+I &amp;lt;3 ciphers.
+I &amp;lt;3 kanye stepping on kittens.&lt;/p&gt;
+
+&lt;p&gt;Keep it coming&amp;#8230;&lt;/p&gt;</description>
+      <pubDate>Thu, 24 Sep 2009 00:51:12 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:2bbf194c-54a9-445c-ab42-c8c6625ab32a</guid>
+      <link>http://alicebobandmallory.com/articles/2009/09/16/breaking-simple-ciphers#comment-3632</link>
+    </item>
+  </channel>
+</rss>

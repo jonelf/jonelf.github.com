@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: Simple security tokens needed</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/20/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2007/03/27/secure-and-simple-security-tokens-needed" rel="alternate" type="text/html"/>
+  <updated>2007-03-30T08:36:02+02:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:2cf7d0be-08f1-4941-848d-cf3fbd5378e2</id>
+    <published>2007-03-27T22:46:00+02:00</published>
+    <updated>2007-03-30T08:36:02+02:00</updated>
+    <title type="html">Simple security tokens needed</title>
+    <link href="http://alicebobandmallory.com/articles/2007/03/27/secure-and-simple-security-tokens-needed" rel="alternate" type="text/html"/>
+    <category label="Security" term="security" scheme="http://alicebobandmallory.com/articles/category/security"/>
+    <summary type="html">&lt;p&gt;In an earlier &lt;a href="/articles/2007/02/05/trojans-and-one-time-passwords"&gt;post &lt;/a&gt; I mentioned that a &lt;a href="http://en.wikipedia.org/wiki/Security_token#Digital_signatures"&gt;security token&lt;/a&gt; that lets you sign your transactions is one way to go to get more secure Internet banking. &lt;/p&gt;
+&lt;p&gt;Now &lt;a href="http://www.bth.se/tek/aps/mbo.nsf/pages/1df251df5df1b090c12572a6002389b1!OpenDocument"&gt;a couple of swedish students&lt;/a&gt; have shown (by also using the problem I mentioned in this &lt;a href="/articles/2007/02/26/change-your-default-passwords"&gt;post&lt;/a&gt;) that a security token both needs to be used in a secure manner and that it also needs to be simple for the user to know what he is actually signing. According to the &lt;a href="http://computersweden.idg.se/2.2683/1.100636"&gt;press&lt;/a&gt; it seems that they did this as a &lt;a href="http://en.wikipedia.org/wiki/Man_in_the_middle_attack"&gt;man-in-the-middle attack&lt;/a&gt;. This is just speculations but it seems the reason that this were possible were that the user did not have a clear view of what he was signing. &lt;/p&gt;
+&lt;p&gt;It &lt;a href="http://sakerhet.idg.se/2.1070/1.100636?articleRenderMode=listpostings#"
+&gt;could&lt;/a&gt; have been done something like this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Redirect the user to a fake site (and hope that he does not 
+investigate the certificate).&lt;/li&gt;
+&lt;li&gt;Ask for username and challenge the user with the verification code and then login to the bank in the background.&lt;/li&gt;
+&lt;li&gt;Try to add a new account for transfers and then tell the user he mistyped and has to login again while challenging him to verify the new account.&lt;/li&gt;
+&lt;li&gt;Transfer money the same way.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The bank has &lt;a href="http://www.swedbank.se/sst/inf/out/infOutWww1/0,,1842_m109_m44_398348,00.html"&gt;&lt;i&gt;solved&lt;/i&gt; the problem&lt;/a&gt; by adding a 9 before all login codes. I'm not convinced this is simple and obvious enough for the users. One way to make it simple could be a security device with buttons labeled "login", "sign account" and "sign amount" or such.
+&lt;/p&gt;
+
+&lt;p&gt;EDIT: Now it has started to arrive phishing mails that asks the customers of Swedbank to install ssl3.exe... &lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;In an earlier &lt;a href="/articles/2007/02/05/trojans-and-one-time-passwords"&gt;post &lt;/a&gt; I mentioned that a &lt;a href="http://en.wikipedia.org/wiki/Security_token#Digital_signatures"&gt;security token&lt;/a&gt; that lets you sign your transactions is one way to go to get more secure Internet banking. &lt;/p&gt;
+&lt;p&gt;Now &lt;a href="http://www.bth.se/tek/aps/mbo.nsf/pages/1df251df5df1b090c12572a6002389b1!OpenDocument"&gt;a couple of swedish students&lt;/a&gt; have shown (by also using the problem I mentioned in this &lt;a href="/articles/2007/02/26/change-your-default-passwords"&gt;post&lt;/a&gt;) that a security token both needs to be used in a secure manner and that it also needs to be simple for the user to know what he is actually signing. According to the &lt;a href="http://computersweden.idg.se/2.2683/1.100636"&gt;press&lt;/a&gt; it seems that they did this as a &lt;a href="http://en.wikipedia.org/wiki/Man_in_the_middle_attack"&gt;man-in-the-middle attack&lt;/a&gt;. This is just speculations but it seems the reason that this were possible were that the user did not have a clear view of what he was signing. &lt;/p&gt;
+&lt;p&gt;It &lt;a href="http://sakerhet.idg.se/2.1070/1.100636?articleRenderMode=listpostings#"
+&gt;could&lt;/a&gt; have been done something like this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Redirect the user to a fake site (and hope that he does not 
+investigate the certificate).&lt;/li&gt;
+&lt;li&gt;Ask for username and challenge the user with the verification code and then login to the bank in the background.&lt;/li&gt;
+&lt;li&gt;Try to add a new account for transfers and then tell the user he mistyped and has to login again while challenging him to verify the new account.&lt;/li&gt;
+&lt;li&gt;Transfer money the same way.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The bank has &lt;a href="http://www.swedbank.se/sst/inf/out/infOutWww1/0,,1842_m109_m44_398348,00.html"&gt;&lt;i&gt;solved&lt;/i&gt; the problem&lt;/a&gt; by adding a 9 before all login codes. I'm not convinced this is simple and obvious enough for the users. One way to make it simple could be a security device with buttons labeled "login", "sign account" and "sign amount" or such.
+&lt;/p&gt;
+
+&lt;p&gt;EDIT: Now it has started to arrive phishing mails that asks the customers of Swedbank to install ssl3.exe... &lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:8e19ea7f-2dd7-4070-84cc-c33430cab0c7</id>
+    <published>2007-03-30T08:41:46+02:00</published>
+    <updated>2007-05-14T09:43:21+02:00</updated>
+    <title type="html">Comment on Simple security tokens needed by Jonas Elfström</title>
+    <link href="http://alicebobandmallory.com/articles/2007/03/27/secure-and-simple-security-tokens-needed#comment-24" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;I will check out WiKID as soon as possible. &lt;a href="http://daringfireball.net/projects/markdown/"&gt;Markdown&lt;/a&gt;  removed a couple of underscores from the URL you supplied. I might have to disable Markdown.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Nick Owen</name>
+    </author>
+    <id>urn:uuid:e6bd7f3a-8fe3-4a33-b82b-24d6d075314f</id>
+    <published>2007-03-29T16:11:06+02:00</published>
+    <updated>2007-05-14T09:43:21+02:00</updated>
+    <title type="html">Comment on Simple security tokens needed by Nick Owen</title>
+    <link href="http://alicebobandmallory.com/articles/2007/03/27/secure-and-simple-security-tokens-needed#comment-23" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Jonas:&lt;/p&gt;
+
+&lt;p&gt;Glad to have found your blog.  Be glad that banks in your country are putting forth such a strong effort. (Although I was not able to read the articles in Swedish. :)&lt;/p&gt;
+
+&lt;p&gt;I would be interested in your thoughts on our two-factor solution as it applies to online banking.  It is interesting in that because we use public key cryptography, we can have cryptographically distinct OTP mechanisms within a single client (or across multiple clients of course).  We also can perform host authentication for SSL websites, preventing MITM attacks - and we launch the default browser to the correct website, making it easier for the user, which I agree is paramount. You can find more info here:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.wikid.com/two-factor-authentication/industry/anti_phishing_2_factor/"&gt;http://www.wikid.com/two-factor-authentication/industry/anti&lt;em&gt;phishing&lt;/em&gt;2_factor/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I&amp;#8217;m of the opinion that banks will have to do session, host/mutual, &amp;amp; transaction authentication before long.  Seems like it will occur last in the US.&lt;/p&gt;</content>
+  </entry>
+</feed>

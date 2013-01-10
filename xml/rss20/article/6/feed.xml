@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Trojans and one-time passwords</title>
+    <link>http://alicebobandmallory.com/articles/2007/02/05/trojans-and-one-time-passwords</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Trojans and one-time passwords</title>
+      <description>&lt;p&gt;It was recently reported that as much as &lt;a href="http://www.schneier.com/blog/archives/2007/01/huge_online_ban.html"&gt;250 customers&lt;/a&gt; of one of Sweden’s biggest banks got their accounts emptied. 
+It is believed that the cyber criminals used a trojan on the bank customer's computers.
+&lt;/p&gt;
+
+&lt;p&gt;The bank in question is known to have one-time passwords (OTP) printed on a plastic card (with the size of a credit card). 
+The OTPs are hidden behind the same kind of layer as scratch lottery tickets uses.
+To log in the user enters his username and password, scratches and enters the number that shows. The trojan (said to be based on &lt;a href="http://www.f-secure.com/v-descs/haxdoor.shtml"&gt;Haxdoor&lt;/a&gt;) captured username, password and OTP, then it intercepted the transmission to the bank. Thus the trojan acted as a Mallory and not only as an Eve, see earlier &lt;a href="/articles/2007/02/03/whos-that-girl"&gt;post&lt;/a&gt;. By compromising the user's computer the &lt;a href="http://en.wikipedia.org/wiki/Two-factor_authentication"&gt;two-factor authentication&lt;/a&gt; were circumvented. It is a known problem with security tokens like this and it was not even &lt;a href="http://www.schneier.com/crypto-gram-0511.html#5"&gt;news&lt;/a&gt; to the bank itself. Even the digital variants like &lt;a href="http://en.wikipedia.org/wiki/SecurID"&gt;RSA SecurID&lt;/a&gt; has the same vulnerability, although in that case the 30-60 second timeframe makes it a little harder for the attacker.&lt;/p&gt;
+
+&lt;h3&gt;Now with OTP&lt;/h3&gt;
+&lt;p&gt;My bank recently improved their security by adding OTPs. Before they used username, password (pin code actually) and a client certificate. Really convenient but apparently not secure enough anymore. The OTPs they have provided their customers with is delivered as a numbered list of 50 OTPs on a piece of paper.&lt;/p&gt;
+&lt;p&gt;Could they be attacked in the same way as the other bank? If the trojan not already has the capability to copy client certificates I am convinced that it will be capable to do so in the future and then the same attack could be used.&lt;/p&gt;
+
+&lt;h3&gt;A bold statement&lt;/h3&gt;
+&lt;p&gt;What if there was a really simple way for a bank using this kind of login procedure to be several times more secure? While logging in to my bank a couple of weeks ago I suddenly realized that the bank knows something about my security token (the OTP list) that a trojan does not and that by using that information they could render the attack described above almost useless.
+&lt;/p&gt;
+&lt;h3&gt;A simple proposal&lt;/h3&gt;
+&lt;p&gt;It's all really simple and I have no intention to claim being the inventor of the scheme. If the procedure has a name other than random challenge of OTP then please inform me. &lt;/p&gt;
+&lt;p&gt;
+&lt;b&gt;1.&lt;/b&gt; Ask for username+pin code&lt;br/&gt;
+&lt;b&gt;2.&lt;/b&gt; Challenge the user to enter OTP number n where n is a randomly chosen OTP of those that the user has left.&lt;br/&gt;
+&lt;b&gt;2.1&lt;/b&gt; Even if the user does not enter an OTP it should be considered used up.&lt;br/&gt;
+&lt;/p&gt;
+&lt;p&gt;The trojan could of course present the user with a false page and challenge the user to enter OTP n but when the trojan then tries to use this OTP it's only one in 50 that it got the right one.&lt;/p&gt;
+&lt;h3&gt;Sign my bills&lt;/h3&gt;
+&lt;p&gt;I would also recommend any bank using OTPs to ask for one a second time for signing purposes. Let's say the customer has made a list of all the bills he is about to pay that month. If the bank then asks the customer for another randomly chosen OTP the attack above would really be rendered almost completely useless.&lt;/p&gt; 
+&lt;h3&gt;Not good enough?&lt;/h3&gt;
+&lt;p&gt;The method of asking the user for a specified OTP is an easy enhancement for a paper based OTP numbered list. It does not need any new hardware or infrastructure but only a simple software change. Easy for both the bank and the customer. But what if you want to be even more secure?&lt;/p&gt;
+&lt;p&gt;A digital &lt;a href="http://en.wikipedia.org/wiki/Security_token#Digital_signatures"&gt;security token&lt;/a&gt; that lets you sign both account numbers and values of transactions is very secure, the downside is that it's also a lot more cumbersome for the user.  A couple of banks in Sweden use these. Of course they are only secure as long as the algorithms involved aren't totally cracked but if they are you will hear about it.&lt;/p&gt;
+</description>
+      <pubDate>Mon, 05 Feb 2007 12:51:00 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:cd035496-871f-4866-a462-790d03ccd89b</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2007/02/05/trojans-and-one-time-passwords</link>
+      <category>Security</category>
+      <trackback:ping>http://alicebobandmallory.com/articles/trackback/6</trackback:ping>
+    </item>
+    <item>
+      <title>"Trojans and one-time passwords" by http://strombergson.com/kryptoblog/?p=258</title>
+      <description>&lt;p&gt;Test&lt;/p&gt;</description>
+      <pubDate>Wed, 28 Mar 2007 12:41:37 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:73d7b3e8-587a-4957-8c65-80b198b50800</guid>
+      <link>http://alicebobandmallory.com/articles/2007/02/05/trojans-and-one-time-passwords#comment-21</link>
+    </item>
+    <item>
+      <title>"Trojans and one-time passwords" by jonelf</title>
+      <description>&lt;p&gt;See &lt;a href="/articles/2007/02/12/randomly-chosen-otps-defaced"&gt;this&lt;/a&gt;.&lt;/p&gt;</description>
+      <pubDate>Mon, 12 Feb 2007 22:21:51 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:dc375cf1-1502-4d81-9256-67d598272765</guid>
+      <link>http://alicebobandmallory.com/articles/2007/02/05/trojans-and-one-time-passwords#comment-16</link>
+    </item>
+    <item>
+      <title>"Trojans and one-time passwords" by Gunnar Kreitz</title>
+      <description>&lt;p&gt;What&amp;#8217;s the security model where this is (more) secure? We&amp;#8217;re assuming the client software is compromised, right? So why can&amp;#8217;t the malware, when it sees the user attempting to login on his/her bank and after entering password/pin:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Reuse the same password/pin (or steal the legitimate session, however you prefer to see it) and see what challenge n it gets from the bank&lt;/li&gt;
+&lt;li&gt;Present the user with a fake OTP-page with the n it just got from bank&lt;/li&gt;
+&lt;li&gt;When the user gives an OTP, login in background and set up a transaction to steal money. This will possibly give you a new OTP challenge, n&amp;#8217;, for approving the transaction (as per your second suggestion)&lt;/li&gt;
+&lt;li&gt;Display an error page saying &amp;#8220;Error processing login request. Please try again&amp;#8221; with the new challenge n&amp;#8217;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Am I missing something?&lt;/p&gt;
+
+&lt;p&gt;So what you may have gained, given that this attack is valid, is that you force the attacker to act reasonably close in time to the user logging in (the attacker can wait with using the stolen OTP only until just before the challenge expires), at the cost of some usability (locating the correct OTP).&lt;/p&gt;</description>
+      <pubDate>Sun, 11 Feb 2007 23:01:44 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:5f74ced9-a457-4765-bef6-341b4feb16df</guid>
+      <link>http://alicebobandmallory.com/articles/2007/02/05/trojans-and-one-time-passwords#comment-12</link>
+    </item>
+  </channel>
+</rss>

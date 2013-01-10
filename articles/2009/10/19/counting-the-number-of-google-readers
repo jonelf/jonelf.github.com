@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Counting the number of Google Readers</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../../../xml/atom/article/3768/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../../xml/rss20/article/3768/feed.xml" />
+  <script src="../../../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+       xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+       xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about=""
+    dc:title="Counting the number of Google Readers"
+    dc:identifier="http://alicebobandmallory.com/articles/2009/10/19/counting-the-number-of-google-readers"
+    dc:description="I run this blog on a 9 year old laptop hidden in a cabinet in the living room. It's not a powerful machine but it has been up to the job since I turned it into a web server 7 years ago. This could maybe be one of the last HP Omnibook 4150b still in use,"
+    dc:creator="jonelf"
+    dc:date="2009-10-21T00:39:49+02:00" />
+</rdf:RDF>
+-->
+
+<div class="post" onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_article'); }"  onmouseout="Element.hide('admin_article');" >
+  <a href="http://alicebobandmallory.com/admin/content/edit/3768" class="admintools" id="admin_article" style="display: none">edit</a>
+  <h2>Counting the number of Google Readers</h2>
+  <p class="auth">Posted by Jonas Elfström
+  <span class="typo_date" title="Mon, 19 Oct 2009 19:55:00 GMT">Mon, 19 Oct 2009 19:55:00 GMT</span></p>
+  <p>I run this blog on a 9 year old laptop hidden in a cabinet in the living room. It's not a powerful machine but it has been up to the job since I turned it into a web server 7 years ago. This could maybe be one of the last HP Omnibook 4150b still in use, at least it has to be in a very exclusive club of laptops being switched on for the past 7.5 years. Recently I've seen an increase in traffic and especially from <a href="http://www.google.com/feedfetcher.html#manycrawlers">Feedfetcher-Google</a>. It so happens that Feedfetcher also shows the number of subscribers.</p>
+
+<blockquote>
+    <p>[19/Oct/2009:22:01:19 +0200] "GET /xml/rss20/feed.xml HTTP/1.1" 304 0 "-" "Feedfetcher-Google; (+http://www.google.com/feedfetcher.html; 4 subscribers; feed-id=7686756599804593322)"</p>
+</blockquote>
+
+<p>The above is only one out of five different feed-ids because I have both atom and rss and for a short while this blog was at another address. The fifth feed is actually myself subscribing to the comments.</p>
+
+<p>I'm not using <a href="http://feedburner.google.com/fb/a/myfeeds">FeedBurner</a> so I can't get my statistics from there but I still wanted to be able to see the number of Google Readers of my blog (as far as I can see I only have one other type of subscriber).</p>
+
+<p>Usually I script anything more advanced than a <code>grep</code> in <a href="http://www.ruby-lang.org/en/">Ruby</a> but this time I made an exception and stayed in <code>Bash</code>.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="counting-the-number-of-google-readers#n1" name="n1">1</a>
+<a href="counting-the-number-of-google-readers#n2" name="n2">2</a>
+<a href="counting-the-number-of-google-readers#n3" name="n3">3</a>
+<a href="counting-the-number-of-google-readers#n4" name="n4">4</a>
+<a href="counting-the-number-of-google-readers#n5" name="n5">5</a>
+<a href="counting-the-number-of-google-readers#n6" name="n6">6</a>
+<a href="counting-the-number-of-google-readers#n7" name="n7">7</a>
+<a href="counting-the-number-of-google-readers#n8" name="n8">8</a>
+<a href="counting-the-number-of-google-readers#n9" name="n9">9</a>
+</pre></td>
+  <td class="code"><pre>tail <span style="color:#00D">-1000</span> /www/logs/access.log |
+grep <span style="color:#036;font-weight:bold">Feedfetcher</span> |
+cut -d <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">;</span><span style="color:#710">&quot;</span></span> -f <span style="color:#00D">4</span> | sort -u |
+<span style="color:#080;font-weight:bold">while</span> <span style="color:#036;font-weight:bold">IFS</span>= read -r line
+<span style="color:#080;font-weight:bold">do</span>
+   tac <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">www</span><span style="color:#404">/</span></span>logs/access.log | grep -m <span style="color:#00D">1</span> <span style="color:#d70">$line</span>
+done |
+sed <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">s/^.*html; </span><span style="color:#D20">\(</span><span style="color:#D20">[0-9]*</span><span style="color:#D20">\)</span><span style="color:#D20"> subscribers.*/</span><span style="color:#D20">\1</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> |
+awk <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">{tot=tot+$1} END {print tot}</span><span style="color:#710">'</span></span></pre></td>
+</tr></table>
+
+<p>Most certainly this can be optimized in a number of ways. Don't be shy, just tell me!</p>
+
+<p>So what's going on there? Well, first I get the last 1000 rows from my access log and right now my traffic is so low that that is way more than I really would have to. Then I get all unique feeed-ids from the rows containing Feedfetcher. I pipe those to a loop that gets the very last access for each one of them. Then I parse out the number of subscribers with a regexp in <code>sed</code> and count them with <code>awk</code> .</p>
+
+<p>It turns out that I have a whopping number of <strike>14</strike> 15 subscribers and I am one of them.</p>
+</div>
+<p class="meta">
+  Posted in <a href="http://alicebobandmallory.com/articles/category/blogging" rel="noindex, follow, tag">Blogging</a>&nbsp;<strong>|</strong>&nbsp;Tags <a href="../../../tag/bash" rel="noindex, follow, tag">Bash</a>&nbsp;<strong>|</strong>&nbsp;<a href="counting-the-number-of-google-readers#comments">no comments</a>
+</p>
+
+  <a name="comments"></a><h4 class="blueblk">Comments</h4>
+    <p class="postmetadata alt">
+      <small><a href="counting-the-number-of-google-readers#respond">Comments closed</a></small>
+    </p>
+  <ol class="comment-list" id="commentList">
+  
+    <li id="dummy_comment" style="display: none"></li>
+  
+  </ol>
+
+
+<p class="postmetadata alt">
+  <small>
+  <a href="../../../../xml/rss20/article/3768/feed.xml" title="RSS Feed">RSS feed for this post</a>
+  </small>
+</p>
+
+
+<p>Comments are closed</p>
+<!--
+  <p>Comments are disabled</p>
+-->
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../../../pages/AboutMe">About me</a>/<a href="../../../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

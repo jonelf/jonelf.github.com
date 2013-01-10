@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Smart card with LCD</title>
+    <link>http://alicebobandmallory.com/articles/2007/07/31/smart-card-with-lcd</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Smart card with LCD</title>
+      <description>&lt;p&gt;&lt;a href="http://www.swecard.se/"&gt;This company&lt;/a&gt; is presenting a smart card with built in display. I do not know the underlying protocol for making debit/credit card payments by smart card instead of using the magnetic stripe but if the protocol is sophisticated enough this could help blocking some of the known attacks of those. As &lt;a href="http://www.chipandspin.co.uk/"&gt;Chip and SPIN&lt;/a&gt; points out the smart cards has some issues. One of them is that if the terminal is compromised you as a customer have no way to know that you are actually confirming the transaction you think you are while entering your pin code. If your smart card shows the amount, you could at least not be deceived into emptying your account.&lt;/p&gt;</description>
+      <pubDate>Tue, 31 Jul 2007 23:10:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:76986b7d-292e-4665-a9d6-748461fa455b</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2007/07/31/smart-card-with-lcd</link>
+      <category>Security</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Lightning crashes</title>
+    <link>http://alicebobandmallory.com/articles/2007/07/09/lightning-crashes</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Lightning crashes</title>
+      <description>&lt;p&gt;Three weeks ago lightning struck nearby. Today my ISP finally tried to change the switch in the central even though I reported back to them that my VSDL modem worked just fine at a friend’s house only a couple of days after my connection died.&lt;/p&gt;</description>
+      <pubDate>Mon, 09 Jul 2007 23:37:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:80bc6de4-f4fb-466f-b7ff-498d819b471b</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2007/07/09/lightning-crashes</link>
+      <category>Blogging</category>
+    </item>
+  </channel>
+</rss>

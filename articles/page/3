@@ -1,0 +1,435 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Alice, Bob, and Mallory</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../xml/atom/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../xml/rss20/feed.xml" />
+  <script src="../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <div class="atomentry" id="article-4321">
+  <h2 class="title">
+    <a href="../2010/09/23/did-little-bobby-tables-migrate-to-sweden">Did Little Bobby Tables migrate to Sweden?</a> 
+    <span class="comment_count">31</span>
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2010-09-23T22:36:00+02:00"><span class="typo_date" title="Thu, 23 Sep 2010 20:36:00 GMT">Thu, 23 Sep 2010 20:36:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>As you may have heard, we've had a <a href="http://www.thelocal.se/29172/20100922/">very close election</a> here in Sweden. Today the Swedish Election Authority published the <a href="http://www.val.se/val/val2010/handskrivna/handskrivna.skv">hand written votes</a>. While scanning through them I happened to notice </p>
+
+<p><code>R;13;Hallands län;80;Halmstad;01;Halmstads västra valkrets;0904;Söndrum 4;</code><font style="background-color:#ffffaa">pwn DROP TABLE VALJ</font><code>;1</code></p>
+
+<p>The second to last field<sup>1</sup> is the actual text on the ballot<sup>2</sup>. Could it be that <a href="http://xkcd.com/327/">Little Bobby Tables</a> is all grown up and has migrated to Sweden? Well, it's probably just a joke but even so it brings questions since an <a href="http://en.wikipedia.org/wiki/SQL_injection">SQL-injection</a> on election data would be very serious.</p>
+
+<p>Someone even tried to get some JavaScript in there:</p>
+
+<p><code>R;14;Västra Götalands län;80;Göteborg;03;Göteborg, Centrum;0722;Centrum, Övre Johanneberg;</code><font style="background-color:#ffffaa">(Script src=http://hittepa.webs.com/x.txt)</font><code>;1</code></p>
+
+<p>I'm pleased to see that they published the list as text and not HTML. This hacker/joker voter <a href="http://hittepa.webs.com/">seems to think</a><sup>3</sup> they "censored" his vote/script. I'm not so sure about that, a more reasonable explanation is that they couldn't enter  <a href="http://en.wikipedia.org/wiki/Bracket#Uses_of_.22.3C.22_and_.22.3E.22">brackets</a>, quotation marks, and so on.</p>
+
+<p>There are also a couple of URL:s to online retailers and three votes on a conspiracy friendly site. I chose not to link to any of those.</p>
+
+<p>This time the <a href="http://news.ycombinator.com/item?id=1722043">pen and paper scripting attack</a> failed. Let's hope it stays that way.</p>
+
+<p><br>
+PS. Someone noticed that there are no votes from Stockholm in <a href="http://www.val.se/val/val2010/handskrivna/handskrivna.skv">there</a> right now (<a href="http://en.wikipedia.org/wiki/ISO_8601">2010-09-24</a>). I asked the Swedish Election Authority about this and it turns out that The County Administrative Board (Länsstyrelsen) gets two months to register all the handwritten votes. There's a good chance that those will bring more attempts like the ones above. DS.
+<br><br>
+<font color="red">EDIT 2010-09-24</font><br>
+Links:<br>
+<a href="http://www.aftonbladet.se/nyheter/valet2010/article7844634.ab">Aftonbladet</a> <a href="http://www.dn.se/nyheter/valet2010/forsokte-hacka-valet-med-rostsedlar-1.1176677">DN</a> <a href="http://www.svd.se/nyheter/politik/valet2010/forsokte-hacka-valet-med-rostsedlar_5394833.svd">SvD</a> <a href="http://www.expressen.se/nyheter/val2010/1.2149620/forsokte-hacka-valet-med-rostsedlar">Expressen</a>  <a href="http://svt.se/2.128339/1.2162040/forsokte_hacka_valet_med_rostsedlar">SVT</a> - all in Swedish.<br/>
+<a href="http://politics.slashdot.org/story/10/09/24/0221217/Swedes-Cast-Write-In-Votes-for-SQL-Injection-Donald-Duck">Slashdot</a> <a href="http://www.bbc.co.uk/blogs/seealso/2010/09/tech_brief_95.html">BBC</a> <a href="http://www.wired.co.uk/news/archive/2010-09/24/sweden-election-hack">Wired</a>
+<br><br></p>
+
+<p><sup>1</sup>The name of the party, not a name of a person.<br/>
+<sup>2</sup>Almost all Swedish voters use the preprinted ballots but you are allowed to write your own by hand.<br/>
+<sup>3</sup>The site disappeared after this post was published.</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/security" rel="noindex, follow, tag">Security</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2010/09/23/did-little-bobby-tables-migrate-to-sweden#comments">31 comments</a>,
+      <a href="../2010/09/23/did-little-bobby-tables-migrate-to-sweden" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/4321/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/4321/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-4171">
+  <h2 class="title">
+    <a href="../2010/06/21/a-simple-loop">A simple loop</a> 
+    
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2010-06-21T21:56:00+02:00"><span class="typo_date" title="Mon, 21 Jun 2010 19:56:00 GMT">Mon, 21 Jun 2010 19:56:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>There's more than one way to skin a cat and the same is true for looping in Ruby. This is a silly post with a silly number of ways to  </p>
+
+<blockquote>
+    <p>print the integers from 1 to 10.</p>
+</blockquote>
+
+<p>If you're a BASIC-programmer and are getting your feet wet with Ruby,  you might end up with something like this.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="3#n1" name="n1">1</a>
+<a href="3#n2" name="n2">2</a>
+<a href="3#n3" name="n3">3</a>
+<a href="3#n4" name="n4">4</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#080;font-weight:bold">while</span> i&lt;=<span style="color:#00D">10</span> <span style="color:#080;font-weight:bold">do</span>
+   puts i
+   i+=<span style="color:#00D">1</span>
+<span style="color:#080;font-weight:bold">end</span></pre></td>
+</tr></table>
+
+<p><br/>
+That and the following <code>for</code>-loop is not the usual Ruby way of looping.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="3#n1" name="n1">1</a>
+<a href="3#n2" name="n2">2</a>
+<a href="3#n3" name="n3">3</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#080;font-weight:bold">for</span> i <span style="color:#080;font-weight:bold">in</span> <span style="color:#00D">1</span>..<span style="color:#00D">10</span>
+ puts i
+<span style="color:#080;font-weight:bold">end</span></pre></td>
+</tr></table>
+
+<p><br/>
+Instead rubyists often iterates over <a href="http://ruby-doc.org/core/classes/Range.html">ranges</a> or <a href="http://ruby-doc.org/core/classes/Array.html">arrays</a> with <code>each</code>.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>
+</pre></td>
+  <td class="code"><pre>(<span style="color:#00D">1</span>..<span style="color:#00D">10</span>).each {|i| puts i }</pre></td>
+</tr></table>
+
+<p><br/>
+But for simple integer loops like this, we also have <code>upto</code></p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>
+</pre></td>
+  <td class="code"><pre><span style="color:#00D">1</span>.upto(<span style="color:#00D">10</span>) {|i| puts i }</pre></td>
+</tr></table>
+
+<p><br/>
+ and <code>times</code>.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>
+</pre></td>
+  <td class="code"><pre><span style="color:#00D">10</span>.times {|i| puts i+<span style="color:#00D">1</span>}</pre></td>
+</tr></table>
+
+<p><br/>
+Here's where I should've stopped but I can't help myself, I just have to show off with some <a href="http://weblog.raganwald.com/2008/02/1100inject.html">Symbol#to_proc</a> "magic".</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>
+</pre></td>
+  <td class="code"><pre>(<span style="color:#00D">0</span>..<span style="color:#00D">10</span>).inject(&amp;<span style="color:#A60">:p</span>)</pre></td>
+</tr></table>
+
+<p><br/>
+The above works because <code>p</code> is an alias of <code>puts</code> and <code>&amp;</code> converts the symbol <code>:p</code> to a proc that is called with the numbers in the range as parameters.</p>
+
+<p>The alias <code>p</code> also gives us, what I think has to be, the shortest possible way.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>
+</pre></td>
+  <td class="code"><pre>p *<span style="color:#00D">1</span>..<span style="color:#00D">10</span></pre></td>
+</tr></table>
+
+<p><br/></p>
+
+<p>You could argue that it's a bad thing that there are so many ways to do something as simple as this. But I see no big problem here, if any at all, even though these are hardly all possible ways to loop over integers in Ruby.</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2010/06/21/a-simple-loop#comments">no comments</a>,
+      <a href="../2010/06/21/a-simple-loop" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/4171/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/4171/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-4094">
+  <h2 class="title">
+    <a href="../2010/05/19/blog-comment-spam-taken-to-the-next-level">Blog comment spam taken to the next level?</a> 
+    <span class="comment_count">14</span>
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2010-05-19T23:01:00+02:00"><span class="typo_date" title="Wed, 19 May 2010 21:01:00 GMT">Wed, 19 May 2010 21:01:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>Only days after starting this barely visited blog the <a href="http://en.wikipedia.org/wiki/Spam_in_blogs">comment spammers</a> showed up. I activated <a href="http://akismet.com/">Akismet</a> and it solved my problem for a while. Over time the spamming got worse and although almost no spam actually showed up on the blog, my fear of false positives still forced me to remove the spam manually. Not my idea of fun.</p>
+
+<p>I then activated a very simple hurdle. I demanded JavaScript to be able to post comments. Well, not really, what <a href="http://wiki.github.com/fdv/typo/">Typo</a> really did was to expect the HTTP header <code>X-Requested-With: XMLHttpRequest</code>. That worked flawlessly for about three years. Just six weeks ago I noticed the first spambots including the needed header to pass through. Almost all posted stupid drug ads that Akismet easily identified as spam. The situation was still under control.</p>
+
+<p>Yesterday something completely new happened. I got a comment on an old post about my admiration of Ira Glass and <a href="http://www.thisamericanlife.org/">This American Life</a>. The comment seemed believable enough and it passed the spam filter. Still, the link at the end undeniably identified it as spam.
+Then there was another, and another, and up until now a total of six spam comments in the new and more advanced format. I'm still not sure if these are scripted but it seems an awful lot of work if they are actually manually typed. </p>
+
+<p><a href="../2010/02/03/ira-glass-on-storytelling"><img src="../../images/advanced_blog_spam1.png">
+</a>
+And also these on a post about <a href="../2009/10/20/infinite-ranges-in-c">infinite ranges in C#</a>:
+<a href="../2009/10/20/infinite-ranges-in-c"><img src="../../images/advanced_blog_spam2.png">
+</a></p>
+
+<p>I'm kind of bothered with the ones both referring to content of the post and at the same time mentioning that it's not about programming like most of my posts are.</p>
+
+<p>Are these human or machine made? A clever combination? Also, if you happen to be a spambot and actually answer this then I guess I will have to congratulate you for passing the Turing test.</p>
+
+<p>PS. They spammed from <code>110.0.0.0 - 110.255.255.255</code> so if you happen to have problems with the same spammers and aren't worried about blocking the Philippines then you know what to do. DS.</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/blogging" rel="noindex, follow, tag">Blogging</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2010/05/19/blog-comment-spam-taken-to-the-next-level#comments">14 comments</a>,
+      <a href="../2010/05/19/blog-comment-spam-taken-to-the-next-level" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/4094/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/4094/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-4020">
+  <h2 class="title">
+    <a href="../2010/03/05/javascript-hash-table-keys">JavaScript hash table keys</a> 
+    <span class="comment_count">2</span>
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2010-03-05T17:42:00+01:00"><span class="typo_date" title="Fri, 05 Mar 2010 16:42:00 GMT">Fri, 05 Mar 2010 16:42:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>In JavaScript you can add properties to objects dynamically. You can access those properties both by <code>object.foo</code> and <code>object['foo']</code>. The later is commonly used to use JavaScript objects as <a href="http://en.wikipedia.org/wiki/Hash_table">hash tables</a> (associative arrays).</p>
+
+<p>While implementing <a href="http://stackoverflow.com/questions/2380019/generate-8-unique-random-numbers-between-1-and-100/2380513#2380513">a simplistic unique random number generator</a> I happened to use <a href="https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Global_Objects/Object/keys">keys(obj)</a>. Unfortunately <code>keys(obj)</code> is part of <a href="http://en.wikipedia.org/wiki/ECMAScript">ECMAScript</a> 5. See chapter 15.2.3.14 in <a href="http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-262.pdf">ECMA-262</a>. The web browsers of today mostly implements ECMAScript 3.</p>
+
+<p>Here's an implementation of <code>keys(obj)</code> for ECMAScript 3 browsers (tested in Google Chrome, IE8 and Firefox 3.5). If the browser already has a keys function then nothing will be done.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="3#n1" name="n1">1</a>
+<a href="3#n2" name="n2">2</a>
+<a href="3#n3" name="n3">3</a>
+<a href="3#n4" name="n4">4</a>
+<a href="3#n5" name="n5">5</a>
+<a href="3#n6" name="n6">6</a>
+<a href="3#n7" name="n7">7</a>
+<a href="3#n8" name="n8">8</a>
+<a href="3#n9" name="n9">9</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#080;font-weight:bold">if</span> (typeof keys == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">undefined</span><span style="color:#710">&quot;</span></span>) 
+{ 
+  var keys = function(ob) 
+  {
+    props=[];
+    <span style="color:#080;font-weight:bold">for</span> (k in ob) <span style="color:#080;font-weight:bold">if</span> (ob.hasOwnProperty(k)) props.push(k);
+    <span style="color:#080;font-weight:bold">return</span> props;
+  }
+}</pre></td>
+</tr></table>
+
+<p><br/>
+The simplistic unique random number generator looks like this</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="3#n1" name="n1">1</a>
+<a href="3#n2" name="n2">2</a>
+<a href="3#n3" name="n3">3</a>
+<a href="3#n4" name="n4">4</a>
+<a href="3#n5" name="n5">5</a>
+<a href="3#n6" name="n6">6</a>
+</pre></td>
+  <td class="code"><pre>function uniqueRndNumbers(min, max, quantity) {
+  var ht={}, i=quantity;
+  <span style="color:#080;font-weight:bold">while</span> ( i&gt;<span style="color:#00D">0</span> || keys(ht).length&lt;quantity) 
+    ht[Math.floor(Math.random()*(max-min+<span style="color:#00D">1</span>))+min]=i--;
+  <span style="color:#080;font-weight:bold">return</span> keys(ht);
+}</pre></td>
+</tr></table>
+
+<p><br/>
+This function has not undergone any serious testing. Also if the <code>quantity</code> is more than a fraction of <code>(max-min)</code> then another algorithm like the <a href="http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle">Fisher–Yates shuffle</a> might be a better choice.</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/javascript" rel="noindex, follow, tag">JavaScript</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2010/03/05/javascript-hash-table-keys#comments">2 comments</a>,
+      <a href="../2010/03/05/javascript-hash-table-keys" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/4020/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/4020/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-3983">
+  <h2 class="title">
+    <a href="../2010/02/03/ira-glass-on-storytelling">Ira Glass on Storytelling</a> 
+    <span class="comment_count">2</span>
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2010-02-03T23:48:00+01:00"><span class="typo_date" title="Wed, 03 Feb 2010 22:48:00 GMT">Wed, 03 Feb 2010 22:48:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>When a new episode of <em>This American Life</em> is made available, that is the first thing I listen to. There are a lot of great podcasts out there  but if I had to choose only one, I think I would go for <a href="http://www.thisamericanlife.org/">This American Life</a> (sorry <a href="http://www.wnyc.org/shows/radiolab/">RadioLab</a>, I love you). Recently I learned that the host and producer of the show, <a href="http://en.wikipedia.org/wiki/Ira_Glass">Ira Glass</a>, can be found on YouTube talking about storytelling. 
+He covers how he thinks you should tell a story for a radio/TV show. I recognize how the show executes that narrative but it also doesn't take anything away from the fact it's excellent and that there are a lot of hard work and talent put into it.</p>
+
+<p><a href="http://www.youtube.com/watch?v=loxJ3FtCJJA">Ira Glass on Storytelling #1</a></p>
+
+<p><a href="http://www.youtube.com/watch?v=KW6x7lOIsPE">Ira Glass on Storytelling #2</a></p>
+
+<p><a href="http://www.youtube.com/watch?v=BI23U7U2aUY">Ira Glass on Storytelling #3</a></p>
+
+<p><a href="http://www.youtube.com/watch?v=baCJFAGEuJM">Ira Glass on Storytelling #4</a></p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/blogging" rel="noindex, follow, tag">Blogging</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2010/02/03/ira-glass-on-storytelling#comments">2 comments</a>,
+      <a href="../2010/02/03/ira-glass-on-storytelling" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/3983/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/3983/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+
+
+<p class="pagination">Older posts: <a href="1">1</a> <a href="2">2</a> 3 <a href="4">4</a> <a href="5">5</a>  ... <a href="12">12</a></p>
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../pages/AboutMe">About me</a>/<a href="../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

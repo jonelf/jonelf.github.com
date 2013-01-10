@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Comparing instance variables in Ruby</title>
+    <link>http://alicebobandmallory.com/articles/2009/11/02/comparing-instance-variables-in-ruby</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Comparing instance variables in Ruby</title>
+      <description>&lt;p&gt;Say you have two objects of the same class and you want to know what differs between them. Well actually you just want to know the instance variables in object &lt;em&gt;&lt;strong&gt;b&lt;/strong&gt;&lt;/em&gt; that differs from the ones in object &lt;em&gt;&lt;strong&gt;a&lt;/strong&gt;&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;To begin with, we need a class. I like cheese.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#080;font-weight:bold"&gt;class&lt;/span&gt; &lt;span style="color:#B06;font-weight:bold"&gt;Cheese&lt;/span&gt;
+  attr_accessor &lt;span style="color:#A60"&gt;:name&lt;/span&gt;, &lt;span style="color:#A60"&gt;:weight&lt;/span&gt;, &lt;span style="color:#A60"&gt;:expire_date&lt;/span&gt;
+  &lt;span style="color:#080;font-weight:bold"&gt;def&lt;/span&gt; &lt;span style="color:#06B;font-weight:bold"&gt;initialize&lt;/span&gt;(name, weight, expire_date)
+    &lt;span style="color:#33B"&gt;@name&lt;/span&gt;, &lt;span style="color:#33B"&gt;@weight&lt;/span&gt;, &lt;span style="color:#33B"&gt;@expire_date&lt;/span&gt; = name, weight, expire_date
+  &lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;
+&lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;pre&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then we need some &lt;strike&gt;cheese&lt;/strike&gt; objects.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;stilton=&lt;span style="color:#036;font-weight:bold"&gt;Cheese&lt;/span&gt;.new(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;Stilton&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;, &lt;span style="color:#00D"&gt;250&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;Date&lt;/span&gt;.parse(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;2009-11-02&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;))
+gorgonzola=&lt;span style="color:#036;font-weight:bold"&gt;Cheese&lt;/span&gt;.new(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;Gorgonzola&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;, &lt;span style="color:#00D"&gt;250&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;Date&lt;/span&gt;.parse(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;2009-11-17&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;))&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;pre&gt;&lt;/pre&gt;
+
+&lt;p&gt;With only &lt;em&gt;name&lt;/em&gt;, &lt;em&gt;weight&lt;/em&gt; and an &lt;em&gt;expiration date&lt;/em&gt; it would be easy to compare those but imagine that these two objects has 42 properties. It does not stop there, you are being asked to compare 24 different classes in this way. Are you cringing yet?&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Object#instance_variables&lt;/code&gt; to the rescue! Well, that and a small hack by me. Below I add a new method called &lt;code&gt;instance_variables_compare&lt;/code&gt; to &lt;code&gt;Object&lt;/code&gt;. The long method name is because I wanted to follow the naming already in place. Usually I prefer to do these kind of things as a &lt;code&gt;module&lt;/code&gt; and then &lt;code&gt;include&lt;/code&gt; them where appropriate but in this case I find that a &lt;a href="http://en.wikipedia.org/wiki/Monkey_patch"&gt;monkey patch&lt;/a&gt; will do.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#080;font-weight:bold"&gt;class&lt;/span&gt; &lt;span style="color:#B06;font-weight:bold"&gt;Object&lt;/span&gt;
+  &lt;span style="color:#080;font-weight:bold"&gt;def&lt;/span&gt; &lt;span style="color:#06B;font-weight:bold"&gt;instance_variables_compare&lt;/span&gt;(o)
+    &lt;span style="color:#036;font-weight:bold"&gt;Hash&lt;/span&gt;[*&lt;span style="color:#069"&gt;self&lt;/span&gt;.instance_variables.map {|v|
+      &lt;span style="color:#069"&gt;self&lt;/span&gt;.instance_variable_get(v)!=o.instance_variable_get(v) ? 
+      [v,o.instance_variable_get(v)] : []}.flatten]
+  &lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;
+&lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;pre&gt;&lt;/pre&gt;
+
+&lt;p&gt;It returns the instance variables that differs as a &lt;a href="http://ruby-doc.org/core/classes/Hash.html"&gt;hash&lt;/a&gt; because it's handy and because I like it that way.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&amp;gt;&amp;gt; stilton.instance_variables_compare(gorgonzola)
+=&amp;gt; {&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;@name&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;=&amp;gt;&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Gorgonzola&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;@expire_date&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;=&amp;gt;&lt;span style="color:#777"&gt;#&amp;lt;Date: 4910305/2,0,2299161&amp;gt;}&lt;/span&gt;
+&amp;gt;&amp;gt; gorgonzola.instance_variables_compare(stilton)
+=&amp;gt; {&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;@name&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;=&amp;gt;&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Stilton&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;@expire_date&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;=&amp;gt;&lt;span style="color:#777"&gt;#&amp;lt;Date: 4910275/2,0,2299161&amp;gt;}&lt;/span&gt;
+&amp;gt;&amp;gt; stilton.expire_date=gorgonzola.expire_date
+=&amp;gt; &lt;span style="color:#777"&gt;#&amp;lt;Date: 4910305/2,0,2299161&amp;gt;&lt;/span&gt;
+&amp;gt;&amp;gt; stilton.instance_variables_compare(gorgonzola)
+=&amp;gt; {&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;@name&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;=&amp;gt;&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Gorgonzola&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;}
+&amp;gt;&amp;gt; stilton.instance_variables_compare(stilton)
+=&amp;gt; {}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;pre&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you ever think of using this code you should be aware of two things.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;This code is very untested and comes with no guarantees.&lt;/li&gt;
+&lt;li&gt;Since instance variables &lt;strong&gt;spring into life the first time they are assigned to&lt;/strong&gt; you either have to work with objects that always initialize everything or you have to change &lt;code&gt;instance_variables_compare&lt;/code&gt; to handle this.&lt;/li&gt;
+&lt;/ol&gt;</description>
+      <pubDate>Mon, 02 Nov 2009 22:50:00 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:655f1e0f-877a-4696-8057-8efd315ed457</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2009/11/02/comparing-instance-variables-in-ruby</link>
+      <category>Ruby</category>
+    </item>
+  </channel>
+</rss>

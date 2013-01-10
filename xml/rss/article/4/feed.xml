@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Who's that girl?</title>
+    <link>http://alicebobandmallory.com/articles/2007/02/03/whos-that-girl</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Who's that girl?</title>
+      <description>&lt;p&gt;So who's Alice? If you found this blog because of your interest in computer security it's a good chance that you already knew that in cryptography &lt;a href="http://en.wikipedia.org/wiki/Alice_and_Bob"&gt;Alice, Bob &lt;/a&gt;and Mallory are often used as placeholders for common actors in different scenarios.
+I guess it's simpler to remember Alice and Bob than "The sender A wants to identify itself to receiver B" and alike. Alice usually wants to send data to Bob. If there exists an eavesdropper she is  often called Eve. Mallory is a more dangerous animal than Eve because he has control over Alice's messages in such a way that he can change or resend then.&lt;/p&gt;
+
+&lt;p&gt;The first posting I had in mind for this blog involved Alice, Bob and Mallory and suddenly the blog had a name. &lt;strike&gt;That "article" isn't quite finished yet.&lt;/strike&gt; Now &lt;a href="/articles/2007/02/05/trojans-and-one-time-passwords"&gt;it&lt;/a&gt; is.&lt;/p&gt;
+
+&lt;p&gt;This blog will most certainly not be about IT Security alone. I have been known to post some &lt;a href="http://plea.se/me/http2ftp.html"&gt;Ruby-snippets&lt;/a&gt;, &lt;a href="http://plea.se/me/validatePnum.html"&gt;JavaScripts&lt;/a&gt; and such in the past and will try to keep that up.&lt;/p&gt;
+</description>
+      <pubDate>Sat, 03 Feb 2007 18:56:00 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:b58e73b4-3fe1-4a1c-b6af-254f684d7b9a</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2007/02/03/whos-that-girl</link>
+      <category>Security</category>
+    </item>
+  </channel>
+</rss>

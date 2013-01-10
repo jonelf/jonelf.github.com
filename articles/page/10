@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Alice, Bob, and Mallory</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../xml/atom/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../xml/rss20/feed.xml" />
+  <script src="../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <div class="atomentry" id="article-26">
+  <h2 class="title">
+    <a href="../2007/03/30/find-primes-in-regexp">Find primes in regexp</a> 
+    <span class="comment_count">6</span>
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2007-03-30T07:33:00+02:00"><span class="typo_date" title="Fri, 30 Mar 2007 05:33:00 GMT">Fri, 30 Mar 2007 05:33:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>In an earlier <a href="../2007/02/09/setl-ruby-and-list-comprehensions">post</a> the example code did find prime numbers. Recently I <a href="http://groups.google.com/group/ruby-talk-google/browse_thread/thread/3deebb518a454bc4">stumbled</a> over a really cool regexp hack that also deals with primes. This is how you execute that regexp in Ruby:</p>
+
+<div class="typocode"><pre><code class="typocode_ruby "><span class="ident">puts</span> <span class="punct">'</span><span class="string">Prime</span><span class="punct">'</span> <span class="keyword">unless</span> <span class="punct">('</span><span class="string">1</span><span class="punct">'</span> <span class="punct">*</span> <span class="number">43</span><span class="punct">)</span> <span class="punct">=~</span> <span class="punct">/</span><span class="regex">^1$|^(11+?)<span class="escape">\1</span>+$</span><span class="punct">/</span></code></pre></div>
+
+<p>Change 43 to whatever you like and you will get Prime as output if it's a prime number.
+<br>
+<br>
+<strong>EDIT:</strong> As you can see in the comments <a href="http://montreal.pm.org/tech/neil_kandalgaonkar.shtml">Neil Kandalonkar</a> explained how the regexp by Abigail works.</p>
+
+<p><strong>EDIT 2011-04-06:</strong>
+I happened to stumble upon what I believe is the first time Abigail showed this to the world. It's in <a href="http://groups.google.com/group/comp.lang.perl.misc/msg/149b99453d113730">a post</a> in comp.lang.perl.misc back in 1997.
+I also found that at <a href="http://www.cpan.org/misc/japh">http://www.cpan.org/misc/japh</a> there's a couple more</p>
+
+<div class="typocode"><pre><code class="typocode_ruby "><span class="ident">perl</span> <span class="punct">-</span><span class="ident">wle</span> <span class="punct">'</span><span class="string">print &quot;Prime&quot; if (0 x shift) !~ m 0^\0?$|^(\0\0+?)\1+$0</span><span class="punct">'</span>
+<span class="ident">perl</span> <span class="punct">-</span><span class="ident">wle</span> <span class="punct">'</span><span class="string">print &quot;Prime&quot; if (&quot;m&quot; x shift) !~ m m^\m?$|^(\m\m+?)\1+$mm</span><span class="punct">'</span></code></pre></div>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a>, <a href="http://alicebobandmallory.com/articles/category/math" rel="noindex, follow, tag">Math</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2007/03/30/find-primes-in-regexp#comments">6 comments</a>,
+      <a href="../2007/03/30/find-primes-in-regexp" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/26/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/26/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-25">
+  <h2 class="title">
+    <a href="../2007/03/30/com">.com</a> 
+    
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2007-03-30T06:59:00+02:00"><span class="typo_date" title="Fri, 30 Mar 2007 04:59:00 GMT">Fri, 30 Mar 2007 04:59:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>Now I've got a .com domain, you can reach this blog at <a href="../../index.html">http://alicebobandmallory.com/</a>.</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/blogging" rel="noindex, follow, tag">Blogging</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2007/03/30/com#comments">no comments</a>,
+      <a href="../2007/03/30/com" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/25/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/25/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-20">
+  <h2 class="title">
+    <a href="../2007/03/27/secure-and-simple-security-tokens-needed">Simple security tokens needed</a> 
+    <span class="comment_count">2</span>
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2007-03-27T22:46:00+02:00"><span class="typo_date" title="Tue, 27 Mar 2007 20:46:00 GMT">Tue, 27 Mar 2007 20:46:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>In an earlier <a href="../2007/02/05/trojans-and-one-time-passwords">post </a> I mentioned that a <a href="http://en.wikipedia.org/wiki/Security_token#Digital_signatures">security token</a> that lets you sign your transactions is one way to go to get more secure Internet banking. </p>
+<p>Now <a href="http://www.bth.se/tek/aps/mbo.nsf/pages/1df251df5df1b090c12572a6002389b1!OpenDocument">a couple of swedish students</a> have shown (by also using the problem I mentioned in this <a href="../2007/02/26/change-your-default-passwords">post</a>) that a security token both needs to be used in a secure manner and that it also needs to be simple for the user to know what he is actually signing. According to the <a href="http://computersweden.idg.se/2.2683/1.100636">press</a> it seems that they did this as a <a href="http://en.wikipedia.org/wiki/Man_in_the_middle_attack">man-in-the-middle attack</a>. This is just speculations but it seems the reason that this were possible were that the user did not have a clear view of what he was signing. </p>
+<p>It <a href="http://sakerhet.idg.se/2.1070/1.100636?articleRenderMode=listpostings#"
+>could</a> have been done something like this:</p>
+<ul>
+<li>Redirect the user to a fake site (and hope that he does not 
+investigate the certificate).</li>
+<li>Ask for username and challenge the user with the verification code and then login to the bank in the background.</li>
+<li>Try to add a new account for transfers and then tell the user he mistyped and has to login again while challenging him to verify the new account.</li>
+<li>Transfer money the same way.</li>
+</ul>
+<p>The bank has <a href="http://www.swedbank.se/sst/inf/out/infOutWww1/0,,1842_m109_m44_398348,00.html"><i>solved</i> the problem</a> by adding a 9 before all login codes. I'm not convinced this is simple and obvious enough for the users. One way to make it simple could be a security device with buttons labeled "login", "sign account" and "sign amount" or such.
+</p>
+
+<p>EDIT: Now it has started to arrive phishing mails that asks the customers of Swedbank to install ssl3.exe... </p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/security" rel="noindex, follow, tag">Security</a></li>
+    
+    <li>Meta 
+      <a href="../2007/03/27/secure-and-simple-security-tokens-needed#trackbacks">no trackbacks</a>,
+      <a href="../2007/03/27/secure-and-simple-security-tokens-needed#comments">2 comments</a>,
+      <a href="../2007/03/27/secure-and-simple-security-tokens-needed" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/20/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/20/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-19">
+  <h2 class="title">
+    <a href="../2007/03/27/the-phishing-continues">The phishing continues</a> 
+    
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2007-03-27T22:30:00+02:00"><span class="typo_date" title="Tue, 27 Mar 2007 20:30:00 GMT">Tue, 27 Mar 2007 20:30:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>The phishing attempts against Nordea are still <a href="http://pawal.blipp.com/sakerhet/annu-mer-nordea-phishing">going strong</a> and the mails are now in almost correct <a href="http://plea.se/pics/nordea.png">swedish</a>. 
+</p>
+
+<p>One might wonder why Nordea still haven't done any major changes. Maybe the've seen Fight Club and <a href="http://jeremiahgrossman.blogspot.com/2006/12/applying-formula.html">calculates</a> just the way Jack does while working as an automotive manufacture recall coordinator...
+</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/security" rel="noindex, follow, tag">Security</a></li>
+    
+    <li>Meta 
+      <a href="../2007/03/27/the-phishing-continues#trackbacks">no trackbacks</a>,
+      <a href="../2007/03/27/the-phishing-continues#comments">no comments</a>,
+      <a href="../2007/03/27/the-phishing-continues" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/19/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/19/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-18">
+  <h2 class="title">
+    <a href="../2007/02/27/what-one-way-hash-function-to-use">What one-way hash function to use?</a> 
+    
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2007-02-27T17:01:00+01:00"><span class="typo_date" title="Tue, 27 Feb 2007 16:01:00 GMT">Tue, 27 Feb 2007 16:01:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>Cryptographic hash function takes a message of any length as input and outputs a very large but fixed length number. That number is called a message digest, fingerprint, or sometimes a cryptographic hash. They can be used to represent passwords without having to know the actual password. Such a hash can also be used as signature that makes it possible to verify that the content of a message hasn't been tampered with.</p>
+
+<p><a href="http://en.wikipedia.org/wiki/MD5">MD5</a> got into problems over 10 years ago and <a href="http://en.wikipedia.org/wiki/SHA-1#Cryptanalysis_of_SHA-1">SHA-1</a> could to be heading the same way. Until the <a href="http://www.schneier.com/blog/archives/2007/02/a_new_secure_ha.html">new standard</a> is published I would follow the cryptographic experts advice and use SHA-2.</p>
+
+<h5>Ruby</h5><div class="typocode"><pre><code class="typocode_ruby "><span class="ident">require</span> <span class="punct">'</span><span class="string">digest/sha2</span><span class="punct">'</span>
+<span class="ident">quickfox</span><span class="punct">=&quot;</span><span class="string">The quick brown fox jumps over the lazy dog</span><span class="punct">&quot;</span>
+<span class="constant">Digest</span><span class="punct">::</span><span class="constant">SHA256</span><span class="punct">.</span><span class="ident">hexdigest</span><span class="punct">(</span><span class="ident">quickfox</span><span class="punct">)</span></code></pre></div>
+ => "d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592"
+
+
+<h5>C#</h5>
+
+<div class="typocode"><pre><code class="typocode_C# ">using System.Security.Cryptography;</code></pre></div>
+
+<p>...</p>
+
+<div class="typocode"><pre><code class="typocode_C# "> ASCIIEncoding byteConverter = new ASCIIEncoding();
+ string quickfox=&quot;The quick brown fox jumps over the lazy dog&quot;;
+ HashAlgorithm sha256 = new SHA256Managed();
+ byte[] hash = sha256.ComputeHash(byteConverter.GetBytes(quickfox));
+ crypt.Text = Convert.ToBase64String(hash);           </code></pre></div>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/security" rel="noindex, follow, tag">Security</a>, <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a>, <a href="http://alicebobandmallory.com/articles/category/c" rel="noindex, follow, tag">C#</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2007/02/27/what-one-way-hash-function-to-use#comments">no comments</a>,
+      <a href="../2007/02/27/what-one-way-hash-function-to-use" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/18/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/18/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+
+
+<p class="pagination">Older posts: <a href="1">1</a> ...  <a href="8">8</a> <a href="9">9</a> 10 <a href="11">11</a> <a href="12">12</a> </p>
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../pages/AboutMe">About me</a>/<a href="../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

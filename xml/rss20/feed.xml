@@ -1,0 +1,1133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory</title>
+    <link>http://alicebobandmallory.com/</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Merge collections without duplicates in C#</title>
+      <description>&lt;p&gt;Your task is to merge two lists of objects. The resulting collection should be without duplicates, based on a certain property on the objects.&lt;/p&gt;
+
+&lt;p&gt;The lists are populated with very simple Person objects.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;class Person
+{
+        public &lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; Number { get; set; }
+        public string Name { get; set; }
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+C# programmers often turn to LINQ, and they should! With LINQ you could end up with something like this:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var merged = new List&amp;lt;Person&amp;gt;(list1);
+merged.AddRange(list2.Where(p2 =&amp;gt; 
+                list1.All(p1 =&amp;gt; p1.Number != p2.Number)));&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+It's not all that obvious how it works and it also has performance problems. This solution has to iterate over &lt;code&gt;list1&lt;/code&gt; for every object in &lt;code&gt;list2&lt;/code&gt;. Not every object every time but on average half of them (if the lists contains no duplicates within themselves). If the lists contains a 1000 objects each there's a good chance that &lt;code&gt;list1&lt;/code&gt; will be iterated 500.000 times. That kind of work does not come for free.&lt;/p&gt;
+
+&lt;p&gt;We need to get rid of this nested looping. I was pretty sure a dictionary based solution would do the trick.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var dict = list2.ToDictionary(p =&amp;gt; p.Number);
+foreach (var person in list1)
+{
+        dict[person.Number] = person;
+}
+var merged = dict.Values.ToList();&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+This solution converts &lt;code&gt;list2&lt;/code&gt; to a dictionary and then it loops a single time over &lt;code&gt;list1&lt;/code&gt;. It either adds to the dictionary or replaces the value of &lt;code&gt;list2&lt;/code&gt; if it was a duplicate. This seemed to be a much more efficient algorithm.&lt;/p&gt;
+
+&lt;p&gt;In C# there's not just &lt;a href="http://msdn.microsoft.com/en-us/library/xfhwa508.aspx"&gt;Dictionary&amp;lt;TKey, TValue&gt;&lt;/a&gt; but we also have &lt;a href="http://msdn.microsoft.com/en-us/library/bb359438.aspx"&gt;HashSet&lt;/a&gt;. A HashSet is a collection that contains no duplicates. It also has the &lt;code&gt;UnionWith&lt;/code&gt; method and that is exactly what we are looking for. The problem is that it compares object to object and we want to compare based on a property.&lt;/p&gt;
+
+&lt;p&gt;Fortunately the HashSet methods honors the default equality comparer. Such a beast could look like this.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;class PersonComparer : IEqualityComparer&amp;lt;Person&amp;gt;
+{
+        public &lt;span style="color:#0a5;font-weight:bold"&gt;bool&lt;/span&gt; Equals(Person p1, Person p2)
+        {
+                &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; p1.Number == p2.Number;
+        }
+
+        public &lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; GetHashCode(Person p)
+        {
+                &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; p.Number;
+        }
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+Then just add it as the second parameter to the constructor.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var hs = new HashSet&amp;lt;Person&amp;gt;(list1, new PersonComparer());
+hs.UnionWith(list2);
+var merged = hs.ToList();&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+&lt;img src="https://dl.dropbox.com/u/26840/union_venn_diagram.png" style="display: inline-block; float:right"&gt;
+Set theory tells us that this merging is actually  a union of the two sets (without duplicates) and   LINQ happens to have a &lt;code&gt;Union&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var merged = list1.Union(list2, new PersonComparer());&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+By that we've come full circle and it's time to see how the different solutions performs. I wrote a small &lt;a href="https://gist.github.com/3916414"&gt;test program&lt;/a&gt; that creates two lists of objects with 1000 objects in each. In each list 500 of the objects property, that we base the merge on, has the same value.&lt;/p&gt;
+
+&lt;pre&gt;
+Lists and LINQ merge: 4820ms
+Dictionary merge: 16ms
+HashSet and IEqualityComparer: 20ms
+LINQ Union and IEqualityComparer: 24ms
+&lt;/pre&gt;
+
+&lt;p&gt;The first solution is, in this case, 300 times slower than the fastest one! &lt;/p&gt;
+
+&lt;p&gt;I prefer LINQ Union because it communicates intent very clearly.&lt;/p&gt;</description>
+      <pubDate>Thu, 18 Oct 2012 23:28:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:6ffade4b-74fb-4bd4-8264-9512a99730e3</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2012/10/18/merge-collections-without-duplicates-in-c</link>
+      <category>C#</category>
+    </item>
+    <item>
+      <title>ASP.NET Web API</title>
+      <description>&lt;p&gt;Here's &lt;a href="http://plea.se/webapi"&gt;my slides&lt;/a&gt; for a presentation on REST and ASP.NET Web API that I did.&lt;/p&gt;</description>
+      <pubDate>Sat, 01 Sep 2012 18:05:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:9fe17542-808a-4e43-a353-b07e3439e285</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2012/09/01/asp-net-web-api</link>
+    </item>
+    <item>
+      <title>Leif in Clojure</title>
+      <description>&lt;p&gt;I've been meaning to learn a functional language for years. I don't know what put me off besides the fear of parentheses and the notion that maybe, just maybe, &lt;a href="http://www.randomhacks.net/articles/2005/12/03/why-ruby-is-an-acceptable-lisp"&gt;Ruby could be an acceptable Lisp&lt;/a&gt;. For all I know, Ruby might be just that, but there's  one thing about Ruby that is starting to get more and more unacceptable to me. &lt;/p&gt;
+
+&lt;p&gt;Ruby is actually not very well fit to take advantage of the multi-core world we are living in. The &lt;a href="http://en.wikipedia.org/wiki/Global_Interpreter_Lock"&gt;GIL&lt;/a&gt; and the prevalent mutable state are two big problems. As web applications go, that's often not a problem since it's almost always possible to scale without threads there. But if you want to use the full potential of your multi-core machine in a singe Ruby process/VM, you are out of luck. There are &lt;a href="https://github.com/tarcieri/celluloid"&gt;workarounds&lt;/a&gt; that get you somewhere and there are implementations of Ruby without a GIL (JRuby and soon Rubinius). Even without the GIL we still have the problem of having a lot of mutable state. That will, probably, make it hard to scale over multiple cores.&lt;/p&gt;
+
+&lt;p&gt;A little more than a week ago I watched the presentation &lt;a href="http://www.infoq.com/presentations/Simple-Made-Easy"&gt;Simple Made Easy by Rich Hickey&lt;/a&gt;. It's an excellent presentation and one of the best I've seen in years. I was also aware that Hickey is the man who designed &lt;a href="http://en.wikipedia.org/wiki/Clojure"&gt;Clojure&lt;/a&gt;. Finally, I was able to make a choice. I chose to begin to learn &lt;a href="http://clojure.org/"&gt;Clojure&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I'm still very early in this endeavor. Actually, still trying to decide what books I should read. Anyway, the day after I saw the presentation I downloaded &lt;a href="https://github.com/arthuredelstein/clooj"&gt;clooj&lt;/a&gt; (a simple IDE), read some blogs and some documentation, and started to hack on something. Just to try to get a feel for how hard this was going to be. The parentheses didn't bother me all that much, it was much harder to accept that operators are just functions and that they get no special treatment. It seems you simply have to (+ 31 11) to add 31 and 11. I think I can get over that.&lt;/p&gt;
+
+&lt;p&gt;As a side note, it turns out I wrote my first Clojure program on 2011-10-24 and that happened to be the day that &lt;a href="http://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)"&gt;John McCarthy&lt;/a&gt;, the father of Lisp, died. Yet another of those strange coincidences that &lt;a href="http://youarenotsosmart.com/2010/09/11/the-texas-sharpshooter-fallacy/"&gt;seems to happens more often than they should&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The program I wrote is yet another implementation of the stupid simple "algorithm" that I've got to call &lt;a href="http://plea.se/me/Leif.html"&gt;Leif&lt;/a&gt;. If you take &lt;a href="http://en.wikipedia.org/wiki/Conway's_Game_of_Life"&gt;Conway's Game of Life&lt;/a&gt;, remove the rules and replace them with randomness, you could end up with something like &lt;a href="http://plea.se/me/leif/canvas_leif.html"&gt;Leif&lt;/a&gt;. Quite silly, actually.&lt;/p&gt;
+
+&lt;p&gt;Hopefully I will have something more interesting to tell in a couple of &lt;strike&gt;weeks&lt;/strike&gt;months, after I've got some more experience with Clojure. For now, Leif will have to do. Here it is.&lt;/p&gt;
+
+&lt;script src="https://gist.github.com/1335248.js"&gt; &lt;/script&gt;
+
+&lt;p&gt;This is what it looks like at the beginning  &lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://dl.dropbox.com/u/26840/clojure_leif_couple_of_tenths_of_a_second.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;and after a couple of minutes it looks like this  &lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://dl.dropbox.com/u/26840/clojure_leif_couple_of_minutes_in.png"&gt;  &lt;/p&gt;
+
+&lt;p&gt;One thing that surprised me is that it seems to use both of my cores even though I put no effort whatsoever in making it do so. Probably just the Java GC or something.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://dl.dropbox.com/u/26840/clojure_leif_task_manager.png"&gt;&lt;/p&gt;</description>
+      <pubDate>Tue, 01 Nov 2011 03:12:00 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:2716bd0d-7bde-43bb-930b-320e824a41ce</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2011/11/01/leif-in-clojure</link>
+      <category>Ruby</category>
+      <category>Clojure</category>
+    </item>
+    <item>
+      <title>Inspired by randomness</title>
+      <description>&lt;p&gt;Inspired by &lt;a href="http://vanillajava.blogspot.com/2011/10/randomly-no-so-random.html"&gt;Randomly not so random&lt;/a&gt; I decided to play around with the subject.&lt;/p&gt;
+
+&lt;p&gt;Both Java and C# uses a &lt;a href="http://en.wikipedia.org/wiki/Linear_congruential_generator"&gt;linear congruential generator&lt;/a&gt; as their &lt;a href="http://en.wikipedia.org/wiki/Pseudorandom_number_generator"&gt;pseudorandom number generators&lt;/a&gt;. &lt;/p&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;The current implementation of the Random class is based on a modified version of Donald E. Knuth's subtractive random number generator algorithm."&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;About System.Random at &lt;a href="http://msdn.microsoft.com/en-us/library/system.random.aspx"&gt;MSDN&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I tried to find information on what values Microsoft uses for the &lt;em&gt;m&lt;/em&gt;, &lt;em&gt;a&lt;/em&gt;, and &lt;em&gt;c&lt;/em&gt; parameters in their &lt;a href="http://en.wikipedia.org/wiki/Linear_congruential_generator"&gt;LGC&lt;/a&gt; implementation but I failed to do so. &lt;/p&gt;
+
+&lt;p&gt;A good random number generator should have certain properties. &lt;/p&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;The German Federal Office for Information Security (BSI) has established four criteria for quality of deterministic random number generators. They are summarized here:&lt;br/&gt;
+    K1 — A sequence of random numbers with a low probability of containing identical consecutive elements.  &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;From the &lt;a href="http://en.wikipedia.org/wiki/Pseudorandom_number_generator"&gt;pseudorandom number generator&lt;/a&gt; article on Wikipedia. Let's see what we can do about that.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var random = new Random(&lt;span style="color:#00D"&gt;116793166&lt;/span&gt;);
+&lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; (&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; i = &lt;span style="color:#00D"&gt;0&lt;/span&gt;; i &amp;lt; &lt;span style="color:#00D"&gt;9&lt;/span&gt;; i++)
+{
+    Console.Write(random.Next(&lt;span style="color:#00D"&gt;10&lt;/span&gt;) + &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt; &lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;Outputs:&lt;/p&gt;
+
+&lt;pre&gt;
+1 1 1 1 1 1 1 1 1
+&lt;/pre&gt;
+
+&lt;p&gt;Did I just break the K1 criteria above? You know I didn't but you might be interested in how I found the seed number. It's easy but also quite computational intensive, that's why I used &lt;a href="http://msdn.microsoft.com/en-us/library/system.threading.tasks.parallel.for.aspx"&gt;Parallel.For&lt;/a&gt;.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;Parallel.For(&lt;span style="color:#00D"&gt;0&lt;/span&gt;, &lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;.MaxValue, i =&amp;gt;
+{
+    var rnd = new Random(i);
+    &lt;span style="color:#0a5;font-weight:bold"&gt;bool&lt;/span&gt; allSame = &lt;span style="color:#069"&gt;true&lt;/span&gt;;
+    &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; (&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; j = &lt;span style="color:#00D"&gt;0&lt;/span&gt;; j &amp;lt; &lt;span style="color:#00D"&gt;9&lt;/span&gt;; j++)
+    {
+        allSame = allSame &amp;amp;&amp;amp; rnd.Next(&lt;span style="color:#00D"&gt;10&lt;/span&gt;) == &lt;span style="color:#00D"&gt;1&lt;/span&gt;;
+        &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (!allSame) &lt;span style="color:#080;font-weight:bold"&gt;break&lt;/span&gt;;
+    }
+    &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (allSame)
+        Console.WriteLine(i); 
+});&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+It took a couple of minutes for the number 116793166 to show up in my console.&lt;/p&gt;
+
+&lt;p&gt;To keep on playing I needed a random string generator. Mine looks like this.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;private &lt;span style="color:#088;font-weight:bold"&gt;const&lt;/span&gt; string _chars = &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;abcdefghijklmnopqrstuvwxyz&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;
+
+private &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; string RandomString(&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; size, Random rng)
+{
+    var buffer = new &lt;span style="color:#0a5;font-weight:bold"&gt;char&lt;/span&gt;[size];
+    &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; (&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; i = &lt;span style="color:#00D"&gt;0&lt;/span&gt;; i &amp;lt; size; i++)
+        buffer[i] = _chars[rng.Next(_chars.Length)];
+    &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; new string(buffer);
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+If the random generators were the same it looks like it should give the same result as &lt;a href="http://vanillajava.blogspot.com/2011/10/randomly-no-so-random.html"&gt;the Java one&lt;/a&gt; but &lt;code&gt;RandomString(5, new Random(-229985452))&lt;/code&gt; returns &lt;code&gt;tfsld&lt;/code&gt;. Either my RandomString method works different than the Java one or it's the case that Java and .NET has slightly different settings of their LGCs.&lt;/p&gt;
+
+&lt;p&gt;Mathematically there's an infinite amount of inputs that results in a returned &lt;code&gt;hello&lt;/code&gt;, for instance 1382472294, but here we are limited by the size of our integers.&lt;/p&gt;
+
+&lt;p&gt;I found the seed 1382472294 with the following little method and loop&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
+&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
+&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
+&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
+&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
+&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
+&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;private &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; &lt;span style="color:#0a5;font-weight:bold"&gt;bool&lt;/span&gt; CompareToRandomString(string str, Random rng) 
+{ 
+    &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; (&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; i = &lt;span style="color:#00D"&gt;0&lt;/span&gt;; i &amp;lt; str.Length; i++)
+    {
+        &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (_chars[rng.Next(_chars.Length)] != str[i])
+            &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; &lt;span style="color:#069"&gt;false&lt;/span&gt;;
+    }
+    &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; &lt;span style="color:#069"&gt;true&lt;/span&gt;;
+}
+
+...
+
+&lt;span style="color:#088;font-weight:bold"&gt;const&lt;/span&gt; string lookingFor = &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;hello&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;
+
+Parallel.For(&lt;span style="color:#00D"&gt;0&lt;/span&gt;, &lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;.MaxValue, i =&amp;gt;
+{
+    var rnd = new Random(i);
+    &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (CompareToRandomString(lookingFor, rnd))
+        Console.WriteLine(i);
+});&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+I leave it up to you to implement a &lt;a href="http://msdn.microsoft.com/en-us/library/dd460721.aspx"&gt;break&lt;/a&gt; out of that loop.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.ruby-doc.org/core-1.9.2/Random.html"&gt;Ruby&lt;/a&gt; does not use a LGC but a &lt;a href="http://en.wikipedia.org/wiki/Mersenne_twister"&gt;Mersenne twister&lt;/a&gt; instead. It's still only pseudorandom so there's no problem finding patterns you like and being able to repeat them.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;srand(&lt;span style="color:#00D"&gt;2570940381&lt;/span&gt;)
+&lt;span style="color:#00D"&gt;9&lt;/span&gt;.times { print &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;%d &lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; % rand(&lt;span style="color:#00D"&gt;10&lt;/span&gt;) }&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Outputs:&lt;br/&gt;
+&lt;code&gt;1 2 3 4 5 6 7 8 9&lt;/code&gt;&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;charset=(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;a&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;..&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;z&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;).to_a
+srand(&lt;span style="color:#00D"&gt;124931&lt;/span&gt;)
+puts (&lt;span style="color:#00D"&gt;0&lt;/span&gt;...&lt;span style="color:#00D"&gt;4&lt;/span&gt;).map{ charset.to_a[rand(charset.size)] }.join&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Outputs:&lt;br/&gt;
+&lt;code&gt;ruby&lt;/code&gt;&lt;/p&gt;</description>
+      <pubDate>Thu, 27 Oct 2011 23:19:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:f596c241-0004-4935-ba79-64693f890cb2</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2011/10/27/inspired-by-randomness</link>
+      <category>Ruby</category>
+      <category>C#</category>
+      <category>Math</category>
+      <category>Java</category>
+    </item>
+    <item>
+      <title>Sudoku solver in CoffeeScript</title>
+      <description>&lt;p&gt;&lt;a href="http://jashkenas.github.com/coffee-script/"&gt;CoffeeScript&lt;/a&gt; is inspired by Ruby and Python but what's most peculiar with it is that it compiles to JavaScript. The generated JavaScript isn't all that bad and it even passes &lt;a href="http://www.javascriptlint.com/"&gt;JavaScript lint&lt;/a&gt; without warnings.&lt;/p&gt;
+
+&lt;p&gt;"Underneath all of those embarrassing braces and semicolons, JavaScript has always had a gorgeous object model at its heart." - Jeremy Ashkenas&lt;/p&gt;
+
+&lt;p&gt;About a week ago I stumbled on the very clever &lt;a href="http://norvig.com/sudoku.html"&gt;Sudoku solver by Peter Norvig&lt;/a&gt;. I have nothing (or at least not much) against Python but I pretty soon checked out the Ruby translations of the solver. I then &lt;a href="https://gist.github.com/914326"&gt;refactored one&lt;/a&gt; of the solutions to get a chance to get to know the algorithm better.&lt;/p&gt;
+
+&lt;p&gt;Now that I finally &lt;a href="http://jashkenas.github.com/coffee-script/#installation"&gt;installed CoffeeScript&lt;/a&gt; the Sudoku solver came to mind. I dived in head first and got in trouble pretty soon. It turns out that Array Comprehensions in CoffeeScript differs some from the List Comprehensions in Python.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#080;font-weight:bold"&gt;def&lt;/span&gt; &lt;span style="color:#06B;font-weight:bold"&gt;cross&lt;/span&gt;(&lt;span style="color:#036;font-weight:bold"&gt;A&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;B&lt;/span&gt;):
+       &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Cross product of elements in A and elements in B.&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;
+       &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; [a+b &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; a &lt;span style="color:#080;font-weight:bold"&gt;in&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;A&lt;/span&gt; &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; b &lt;span style="color:#080;font-weight:bold"&gt;in&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;B&lt;/span&gt;]&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;returns an one-dimensional array if you call it with two arrays (or strings).&lt;/p&gt;
+
+&lt;p&gt;But in CoffeeScript &lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;cross = (&lt;span style="color:#036;font-weight:bold"&gt;A&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;B&lt;/span&gt;) -&amp;gt; (a+b &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; a &lt;span style="color:#080;font-weight:bold"&gt;in&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;A&lt;/span&gt; &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; b &lt;span style="color:#080;font-weight:bold"&gt;in&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;B&lt;/span&gt;)&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;returns a two-dimensional array.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/jashkenas/coffee-script/issues/1191"&gt;The jury&lt;/a&gt; is still out on &lt;a href="http://stackoverflow.com/questions/5685449/nested-array-comprehensions-in-coffeescript"&gt;if this is intended&lt;/a&gt; or not but either way the &lt;a href="http://en.wikipedia.org/wiki/List_comprehension"&gt;array  comprehensions&lt;/a&gt; in CoffeeScript are still very useful.&lt;/p&gt;
+
+&lt;div style="background-color: #F0F0F0"&gt;
+&lt;font color="red"&gt;EDIT 2011-06-02&lt;/font&gt;&lt;br&gt;
+It's been decided that this is by design. The issue has been closed.
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;
+ For the &lt;code&gt;cross&lt;/code&gt;-function I ended up with&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;cross = (&lt;span style="color:#036;font-weight:bold"&gt;A&lt;/span&gt;, &lt;span style="color:#036;font-weight:bold"&gt;B&lt;/span&gt;) -&amp;gt;
+  results = []
+  &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; a &lt;span style="color:#080;font-weight:bold"&gt;in&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;A&lt;/span&gt;
+    &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; b &lt;span style="color:#080;font-weight:bold"&gt;in&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;B&lt;/span&gt;
+      results.push a + b
+  results&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;div style="background-color: #F0F0F0"&gt;
+&lt;font color="red"&gt;EDIT 2011-06-02&lt;/font&gt;&lt;br&gt;
+Using `map` I could have got much closer to the Ruby version.
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;cross = (cols, rows) -&amp;gt;
+  [].concat (cols.map (x) -&amp;gt; rows.map (y) -&amp;gt; y+x)...&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+I'm still more of a map/reduce guy than a list comprehension ninja.
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;
+You can find the &lt;a href="https://gist.github.com/927782"&gt;CoffeScript Sudoku solver as a Gist&lt;/a&gt;. &lt;strike&gt;Compile it with&lt;br/&gt;
+&lt;code&gt;coffee -c sudoku.coffee&lt;/code&gt;&lt;br/&gt;
+and then run it with&lt;br/&gt;
+&lt;code&gt;node sudoku.js&lt;/code&gt;&lt;/strike&gt;&lt;/p&gt;
+
+&lt;p&gt;I don't know how I missed it but as Trevor pointed out below all you have to do is&lt;br/&gt;
+&lt;code&gt;coffee sudoku.coffee&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;
+    1 2 3 4 5 6 7 8 9
+  |------+-----+-----|
+A | 4 8 3|9 2 1|6 5 7|
+B | 9 6 7|3 4 5|8 2 1|
+C | 2 5 1|8 7 6|4 9 3|
+  |------+-----+-----|
+D | 5 4 8|1 3 2|9 7 6|
+E | 7 2 9|5 6 4|1 3 8|
+F | 1 3 6|7 9 8|2 4 5|
+  |------+-----+-----|
+G | 3 7 2|6 8 9|5 1 4|
+H | 8 1 4|2 5 3|7 6 9|
+I | 6 9 5|4 1 7|3 8 2|
+  |------+-----+-----|
+&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="http://alicebobandmallory.com/sudoku.js.html"&gt;Here's&lt;/a&gt; the generated &lt;a href="http://alicebobandmallory.com/sudoku.js.html"&gt;sudoku.js&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This is the only CoffeeScript I've ever written but I already like it (more than JavaScript). Please correct me if I strayed from the CoffeeScript way. &lt;/p&gt;</description>
+      <pubDate>Tue, 19 Apr 2011 15:46:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:12b7c916-c5eb-4510-ac0a-0efcfd241225</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2011/04/19/sudoku-solver-in-coffeescript</link>
+      <category>Ruby</category>
+      <category>JavaScript</category>
+    </item>
+    <item>
+      <title>How to test IE9 if you run Windows XP</title>
+      <description>&lt;p&gt;&lt;font color="red"&gt;Edit 2012-01-05&lt;/font&gt;&lt;br/&gt;
+A couple of weeks ago Microsoft finally released &lt;a href="http://www.microsoft.com/download/en/details.aspx?id=11575"&gt;Internet Explorer Application Compatibility VPC Images for IE9&lt;/a&gt;.&lt;br/&gt;
+Because of this, the below procedure is not necessary anymore.&lt;/p&gt;
+
+&lt;p&gt;There's one quite strange thing with these images. The Win7+IE8 image is about 2.6GB but the Win7+IE9 is 4.3GB! There's some extra tools in the IE9 one but they certainly do not add up to the 1.7GB size difference. I've had reports of people successfully downloading the Win7+IE8 and then upgrading to IE9. That could be an option if you want to save some download time and disk space.&lt;/p&gt;
+
+&lt;p&gt;&lt;strike&gt;
+I'm currently at a company still running Windows XP. Last week Internet Explorer 9 was released and it &lt;a href="http://en.wikipedia.org/wiki/Internet_Explorer_9"&gt;requires&lt;/a&gt; at least Windows Vista. That requirement was a problem because we absolutely had to test our web applications in IE9. Microsoft had released Internet Explorer Application Compatibility VPC Images for earlier versions of IE but not for &lt;a href="http://windows.microsoft.com/en-US/internet-explorer/downloads/ie-9/worldwide-languages"&gt;IE9&lt;/a&gt;. At least they still offer a VPC running Vista and that was the path we took to solve our testing problems. If you know of an easier way then please tell!&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.microsoft.com/windows/virtual-pc/download.aspx"&gt;Download&lt;/a&gt; and install  Virtual PC.&lt;br/&gt;
+&lt;font color="red"&gt;Edit 2011-09-25&lt;/font&gt; It seems Microsoft has changed the download page. You can get &lt;a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx"&gt;Virtual PC 2007&lt;/a&gt; for older versions of Windows &lt;a href="http://www.microsoft.com/windows/virtual-pc/support/virtual-pc-2007.aspx"&gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.microsoft.com/downloads/en/details.aspx?FamilyID=21eabb90-958f-4b64-b5f1-73d0a413c8ef&amp;amp;displaylang=en"&gt;Download&lt;/a&gt; and run/unpack  the IE8-VIS VHD.&lt;/li&gt;
+&lt;li&gt;Create a new virtual machine and select the VHD as the harddisk.&lt;/li&gt;
+&lt;li&gt;In the virtual machine then &lt;a href="http://www.microsoft.com/windows/virtual-pc/download.aspx"&gt;download&lt;/a&gt; and install Vista SP2.&lt;/li&gt;
+&lt;li&gt;Finally, obviously still in the VPC, &lt;a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home"&gt;download&lt;/a&gt; IE9.
+&lt;/strike&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+      <pubDate>Mon, 21 Mar 2011 22:20:00 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:a4947525-3c1d-4ca0-b707-04a4466a520d</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2011/03/21/how-to-test-ie9-if-you-run-windows-xp</link>
+    </item>
+    <item>
+      <title>Lazy evaluation is no friend of mutable state</title>
+      <description>&lt;p&gt;A couple of days ago I accidentally landed on &lt;a href="http://www.cs.nyu.edu/~vs667/articles/mergesort/"&gt;a page&lt;/a&gt; about implementing &lt;a href="http://en.wikipedia.org/wiki/Merge_sort"&gt;merge sort&lt;/a&gt; in C#.  I thought it would be a nice exercise to try to &lt;a href="http://stackoverflow.com/questions/4545090/listt-and-ienumerable-difference"&gt;implement that&lt;/a&gt; as a generic method and so I did. &lt;a href="http://www.sorting-algorithms.com/merge-sort"&gt;&lt;img title="merge sort" src="http://www.sorting-algorithms.com/animation/40/random-initial-order/merge-sort.gif" style="display: inline-block; float:right" border="0"&gt;&lt;/a&gt; &lt;/p&gt;
+
+&lt;p&gt;I also wanted to learn more about the characteristics of &lt;a href="http://msdn.microsoft.com/en-us/library/9eekhta0.aspx"&gt;IEnumerable&lt;/a&gt; so I used &lt;code&gt;IEnumerable&amp;lt;T&amp;gt;&lt;/code&gt; instead of &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt;. That choice got me in trouble and I opted for help on &lt;a href="http://www.stackoverflow.com/"&gt;Stack Overflow&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;People said it was sorting correctly but &lt;a href="http://stackoverflow.com/questions/4545090/listt-and-ienumerable-difference/4545170#4545170"&gt;Jon Skeet also asked if I tested it correctly&lt;/a&gt; and that I did not. I digged deeper into the problem and extended the question on SO. I had a hunch that it was the mutable state of &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt; and the lazy evaluation of &lt;code&gt;IEnumerable&lt;/code&gt; that was the problem but I couldn't quite figure out how. &lt;/p&gt;
+
+&lt;p&gt;Along came &lt;a href="http://stackoverflow.com/users/7586/kobi"&gt;Kobi&lt;/a&gt; and &lt;a href="http://stackoverflow.com/questions/4545090/listt-and-ienumerable-difference/4565811#4565811"&gt;his answer&lt;/a&gt; finally made me understand why a &lt;code&gt;.Sort()&lt;/code&gt; of the list messed up the result of my sorting. &lt;/p&gt;
+
+&lt;p&gt;I then changed the implementation to be fully lazy evaluated and now it looks like this.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
+&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
+&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
+&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
+&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
+&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
+&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n21" name="n21"&gt;21&lt;/a&gt;
+&lt;a href="#n22" name="n22"&gt;22&lt;/a&gt;
+&lt;a href="#n23" name="n23"&gt;23&lt;/a&gt;
+&lt;a href="#n24" name="n24"&gt;24&lt;/a&gt;
+&lt;a href="#n25" name="n25"&gt;25&lt;/a&gt;
+&lt;a href="#n26" name="n26"&gt;26&lt;/a&gt;
+&lt;a href="#n27" name="n27"&gt;27&lt;/a&gt;
+&lt;a href="#n28" name="n28"&gt;28&lt;/a&gt;
+&lt;a href="#n29" name="n29"&gt;29&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n30" name="n30"&gt;30&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n31" name="n31"&gt;31&lt;/a&gt;
+&lt;a href="#n32" name="n32"&gt;32&lt;/a&gt;
+&lt;a href="#n33" name="n33"&gt;33&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;public class MergeSort&amp;lt;T&amp;gt;
+{
+    public IEnumerable&amp;lt;T&amp;gt; Sort(IEnumerable&amp;lt;T&amp;gt; arr)
+    {
+        &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (arr.Count() &amp;lt;= &lt;span style="color:#00D"&gt;1&lt;/span&gt;) &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; arr;
+
+        &lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; middle = arr.Count() / &lt;span style="color:#00D"&gt;2&lt;/span&gt;;
+        var left = arr.Take(middle);
+        var right = arr.Skip(middle);
+        &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; Merge(Sort(left), Sort(right));
+    }
+
+    private &lt;span style="color:#088;font-weight:bold"&gt;static&lt;/span&gt; IEnumerable&amp;lt;T&amp;gt; Merge(IEnumerable&amp;lt;T&amp;gt; left, IEnumerable&amp;lt;T&amp;gt; right)
+    {
+        IEnumerable&amp;lt;T&amp;gt; arrSorted = Enumerable.Empty&amp;lt;T&amp;gt;();
+
+        &lt;span style="color:#080;font-weight:bold"&gt;while&lt;/span&gt; (left.Count() &amp;gt; &lt;span style="color:#00D"&gt;0&lt;/span&gt; &amp;amp;&amp;amp; right.Count() &amp;gt; &lt;span style="color:#00D"&gt;0&lt;/span&gt;)
+        {
+            &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (Comparer&amp;lt;T&amp;gt;.Default.Compare(left.First(), right.First()) &amp;lt; &lt;span style="color:#00D"&gt;0&lt;/span&gt;)
+            {
+                arrSorted=arrSorted.Concat(left.Take(&lt;span style="color:#00D"&gt;1&lt;/span&gt;));
+                left = left.Skip(&lt;span style="color:#00D"&gt;1&lt;/span&gt;);
+            }
+            &lt;span style="color:#080;font-weight:bold"&gt;else&lt;/span&gt;
+            {
+                arrSorted=arrSorted.Concat(right.Take(&lt;span style="color:#00D"&gt;1&lt;/span&gt;));
+                right = right.Skip(&lt;span style="color:#00D"&gt;1&lt;/span&gt;);
+            }
+        }
+
+        &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; arrSorted.Concat(left).Concat(right);
+    }
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+Please be aware that this is but an exercise and not very efficient.&lt;/p&gt;
+
+&lt;p&gt;Now to the problems that you can encounter with the above and an explanation to the title of the post. Let's MergeSort a simple &lt;code&gt;List&amp;lt;int&amp;gt;&lt;/code&gt; followed by a  call to the built-in &lt;code&gt;.Sort()&lt;/code&gt; on &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var ints = new List&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt; { &lt;span style="color:#00D"&gt;2&lt;/span&gt;, &lt;span style="color:#00D"&gt;3&lt;/span&gt;, &lt;span style="color:#00D"&gt;1&lt;/span&gt; };
+var mergeSortInt = new MergeSort&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt;();
+var sortedInts = mergeSortInt.Sort(ints);
+&lt;span style="color:#777"&gt;// sortedInts.ToList() is {1, 2, 3}&lt;/span&gt;
+ints.Sort();
+&lt;span style="color:#777"&gt;// sortedInts.ToList() is {3, 1, 2}&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+So what's going on here? As far as I can tell it's something like this. &lt;code&gt;sortedInts&lt;/code&gt; isn't evaluated until the first call to &lt;code&gt;MoveNext()&lt;/code&gt; (or &lt;code&gt;Tolist()&lt;/code&gt; or any of those). Before that it only has lazy pointers to the original enumerable values. &lt;code&gt;ints.Sort()&lt;/code&gt; messes up the beauty of lazy evaluation by changing the underlying data structure. It can do that because &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt; is mutable (writeable).&lt;/p&gt;
+
+&lt;p&gt;But why {3, 1, 2}  after &lt;code&gt;ints.Sort()&lt;/code&gt;?   The original sequence was { 2, 3, 1} and that is what the MergeSort sorted, not by creating a new sequence but only by lazy pointers. &lt;/p&gt;
+
+&lt;p&gt;At first the MergeSort sorts like this &lt;/p&gt;
+
+&lt;p&gt;&lt;img title="diagram before .Sort()" src="http://dl.dropbox.com/u/26840/beforeSort.png" border="0"/&gt;&lt;/p&gt;
+
+&lt;p&gt;but after the source list has been sorted/changed it will do this
+&lt;img title="diagram after .Sort()" src="http://dl.dropbox.com/u/26840/afterSort.png" border="0"/&gt;&lt;/p&gt;
+
+&lt;p&gt;What can you do to stop this to happening to you? The boring way is to never use lazy evaluation but that is kind of hard if you happen to use &lt;a href="http://en.wikipedia.org/wiki/Language_Integrated_Query"&gt;LINQ&lt;/a&gt; (and you should, it's great). Another way is to use immutable data structures and that is how functional languages tackles this problem. In C# we have the &lt;a href="http://msdn.microsoft.com/en-us/library/ms132474.aspx"&gt;ReadOnlyCollection&lt;T&gt;&lt;/a&gt; and it obviously has no &lt;code&gt;Sort()&lt;/code&gt; method. &lt;/p&gt;
+
+&lt;p&gt;A nice feature of the MergeSort above is that it has no problems with an immutable collection.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var rints = new ReadOnlyCollection&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt;(ints);
+var sortedRints = mergeSortInt.Sort(rints);
+&lt;span style="color:#777"&gt;// sortedRints.ToList() is {1, 2, 3}&lt;/span&gt;
+ints.Sort();
+&lt;span style="color:#777"&gt;// sortedRints.ToList() is {3, 1, 2}&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+What?! How could an immutable collection get messed up like this? It turns out that &lt;code&gt;ReadOnlyCollection&amp;lt;T&amp;gt;&lt;/code&gt; is only &lt;a href="http://blogs.msdn.com/b/jaredpar/archive/2008/04/22/api-design-readonlycollection-t.aspx"&gt;a facade for mutable collections&lt;/a&gt; and that is what bit us here. You have to pass a copy of the list. Example follows.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var rints = new ReadOnlyCollection&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt;(new List&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt;(ints));
+var sortedRints = mergeSortInt.Sort(rints);
+ints.Sort();&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+That also works for &lt;code&gt;List&amp;lt;T&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var ints = new List&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt; { &lt;span style="color:#00D"&gt;2&lt;/span&gt;, &lt;span style="color:#00D"&gt;3&lt;/span&gt;, &lt;span style="color:#00D"&gt;1&lt;/span&gt; };
+var mergeSortInt = new MergeSort&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt;();
+var sortedInts = mergeSortInt.Sort(new List&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt;&amp;gt;(ints));
+&lt;span style="color:#777"&gt;// sortedInts.ToList() is {1, 2, 3}&lt;/span&gt;
+ints.Sort();
+&lt;span style="color:#777"&gt;// sortedInts.ToList() is {1, 2, 3}&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally I would like to send a big thank you to &lt;a href="https://twitter.com/Kobi"&gt;Kobi&lt;/a&gt; for sorting out my problems with the original solution.&lt;/p&gt;</description>
+      <pubDate>Sat, 01 Jan 2011 17:08:00 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:a704f3a7-860c-4e49-95e0-62c194fe075e</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2011/01/01/lazy-evaluation-is-no-friend-of-mutable-state</link>
+      <category>C#</category>
+    </item>
+    <item>
+      <title>A strict directed graph</title>
+      <description>&lt;p&gt;Recently N. asked a question on a list that made my geek-senses tingle. He had a test with 12 levels of questions. The testee should answer 10 questions. If a question was answered correctly the level would go up and if it was not correct it would go down. If a level 12 was answered correctly, another level 12 would be asked and vice versa. The first question would be a level 6. N. wanted to know how many questions of each level he needed.&lt;/p&gt;
+
+&lt;p&gt;Pretty soon he got a correct answer and several wrong. One of the incorrect answers was, and I don't like to admit this, provided by me. I took the recursive route (which I very seldom do) and then tried to present the result in ASCII. I failed. The result from the algorithm in itself was correct but the presentation was simplified so much it failed to deliver the correct answer. Here it is:&lt;pre&gt;
+             06
+            05 07
+          04 06 08
+         03 05 07 09
+       02 04 06 08 10
+      01 03 05 07 09 11
+    01 02 04 06 08 10 12
+   01 02 03 05 07 09 11 12
+ 01 02 03 04 06 08 10 11 12
+01 02 03 04 05 07 09 10 11 12
+&lt;/pre&gt;&lt;/p&gt;
+
+&lt;p&gt;The problem is that this result can be read as if the testee could get two level 2 questions in a row but the rules forbids that.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://kafka.mine.nu/g.png" target="_blank"&gt;&lt;img title="Click to show full size." src="http://kafka.mine.nu/me/pics/RootedBinaryDirectedAcyclicGraph.png" style="display: inline-block; float:right" border="0"/&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Then I remembered reading about &lt;a href="http://www.graphviz.org/"&gt;Graphviz&lt;/a&gt; and especially &lt;a href="http://github.com/glejeune/Ruby-Graphviz/"&gt;Ruby-Graphviz&lt;/a&gt;. That's what I used to generate the graph to the right. The graph itself is nothing but a visualization of all the possible question sequences. To find the answer that N. was looking for you can follow a level from top to bottom and count the number of times it can occur. I have to admit that it's far from the most convenient way but it works.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The result&lt;/strong&gt;&lt;br/&gt;
+5 of level 1, 5, 6 &amp;amp; 7.&lt;br/&gt;
+4 of level 3, 4, 8, 9  &amp;amp; 12.&lt;br/&gt;
+3 of level 2, 10 &amp;amp; 11.&lt;/p&gt;
+
+&lt;p&gt;I had to jump a few hurdles to get there. First my old Ubuntu-install, for unknown reasons, had some ancient version of &lt;code&gt;libfreetype&lt;/code&gt; in &lt;code&gt;/usr/local/lib/&lt;/code&gt; that I had to remove. In the end an &lt;code&gt;rm /usr/local/lib/libfreetype*&lt;/code&gt; would have been good. I also did a &lt;code&gt;sudo ldconfig&lt;/code&gt; but I'm not sure that was necessary. Let's just hope you're on a modern system where a &lt;code&gt;sudo apt-get install graphviz&lt;/code&gt; followed by &lt;code&gt;sudo gem install ruby-graphviz&lt;/code&gt; will be enough.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href="http://gist.github.com/639589"&gt;recursive code&lt;/a&gt; I wrote produces every single path the testee can take. A graph of that would be quite big since it's 1023 nodes. I then &lt;a href="http://www.graphviz.org/Documentation.php"&gt;found out&lt;/a&gt; about &lt;em&gt;strict digraph&lt;/em&gt; in the Graphviz &lt;a href="http://en.wikipedia.org/wiki/DOT_language"&gt;DOT language&lt;/a&gt;. It sounded like a perfect fit and it was! One problem though, Ruby-Graphviz didn't seem to know about it. The power of open source software let me patch &lt;code&gt;ruby-graphviz-0.9.18/lib/graphviz/constants.rb&lt;/code&gt; so that &lt;code&gt;GRAPHTYPE&lt;/code&gt; included it&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#777"&gt;## Const: graphs type&lt;/span&gt;
+ &lt;span style="color:#036;font-weight:bold"&gt;GRAPHTYPE&lt;/span&gt; = [
+   &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;digraph&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;graph&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;, &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;strict digraph&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;
+ ]&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+Another awesome power of open source is &lt;a href="http://algorithmique.net/about.html"&gt;Grégoire Lejeune&lt;/a&gt; because only hours after me contacting him he &lt;a href="http://github.com/glejeune/Ruby-Graphviz/commit/b8d10d28e0c2a58e57bab4fe9c859b114e02e8a8"&gt;added it&lt;/a&gt; to the GitHub repository.&lt;/p&gt;
+
+&lt;p&gt;Here's the code that produced the Rooted Binary &lt;a href="http://en.wikipedia.org/wiki/Directed_acyclic_graph"&gt;Directed Acyclic Graph&lt;/a&gt; (or is it Rooted Directed Binary Acyclic Graph?).&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;a href="#n13" name="n13"&gt;13&lt;/a&gt;
+&lt;a href="#n14" name="n14"&gt;14&lt;/a&gt;
+&lt;a href="#n15" name="n15"&gt;15&lt;/a&gt;
+&lt;a href="#n16" name="n16"&gt;16&lt;/a&gt;
+&lt;a href="#n17" name="n17"&gt;17&lt;/a&gt;
+&lt;a href="#n18" name="n18"&gt;18&lt;/a&gt;
+&lt;a href="#n19" name="n19"&gt;19&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n20" name="n20"&gt;20&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n21" name="n21"&gt;21&lt;/a&gt;
+&lt;a href="#n22" name="n22"&gt;22&lt;/a&gt;
+&lt;a href="#n23" name="n23"&gt;23&lt;/a&gt;
+&lt;a href="#n24" name="n24"&gt;24&lt;/a&gt;
+&lt;a href="#n25" name="n25"&gt;25&lt;/a&gt;
+&lt;a href="#n26" name="n26"&gt;26&lt;/a&gt;
+&lt;a href="#n27" name="n27"&gt;27&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;require &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;rubygems&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;
+require &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;graphviz&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;
+
+&lt;span style="color:#33B"&gt;@min_level&lt;/span&gt;=&lt;span style="color:#00D"&gt;1&lt;/span&gt;
+&lt;span style="color:#33B"&gt;@max_level&lt;/span&gt;=&lt;span style="color:#00D"&gt;12&lt;/span&gt;
+&lt;span style="color:#33B"&gt;@max_depth&lt;/span&gt;=&lt;span style="color:#00D"&gt;10&lt;/span&gt;
+start_level=&lt;span style="color:#00D"&gt;6&lt;/span&gt;
+
+&lt;span style="color:#33B"&gt;@g&lt;/span&gt; = &lt;span style="color:#036;font-weight:bold"&gt;GraphViz&lt;/span&gt;.new(&lt;span style="color:#A60"&gt;:G&lt;/span&gt;, &lt;span style="color:#A60"&gt;:type&lt;/span&gt; =&amp;gt; &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;strict digraph&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; )
+
+&lt;span style="color:#080;font-weight:bold"&gt;def&lt;/span&gt; &lt;span style="color:#06B;font-weight:bold"&gt;add_node&lt;/span&gt;(level, depth, parent)
+  &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; depth&amp;lt;&lt;span style="color:#33B"&gt;@max_depth&lt;/span&gt;
+    current=[level, depth].join(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;,&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;)
+
+    sub=level&amp;lt;=&amp;gt;&lt;span style="color:#33B"&gt;@min_level&lt;/span&gt;
+    add=&lt;span style="color:#33B"&gt;@max_level&lt;/span&gt;&amp;lt;=&amp;gt;level
+    add_node(level-sub, depth+&lt;span style="color:#00D"&gt;1&lt;/span&gt;, current)
+    add_node(level+add, depth+&lt;span style="color:#00D"&gt;1&lt;/span&gt;, current)
+
+    &lt;span style="color:#33B"&gt;@g&lt;/span&gt;.add_node(current).label=level.to_s
+    &lt;span style="color:#33B"&gt;@g&lt;/span&gt;.add_edge(parent, current) &lt;span style="color:#080;font-weight:bold"&gt;unless&lt;/span&gt; parent==&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;00&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;
+  &lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;
+&lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;
+
+add_node(start_level, &lt;span style="color:#00D"&gt;0&lt;/span&gt;, &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;00&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;)
+
+&lt;span style="color:#33B"&gt;@g&lt;/span&gt;.output( &lt;span style="color:#A60"&gt;:png&lt;/span&gt; =&amp;gt; &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;graph.png&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; )&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+With the current parameters this problem might not be the most exciting but I believe that by just modifying them slightly we would, again, reach a wall of complexity.&lt;/p&gt;</description>
+      <pubDate>Sun, 24 Oct 2010 00:39:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:c534b2b5-4895-4979-af10-6673ee6810b9</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2010/10/24/a-strict-directed-graph</link>
+      <category>Ruby</category>
+      <category>Math</category>
+    </item>
+    <item>
+      <title>Encrypt images in JavaScript</title>
+      <description>&lt;p&gt;In browsers that supports the HTML5 &lt;a href="http://en.wikipedia.org/wiki/Canvas_element"&gt;canvas &lt;/a&gt; it's possible to read the raw image data. I figured that this makes it possible to encrypt images on the client. Why would one ever want to encrypt images client-side? One use case could be to send images to a server that only those who know the password can decrypt (host-proof hosting).&lt;/p&gt;
+
+&lt;p&gt;I used &lt;a href="http://code.google.com/p/crypto-js/"&gt;Crypto-JS&lt;/a&gt; to encrypt with &lt;a href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard"&gt;AES&lt;/a&gt; and &lt;a href="http://en.wikipedia.org/wiki/Rabbit_%28cipher%29"&gt;Rabbit&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;First I get the &lt;a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#canvaspixelarray"&gt;CanvasPixelArray&lt;/a&gt; from the &lt;a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#imagedata"&gt;ImageData&lt;/a&gt; object.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var ctx = document.getElementById(&lt;span style="color:#D20"&gt;'l&lt;/span&gt;eif&lt;span style="color:#D20"&gt;')&lt;/span&gt;
+                  .getContext(&lt;span style="color:#D20"&gt;'2&lt;/span&gt;d&lt;span style="color:#D20"&gt;')&lt;/span&gt;;
+var imgd = ctx.getImageData(&lt;span style="color:#00D"&gt;0&lt;/span&gt;,&lt;span style="color:#00D"&gt;0&lt;/span&gt;,width,height);
+var pixelArray = imgd.data;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;br/&gt;
+The pixel array has four bytes for each pixel as &lt;a href="http://en.wikipedia.org/wiki/RGBA_color_space"&gt;RGBA&lt;/a&gt; but Crypto-JS encrypts a string, not an array. At first I used &lt;code&gt;.join()&lt;/code&gt; and &lt;code&gt;.split(",")&lt;/code&gt; to get from array to string and back. It was slow and the string got much longer than it had to be. Actually four times longer. To save even more space I decided to discard the alpha channel.  
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;function canvasArrToString(a) {
+  var s=&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;
+  &lt;span style="color:#777"&gt;// Removes alpha to save space.&lt;/span&gt;
+  &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; (var i=&lt;span style="color:#00D"&gt;0&lt;/span&gt;; i&amp;lt;pix.length; i+=&lt;span style="color:#00D"&gt;4&lt;/span&gt;) {
+    s+=(String.fromCharCode(pix[i])
+        + String.fromCharCode(pix[i+&lt;span style="color:#00D"&gt;1&lt;/span&gt;])
+        + String.fromCharCode(pix[i+&lt;span style="color:#00D"&gt;2&lt;/span&gt;]));
+  }
+  &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; s;
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;br/&gt;
+That string is what I then encrypt. I sticked to `+=` after reading &lt;a href="http://www.sitepen.com/blog/2008/05/09/string-performance-an-analysis/"&gt;String Performance an Analysis&lt;/a&gt;.  
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var encrypted = Crypto.Rabbit.encrypt(imageString, password);&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;br/&gt;
+I used a small 160x120 pixels image. With four bytes for each pixels that gives 76800 bytes. Even though I stripped the alpha channel the encrypted image still takes up 124680 bytes, 1.62 times bigger. Using  `.join()` it was 384736 bytes, 5 times bigger. One cause for it still being larger than the original image is that Crypto-JS returns a &lt;a href="http://en.wikipedia.org/wiki/Base64"&gt;Base64&lt;/a&gt; encoded string and that adds something like 37%.  
+&lt;br&gt;
+&lt;br&gt;
+Before I could write it back to the canvas I had to convert it to an array again.  
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;function canvasStringToArr(s) {
+  var arr=[];
+  &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; (var i=&lt;span style="color:#00D"&gt;0&lt;/span&gt;; i&amp;lt;s.length; i+=&lt;span style="color:#00D"&gt;3&lt;/span&gt;) {
+    &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; (var j=&lt;span style="color:#00D"&gt;0&lt;/span&gt;; j&amp;lt;&lt;span style="color:#00D"&gt;3&lt;/span&gt;; j++) {
+      arr.push(s.substring(i+j,i+j+&lt;span style="color:#00D"&gt;1&lt;/span&gt;).charCodeAt());
+    }
+    arr.push(&lt;span style="color:#00D"&gt;255&lt;/span&gt;); &lt;span style="color:#777"&gt;// Hardcodes alpha to 255.&lt;/span&gt;
+  }
+  &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; arr;
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;br/&gt;
+Decryption is simple.
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var arr=canvasStringToArr(
+              Crypto.Rabbit.decrypt(encryptedString, password));
+imgd.data=arr;
+ctx.putImageData(imgd,&lt;span style="color:#00D"&gt;0&lt;/span&gt;,&lt;span style="color:#00D"&gt;0&lt;/span&gt;);&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+&lt;br/&gt;
+
+Tested in Firefox, Google Chrome, WebKit3.1 (Android 2.2), iOS 4.1, and a very recent release of Opera.  
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;table style="width: 366pt; border-collapse: collapse;" width="487" border="0" cellpadding="0" cellspacing="0"&gt;
+
+&lt;colgroup&gt;&lt;col style="width: 160pt;" width="213"&gt;&lt;col style="width: 62pt;" width="82"&gt;&lt;col style="width: 48pt;" width="64" span="3"&gt;&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border: 0.5pt solid windowtext; background-color: transparent; width: 160pt; min-height: 12.75pt;" width="213" height="17"&gt;
+&lt;strong&gt;&lt;font face="Arial" size="2"&gt;Browser / Action in milliseconds&lt;/font&gt;&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border-width: 0.5pt 0.5pt 0.5pt medium; border-style: solid solid solid none; border-color: windowtext; background-color: transparent; width: 62pt;" width="82"&gt;
+&lt;strong&gt;&lt;font face="Arial" size="2"&gt;Enc. Rabbit&lt;/font&gt;&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border-width: 0.5pt 0.5pt 0.5pt medium; border-style: solid solid solid none; border-color: windowtext; background-color: transparent; width: 48pt;" width="64"&gt;
+&lt;strong&gt;&lt;font face="Arial" size="2"&gt;Dec. Rabbit&lt;/font&gt;&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border-width: 0.5pt 0.5pt 0.5pt medium; border-style: solid solid solid none; border-color: windowtext; background-color: transparent; width: 48pt;" width="64"&gt;
+&lt;strong&gt;&lt;font face="Arial" size="2"&gt;Enc. AES&lt;/font&gt;&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border-width: 0.5pt 0.5pt 0.5pt medium; border-style: solid solid solid none; border-color: windowtext; background-color: transparent; width: 48pt;" width="64"&gt;
+&lt;strong&gt;&lt;font face="Arial" size="2"&gt;Dec. AES&lt;/font&gt;&lt;/strong&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;Google Chrome 6.0.472.62 C2D@1.86GHz&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;136&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;130&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;236&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;222&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;Opera 10.63 P4HT@3GHz&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;246&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;252&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;438&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;437&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;Google Chrome 6.0.472.63 P4HT@3GHz&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;280&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;648&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;303&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;547&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;Firefox 3.6.10 Phenom II X4 945@3GHz&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;494&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;321&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;1876&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;1745&lt;/font&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;Firefox 3.6.10 i5@3,5GHz&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;366&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;193&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;1639&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;1410&lt;/font&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;Firefox 3.6.10 C2D@1.86GHz&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;760&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;367&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;2417&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;1983&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;Firefox 3.6.10 P4HT@3GHz&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;880&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;440&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;4000&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;3500&lt;/font&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;Nokia N900 Chrome&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;1764&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;1975&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;2509&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;2508&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;WebKit 3.1 (HTC Desire)&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;2000&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;2200&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;3300&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;3400&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;iPhone 3GS iOS 4.1&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;2130&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;2071&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;7198&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;7131&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;N900 Firefox Mobile&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;3411&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;3508&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;19308&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;19466&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;N900 native (MicroB)&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;4681&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;4300&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;24560&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;20973&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr style="min-height: 12.75pt;" height="17"&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt; border-style: none solid solid; border-color: windowtext; background-color: transparent; min-height: 12.75pt;" height="17"&gt;
+&lt;font face="Arial" size="2"&gt;X10 Mini Pro, Android 1.6&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;7464&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;" align="right"&gt;
+&lt;font face="Arial" size="2"&gt;7747&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;"&gt;
+&lt;font face="Arial" size="2"&gt;timeout&lt;/font&gt;&lt;/td&gt;
+&lt;td style="border-width: medium 0.5pt 0.5pt medium; border-style: none solid solid none; border-color: windowtext; background-color: transparent;"&gt;
+&lt;font face="Arial" size="2"&gt;timeout&lt;/font&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&amp;nbsp;  &lt;/p&gt;
+
+&lt;p&gt;A &lt;a href="http://plea.se/me/cryptimage.html"&gt;demo&lt;/a&gt; can be found &lt;a href="http://plea.se/me/cryptimage.html"&gt;here&lt;/a&gt;.
+&lt;br/&gt;&lt;br/&gt;
+&lt;font color="red"&gt;EDIT 2010-10-17&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Warning&lt;/strong&gt; I've noticed that the encrypted strings aren't compatible between browsers. At least not in between Google Chrome and Firefox. I don't know why.&lt;/p&gt;
+
+&lt;p&gt;I also tried to add deflate/inflate and that compresses my test image to a third of the raw size and in Google Chrome it also halved the execution time. In Firefox Rabbit got about 50% slower and AES about 50% faster with deflate/inflate.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://plea.se/me/cryptimage2.html"&gt;Here's a demo of this&lt;/a&gt;. 
+&lt;br&gt;&lt;br&gt;
+&lt;font color="red"&gt;EDIT 2010-10-21&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+Added a preprocessing filter of the raw image data inspired by &lt;a href="http://www.w3.org/TR/PNG-Filters.html"&gt;PNG&lt;/a&gt; type 1 sub filter. Presented my idea to Fredrik and he returned a formula. Thanks!
+&lt;br&gt;
+The result wasn't what I had hoped for, a measly 6% smaller. I also tried to save the image as real PNG and that one is 20480 bytes.
+20480*1.37=28057 bytes (Base64 overhead) and my homemade format is 38336 bytes. Not a fantastic result but not that horrible either.
+&lt;br&gt;&lt;br&gt;
+&lt;a href="http://plea.se/me/cryptimage3.html"&gt;Here's a demo of this&lt;/a&gt;. &lt;/p&gt;</description>
+      <pubDate>Thu, 14 Oct 2010 23:40:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:1cb3eec8-d3a1-48f2-bb32-024bbf4cbe96</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2010/10/14/encrypt-images-in-javascript</link>
+      <category>Cryptography</category>
+      <category>JavaScript</category>
+    </item>
+    <item>
+      <title>To hack a Superpower</title>
+      <description>&lt;p&gt;I was interviewed in a swedish documentary called &lt;a href="http://svt.se/2.122744/1.2172403/att-hacka-en-stormakt?lid=20101014&amp;amp;lpos=SVT2_0000_sitelink&amp;amp;from=tabla"&gt;Att hacka en stormakt&lt;/a&gt; (To hack a Superpower). It's mostly in swedish but &lt;a href="http://alicebobandmallory.com/articles/2007/02/04/hello-this-is-special-agent-brian"&gt;Brian Koref&lt;/a&gt; (US AF) and Tom Talleur (NASA) are interviewed in english. It can be &lt;a href="http://svtplay.se/v/2175727/dokumentarfilm/att_hacka_en_stormakt"&gt;streamed from SVTPlay&lt;/a&gt; (at least if you live in Sweden) until 2010-11-09.&lt;/p&gt;
+
+&lt;p&gt;It covers the cracking frenzy of a couple Swedish youths back in 1996. They happened to break into a server I was responsible for and from that server they logged in to a machine with a .mil-address. That's how we got involved.&lt;/p&gt;
+
+&lt;p&gt;The event has been covered before in a &lt;a href="http://sverigesradio.se/sida/artikel.aspx?ProgramID=2519&amp;amp;Artikel=2447808"&gt;radio documentary&lt;/a&gt; called &lt;i&gt;Svenska hackers&lt;/i&gt; (Swedish hackers).&lt;/p&gt;</description>
+      <pubDate>Thu, 14 Oct 2010 21:57:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:3638307e-12fd-4e27-899f-8c612277b1f1</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2010/10/14/to-hack-a-superpower</link>
+      <category>Security</category>
+    </item>
+  </channel>
+</rss>

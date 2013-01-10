@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: Lightning crashes</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/694/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2007/07/09/lightning-crashes" rel="alternate" type="text/html"/>
+  <updated>2007-12-04T23:19:22+01:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:80bc6de4-f4fb-466f-b7ff-498d819b471b</id>
+    <published>2007-07-09T23:37:00+02:00</published>
+    <updated>2007-12-04T23:19:22+01:00</updated>
+    <title type="html">Lightning crashes</title>
+    <link href="http://alicebobandmallory.com/articles/2007/07/09/lightning-crashes" rel="alternate" type="text/html"/>
+    <category label="Blogging" term="blogging" scheme="http://alicebobandmallory.com/articles/category/blogging"/>
+    <summary type="html">&lt;p&gt;Three weeks ago lightning struck nearby. Today my ISP finally tried to change the switch in the central even though I reported back to them that my VSDL modem worked just fine at a friend’s house only a couple of days after my connection died.&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;Three weeks ago lightning struck nearby. Today my ISP finally tried to change the switch in the central even though I reported back to them that my VSDL modem worked just fine at a friend’s house only a couple of days after my connection died.&lt;/p&gt;</content>
+  </entry>
+</feed>

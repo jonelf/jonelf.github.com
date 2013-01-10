@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Hello, this is special agent Brian...</title>
+    <link>http://alicebobandmallory.com/articles/2007/02/04/hello-this-is-special-agent-brian</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Hello, this is special agent Brian...</title>
+      <description>&lt;p&gt;I've been interested in computer security for a long time. Maybe watching &lt;a href="http://www.imdb.com/title/tt0086567/"&gt;War games&lt;/a&gt; and coding Commodore 64 made an impact on me as a boy. A couple of years later the annoying &lt;a href="http://en.wikipedia.org/wiki/SCA_virus"&gt;boot sector&lt;/a&gt; viruses on the Amiga kept my interest going.&lt;/p&gt;
+&lt;p&gt;
+In late 1995 I was involved in starting up a local Internet Service Provider. Me and a friend (a colleague at our day job) were the technicians. Our server ran Slackware Linux. Fast forward to late 1996. My collegue was sitting in our "office" and happened to notice some strange processes and activity on our server. He pulled the network plug immidiately. We had been hacked!
+&lt;/p&gt;
+&lt;p&gt;A couple of days later we got an email from an investigator in the US Airforce. Not that I really thought that it wasn't real but I still wanted more confirmation, so I asked him to call me. I will always remember his opening line "Hello, this is Special Agent &lt;a href="http://www.linkedin.com/pub/0/70a/636"&gt;Brian&lt;/a&gt;...". He asked if he could get some excerpts from certain logs and as far as I remember we provided them to him. He also told us that people like those breaking in into our system usually are very good at removing traces of  their visit in the logs. My friends gut feeling and fast network disconnect made us keep the logs.&lt;/p&gt;
+&lt;p&gt;All that said I'm not working as a computer security specialist. I've been working as DBA, sysop, teacher, software developer, project manager and systems integrator. I like to think of myself as a software engineer with some social skills. Also I might have a little more focus and feel for computer security than the next guy.&lt;/p&gt;
+</description>
+      <pubDate>Sun, 04 Feb 2007 20:35:00 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:4f981ce8-c061-4079-bc1a-f17a9ccfbd33</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2007/02/04/hello-this-is-special-agent-brian</link>
+      <category>Security</category>
+    </item>
+  </channel>
+</rss>

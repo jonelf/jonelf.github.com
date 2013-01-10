@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: Randomly chosen OTPs defaced</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/13/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2007/02/12/randomly-chosen-otps-defaced" rel="alternate" type="text/html"/>
+  <updated>2007-02-20T16:30:25+01:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:0c72d729-0aec-4cd2-b95d-d098d6292479</id>
+    <published>2007-02-12T19:45:00+01:00</published>
+    <updated>2007-02-20T16:30:25+01:00</updated>
+    <title type="html">Randomly chosen OTPs defaced</title>
+    <link href="http://alicebobandmallory.com/articles/2007/02/12/randomly-chosen-otps-defaced" rel="alternate" type="text/html"/>
+    <category label="Security" term="security" scheme="http://alicebobandmallory.com/articles/category/security"/>
+    <summary type="html">&lt;p&gt;&lt;a href="/articles/2007/02/05/trojans-and-one-time-passwords#comments"&gt;Gunnar  Kreitz&lt;/a&gt; has shown that random chosen OTPs aren't nearly as good as I first thought. Against the current trojan they work just fine but Kreitz describes how a modified and more advanced trojan could be effective.&lt;/p&gt;
+&lt;p&gt;It seems that in the end the protocol only forces the trojan be more complex, adds a time span for the validity of the OTP and makes the attack more likely to fail (there is no guarantee that the user will enter a second OTP or that he will do it in time). I suppose the attacker also would have to make the trojan completely automated or have a 24/7 staff waiting. If the user has opted in to have the &lt;i&gt;n&lt;/i&gt; presented as a CAPTCHA it would force the evildoers to have that 24/7 staff.&lt;/p&gt;
+&lt;h5&gt;Advantages:&lt;/h5&gt; &lt;ul&gt;&lt;li&gt;
+A TTL (time to live) for OTPs.&lt;/li&gt;
+&lt;li&gt;Demands more resources and higher complexity from the attacker.&lt;/li&gt;&lt;/ul&gt;
+&lt;h5&gt;Disadvantages:&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;A little harder to use (finding the challenged OTP).&lt;/li&gt;
+&lt;li&gt;In theory not that much more secure.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+My bank has support for sending OTPs by SMS but a trojan that works like the one described by Kreitz would have no problem with that one either.
+&lt;/p&gt;
+&lt;p&gt;The protection against phising, as in redirecting the user to a fake login page, is still much greater with randomly chosen OTPs.&lt;/p&gt;
+&lt;p&gt;I find it a bit ironic that the bank in question actually is going to implement something that sounds like &lt;i&gt;randomly chosen OTPs&lt;/i&gt;. They recently announced a change in their login procedure: 
+&lt;cite&gt;"Vilken engångskod från kodkortet du ska använda framgår på inloggningssidan." / "What one-time password you are  supposed to enter will be presented on the login page."&lt;/cite&gt;
+&lt;/p&gt;
+&lt;p&gt;
+Personally I think the security tokens with signing abilities sounds more and more reasonable.
+&lt;/p&gt;
+</summary>
+    <content type="html">&lt;p&gt;&lt;a href="/articles/2007/02/05/trojans-and-one-time-passwords#comments"&gt;Gunnar  Kreitz&lt;/a&gt; has shown that random chosen OTPs aren't nearly as good as I first thought. Against the current trojan they work just fine but Kreitz describes how a modified and more advanced trojan could be effective.&lt;/p&gt;
+&lt;p&gt;It seems that in the end the protocol only forces the trojan be more complex, adds a time span for the validity of the OTP and makes the attack more likely to fail (there is no guarantee that the user will enter a second OTP or that he will do it in time). I suppose the attacker also would have to make the trojan completely automated or have a 24/7 staff waiting. If the user has opted in to have the &lt;i&gt;n&lt;/i&gt; presented as a CAPTCHA it would force the evildoers to have that 24/7 staff.&lt;/p&gt;
+&lt;h5&gt;Advantages:&lt;/h5&gt; &lt;ul&gt;&lt;li&gt;
+A TTL (time to live) for OTPs.&lt;/li&gt;
+&lt;li&gt;Demands more resources and higher complexity from the attacker.&lt;/li&gt;&lt;/ul&gt;
+&lt;h5&gt;Disadvantages:&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;A little harder to use (finding the challenged OTP).&lt;/li&gt;
+&lt;li&gt;In theory not that much more secure.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+My bank has support for sending OTPs by SMS but a trojan that works like the one described by Kreitz would have no problem with that one either.
+&lt;/p&gt;
+&lt;p&gt;The protection against phising, as in redirecting the user to a fake login page, is still much greater with randomly chosen OTPs.&lt;/p&gt;
+&lt;p&gt;I find it a bit ironic that the bank in question actually is going to implement something that sounds like &lt;i&gt;randomly chosen OTPs&lt;/i&gt;. They recently announced a change in their login procedure: 
+&lt;cite&gt;"Vilken engångskod från kodkortet du ska använda framgår på inloggningssidan." / "What one-time password you are  supposed to enter will be presented on the login page."&lt;/cite&gt;
+&lt;/p&gt;
+&lt;p&gt;
+Personally I think the security tokens with signing abilities sounds more and more reasonable.
+&lt;/p&gt;
+</content>
+  </entry>
+</feed>

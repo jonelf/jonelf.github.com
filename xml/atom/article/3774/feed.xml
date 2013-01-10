@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: Infinite ranges in C#</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/3774/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2009/10/20/infinite-ranges-in-c" rel="alternate" type="text/html"/>
+  <updated>2010-04-06T14:41:58+02:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:1337fd12-5058-4b35-bbf4-c9d0c4e9ade8</id>
+    <published>2009-10-20T20:41:00+02:00</published>
+    <updated>2010-04-06T14:41:58+02:00</updated>
+    <title type="html">Infinite ranges in C#</title>
+    <link href="http://alicebobandmallory.com/articles/2009/10/20/infinite-ranges-in-c" rel="alternate" type="text/html"/>
+    <category label="Ruby" term="ruby" scheme="http://alicebobandmallory.com/articles/category/ruby"/>
+    <category label="C#" term="c" scheme="http://alicebobandmallory.com/articles/category/c"/>
+    <category label="Math" term="math" scheme="http://alicebobandmallory.com/articles/category/math"/>
+    <summary type="html">&lt;p&gt;I &lt;a href="http://blogs.msdn.com/ericlippert/archive/2009/10/15/as-timeless-as-infinity.aspx"&gt;recently learned&lt;/a&gt; that C# is compliant with the &lt;a href="http://en.wikipedia.org/wiki/IEEE_754-1985"&gt;IEEE 754-1985&lt;/a&gt; for floating point arithmetics. That wasn't a big surprise but that &lt;a href="http://en.wikipedia.org/wiki/Division_by_zero#In_computer_arithmetic"&gt;division by zero&lt;/a&gt; is defined as &lt;code&gt;Infinity&lt;/code&gt; in it was! It actually kind of bothers me that I didn't know this.&lt;/p&gt;
+
+&lt;p&gt;In mathematics division by zero is &lt;a href="http://en.wikipedia.org/wiki/Defined_and_undefined"&gt;undefined&lt;/a&gt; for real numbers but I guess &lt;code&gt;Infinity&lt;/code&gt; is a more pragmatic result. Or as a friend put it &lt;em&gt;"IEEE stands for Institute of Electrical and Electronics Engineers not Institute of Mathematics"&lt;/em&gt;&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#0a5;font-weight:bold"&gt;double&lt;/span&gt; n = &lt;span style="color:#60E"&gt;1&lt;/span&gt;&lt;span style="color:#60E"&gt;.0&lt;/span&gt;;
+n = n / &lt;span style="color:#00D"&gt;0&lt;/span&gt;;
+&lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (n &amp;gt; &lt;span style="color:#00D"&gt;636413622384679305&lt;/span&gt;)
+  System.Console.WriteLine(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Yes it certainly is!&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+This C# code does not throw an exception, it simply leaves n defined as Infinity and writes a line to the console.&lt;/p&gt;
+
+&lt;p&gt;Ruby is &lt;a href="http://weblog.jamisbuck.org/2007/2/7/infinity"&gt;also&lt;/a&gt; IEEE 754-1985 compliant. It even lets you define &lt;a href="http://banisterfiend.wordpress.com/2009/10/02/wtf-infinite-ranges-in-ruby/"&gt;infinite ranges&lt;/a&gt;.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#036;font-weight:bold"&gt;Infinity&lt;/span&gt;=&lt;span style="color:#60E"&gt;1.0&lt;/span&gt;/&lt;span style="color:#00D"&gt;0&lt;/span&gt;
+=&amp;gt;&lt;span style="color:#036;font-weight:bold"&gt;Infinity&lt;/span&gt;
+(&lt;span style="color:#00D"&gt;1&lt;/span&gt;..&lt;span style="color:#036;font-weight:bold"&gt;Infinity&lt;/span&gt;).include?(&lt;span style="color:#00D"&gt;162259276829213363391578010288127&lt;/span&gt;)
+=&amp;gt; &lt;span style="color:#069"&gt;true&lt;/span&gt;
+(&lt;span style="color:#00D"&gt;7&lt;/span&gt;..&lt;span style="color:#036;font-weight:bold"&gt;Infinity&lt;/span&gt;).step(&lt;span style="color:#00D"&gt;7&lt;/span&gt;).take(&lt;span style="color:#00D"&gt;3&lt;/span&gt;).inject(&amp;amp;&lt;span style="color:#A60"&gt;:+&lt;/span&gt;) &lt;span style="color:#777"&gt;# 7+14+21&lt;/span&gt;
+=&amp;gt; &lt;span style="color:#00D"&gt;42&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+I can't say I see very much &lt;a href="http://www.michaelharrison.ws/weblog/?p=163"&gt;use&lt;/a&gt; of this but it brings a kind of completeness to the handling of infinities. Unfortunately it seems we don't get that in C# out of the box because &lt;code&gt;Enumerable.Range&lt;/code&gt; takes &lt;code&gt;&amp;lt;int&amp;gt;,&amp;lt;int&amp;gt;&lt;/code&gt; as parameters and there's no &lt;code&gt;Infinity&lt;/code&gt; definition for &lt;code&gt;int&lt;/code&gt;.  That's unless someone wrote a generic Range class. Turns out &lt;a href="http://stackoverflow.com/users/22656/jon-skeet"&gt;none other&lt;/a&gt; than &lt;a href="http://www.yoda.arachsys.com/csharp/"&gt;Jon Skeet&lt;/a&gt; did in his &lt;a href="http://www.yoda.arachsys.com/csharp/miscutil/"&gt;MiscUtil&lt;/a&gt;. Download MiscUtil and then by &lt;code&gt;using MiscUtil.Collections;&lt;/code&gt; you can:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#0a5;font-weight:bold"&gt;double&lt;/span&gt; n = &lt;span style="color:#60E"&gt;1&lt;/span&gt;&lt;span style="color:#60E"&gt;.0&lt;/span&gt;;
+var infinity = n / &lt;span style="color:#00D"&gt;0&lt;/span&gt;;
+var r = new Range&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;double&lt;/span&gt;&amp;gt;(&lt;span style="color:#00D"&gt;0&lt;/span&gt;, infinity);
+&lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (r.Contains(&lt;span style="color:#00D"&gt;4711&lt;/span&gt;))
+  System.Console.WriteLine(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Yes it certainly does!&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);
+var sum = r.Step(&lt;span style="color:#60E"&gt;7&lt;/span&gt;&lt;span style="color:#60E"&gt;.0&lt;/span&gt;).Take(&lt;span style="color:#00D"&gt;3&lt;/span&gt;).Sum();&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+And guess what, it works like a charm! &lt;code&gt;4711&lt;/code&gt; is part of positive infinity and &lt;code&gt;sum&lt;/code&gt; is 42.0 and all is good.&lt;/p&gt;
+
+&lt;p&gt;&lt;font style="color:red;font-weight:bold"&gt;Edit&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;There's also a couple of predefined constants. Thanks to Eric for pointing that out.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var r = new Range&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;double&lt;/span&gt;&amp;gt;(&lt;span style="color:#00D"&gt;7&lt;/span&gt;,  System.Double.PositiveInfinity);
+var sum = r.Step(&lt;span style="color:#60E"&gt;7&lt;/span&gt;&lt;span style="color:#60E"&gt;.0&lt;/span&gt;).Take(&lt;span style="color:#00D"&gt;3&lt;/span&gt;).Sum();&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;I &lt;a href="http://blogs.msdn.com/ericlippert/archive/2009/10/15/as-timeless-as-infinity.aspx"&gt;recently learned&lt;/a&gt; that C# is compliant with the &lt;a href="http://en.wikipedia.org/wiki/IEEE_754-1985"&gt;IEEE 754-1985&lt;/a&gt; for floating point arithmetics. That wasn't a big surprise but that &lt;a href="http://en.wikipedia.org/wiki/Division_by_zero#In_computer_arithmetic"&gt;division by zero&lt;/a&gt; is defined as &lt;code&gt;Infinity&lt;/code&gt; in it was! It actually kind of bothers me that I didn't know this.&lt;/p&gt;
+
+&lt;p&gt;In mathematics division by zero is &lt;a href="http://en.wikipedia.org/wiki/Defined_and_undefined"&gt;undefined&lt;/a&gt; for real numbers but I guess &lt;code&gt;Infinity&lt;/code&gt; is a more pragmatic result. Or as a friend put it &lt;em&gt;"IEEE stands for Institute of Electrical and Electronics Engineers not Institute of Mathematics"&lt;/em&gt;&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#0a5;font-weight:bold"&gt;double&lt;/span&gt; n = &lt;span style="color:#60E"&gt;1&lt;/span&gt;&lt;span style="color:#60E"&gt;.0&lt;/span&gt;;
+n = n / &lt;span style="color:#00D"&gt;0&lt;/span&gt;;
+&lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (n &amp;gt; &lt;span style="color:#00D"&gt;636413622384679305&lt;/span&gt;)
+  System.Console.WriteLine(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Yes it certainly is!&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+This C# code does not throw an exception, it simply leaves n defined as Infinity and writes a line to the console.&lt;/p&gt;
+
+&lt;p&gt;Ruby is &lt;a href="http://weblog.jamisbuck.org/2007/2/7/infinity"&gt;also&lt;/a&gt; IEEE 754-1985 compliant. It even lets you define &lt;a href="http://banisterfiend.wordpress.com/2009/10/02/wtf-infinite-ranges-in-ruby/"&gt;infinite ranges&lt;/a&gt;.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#036;font-weight:bold"&gt;Infinity&lt;/span&gt;=&lt;span style="color:#60E"&gt;1.0&lt;/span&gt;/&lt;span style="color:#00D"&gt;0&lt;/span&gt;
+=&amp;gt;&lt;span style="color:#036;font-weight:bold"&gt;Infinity&lt;/span&gt;
+(&lt;span style="color:#00D"&gt;1&lt;/span&gt;..&lt;span style="color:#036;font-weight:bold"&gt;Infinity&lt;/span&gt;).include?(&lt;span style="color:#00D"&gt;162259276829213363391578010288127&lt;/span&gt;)
+=&amp;gt; &lt;span style="color:#069"&gt;true&lt;/span&gt;
+(&lt;span style="color:#00D"&gt;7&lt;/span&gt;..&lt;span style="color:#036;font-weight:bold"&gt;Infinity&lt;/span&gt;).step(&lt;span style="color:#00D"&gt;7&lt;/span&gt;).take(&lt;span style="color:#00D"&gt;3&lt;/span&gt;).inject(&amp;amp;&lt;span style="color:#A60"&gt;:+&lt;/span&gt;) &lt;span style="color:#777"&gt;# 7+14+21&lt;/span&gt;
+=&amp;gt; &lt;span style="color:#00D"&gt;42&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+I can't say I see very much &lt;a href="http://www.michaelharrison.ws/weblog/?p=163"&gt;use&lt;/a&gt; of this but it brings a kind of completeness to the handling of infinities. Unfortunately it seems we don't get that in C# out of the box because &lt;code&gt;Enumerable.Range&lt;/code&gt; takes &lt;code&gt;&amp;lt;int&amp;gt;,&amp;lt;int&amp;gt;&lt;/code&gt; as parameters and there's no &lt;code&gt;Infinity&lt;/code&gt; definition for &lt;code&gt;int&lt;/code&gt;.  That's unless someone wrote a generic Range class. Turns out &lt;a href="http://stackoverflow.com/users/22656/jon-skeet"&gt;none other&lt;/a&gt; than &lt;a href="http://www.yoda.arachsys.com/csharp/"&gt;Jon Skeet&lt;/a&gt; did in his &lt;a href="http://www.yoda.arachsys.com/csharp/miscutil/"&gt;MiscUtil&lt;/a&gt;. Download MiscUtil and then by &lt;code&gt;using MiscUtil.Collections;&lt;/code&gt; you can:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#0a5;font-weight:bold"&gt;double&lt;/span&gt; n = &lt;span style="color:#60E"&gt;1&lt;/span&gt;&lt;span style="color:#60E"&gt;.0&lt;/span&gt;;
+var infinity = n / &lt;span style="color:#00D"&gt;0&lt;/span&gt;;
+var r = new Range&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;double&lt;/span&gt;&amp;gt;(&lt;span style="color:#00D"&gt;0&lt;/span&gt;, infinity);
+&lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (r.Contains(&lt;span style="color:#00D"&gt;4711&lt;/span&gt;))
+  System.Console.WriteLine(&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;Yes it certainly does!&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);
+var sum = r.Step(&lt;span style="color:#60E"&gt;7&lt;/span&gt;&lt;span style="color:#60E"&gt;.0&lt;/span&gt;).Take(&lt;span style="color:#00D"&gt;3&lt;/span&gt;).Sum();&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+And guess what, it works like a charm! &lt;code&gt;4711&lt;/code&gt; is part of positive infinity and &lt;code&gt;sum&lt;/code&gt; is 42.0 and all is good.&lt;/p&gt;
+
+&lt;p&gt;&lt;font style="color:red;font-weight:bold"&gt;Edit&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;There's also a couple of predefined constants. Thanks to Eric for pointing that out.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var r = new Range&amp;lt;&lt;span style="color:#0a5;font-weight:bold"&gt;double&lt;/span&gt;&amp;gt;(&lt;span style="color:#00D"&gt;7&lt;/span&gt;,  System.Double.PositiveInfinity);
+var sum = r.Step(&lt;span style="color:#60E"&gt;7&lt;/span&gt;&lt;span style="color:#60E"&gt;.0&lt;/span&gt;).Take(&lt;span style="color:#00D"&gt;3&lt;/span&gt;).Sum();&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:7fc58e73-ee51-49e4-a261-77e32e325f5f</id>
+    <published>2011-02-21T14:46:54+01:00</published>
+    <updated>2011-03-04T01:40:06+01:00</updated>
+    <title type="html">Comment on Infinite ranges in C# by Jonas Elfström</title>
+    <link href="http://alicebobandmallory.com/articles/2009/10/20/infinite-ranges-in-c#comment-5244" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;In Ruby 1.9.2 we got Float::INFINITY&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Eric Lippert</name>
+    </author>
+    <id>urn:uuid:bb428653-558b-4497-835c-735097a59293</id>
+    <published>2009-10-21T00:13:35+02:00</published>
+    <updated>2009-10-21T23:57:44+02:00</updated>
+    <title type="html">Comment on Infinite ranges in C# by Eric Lippert</title>
+    <link href="http://alicebobandmallory.com/articles/2009/10/20/infinite-ranges-in-c#comment-3776" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Nice!&lt;/p&gt;
+
+&lt;p&gt;Of course you could just use the predefined constants System.Double.PositiveInfinity and System.Double.NegativeInfinity; no need to define your own.&lt;/p&gt;</content>
+  </entry>
+</feed>

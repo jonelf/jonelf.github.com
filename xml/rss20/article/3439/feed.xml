@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Setting charset with a before filter in Sinatra</title>
+    <link>http://alicebobandmallory.com/articles/2009/07/31/setting-charset-with-a-before-filter-in-sinatra</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Setting charset with a before filter in Sinatra</title>
+      <description>&lt;p&gt;In the git example in my &lt;a href="/articles/2009/06/11/an-average-application-in-the-clouds"&gt;previous post&lt;/a&gt; about Sinatra and Heroku I happened to mention a filter for using UTF-8. I remember finding it somewhere on the net but I can't remember where and it seems my current google-fu is as weak as my memory. Anyway, it looks like this:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#036;font-weight:bold"&gt;CONTENT_TYPES&lt;/span&gt; = {&lt;span style="color:#A60"&gt;:html&lt;/span&gt; =&amp;gt; &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;text/html&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;, &lt;span style="color:#A60"&gt;:css&lt;/span&gt; =&amp;gt; &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;text/css&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;, 
+                &lt;span style="color:#A60"&gt;:js&lt;/span&gt;  =&amp;gt; &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;application/javascript&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;}
+
+before &lt;span style="color:#080;font-weight:bold"&gt;do&lt;/span&gt;
+ request_uri = &lt;span style="color:#080;font-weight:bold"&gt;case&lt;/span&gt; request.env[&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;REQUEST_URI&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;]
+   &lt;span style="color:#080;font-weight:bold"&gt;when&lt;/span&gt; &lt;span style="background-color:hsla(300,100%,50%,0.06)"&gt;&lt;span style="color:#404"&gt;/&lt;/span&gt;&lt;span style="color:#D20"&gt;\.&lt;/span&gt;&lt;span style="color:#808"&gt;css$&lt;/span&gt;&lt;span style="color:#404"&gt;/&lt;/span&gt;&lt;/span&gt; : &lt;span style="color:#A60"&gt;:css&lt;/span&gt;
+   &lt;span style="color:#080;font-weight:bold"&gt;when&lt;/span&gt; &lt;span style="background-color:hsla(300,100%,50%,0.06)"&gt;&lt;span style="color:#404"&gt;/&lt;/span&gt;&lt;span style="color:#D20"&gt;\.&lt;/span&gt;&lt;span style="color:#808"&gt;js$&lt;/span&gt;&lt;span style="color:#404"&gt;/&lt;/span&gt;&lt;/span&gt;  : &lt;span style="color:#A60"&gt;:js&lt;/span&gt;
+   &lt;span style="color:#080;font-weight:bold"&gt;else&lt;/span&gt;          &lt;span style="color:#A60"&gt;:html&lt;/span&gt;
+ &lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;
+ content_type &lt;span style="color:#036;font-weight:bold"&gt;CONTENT_TYPES&lt;/span&gt;[request_uri], &lt;span style="color:#A60"&gt;:charset&lt;/span&gt; =&amp;gt; &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;utf-8&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;
+&lt;span style="color:#080;font-weight:bold"&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;</description>
+      <pubDate>Fri, 31 Jul 2009 08:30:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:0814199e-0299-481a-b0df-3fd5d2a7bb24</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2009/07/31/setting-charset-with-a-before-filter-in-sinatra</link>
+      <category>Ruby</category>
+    </item>
+    <item>
+      <title>"Setting charset with a before filter in Sinatra" by Jonas</title>
+      <description>&lt;p&gt;Yes, that&amp;#8217;s it. Thanks! Credits where credit is due.&lt;/p&gt;</description>
+      <pubDate>Thu, 03 Sep 2009 16:21:40 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:a9a2a2bc-98f1-41cc-bdcc-18208147edda</guid>
+      <link>http://alicebobandmallory.com/articles/2009/07/31/setting-charset-with-a-before-filter-in-sinatra#comment-3560</link>
+    </item>
+    <item>
+      <title>"Setting charset with a before filter in Sinatra" by John</title>
+      <description>&lt;p&gt;The original post can be found here:
+&lt;a href="http://geminstallthat.wordpress.com/2009/04/22/sinatra-utf-8-content-type-before-filter/"&gt;http://geminstallthat.wordpress.com/2009/04/22/sinatra-utf-8-content-type-before-filter/&lt;/a&gt;&lt;/p&gt;</description>
+      <pubDate>Thu, 03 Sep 2009 10:20:14 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:fe7939ec-f91e-48fe-be45-04c171228f50</guid>
+      <link>http://alicebobandmallory.com/articles/2009/07/31/setting-charset-with-a-before-filter-in-sinatra#comment-3557</link>
+    </item>
+  </channel>
+</rss>

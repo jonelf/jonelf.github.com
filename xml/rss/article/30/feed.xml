@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Client side security</title>
+    <link>http://alicebobandmallory.com/articles/2007/04/30/client-side-security</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Client side security</title>
+      <description>&lt;p&gt;Recently a friend of mine got problems while trying to book a hotel room online. The JavaScript-driven calendar was IE-only and he is on Mac OS X. My friend then checked the source and saw that the JavaScript actually just set a value to an hidden input field. He fired up &lt;a href="http://www.getfirebug.com/"&gt;Firebug&lt;/a&gt; and edited the field manually and then submitted the form. When he got the confirmation of the booking he saw that he accidently had typed 2006 instead of 2007. The only protection against booking at dates in the past, already fully booked or in the year 2100 were the JavaScript that ran the calendar.&lt;/p&gt;
+
+&lt;p&gt;When building a web application you can never ever trust that any of the data from the client will be untampered with. &lt;/p&gt;
+
+&lt;p&gt;Some problems I've seen in the past:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Relying on JavaScript-validation. JavaScript can be turned off or ran through a debugger.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Having sensitive data in hidden input fields.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Storing sensitive data in cookies. &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;This is not a very common problem since almost all web application frameworks handles this for you by only storing a session id in the cookie and the actual data on the server.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+      <pubDate>Mon, 30 Apr 2007 12:54:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:7b56bd9d-b073-4e6e-981c-eb40edd121e8</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2007/04/30/client-side-security</link>
+      <category>Security</category>
+      <trackback:ping>http://alicebobandmallory.com/articles/trackback/30</trackback:ping>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Infinite ranges in C#</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../../../xml/atom/article/3774/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../../xml/rss20/article/3774/feed.xml" />
+  <script src="../../../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+       xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+       xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about=""
+    dc:title="Infinite ranges in C#"
+    dc:identifier="http://alicebobandmallory.com/articles/2009/10/20/infinite-ranges-in-c"
+    dc:description="I recently learned that C# is compliant with the IEEE 754-1985 for floating point arithmetics. That"
+    dc:creator="jonelf"
+    dc:date="2010-04-06T14:41:58+02:00" />
+</rdf:RDF>
+-->
+
+<div class="post" onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_article'); }"  onmouseout="Element.hide('admin_article');" >
+  <a href="http://alicebobandmallory.com/admin/content/edit/3774" class="admintools" id="admin_article" style="display: none">edit</a>
+  <h2>Infinite ranges in C#</h2>
+  <p class="auth">Posted by Jonas Elfström
+  <span class="typo_date" title="Tue, 20 Oct 2009 18:41:00 GMT">Tue, 20 Oct 2009 18:41:00 GMT</span></p>
+  <p>I <a href="http://blogs.msdn.com/ericlippert/archive/2009/10/15/as-timeless-as-infinity.aspx">recently learned</a> that C# is compliant with the <a href="http://en.wikipedia.org/wiki/IEEE_754-1985">IEEE 754-1985</a> for floating point arithmetics. That wasn't a big surprise but that <a href="http://en.wikipedia.org/wiki/Division_by_zero#In_computer_arithmetic">division by zero</a> is defined as <code>Infinity</code> in it was! It actually kind of bothers me that I didn't know this.</p>
+
+<p>In mathematics division by zero is <a href="http://en.wikipedia.org/wiki/Defined_and_undefined">undefined</a> for real numbers but I guess <code>Infinity</code> is a more pragmatic result. Or as a friend put it <em>"IEEE stands for Institute of Electrical and Electronics Engineers not Institute of Mathematics"</em></p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="infinite-ranges-in-c#n1" name="n1">1</a>
+<a href="infinite-ranges-in-c#n2" name="n2">2</a>
+<a href="infinite-ranges-in-c#n3" name="n3">3</a>
+<a href="infinite-ranges-in-c#n4" name="n4">4</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#0a5;font-weight:bold">double</span> n = <span style="color:#60E">1</span><span style="color:#60E">.0</span>;
+n = n / <span style="color:#00D">0</span>;
+<span style="color:#080;font-weight:bold">if</span> (n &gt; <span style="color:#00D">636413622384679305</span>)
+  System.Console.WriteLine(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Yes it certainly is!</span><span style="color:#710">&quot;</span></span>);</pre></td>
+</tr></table>
+
+<p><br/>
+This C# code does not throw an exception, it simply leaves n defined as Infinity and writes a line to the console.</p>
+
+<p>Ruby is <a href="http://weblog.jamisbuck.org/2007/2/7/infinity">also</a> IEEE 754-1985 compliant. It even lets you define <a href="http://banisterfiend.wordpress.com/2009/10/02/wtf-infinite-ranges-in-ruby/">infinite ranges</a>.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="infinite-ranges-in-c#n1" name="n1">1</a>
+<a href="infinite-ranges-in-c#n2" name="n2">2</a>
+<a href="infinite-ranges-in-c#n3" name="n3">3</a>
+<a href="infinite-ranges-in-c#n4" name="n4">4</a>
+<a href="infinite-ranges-in-c#n5" name="n5">5</a>
+<a href="infinite-ranges-in-c#n6" name="n6">6</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#036;font-weight:bold">Infinity</span>=<span style="color:#60E">1.0</span>/<span style="color:#00D">0</span>
+=&gt;<span style="color:#036;font-weight:bold">Infinity</span>
+(<span style="color:#00D">1</span>..<span style="color:#036;font-weight:bold">Infinity</span>).include?(<span style="color:#00D">162259276829213363391578010288127</span>)
+=&gt; <span style="color:#069">true</span>
+(<span style="color:#00D">7</span>..<span style="color:#036;font-weight:bold">Infinity</span>).step(<span style="color:#00D">7</span>).take(<span style="color:#00D">3</span>).inject(&amp;<span style="color:#A60">:+</span>) <span style="color:#777"># 7+14+21</span>
+=&gt; <span style="color:#00D">42</span></pre></td>
+</tr></table>
+
+<p><br/>
+I can't say I see very much <a href="http://www.michaelharrison.ws/weblog/?p=163">use</a> of this but it brings a kind of completeness to the handling of infinities. Unfortunately it seems we don't get that in C# out of the box because <code>Enumerable.Range</code> takes <code>&lt;int&gt;,&lt;int&gt;</code> as parameters and there's no <code>Infinity</code> definition for <code>int</code>.  That's unless someone wrote a generic Range class. Turns out <a href="http://stackoverflow.com/users/22656/jon-skeet">none other</a> than <a href="http://www.yoda.arachsys.com/csharp/">Jon Skeet</a> did in his <a href="http://www.yoda.arachsys.com/csharp/miscutil/">MiscUtil</a>. Download MiscUtil and then by <code>using MiscUtil.Collections;</code> you can:</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="infinite-ranges-in-c#n1" name="n1">1</a>
+<a href="infinite-ranges-in-c#n2" name="n2">2</a>
+<a href="infinite-ranges-in-c#n3" name="n3">3</a>
+<a href="infinite-ranges-in-c#n4" name="n4">4</a>
+<a href="infinite-ranges-in-c#n5" name="n5">5</a>
+<a href="infinite-ranges-in-c#n6" name="n6">6</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#0a5;font-weight:bold">double</span> n = <span style="color:#60E">1</span><span style="color:#60E">.0</span>;
+var infinity = n / <span style="color:#00D">0</span>;
+var r = new Range&lt;<span style="color:#0a5;font-weight:bold">double</span>&gt;(<span style="color:#00D">0</span>, infinity);
+<span style="color:#080;font-weight:bold">if</span> (r.Contains(<span style="color:#00D">4711</span>))
+  System.Console.WriteLine(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Yes it certainly does!</span><span style="color:#710">&quot;</span></span>);
+var sum = r.Step(<span style="color:#60E">7</span><span style="color:#60E">.0</span>).Take(<span style="color:#00D">3</span>).Sum();</pre></td>
+</tr></table>
+
+<p><br/>
+And guess what, it works like a charm! <code>4711</code> is part of positive infinity and <code>sum</code> is 42.0 and all is good.</p>
+
+<p><font style="color:red;font-weight:bold">Edit</font></p>
+
+<p>There's also a couple of predefined constants. Thanks to Eric for pointing that out.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="infinite-ranges-in-c#n1" name="n1">1</a>
+<a href="infinite-ranges-in-c#n2" name="n2">2</a>
+</pre></td>
+  <td class="code"><pre>var r = new Range&lt;<span style="color:#0a5;font-weight:bold">double</span>&gt;(<span style="color:#00D">7</span>,  System.Double.PositiveInfinity);
+var sum = r.Step(<span style="color:#60E">7</span><span style="color:#60E">.0</span>).Take(<span style="color:#00D">3</span>).Sum();</pre></td>
+</tr></table>
+
+<p><br/></p>
+</div>
+<p class="meta">
+  Posted in <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a>, <a href="http://alicebobandmallory.com/articles/category/c" rel="noindex, follow, tag">C#</a>, <a href="http://alicebobandmallory.com/articles/category/math" rel="noindex, follow, tag">Math</a>&nbsp;<strong>|</strong>&nbsp;<a href="infinite-ranges-in-c#comments">2 comments</a>
+</p>
+
+  <a name="comments"></a><h4 class="blueblk">Comments</h4>
+    <p class="postmetadata alt">
+      <small><a href="infinite-ranges-in-c#respond">Comments closed</a></small>
+    </p>
+  <ol class="comment-list" id="commentList">
+  
+    <ol id="comments" class="comments">
+  	<li class="comment" id="comment-3776">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=e40263338daca96df75c06e98b3b9503&amp;size=60" /></div>
+	    <cite><a href="http://blogs.msdn.com/ericlippert">Eric Lippert</a></cite>
+		<abbr title="2009-10-21T00:13:35+02:00"><span class="typo_date" title="Tue, 20 Oct 2009 22:13:35 GMT">Tue, 20 Oct 2009 22:13:35 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Nice!</p>
+
+<p>Of course you could just use the predefined constants System.Double.PositiveInfinity and System.Double.NegativeInfinity; no need to define your own.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5244">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-02-21T14:46:54+01:00"><span class="typo_date" title="Mon, 21 Feb 2011 13:46:54 GMT">Mon, 21 Feb 2011 13:46:54 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>In Ruby 1.9.2 we got Float::INFINITY</p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-3776">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=e40263338daca96df75c06e98b3b9503&amp;size=60" /></div>
+	    <cite><a href="http://blogs.msdn.com/ericlippert">Eric Lippert</a></cite>
+		<abbr title="2009-10-21T00:13:35+02:00"><span class="typo_date" title="Tue, 20 Oct 2009 22:13:35 GMT">Tue, 20 Oct 2009 22:13:35 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Nice!</p>
+
+<p>Of course you could just use the predefined constants System.Double.PositiveInfinity and System.Double.NegativeInfinity; no need to define your own.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-5244">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-02-21T14:46:54+01:00"><span class="typo_date" title="Mon, 21 Feb 2011 13:46:54 GMT">Mon, 21 Feb 2011 13:46:54 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>In Ruby 1.9.2 we got Float::INFINITY</p>
+	  </div>
+	</li>
+	</ol>
+
+  
+  </ol>
+
+
+<p class="postmetadata alt">
+  <small>
+  <a href="../../../../xml/rss20/article/3774/feed.xml" title="RSS Feed">RSS feed for this post</a>
+  </small>
+</p>
+
+
+<p>Comments are closed</p>
+<!--
+  <p>Comments are disabled</p>
+-->
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../../../pages/AboutMe">About me</a>/<a href="../../../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

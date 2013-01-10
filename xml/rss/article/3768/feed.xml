@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Counting the number of Google Readers</title>
+    <link>http://alicebobandmallory.com/articles/2009/10/19/counting-the-number-of-google-readers</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Counting the number of Google Readers</title>
+      <description>&lt;p&gt;I run this blog on a 9 year old laptop hidden in a cabinet in the living room. It's not a powerful machine but it has been up to the job since I turned it into a web server 7 years ago. This could maybe be one of the last HP Omnibook 4150b still in use, at least it has to be in a very exclusive club of laptops being switched on for the past 7.5 years. Recently I've seen an increase in traffic and especially from &lt;a href="http://www.google.com/feedfetcher.html#manycrawlers"&gt;Feedfetcher-Google&lt;/a&gt;. It so happens that Feedfetcher also shows the number of subscribers.&lt;/p&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;[19/Oct/2009:22:01:19 +0200] "GET /xml/rss20/feed.xml HTTP/1.1" 304 0 "-" "Feedfetcher-Google; (+http://www.google.com/feedfetcher.html; 4 subscribers; feed-id=7686756599804593322)"&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The above is only one out of five different feed-ids because I have both atom and rss and for a short while this blog was at another address. The fifth feed is actually myself subscribing to the comments.&lt;/p&gt;
+
+&lt;p&gt;I'm not using &lt;a href="http://feedburner.google.com/fb/a/myfeeds"&gt;FeedBurner&lt;/a&gt; so I can't get my statistics from there but I still wanted to be able to see the number of Google Readers of my blog (as far as I can see I only have one other type of subscriber).&lt;/p&gt;
+
+&lt;p&gt;Usually I script anything more advanced than a &lt;code&gt;grep&lt;/code&gt; in &lt;a href="http://www.ruby-lang.org/en/"&gt;Ruby&lt;/a&gt; but this time I made an exception and stayed in &lt;code&gt;Bash&lt;/code&gt;.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;tail &lt;span style="color:#00D"&gt;-1000&lt;/span&gt; /www/logs/access.log |
+grep &lt;span style="color:#036;font-weight:bold"&gt;Feedfetcher&lt;/span&gt; |
+cut -d &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;;&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; -f &lt;span style="color:#00D"&gt;4&lt;/span&gt; | sort -u |
+&lt;span style="color:#080;font-weight:bold"&gt;while&lt;/span&gt; &lt;span style="color:#036;font-weight:bold"&gt;IFS&lt;/span&gt;= read -r line
+&lt;span style="color:#080;font-weight:bold"&gt;do&lt;/span&gt;
+   tac &lt;span style="background-color:hsla(300,100%,50%,0.06)"&gt;&lt;span style="color:#404"&gt;/&lt;/span&gt;&lt;span style="color:#808"&gt;www&lt;/span&gt;&lt;span style="color:#404"&gt;/&lt;/span&gt;&lt;/span&gt;logs/access.log | grep -m &lt;span style="color:#00D"&gt;1&lt;/span&gt; &lt;span style="color:#d70"&gt;$line&lt;/span&gt;
+done |
+sed &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;s/^.*html; &lt;/span&gt;&lt;span style="color:#D20"&gt;\(&lt;/span&gt;&lt;span style="color:#D20"&gt;[0-9]*&lt;/span&gt;&lt;span style="color:#D20"&gt;\)&lt;/span&gt;&lt;span style="color:#D20"&gt; subscribers.*/&lt;/span&gt;&lt;span style="color:#D20"&gt;\1&lt;/span&gt;&lt;span style="color:#D20"&gt;/&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt; |
+awk &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;span style="color:#D20"&gt;{tot=tot+$1} END {print tot}&lt;/span&gt;&lt;span style="color:#710"&gt;'&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Most certainly this can be optimized in a number of ways. Don't be shy, just tell me!&lt;/p&gt;
+
+&lt;p&gt;So what's going on there? Well, first I get the last 1000 rows from my access log and right now my traffic is so low that that is way more than I really would have to. Then I get all unique feeed-ids from the rows containing Feedfetcher. I pipe those to a loop that gets the very last access for each one of them. Then I parse out the number of subscribers with a regexp in &lt;code&gt;sed&lt;/code&gt; and count them with &lt;code&gt;awk&lt;/code&gt; .&lt;/p&gt;
+
+&lt;p&gt;It turns out that I have a whopping number of &lt;strike&gt;14&lt;/strike&gt; 15 subscribers and I am one of them.&lt;/p&gt;</description>
+      <pubDate>Mon, 19 Oct 2009 21:55:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:f06b0424-8326-4281-a812-953270e3b23d</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2009/10/19/counting-the-number-of-google-readers</link>
+      <category>Blogging</category>
+      <category>Bash</category>
+    </item>
+  </channel>
+</rss>

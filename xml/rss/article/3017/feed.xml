@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Predicate&lt;T&gt; matches me</title>
+    <link>http://alicebobandmallory.com/articles/2009/01/29/predicate-matches-me</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Predicate&amp;lt;T&amp;gt; matches me</title>
+      <description>&lt;p&gt;I really like the Predicate(T) delegates that were added to the generic collections and lists in .NET 2.0. With the later addition of lambda expressions came cleanliness and readability.&lt;/p&gt;
+
+&lt;p&gt;Today we faced a quite simple problem that were made even simpler by the dear predicates. We had a kind of event log and wanted to filter it client side (Windows Forms) using a list of criterias. We began by implementing to filter by a number of categories. It ended up being only one row (in Visual Studio, for obvious reasons not here):&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#088;font-weight:bold"&gt;private&lt;/span&gt; &lt;span style="color:#0a5;font-weight:bold"&gt;List&lt;/span&gt;&amp;lt;Events&amp;gt; FilterEventsByCategory(&lt;span style="color:#0a5;font-weight:bold"&gt;List&lt;/span&gt;&amp;lt;Events&amp;gt; events,
+                                        &lt;span style="color:#0a5;font-weight:bold"&gt;List&lt;/span&gt;&amp;lt;Category&amp;gt; categories) 
+{
+  &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; events.FindAll(event =&amp;gt; 
+      categories.Exists(category =&amp;gt; category.CategoryId==event.CategoryId)); 
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;pre&gt;&lt;/pre&gt;
+
+&lt;p&gt;Neat!&lt;/p&gt;</description>
+      <pubDate>Thu, 29 Jan 2009 21:29:00 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:524b2718-70a9-41f1-b48f-5a3b37d6b8e4</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2009/01/29/predicate-matches-me</link>
+      <category>C#</category>
+    </item>
+    <item>
+      <title>"Predicate&lt;T&gt; matches me" by jonelf</title>
+      <description>&lt;p&gt;See &lt;a href="http://stackoverflow.com/questions/493893/many-many-to-many-filters"&gt;http://stackoverflow.com/questions/493893/many-many-to-many-filters&lt;/a&gt; for a many many-to-many filter solution.&lt;/p&gt;</description>
+      <pubDate>Fri, 30 Jan 2009 10:34:37 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:9ca92db6-b1ca-4987-83a3-b84b3ae3b3e8</guid>
+      <link>http://alicebobandmallory.com/articles/2009/01/29/predicate-matches-me#comment-3020</link>
+    </item>
+  </channel>
+</rss>

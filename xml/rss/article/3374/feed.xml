@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: No var for me in the foreach</title>
+    <link>http://alicebobandmallory.com/articles/2009/06/09/no-var-for-me-in-the-foreach</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>No var for me in the foreach</title>
+      <description>&lt;p&gt;In C# 3.0 we got type inference or implicit typing as Microsoft likes to call it. As a Ruby programmer I've got a thing for essence over ceremony and those repetive declarations in C# (and Java) has always bothered me. So of course I quickly put &lt;em&gt;var&lt;/em&gt; in my tool belt. If I want to create a certain object why should I have to state that twice?&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#777"&gt;// C# 2.0&lt;/span&gt;
+&lt;span style="color:#0a5;font-weight:bold"&gt;Dictionary&lt;/span&gt;&amp;lt;Customer, &lt;span style="color:#0a5;font-weight:bold"&gt;List&lt;/span&gt;&amp;lt;PhoneNumber&amp;gt;&amp;gt; phonebook = &lt;span style="color:#080;font-weight:bold"&gt;new&lt;/span&gt; &lt;span style="color:#0a5;font-weight:bold"&gt;Dictionary&lt;/span&gt;&amp;lt;Customer, &lt;span style="color:#0a5;font-weight:bold"&gt;List&lt;/span&gt;&amp;lt;PhoneNumber&amp;gt;&amp;gt;(); 
+&lt;span style="color:#777"&gt;// C# 3.0&lt;/span&gt;
+var phonebook = &lt;span style="color:#080;font-weight:bold"&gt;new&lt;/span&gt; &lt;span style="color:#0a5;font-weight:bold"&gt;Dictionary&lt;/span&gt;&amp;lt;Customer, &lt;span style="color:#0a5;font-weight:bold"&gt;List&lt;/span&gt;&amp;lt;PhoneNumber&amp;gt;&amp;gt;();&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Still you should use it with care. I've seen:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var i = &lt;span style="color:#00D"&gt;5&lt;/span&gt;;
+var s = &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;This stmt is unprovable!&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;And frankly, I do not agree.&lt;/p&gt;
+
+&lt;p&gt;A couple of days ago I almost thought I found a bug or limitation in the C# compiler. Something like the following would not compile:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt; html = &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;&amp;lt;a href='http://is.gd/Uoip'&amp;gt;Recursion&amp;lt;/a&amp;gt;,&lt;/span&gt;&lt;span style="color:#b0b"&gt;\r&lt;/span&gt;&lt;span style="color:#b0b"&gt;\n&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; +
+              &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;see &amp;lt;a href='http://is.gd/Uoip'&amp;gt;recursion&amp;lt;/a&amp;gt;.&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;
+&lt;span style="color:#0a5;font-weight:bold"&gt;String&lt;/span&gt; links=&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;
+var matches = Regex.Matches(html, &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;(a href=')(.*)('&amp;gt;)&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;);
+foreach (var match in matches) {
+    links+=match.Groups[&lt;span style="color:#00D"&gt;2&lt;/span&gt;]+&lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#b0b"&gt;\r&lt;/span&gt;&lt;span style="color:#b0b"&gt;\n&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;;
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;The compiler complained that Object had no Groups method. How come it could not see that Regex.Matches returned a MatchCollection and that that collection was populated with Match objects? Then it dawned on me. Back in the dark ages of C# 1.x we did not have generics. MatchCollection is an old class that implements ICollection and not ICollection(T) so the compiler could not infer the type. A quick change to:&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;foreach (Match match in matches) {&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;&lt;/p&gt;
+
+&lt;p&gt;and we were good to go.&lt;/p&gt;</description>
+      <pubDate>Tue, 09 Jun 2009 22:24:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:d0caed26-abe1-46b0-ad59-6058205ebeeb</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2009/06/09/no-var-for-me-in-the-foreach</link>
+      <category>C#</category>
+    </item>
+  </channel>
+</rss>

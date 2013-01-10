@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: JavaScript hash table keys</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/4020/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2010/03/05/javascript-hash-table-keys" rel="alternate" type="text/html"/>
+  <updated>2010-10-15T10:53:01+02:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:27e04911-d089-4122-8a96-ad529a9b8b3b</id>
+    <published>2010-03-05T17:42:00+01:00</published>
+    <updated>2010-10-15T10:53:01+02:00</updated>
+    <title type="html">JavaScript hash table keys</title>
+    <link href="http://alicebobandmallory.com/articles/2010/03/05/javascript-hash-table-keys" rel="alternate" type="text/html"/>
+    <category label="JavaScript" term="javascript" scheme="http://alicebobandmallory.com/articles/category/javascript"/>
+    <summary type="html">&lt;p&gt;In JavaScript you can add properties to objects dynamically. You can access those properties both by &lt;code&gt;object.foo&lt;/code&gt; and &lt;code&gt;object['foo']&lt;/code&gt;. The later is commonly used to use JavaScript objects as &lt;a href="http://en.wikipedia.org/wiki/Hash_table"&gt;hash tables&lt;/a&gt; (associative arrays).&lt;/p&gt;
+
+&lt;p&gt;While implementing &lt;a href="http://stackoverflow.com/questions/2380019/generate-8-unique-random-numbers-between-1-and-100/2380513#2380513"&gt;a simplistic unique random number generator&lt;/a&gt; I happened to use &lt;a href="https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Global_Objects/Object/keys"&gt;keys(obj)&lt;/a&gt;. Unfortunately &lt;code&gt;keys(obj)&lt;/code&gt; is part of &lt;a href="http://en.wikipedia.org/wiki/ECMAScript"&gt;ECMAScript&lt;/a&gt; 5. See chapter 15.2.3.14 in &lt;a href="http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-262.pdf"&gt;ECMA-262&lt;/a&gt;. The web browsers of today mostly implements ECMAScript 3.&lt;/p&gt;
+
+&lt;p&gt;Here's an implementation of &lt;code&gt;keys(obj)&lt;/code&gt; for ECMAScript 3 browsers (tested in Google Chrome, IE8 and Firefox 3.5). If the browser already has a keys function then nothing will be done.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (typeof keys == &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;undefined&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;) 
+{ 
+  var keys = function(ob) 
+  {
+    props=[];
+    &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; (k in ob) &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (ob.hasOwnProperty(k)) props.push(k);
+    &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; props;
+  }
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+The simplistic unique random number generator looks like this&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;function uniqueRndNumbers(min, max, quantity) {
+  var ht={}, i=quantity;
+  &lt;span style="color:#080;font-weight:bold"&gt;while&lt;/span&gt; ( i&amp;gt;&lt;span style="color:#00D"&gt;0&lt;/span&gt; || keys(ht).length&amp;lt;quantity) 
+    ht[Math.floor(Math.random()*(max-min+&lt;span style="color:#00D"&gt;1&lt;/span&gt;))+min]=i--;
+  &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; keys(ht);
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+This function has not undergone any serious testing. Also if the &lt;code&gt;quantity&lt;/code&gt; is more than a fraction of &lt;code&gt;(max-min)&lt;/code&gt; then another algorithm like the &lt;a href="http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle"&gt;Fisher–Yates shuffle&lt;/a&gt; might be a better choice.&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;In JavaScript you can add properties to objects dynamically. You can access those properties both by &lt;code&gt;object.foo&lt;/code&gt; and &lt;code&gt;object['foo']&lt;/code&gt;. The later is commonly used to use JavaScript objects as &lt;a href="http://en.wikipedia.org/wiki/Hash_table"&gt;hash tables&lt;/a&gt; (associative arrays).&lt;/p&gt;
+
+&lt;p&gt;While implementing &lt;a href="http://stackoverflow.com/questions/2380019/generate-8-unique-random-numbers-between-1-and-100/2380513#2380513"&gt;a simplistic unique random number generator&lt;/a&gt; I happened to use &lt;a href="https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Global_Objects/Object/keys"&gt;keys(obj)&lt;/a&gt;. Unfortunately &lt;code&gt;keys(obj)&lt;/code&gt; is part of &lt;a href="http://en.wikipedia.org/wiki/ECMAScript"&gt;ECMAScript&lt;/a&gt; 5. See chapter 15.2.3.14 in &lt;a href="http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-262.pdf"&gt;ECMA-262&lt;/a&gt;. The web browsers of today mostly implements ECMAScript 3.&lt;/p&gt;
+
+&lt;p&gt;Here's an implementation of &lt;code&gt;keys(obj)&lt;/code&gt; for ECMAScript 3 browsers (tested in Google Chrome, IE8 and Firefox 3.5). If the browser already has a keys function then nothing will be done.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;&lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (typeof keys == &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;undefined&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;) 
+{ 
+  var keys = function(ob) 
+  {
+    props=[];
+    &lt;span style="color:#080;font-weight:bold"&gt;for&lt;/span&gt; (k in ob) &lt;span style="color:#080;font-weight:bold"&gt;if&lt;/span&gt; (ob.hasOwnProperty(k)) props.push(k);
+    &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; props;
+  }
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+The simplistic unique random number generator looks like this&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;function uniqueRndNumbers(min, max, quantity) {
+  var ht={}, i=quantity;
+  &lt;span style="color:#080;font-weight:bold"&gt;while&lt;/span&gt; ( i&amp;gt;&lt;span style="color:#00D"&gt;0&lt;/span&gt; || keys(ht).length&amp;lt;quantity) 
+    ht[Math.floor(Math.random()*(max-min+&lt;span style="color:#00D"&gt;1&lt;/span&gt;))+min]=i--;
+  &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; keys(ht);
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br/&gt;
+This function has not undergone any serious testing. Also if the &lt;code&gt;quantity&lt;/code&gt; is more than a fraction of &lt;code&gt;(max-min)&lt;/code&gt; then another algorithm like the &lt;a href="http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle"&gt;Fisher–Yates shuffle&lt;/a&gt; might be a better choice.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:ed3d3238-8f43-4c6d-b36b-ae38f5c44c2b</id>
+    <published>2010-10-15T12:47:07+02:00</published>
+    <updated>2010-10-16T15:29:46+02:00</updated>
+    <title type="html">Comment on JavaScript hash table keys by Jonas Elfström</title>
+    <link href="http://alicebobandmallory.com/articles/2010/03/05/javascript-hash-table-keys#comment-4391" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Nice catch, fixed. Thanks!&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Ned</name>
+    </author>
+    <id>urn:uuid:11866833-cfbd-4d18-a744-e0a5c7a1f65f</id>
+    <published>2010-10-14T22:54:38+02:00</published>
+    <updated>2010-10-21T20:35:26+02:00</updated>
+    <title type="html">Comment on JavaScript hash table keys by Ned</title>
+    <link href="http://alicebobandmallory.com/articles/2010/03/05/javascript-hash-table-keys#comment-4382" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;It looks like you&amp;#8217;ve got a copy/paste error in your first snippet. &amp;#8220;for (k in ht)&amp;#8221; should probably be &amp;#8220;for (k in obj)&amp;#8221; now that the loop&amp;#8217;s been moved to its own function.&lt;/p&gt;</content>
+  </entry>
+</feed>

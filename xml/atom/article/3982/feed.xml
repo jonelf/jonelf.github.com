@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: C# implicit string conversion</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/3982/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2010/02/03/c-implicit-string-conversion" rel="alternate" type="text/html"/>
+  <updated>2010-02-08T01:03:48+01:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:da6a1f72-b81c-4ee7-b5d1-8f7a821595e3</id>
+    <published>2010-02-03T17:32:00+01:00</published>
+    <updated>2010-02-08T01:03:48+01:00</updated>
+    <title type="html">C# implicit string conversion</title>
+    <link href="http://alicebobandmallory.com/articles/2010/02/03/c-implicit-string-conversion" rel="alternate" type="text/html"/>
+    <category label="C#" term="c" scheme="http://alicebobandmallory.com/articles/category/c"/>
+    <summary type="html">&lt;p&gt;I know how it works and I think I can see why but I'm still not very fond of how eager C# is to perform implicit string conversion.&lt;/p&gt;
+
+&lt;p&gt;Contrived example:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;string s = -&lt;span style="color:#00D"&gt;42&lt;/span&gt; + &lt;span style="color:#D20"&gt;'+'&lt;/span&gt; + &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;+&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; + -&lt;span style="color:#60E"&gt;0&lt;/span&gt;&lt;span style="color:#60E"&gt;.1&lt;/span&gt; / -&lt;span style="color:#60E"&gt;0&lt;/span&gt;&lt;span style="color:#60E"&gt;.1&lt;/span&gt; + &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;=&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; + (&lt;span style="color:#00D"&gt;7&lt;/span&gt; ^ &lt;span style="color:#00D"&gt;5&lt;/span&gt;) + 
+      &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt; is &lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; + &lt;span style="color:#069"&gt;true&lt;/span&gt; + &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt; and not &lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; + AddressFamily.Unknown;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;s will be set to &lt;font color="white"&gt;"1+1=2 is True and not Unknown"&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;The answer is in white text above, select the text to see it.&lt;/p&gt;
+
+&lt;p&gt;A more real problem is something like this&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;string str = &lt;span style="color:#00D"&gt;1&lt;/span&gt; + &lt;span style="color:#00D"&gt;2&lt;/span&gt; + &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;!=&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; + &lt;span style="color:#00D"&gt;1&lt;/span&gt; + &lt;span style="color:#00D"&gt;2&lt;/span&gt;;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;code&gt;str&lt;/code&gt; will be set to "3!=12".&lt;/p&gt;
+
+&lt;p&gt;&lt;font style="color:red"&gt;Edit 2010-02-08&lt;/font&gt;&lt;br/&gt;
+This wouldn't be much of a problem if all objects in .NET always returned a decent string representation of their current state/value with ToString() but that's not the case. &lt;a href="http://msdn.microsoft.com/en-us/library/system.object.tostring.aspx"&gt;Instead&lt;/a&gt; "The default implementation returns the fully qualified name of the type of the Object.".&lt;br/&gt;
+I don't like the inconsistency. It's way too late now but I think it would have been much better if only objects that really produces a human readable output of the data in the object should implement ToString(). If you want the name of the type of the Object there should be another way.&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;I know how it works and I think I can see why but I'm still not very fond of how eager C# is to perform implicit string conversion.&lt;/p&gt;
+
+&lt;p&gt;Contrived example:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;string s = -&lt;span style="color:#00D"&gt;42&lt;/span&gt; + &lt;span style="color:#D20"&gt;'+'&lt;/span&gt; + &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;+&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; + -&lt;span style="color:#60E"&gt;0&lt;/span&gt;&lt;span style="color:#60E"&gt;.1&lt;/span&gt; / -&lt;span style="color:#60E"&gt;0&lt;/span&gt;&lt;span style="color:#60E"&gt;.1&lt;/span&gt; + &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;=&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; + (&lt;span style="color:#00D"&gt;7&lt;/span&gt; ^ &lt;span style="color:#00D"&gt;5&lt;/span&gt;) + 
+      &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt; is &lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; + &lt;span style="color:#069"&gt;true&lt;/span&gt; + &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt; and not &lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; + AddressFamily.Unknown;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;s will be set to &lt;font color="white"&gt;"1+1=2 is True and not Unknown"&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;The answer is in white text above, select the text to see it.&lt;/p&gt;
+
+&lt;p&gt;A more real problem is something like this&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;string str = &lt;span style="color:#00D"&gt;1&lt;/span&gt; + &lt;span style="color:#00D"&gt;2&lt;/span&gt; + &lt;span style="background-color:hsla(0,100%,50%,0.05)"&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;span style="color:#D20"&gt;!=&lt;/span&gt;&lt;span style="color:#710"&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt; + &lt;span style="color:#00D"&gt;1&lt;/span&gt; + &lt;span style="color:#00D"&gt;2&lt;/span&gt;;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;code&gt;str&lt;/code&gt; will be set to "3!=12".&lt;/p&gt;
+
+&lt;p&gt;&lt;font style="color:red"&gt;Edit 2010-02-08&lt;/font&gt;&lt;br/&gt;
+This wouldn't be much of a problem if all objects in .NET always returned a decent string representation of their current state/value with ToString() but that's not the case. &lt;a href="http://msdn.microsoft.com/en-us/library/system.object.tostring.aspx"&gt;Instead&lt;/a&gt; "The default implementation returns the fully qualified name of the type of the Object.".&lt;br/&gt;
+I don't like the inconsistency. It's way too late now but I think it would have been much better if only objects that really produces a human readable output of the data in the object should implement ToString(). If you want the name of the type of the Object there should be another way.&lt;/p&gt;</content>
+  </entry>
+</feed>

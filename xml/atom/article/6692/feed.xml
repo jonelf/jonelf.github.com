@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: Leif in Clojure</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/6692/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2011/11/01/leif-in-clojure" rel="alternate" type="text/html"/>
+  <updated>2013-01-09T10:46:00+01:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:2716bd0d-7bde-43bb-930b-320e824a41ce</id>
+    <published>2011-11-01T03:12:00+01:00</published>
+    <updated>2013-01-09T10:46:00+01:00</updated>
+    <title type="html">Leif in Clojure</title>
+    <link href="http://alicebobandmallory.com/articles/2011/11/01/leif-in-clojure" rel="alternate" type="text/html"/>
+    <category label="Ruby" term="ruby" scheme="http://alicebobandmallory.com/articles/category/ruby"/>
+    <category label="Clojure" term="clojure" scheme="http://alicebobandmallory.com/articles/category/clojure"/>
+    <summary type="html">&lt;p&gt;I've been meaning to learn a functional language for years. I don't know what put me off besides the fear of parentheses and the notion that maybe, just maybe, &lt;a href="http://www.randomhacks.net/articles/2005/12/03/why-ruby-is-an-acceptable-lisp"&gt;Ruby could be an acceptable Lisp&lt;/a&gt;. For all I know, Ruby might be just that, but there's  one thing about Ruby that is starting to get more and more unacceptable to me. &lt;/p&gt;
+
+&lt;p&gt;Ruby is actually not very well fit to take advantage of the multi-core world we are living in. The &lt;a href="http://en.wikipedia.org/wiki/Global_Interpreter_Lock"&gt;GIL&lt;/a&gt; and the prevalent mutable state are two big problems. As web applications go, that's often not a problem since it's almost always possible to scale without threads there. But if you want to use the full potential of your multi-core machine in a singe Ruby process/VM, you are out of luck. There are &lt;a href="https://github.com/tarcieri/celluloid"&gt;workarounds&lt;/a&gt; that get you somewhere and there are implementations of Ruby without a GIL (JRuby and soon Rubinius). Even without the GIL we still have the problem of having a lot of mutable state. That will, probably, make it hard to scale over multiple cores.&lt;/p&gt;
+
+&lt;p&gt;A little more than a week ago I watched the presentation &lt;a href="http://www.infoq.com/presentations/Simple-Made-Easy"&gt;Simple Made Easy by Rich Hickey&lt;/a&gt;. It's an excellent presentation and one of the best I've seen in years. I was also aware that Hickey is the man who designed &lt;a href="http://en.wikipedia.org/wiki/Clojure"&gt;Clojure&lt;/a&gt;. Finally, I was able to make a choice. I chose to begin to learn &lt;a href="http://clojure.org/"&gt;Clojure&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I'm still very early in this endeavor. Actually, still trying to decide what books I should read. Anyway, the day after I saw the presentation I downloaded &lt;a href="https://github.com/arthuredelstein/clooj"&gt;clooj&lt;/a&gt; (a simple IDE), read some blogs and some documentation, and started to hack on something. Just to try to get a feel for how hard this was going to be. The parentheses didn't bother me all that much, it was much harder to accept that operators are just functions and that they get no special treatment. It seems you simply have to (+ 31 11) to add 31 and 11. I think I can get over that.&lt;/p&gt;
+
+&lt;p&gt;As a side note, it turns out I wrote my first Clojure program on 2011-10-24 and that happened to be the day that &lt;a href="http://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)"&gt;John McCarthy&lt;/a&gt;, the father of Lisp, died. Yet another of those strange coincidences that &lt;a href="http://youarenotsosmart.com/2010/09/11/the-texas-sharpshooter-fallacy/"&gt;seems to happens more often than they should&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The program I wrote is yet another implementation of the stupid simple "algorithm" that I've got to call &lt;a href="http://plea.se/me/Leif.html"&gt;Leif&lt;/a&gt;. If you take &lt;a href="http://en.wikipedia.org/wiki/Conway's_Game_of_Life"&gt;Conway's Game of Life&lt;/a&gt;, remove the rules and replace them with randomness, you could end up with something like &lt;a href="http://plea.se/me/leif/canvas_leif.html"&gt;Leif&lt;/a&gt;. Quite silly, actually.&lt;/p&gt;
+
+&lt;p&gt;Hopefully I will have something more interesting to tell in a couple of &lt;strike&gt;weeks&lt;/strike&gt;months, after I've got some more experience with Clojure. For now, Leif will have to do. Here it is.&lt;/p&gt;
+
+&lt;script src="https://gist.github.com/1335248.js"&gt; &lt;/script&gt;
+
+&lt;p&gt;This is what it looks like at the beginning  &lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://dl.dropbox.com/u/26840/clojure_leif_couple_of_tenths_of_a_second.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;and after a couple of minutes it looks like this  &lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://dl.dropbox.com/u/26840/clojure_leif_couple_of_minutes_in.png"&gt;  &lt;/p&gt;
+
+&lt;p&gt;One thing that surprised me is that it seems to use both of my cores even though I put no effort whatsoever in making it do so. Probably just the Java GC or something.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://dl.dropbox.com/u/26840/clojure_leif_task_manager.png"&gt;&lt;/p&gt;</summary>
+    <content type="html">&lt;p&gt;I've been meaning to learn a functional language for years. I don't know what put me off besides the fear of parentheses and the notion that maybe, just maybe, &lt;a href="http://www.randomhacks.net/articles/2005/12/03/why-ruby-is-an-acceptable-lisp"&gt;Ruby could be an acceptable Lisp&lt;/a&gt;. For all I know, Ruby might be just that, but there's  one thing about Ruby that is starting to get more and more unacceptable to me. &lt;/p&gt;
+
+&lt;p&gt;Ruby is actually not very well fit to take advantage of the multi-core world we are living in. The &lt;a href="http://en.wikipedia.org/wiki/Global_Interpreter_Lock"&gt;GIL&lt;/a&gt; and the prevalent mutable state are two big problems. As web applications go, that's often not a problem since it's almost always possible to scale without threads there. But if you want to use the full potential of your multi-core machine in a singe Ruby process/VM, you are out of luck. There are &lt;a href="https://github.com/tarcieri/celluloid"&gt;workarounds&lt;/a&gt; that get you somewhere and there are implementations of Ruby without a GIL (JRuby and soon Rubinius). Even without the GIL we still have the problem of having a lot of mutable state. That will, probably, make it hard to scale over multiple cores.&lt;/p&gt;
+
+&lt;p&gt;A little more than a week ago I watched the presentation &lt;a href="http://www.infoq.com/presentations/Simple-Made-Easy"&gt;Simple Made Easy by Rich Hickey&lt;/a&gt;. It's an excellent presentation and one of the best I've seen in years. I was also aware that Hickey is the man who designed &lt;a href="http://en.wikipedia.org/wiki/Clojure"&gt;Clojure&lt;/a&gt;. Finally, I was able to make a choice. I chose to begin to learn &lt;a href="http://clojure.org/"&gt;Clojure&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I'm still very early in this endeavor. Actually, still trying to decide what books I should read. Anyway, the day after I saw the presentation I downloaded &lt;a href="https://github.com/arthuredelstein/clooj"&gt;clooj&lt;/a&gt; (a simple IDE), read some blogs and some documentation, and started to hack on something. Just to try to get a feel for how hard this was going to be. The parentheses didn't bother me all that much, it was much harder to accept that operators are just functions and that they get no special treatment. It seems you simply have to (+ 31 11) to add 31 and 11. I think I can get over that.&lt;/p&gt;
+
+&lt;p&gt;As a side note, it turns out I wrote my first Clojure program on 2011-10-24 and that happened to be the day that &lt;a href="http://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)"&gt;John McCarthy&lt;/a&gt;, the father of Lisp, died. Yet another of those strange coincidences that &lt;a href="http://youarenotsosmart.com/2010/09/11/the-texas-sharpshooter-fallacy/"&gt;seems to happens more often than they should&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The program I wrote is yet another implementation of the stupid simple "algorithm" that I've got to call &lt;a href="http://plea.se/me/Leif.html"&gt;Leif&lt;/a&gt;. If you take &lt;a href="http://en.wikipedia.org/wiki/Conway's_Game_of_Life"&gt;Conway's Game of Life&lt;/a&gt;, remove the rules and replace them with randomness, you could end up with something like &lt;a href="http://plea.se/me/leif/canvas_leif.html"&gt;Leif&lt;/a&gt;. Quite silly, actually.&lt;/p&gt;
+
+&lt;p&gt;Hopefully I will have something more interesting to tell in a couple of &lt;strike&gt;weeks&lt;/strike&gt;months, after I've got some more experience with Clojure. For now, Leif will have to do. Here it is.&lt;/p&gt;
+
+&lt;script src="https://gist.github.com/1335248.js"&gt; &lt;/script&gt;
+
+&lt;p&gt;This is what it looks like at the beginning  &lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://dl.dropbox.com/u/26840/clojure_leif_couple_of_tenths_of_a_second.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;and after a couple of minutes it looks like this  &lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://dl.dropbox.com/u/26840/clojure_leif_couple_of_minutes_in.png"&gt;  &lt;/p&gt;
+
+&lt;p&gt;One thing that surprised me is that it seems to use both of my cores even though I put no effort whatsoever in making it do so. Probably just the Java GC or something.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://dl.dropbox.com/u/26840/clojure_leif_task_manager.png"&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Dan</name>
+    </author>
+    <id>urn:uuid:e08018e5-d744-4043-8932-56db12942356</id>
+    <published>2012-03-26T22:45:15+02:00</published>
+    <updated>2012-03-29T10:58:48+02:00</updated>
+    <title type="html">Comment on Leif in Clojure by Dan</title>
+    <link href="http://alicebobandmallory.com/articles/2011/11/01/leif-in-clojure#comment-7707" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Hi Jonas,
+as you are a few months into Clojure, I would suggest you to read &amp;#8220;The Joy of Clojure&amp;#8221; by Michael and Chris. It&amp;#8217;s a lot like On LISP. Once you read the book you will surely appreciate Clojure much more than before.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <author>
+      <name>Jonas</name>
+    </author>
+    <id>urn:uuid:e2c38e31-fe66-4bba-96d1-c48fb00250f7</id>
+    <published>2012-03-22T22:18:30+01:00</published>
+    <updated>2012-03-22T22:21:10+01:00</updated>
+    <title type="html">Comment on Leif in Clojure by Jonas</title>
+    <link href="http://alicebobandmallory.com/articles/2011/11/01/leif-in-clojure#comment-7676" rel="alternate" type="text/html"/>
+    <content type="html">&lt;p&gt;Labouchère system simulation in Clojure &lt;a href="https://gist.github.com/2164553"&gt;https://gist.github.com/2164553&lt;/a&gt; 
+If you spot anything crazy going on then please tell me!&lt;/p&gt;</content>
+  </entry>
+</feed>

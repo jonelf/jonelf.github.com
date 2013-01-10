@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>Alice, Bob, and Mallory: What one-way hash function to use?</title>
+  <subtitle type="html">metasyntactics</subtitle>
+  <id>tag:alicebobandmallory.com,2005:Typo</id>
+  <generator uri="http://www.typosphere.org" version="4.0">Typo</generator>
+  <link href="http://alicebobandmallory.com/xml/atom/article/18/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://alicebobandmallory.com/articles/2007/02/27/what-one-way-hash-function-to-use" rel="alternate" type="text/html"/>
+  <updated>2012-10-31T00:18:40+01:00</updated>
+  <entry>
+    <author>
+      <name>Jonas Elfström</name>
+    </author>
+    <id>urn:uuid:5159f23a-0740-45e0-b264-b6b6e6f94972</id>
+    <published>2007-02-27T17:01:00+01:00</published>
+    <updated>2012-10-31T00:18:40+01:00</updated>
+    <title type="html">What one-way hash function to use?</title>
+    <link href="http://alicebobandmallory.com/articles/2007/02/27/what-one-way-hash-function-to-use" rel="alternate" type="text/html"/>
+    <category label="Security" term="security" scheme="http://alicebobandmallory.com/articles/category/security"/>
+    <category label="Ruby" term="ruby" scheme="http://alicebobandmallory.com/articles/category/ruby"/>
+    <category label="C#" term="c" scheme="http://alicebobandmallory.com/articles/category/c"/>
+    <summary type="html">&lt;p&gt;Cryptographic hash function takes a message of any length as input and outputs a very large but fixed length number. That number is called a message digest, fingerprint, or sometimes a cryptographic hash. They can be used to represent passwords without having to know the actual password. Such a hash can also be used as signature that makes it possible to verify that the content of a message hasn't been tampered with.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/MD5"&gt;MD5&lt;/a&gt; got into problems over 10 years ago and &lt;a href="http://en.wikipedia.org/wiki/SHA-1#Cryptanalysis_of_SHA-1"&gt;SHA-1&lt;/a&gt; could to be heading the same way. Until the &lt;a href="http://www.schneier.com/blog/archives/2007/02/a_new_secure_ha.html"&gt;new standard&lt;/a&gt; is published I would follow the cryptographic experts advice and use SHA-2.&lt;/p&gt;
+
+&lt;h5&gt;Ruby&lt;/h5&gt;&lt;div class="typocode"&gt;&lt;pre&gt;&lt;code class="typocode_ruby "&gt;&lt;span class="ident"&gt;require&lt;/span&gt; &lt;span class="punct"&gt;'&lt;/span&gt;&lt;span class="string"&gt;digest/sha2&lt;/span&gt;&lt;span class="punct"&gt;'&lt;/span&gt;
+&lt;span class="ident"&gt;quickfox&lt;/span&gt;&lt;span class="punct"&gt;=&amp;quot;&lt;/span&gt;&lt;span class="string"&gt;The quick brown fox jumps over the lazy dog&lt;/span&gt;&lt;span class="punct"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="constant"&gt;Digest&lt;/span&gt;&lt;span class="punct"&gt;::&lt;/span&gt;&lt;span class="constant"&gt;SHA256&lt;/span&gt;&lt;span class="punct"&gt;.&lt;/span&gt;&lt;span class="ident"&gt;hexdigest&lt;/span&gt;&lt;span class="punct"&gt;(&lt;/span&gt;&lt;span class="ident"&gt;quickfox&lt;/span&gt;&lt;span class="punct"&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ =&gt; "d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592"
+
+
+&lt;h5&gt;C#&lt;/h5&gt;
+
+&lt;div class="typocode"&gt;&lt;pre&gt;&lt;code class="typocode_C# "&gt;using System.Security.Cryptography;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;...&lt;/p&gt;
+
+&lt;div class="typocode"&gt;&lt;pre&gt;&lt;code class="typocode_C# "&gt; ASCIIEncoding byteConverter = new ASCIIEncoding();
+ string quickfox=&amp;quot;The quick brown fox jumps over the lazy dog&amp;quot;;
+ HashAlgorithm sha256 = new SHA256Managed();
+ byte[] hash = sha256.ComputeHash(byteConverter.GetBytes(quickfox));
+ crypt.Text = Convert.ToBase64String(hash);           &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary>
+    <content type="html">&lt;p&gt;Cryptographic hash function takes a message of any length as input and outputs a very large but fixed length number. That number is called a message digest, fingerprint, or sometimes a cryptographic hash. They can be used to represent passwords without having to know the actual password. Such a hash can also be used as signature that makes it possible to verify that the content of a message hasn't been tampered with.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/MD5"&gt;MD5&lt;/a&gt; got into problems over 10 years ago and &lt;a href="http://en.wikipedia.org/wiki/SHA-1#Cryptanalysis_of_SHA-1"&gt;SHA-1&lt;/a&gt; could to be heading the same way. Until the &lt;a href="http://www.schneier.com/blog/archives/2007/02/a_new_secure_ha.html"&gt;new standard&lt;/a&gt; is published I would follow the cryptographic experts advice and use SHA-2.&lt;/p&gt;
+
+&lt;h5&gt;Ruby&lt;/h5&gt;&lt;div class="typocode"&gt;&lt;pre&gt;&lt;code class="typocode_ruby "&gt;&lt;span class="ident"&gt;require&lt;/span&gt; &lt;span class="punct"&gt;'&lt;/span&gt;&lt;span class="string"&gt;digest/sha2&lt;/span&gt;&lt;span class="punct"&gt;'&lt;/span&gt;
+&lt;span class="ident"&gt;quickfox&lt;/span&gt;&lt;span class="punct"&gt;=&amp;quot;&lt;/span&gt;&lt;span class="string"&gt;The quick brown fox jumps over the lazy dog&lt;/span&gt;&lt;span class="punct"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="constant"&gt;Digest&lt;/span&gt;&lt;span class="punct"&gt;::&lt;/span&gt;&lt;span class="constant"&gt;SHA256&lt;/span&gt;&lt;span class="punct"&gt;.&lt;/span&gt;&lt;span class="ident"&gt;hexdigest&lt;/span&gt;&lt;span class="punct"&gt;(&lt;/span&gt;&lt;span class="ident"&gt;quickfox&lt;/span&gt;&lt;span class="punct"&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ =&gt; "d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592"
+
+
+&lt;h5&gt;C#&lt;/h5&gt;
+
+&lt;div class="typocode"&gt;&lt;pre&gt;&lt;code class="typocode_C# "&gt;using System.Security.Cryptography;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;...&lt;/p&gt;
+
+&lt;div class="typocode"&gt;&lt;pre&gt;&lt;code class="typocode_C# "&gt; ASCIIEncoding byteConverter = new ASCIIEncoding();
+ string quickfox=&amp;quot;The quick brown fox jumps over the lazy dog&amp;quot;;
+ HashAlgorithm sha256 = new SHA256Managed();
+ byte[] hash = sha256.ComputeHash(byteConverter.GetBytes(quickfox));
+ crypt.Text = Convert.ToBase64String(hash);           &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+  </entry>
+</feed>

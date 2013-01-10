@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: Merge collections without duplicates in C#</title>
+    <link>http://alicebobandmallory.com/articles/2012/10/18/merge-collections-without-duplicates-in-c</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>Merge collections without duplicates in C#</title>
+      <description>&lt;p&gt;Your task is to merge two lists of objects. The resulting collection should be without duplicates, based on a certain property on the objects.&lt;/p&gt;
+
+&lt;p&gt;The lists are populated with very simple Person objects.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;class Person
+{
+        public &lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; Number { get; set; }
+        public string Name { get; set; }
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+C# programmers often turn to LINQ, and they should! With LINQ you could end up with something like this:&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var merged = new List&amp;lt;Person&amp;gt;(list1);
+merged.AddRange(list2.Where(p2 =&amp;gt; 
+                list1.All(p1 =&amp;gt; p1.Number != p2.Number)));&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+It's not all that obvious how it works and it also has performance problems. This solution has to iterate over &lt;code&gt;list1&lt;/code&gt; for every object in &lt;code&gt;list2&lt;/code&gt;. Not every object every time but on average half of them (if the lists contains no duplicates within themselves). If the lists contains a 1000 objects each there's a good chance that &lt;code&gt;list1&lt;/code&gt; will be iterated 500.000 times. That kind of work does not come for free.&lt;/p&gt;
+
+&lt;p&gt;We need to get rid of this nested looping. I was pretty sure a dictionary based solution would do the trick.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var dict = list2.ToDictionary(p =&amp;gt; p.Number);
+foreach (var person in list1)
+{
+        dict[person.Number] = person;
+}
+var merged = dict.Values.ToList();&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+This solution converts &lt;code&gt;list2&lt;/code&gt; to a dictionary and then it loops a single time over &lt;code&gt;list1&lt;/code&gt;. It either adds to the dictionary or replaces the value of &lt;code&gt;list2&lt;/code&gt; if it was a duplicate. This seemed to be a much more efficient algorithm.&lt;/p&gt;
+
+&lt;p&gt;In C# there's not just &lt;a href="http://msdn.microsoft.com/en-us/library/xfhwa508.aspx"&gt;Dictionary&amp;lt;TKey, TValue&gt;&lt;/a&gt; but we also have &lt;a href="http://msdn.microsoft.com/en-us/library/bb359438.aspx"&gt;HashSet&lt;/a&gt;. A HashSet is a collection that contains no duplicates. It also has the &lt;code&gt;UnionWith&lt;/code&gt; method and that is exactly what we are looking for. The problem is that it compares object to object and we want to compare based on a property.&lt;/p&gt;
+
+&lt;p&gt;Fortunately the HashSet methods honors the default equality comparer. Such a beast could look like this.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;a href="#n4" name="n4"&gt;4&lt;/a&gt;
+&lt;a href="#n5" name="n5"&gt;5&lt;/a&gt;
+&lt;a href="#n6" name="n6"&gt;6&lt;/a&gt;
+&lt;a href="#n7" name="n7"&gt;7&lt;/a&gt;
+&lt;a href="#n8" name="n8"&gt;8&lt;/a&gt;
+&lt;a href="#n9" name="n9"&gt;9&lt;/a&gt;
+&lt;strong&gt;&lt;a href="#n10" name="n10"&gt;10&lt;/a&gt;&lt;/strong&gt;
+&lt;a href="#n11" name="n11"&gt;11&lt;/a&gt;
+&lt;a href="#n12" name="n12"&gt;12&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;class PersonComparer : IEqualityComparer&amp;lt;Person&amp;gt;
+{
+        public &lt;span style="color:#0a5;font-weight:bold"&gt;bool&lt;/span&gt; Equals(Person p1, Person p2)
+        {
+                &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; p1.Number == p2.Number;
+        }
+
+        public &lt;span style="color:#0a5;font-weight:bold"&gt;int&lt;/span&gt; GetHashCode(Person p)
+        {
+                &lt;span style="color:#080;font-weight:bold"&gt;return&lt;/span&gt; p.Number;
+        }
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+Then just add it as the second parameter to the constructor.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;&lt;a href="#n1" name="n1"&gt;1&lt;/a&gt;
+&lt;a href="#n2" name="n2"&gt;2&lt;/a&gt;
+&lt;a href="#n3" name="n3"&gt;3&lt;/a&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var hs = new HashSet&amp;lt;Person&amp;gt;(list1, new PersonComparer());
+hs.UnionWith(list2);
+var merged = hs.ToList();&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+&lt;img src="https://dl.dropbox.com/u/26840/union_venn_diagram.png" style="display: inline-block; float:right"&gt;
+Set theory tells us that this merging is actually  a union of the two sets (without duplicates) and   LINQ happens to have a &lt;code&gt;Union&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;table class="CodeRay"&gt;&lt;tr&gt;
+  &lt;td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"&gt;&lt;pre&gt;
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class="code"&gt;&lt;pre&gt;var merged = list1.Union(list2, new PersonComparer());&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt;
+By that we've come full circle and it's time to see how the different solutions performs. I wrote a small &lt;a href="https://gist.github.com/3916414"&gt;test program&lt;/a&gt; that creates two lists of objects with 1000 objects in each. In each list 500 of the objects property, that we base the merge on, has the same value.&lt;/p&gt;
+
+&lt;pre&gt;
+Lists and LINQ merge: 4820ms
+Dictionary merge: 16ms
+HashSet and IEqualityComparer: 20ms
+LINQ Union and IEqualityComparer: 24ms
+&lt;/pre&gt;
+
+&lt;p&gt;The first solution is, in this case, 300 times slower than the fastest one! &lt;/p&gt;
+
+&lt;p&gt;I prefer LINQ Union because it communicates intent very clearly.&lt;/p&gt;</description>
+      <pubDate>Thu, 18 Oct 2012 23:28:00 +0200</pubDate>
+      <guid isPermaLink="false">urn:uuid:6ffade4b-74fb-4bd4-8264-9512a99730e3</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2012/10/18/merge-collections-without-duplicates-in-c</link>
+      <category>C#</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Alice, Bob, and Mallory: A funny coincidence</title>
+    <link>http://alicebobandmallory.com/articles/2007/02/06/a-funny-coincidence</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>metasyntactics</description>
+    <item>
+      <title>A funny coincidence</title>
+      <description>&lt;p&gt;This monday &lt;a href="http://computersweden.idg.se/"&gt;Computer Sweden&lt;/a&gt; had an article that says that the &lt;a href="http://www.nordea.fi/sitemod/default/index.aspx?pid=933222"&gt;finnish branch of Nordea&lt;/a&gt; is using something that sounds just like what I described in my earlier &lt;a href="/articles/2007/02/05/trojans-and-one-time-passwords"&gt;post&lt;/a&gt;. Unfortunately I can't provide an URL to the article since it seems to only have been published in the paper version.
+&lt;/p&gt;
+&lt;p&gt;The article says that they randomly chose among 20 codes. To me that sounds a little low. I even find 50 codes a little low and I plan to show why in a later post.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 06 Feb 2007 14:16:00 +0100</pubDate>
+      <guid isPermaLink="false">urn:uuid:f004d4bf-f39c-4740-a837-ba64172618d2</guid>
+      <author>Jonas Elfström</author>
+      <link>http://alicebobandmallory.com/articles/2007/02/06/a-funny-coincidence</link>
+      <category>Security</category>
+    </item>
+  </channel>
+</rss>

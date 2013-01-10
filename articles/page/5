@@ -1,0 +1,726 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Alice, Bob, and Mallory</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../xml/atom/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../xml/rss20/feed.xml" />
+  <script src="../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <div class="atomentry" id="article-3768">
+  <h2 class="title">
+    <a href="../2009/10/19/counting-the-number-of-google-readers">Counting the number of Google Readers</a> 
+    
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2009-10-19T21:55:00+02:00"><span class="typo_date" title="Mon, 19 Oct 2009 19:55:00 GMT">Mon, 19 Oct 2009 19:55:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>I run this blog on a 9 year old laptop hidden in a cabinet in the living room. It's not a powerful machine but it has been up to the job since I turned it into a web server 7 years ago. This could maybe be one of the last HP Omnibook 4150b still in use, at least it has to be in a very exclusive club of laptops being switched on for the past 7.5 years. Recently I've seen an increase in traffic and especially from <a href="http://www.google.com/feedfetcher.html#manycrawlers">Feedfetcher-Google</a>. It so happens that Feedfetcher also shows the number of subscribers.</p>
+
+<blockquote>
+    <p>[19/Oct/2009:22:01:19 +0200] "GET /xml/rss20/feed.xml HTTP/1.1" 304 0 "-" "Feedfetcher-Google; (+http://www.google.com/feedfetcher.html; 4 subscribers; feed-id=7686756599804593322)"</p>
+</blockquote>
+
+<p>The above is only one out of five different feed-ids because I have both atom and rss and for a short while this blog was at another address. The fifth feed is actually myself subscribing to the comments.</p>
+
+<p>I'm not using <a href="http://feedburner.google.com/fb/a/myfeeds">FeedBurner</a> so I can't get my statistics from there but I still wanted to be able to see the number of Google Readers of my blog (as far as I can see I only have one other type of subscriber).</p>
+
+<p>Usually I script anything more advanced than a <code>grep</code> in <a href="http://www.ruby-lang.org/en/">Ruby</a> but this time I made an exception and stayed in <code>Bash</code>.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="5#n1" name="n1">1</a>
+<a href="5#n2" name="n2">2</a>
+<a href="5#n3" name="n3">3</a>
+<a href="5#n4" name="n4">4</a>
+<a href="5#n5" name="n5">5</a>
+<a href="5#n6" name="n6">6</a>
+<a href="5#n7" name="n7">7</a>
+<a href="5#n8" name="n8">8</a>
+<a href="5#n9" name="n9">9</a>
+</pre></td>
+  <td class="code"><pre>tail <span style="color:#00D">-1000</span> /www/logs/access.log |
+grep <span style="color:#036;font-weight:bold">Feedfetcher</span> |
+cut -d <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">;</span><span style="color:#710">&quot;</span></span> -f <span style="color:#00D">4</span> | sort -u |
+<span style="color:#080;font-weight:bold">while</span> <span style="color:#036;font-weight:bold">IFS</span>= read -r line
+<span style="color:#080;font-weight:bold">do</span>
+   tac <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">www</span><span style="color:#404">/</span></span>logs/access.log | grep -m <span style="color:#00D">1</span> <span style="color:#d70">$line</span>
+done |
+sed <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">s/^.*html; </span><span style="color:#D20">\(</span><span style="color:#D20">[0-9]*</span><span style="color:#D20">\)</span><span style="color:#D20"> subscribers.*/</span><span style="color:#D20">\1</span><span style="color:#D20">/</span><span style="color:#710">'</span></span> |
+awk <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">{tot=tot+$1} END {print tot}</span><span style="color:#710">'</span></span></pre></td>
+</tr></table>
+
+<p>Most certainly this can be optimized in a number of ways. Don't be shy, just tell me!</p>
+
+<p>So what's going on there? Well, first I get the last 1000 rows from my access log and right now my traffic is so low that that is way more than I really would have to. Then I get all unique feeed-ids from the rows containing Feedfetcher. I pipe those to a loop that gets the very last access for each one of them. Then I parse out the number of subscribers with a regexp in <code>sed</code> and count them with <code>awk</code> .</p>
+
+<p>It turns out that I have a whopping number of <strike>14</strike> 15 subscribers and I am one of them.</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/blogging" rel="noindex, follow, tag">Blogging</a></li>
+    <li class="tags">Tags <a href="../tag/bash" rel="noindex, follow, tag">Bash</a></li>
+    <li>Meta 
+      
+      <a href="../2009/10/19/counting-the-number-of-google-readers#comments">no comments</a>,
+      <a href="../2009/10/19/counting-the-number-of-google-readers" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/3768/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/3768/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-3703">
+  <h2 class="title">
+    <a href="../2009/10/06/the-thrush-combinator-in-c">The Thrush combinator in C#</a> 
+    <span class="comment_count">1</span>
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2009-10-06T20:35:00+02:00"><span class="typo_date" title="Tue, 06 Oct 2009 18:35:00 GMT">Tue, 06 Oct 2009 18:35:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>Last year I read <a href="http://github.com/raganwald/homoiconic/blob/master/README.markdown">Reg "Raganwald'" Braithwaite's</a> excellent post <a href="http://github.com/raganwald/homoiconic/blob/master/2008-10-30/thrush.markdown#readme">The Thrush</a> and he  explains it as </p>
+
+<blockquote>
+    <p>The thrush is written Txy = yx. It reverses evaluation.</p>
+</blockquote>
+
+<p>Back then I didn't even consider trying to implement it in C#. That was before I digged deeper into <a href="http://msdn.microsoft.com/en-us/library/bb397687.aspx">lambda expressions</a> and <a href="http://msdn.microsoft.com/en-us/library/bb383977.aspx">extension methods</a> in C# 3.0 and way before last night when I read Debasish Ghosh's post on how to <a href="http://debasishg.blogspot.com/2009/09/thrush-combinator-in-scala.html">implement the Thrush in Scala</a>. After reading that my first thought was if it was possible to do the same in C#. Here's my attempt.</p>
+
+<p>At first I struggled with the static typing and headed for an easy way out using Object in the extension method of Object:</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="5#n1" name="n1">1</a>
+<a href="5#n2" name="n2">2</a>
+<a href="5#n3" name="n3">3</a>
+</pre></td>
+  <td class="code"><pre>public <span style="color:#088;font-weight:bold">static</span> object Into(this Object obj, 
+                        Func&lt;object, object&gt; f)
+{  <span style="color:#080;font-weight:bold">return</span> f.Invoke(obj); }</pre></td>
+</tr></table>
+
+<p><br>
+My goal was to translate the Ruby example</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>
+</pre></td>
+  <td class="code"><pre>(<span style="color:#00D">1</span>..<span style="color:#00D">100</span>).select(&amp;<span style="color:#A60">:odd?</span>).inject(&amp;<span style="color:#A60">:+</span>).into { |x| x * x }</pre></td>
+</tr></table>
+
+<p><br>
+in Raganwald's post to C#.</p>
+
+<blockquote>
+    <p>Which reads "Take the numbers from 1 to 100, keep the odd ones, take the sum of those, and then answer the square of that number."</p>
+</blockquote>
+
+<p>But with the Object based extension method I had to do some ugly casts.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>
+</pre></td>
+  <td class="code"><pre>var r = Enumerable.Range(<span style="color:#00D">1</span>, <span style="color:#00D">100</span>).Where(x =&gt; Odd(x)).Sum().Into(x =&gt; (<span style="color:#0a5;font-weight:bold">int</span>)x * (<span style="color:#0a5;font-weight:bold">int</span>)x);</pre></td>
+</tr></table>
+
+<p><br>
+With som added typing I could do: </p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>
+</pre></td>
+  <td class="code"><pre>var result = Enumerable.Range(<span style="color:#00D">1</span>, <span style="color:#00D">100</span>).Where(x =&gt; Odd(x)).Sum().Into(x =&gt; x * x);</pre></td>
+</tr></table>
+
+<p><br>
+That merely moved the cast to the extension method and also made it work for integers only.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="5#n1" name="n1">1</a>
+<a href="5#n2" name="n2">2</a>
+</pre></td>
+  <td class="code"><pre>public <span style="color:#088;font-weight:bold">static</span> <span style="color:#0a5;font-weight:bold">int</span> Into(this Object obj, Func&lt;<span style="color:#0a5;font-weight:bold">int</span>, <span style="color:#0a5;font-weight:bold">int</span>&gt; f)
+{ <span style="color:#080;font-weight:bold">return</span> f.Invoke((<span style="color:#0a5;font-weight:bold">int</span>)obj); }</pre></td>
+</tr></table>
+
+<p><br>
+Then I remembered generics and method type inference which finally led to a decent Thrush combinator in C#.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="5#n1" name="n1">1</a>
+<a href="5#n2" name="n2">2</a>
+</pre></td>
+  <td class="code"><pre>public <span style="color:#088;font-weight:bold">static</span> T Into&lt;T&gt;(this T obj, Func&lt;T, T&gt; f)
+{ <span style="color:#080;font-weight:bold">return</span> f(obj); }</pre></td>
+</tr></table>
+
+<p><br>
+The casts are gone and it's also, as far as I can see, as flexible as the one in Ruby.<br><br>
+Contrived example follows:</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="5#n1" name="n1">1</a>
+<a href="5#n2" name="n2">2</a>
+</pre></td>
+  <td class="code"><pre>var test = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ball</span><span style="color:#710">&quot;</span></span>;
+var ball = test.Into(s =&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Are we having a </span><span style="color:#710">&quot;</span></span> + s + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20"> yet?</span><span style="color:#710">&quot;</span></span>);</pre></td>
+</tr></table>
+
+<p><br>
+<strong>The odd part</strong></p>
+
+<p>The <em>Odd(x)</em> method call in the calculation above is a plain static method.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="5#n1" name="n1">1</a>
+<a href="5#n2" name="n2">2</a>
+</pre></td>
+  <td class="code"><pre>private <span style="color:#088;font-weight:bold">static</span> <span style="color:#0a5;font-weight:bold">bool</span> Odd(<span style="color:#0a5;font-weight:bold">int</span> n)
+{ <span style="color:#080;font-weight:bold">return</span> (n % <span style="color:#00D">2</span> != <span style="color:#00D">0</span>); }</pre></td>
+</tr></table>
+
+<p><br>
+If you want an even more terse syntax you could try an ext. method on IEnumerable like this:</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="5#n1" name="n1">1</a>
+<a href="5#n2" name="n2">2</a>
+</pre></td>
+  <td class="code"><pre>public <span style="color:#088;font-weight:bold">static</span> IEnumerable&lt;<span style="color:#0a5;font-weight:bold">int</span>&gt; Odd(this IEnumerable&lt;<span style="color:#0a5;font-weight:bold">int</span>&gt; en)
+{ <span style="color:#080;font-weight:bold">return</span> en.Where(n =&gt; n % <span style="color:#00D">2</span> != <span style="color:#00D">0</span>); }</pre></td>
+</tr></table>
+
+<p><br>
+Gives:</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>
+</pre></td>
+  <td class="code"><pre>var result = Enumerable.Range(<span style="color:#00D">1</span>, <span style="color:#00D">100</span>).Odd().Sum().Into(x =&gt; x * x);</pre></td>
+</tr></table>
+
+<p><br>
+<!--Also as a general alternative to <code>.Sum()</code> I could have used <code>.Aggregate((x, y) =&gt; x + y))</code> but I found it a bit verbose.-->
+In C# I don't think it's possible to pull off the Symbol#to_proc stuff that Ruby does. That's the <em>&amp;:</em> in the <em>select(&amp;:odd?)</em> and the <em>inject(&amp;:+)</em> in the Ruby example. Raganwald has a great <a href="http://weblog.raganwald.com/2007/11/fun-with-symboltoproc.html">post</a> on that too.</p>
+
+<p><font style="color:red;font-weight:bold">Edit</font></p>
+
+<p>Check out <a href="http://stackoverflow.com/questions/1528319/operators-as-method-parameters-in-c-and-the-thrush-combinator">Jon Skeet's nice answer</a> on StackOverflow to my question on how to make this even more Ruby-like. I have to try out that Operator class later though.</p>
+
+<p><font style="color:red;font-weight:bold">Edit 2009-10-07</font></p>
+
+<p>One thing I found a bit surprising is that by implementing the Into ext. method in this way it not only works for all objects based on <code>System.Object</code> but it also works  for <a href="http://msdn.microsoft.com/en-us/library/s1ax56ch.aspx">value types</a>.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="5#n1" name="n1">1</a>
+<a href="5#n2" name="n2">2</a>
+<a href="5#n3" name="n3">3</a>
+<a href="5#n4" name="n4">4</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#0a5;font-weight:bold">int</span> n=<span style="color:#00D">4711</span>;
+<span style="color:#0a5;font-weight:bold">int</span> oddOrZero = n.Into(x =&gt; x % <span style="color:#00D">2</span> !=<span style="color:#00D">0</span> ? x : <span style="color:#00D">0</span>); <span style="color:#777">// 4711</span>
+n = <span style="color:#00D">4712</span>;
+oddOrZero = n.Into(x =&gt; x % <span style="color:#00D">2</span> != <span style="color:#00D">0</span> ? x : <span style="color:#00D">0</span>); <span style="color:#777">// 0</span></pre></td>
+</tr></table>
+
+<p><br>
+<font style="color:red;font-weight:bold">Edit 2009-10-12</font></p>
+
+<p>My confusion did stem from my lack of understanding of <a href="http://msdn.microsoft.com/en-us/library/bb383977(loband).aspx">extension methods</a>. Ex. methods are in fact not extending <code>System.Object</code> or any other type, they are "<a href="http://blogs.msdn.com/ericlippert/about.aspx">nothing more than a pleasant syntax for calling a static method</a>" in  case no instance method with the same name can be found.</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a>, <a href="http://alicebobandmallory.com/articles/category/c" rel="noindex, follow, tag">C#</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2009/10/06/the-thrush-combinator-in-c#comments">1 comment</a>,
+      <a href="../2009/10/06/the-thrush-combinator-in-c" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/3703/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/3703/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-3659">
+  <h2 class="title">
+    <a href="../2009/09/27/a-case-for-using-only-three-different-digits-in-keypad-codes">A case for using only three different digits in keypad codes</a> 
+    <span class="comment_count">4</span>
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2009-09-27T21:02:00+02:00"><span class="typo_date" title="Sun, 27 Sep 2009 19:02:00 GMT">Sun, 27 Sep 2009 19:02:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>Keypads have obvious security problems and keypads accepting a stream of digits with no # or enter in between, while checking for the four digit long code, are even worse.</p>
+
+<p>The important part is to not leak the digits in the code <a href="http://www.schneier.com/blog/archives/2009/07/information_lea_1.html">by wear</a> or intentional markings because if they leak it's suddenly very far from 10000 combinations.</p>
+
+<p>If the "lock picker" only knows that the code contains four digits there are 10000 combinations. Keypads accepting a stream of digits can then be opened in a maximum of 10003 keystrokes using the <a href="http://en.wikipedia.org/wiki/De_Bruijn_sequence#Uses">De
+Bruijn sequence</a>. That is still quite a lot.</p>
+
+<p>Below is a Ruby implementation of the <a href="http://www.hakank.org/comb/debruijn.cgi">De
+Bruijn sequence</a>.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="5#n1" name="n1">1</a>
+<a href="5#n2" name="n2">2</a>
+<a href="5#n3" name="n3">3</a>
+<a href="5#n4" name="n4">4</a>
+<a href="5#n5" name="n5">5</a>
+<a href="5#n6" name="n6">6</a>
+<a href="5#n7" name="n7">7</a>
+<a href="5#n8" name="n8">8</a>
+<a href="5#n9" name="n9">9</a>
+<strong><a href="5#n10" name="n10">10</a></strong>
+<a href="5#n11" name="n11">11</a>
+<a href="5#n12" name="n12">12</a>
+<a href="5#n13" name="n13">13</a>
+<a href="5#n14" name="n14">14</a>
+<a href="5#n15" name="n15">15</a>
+<a href="5#n16" name="n16">16</a>
+<a href="5#n17" name="n17">17</a>
+<a href="5#n18" name="n18">18</a>
+<a href="5#n19" name="n19">19</a>
+<strong><a href="5#n20" name="n20">20</a></strong>
+<a href="5#n21" name="n21">21</a>
+<a href="5#n22" name="n22">22</a>
+<a href="5#n23" name="n23">23</a>
+<a href="5#n24" name="n24">24</a>
+<a href="5#n25" name="n25">25</a>
+<a href="5#n26" name="n26">26</a>
+<a href="5#n27" name="n27">27</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#777"># De Bruijn sequence</span>
+<span style="color:#777"># Original implementation by Frank Ruskey (1994)</span>
+<span style="color:#777"># translated to C by Joe Sawada</span>
+<span style="color:#777"># translated to Ruby by Jonas Elfström (2009)</span>
+
+<span style="color:#33B">@n</span>=<span style="color:#00D">4</span>
+<span style="color:#33B">@k</span>=<span style="color:#00D">10</span>
+<span style="color:#33B">@a</span>=[<span style="color:#00D">0</span>]
+<span style="color:#33B">@sequence</span>=[]
+
+<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">debruijn</span>(t, p)
+  <span style="color:#080;font-weight:bold">if</span> t&gt;<span style="color:#33B">@n</span>
+    <span style="color:#080;font-weight:bold">if</span> <span style="color:#33B">@n</span>%p==<span style="color:#00D">0</span>
+      <span style="color:#00D">1</span>.upto(p) {|j| <span style="color:#33B">@sequence</span>&lt;&lt;<span style="color:#33B">@a</span>[j]}
+    <span style="color:#080;font-weight:bold">end</span>
+  <span style="color:#080;font-weight:bold">else</span>
+    <span style="color:#33B">@a</span>[t]=<span style="color:#33B">@a</span>[t-p]
+    debruijn(t+<span style="color:#00D">1</span>,p)
+    (<span style="color:#33B">@a</span>[t-p]+<span style="color:#00D">1</span>).upto(<span style="color:#33B">@k</span>-<span style="color:#00D">1</span>) {|j|
+      <span style="color:#33B">@a</span>[t]=j
+      debruijn(t+<span style="color:#00D">1</span>,t)
+    }
+  <span style="color:#080;font-weight:bold">end</span>
+<span style="color:#080;font-weight:bold">end</span>
+
+debruijn(<span style="color:#00D">1</span>,<span style="color:#00D">1</span>)
+print <span style="color:#33B">@sequence</span>.join</pre></td>
+</tr></table>
+
+<p><br>
+It's not uncommon to find keypads with 4 of the 10 keys worn down and if you do you can be pretty sure that the code contains those four different digits. The number of possible combinations are 4! = 4x3x2x1 = 24. I got curious to see if there's a kind of <a href="http://mathworld.wolfram.com/deBruijnSequence.html">De Bruijn sequence</a> for this that brings down the 4*24=96 keystrokes. By scribbling in a <a href="http://www.scintilla.org/SciTE.html">text editor</a> I quickly realized there's not a clean sequence. Not clean in the way that a sequence following the rules can be created. Also it's probably even quite daunting to present it as mathematically dense and beautiful as the <a href="http://www.stefangeens.com/2004/10/the-de-bruijn-c.html">De Bruijn</a> but that could be my less than great <a href="http://en.wikipedia.org/wiki/Combinatorics">combinatorics</a> speaking.</p>
+
+<p>I made a quick and dirty brute force hack to try to find a shorter sequence.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="5#n1" name="n1">1</a>
+<a href="5#n2" name="n2">2</a>
+<a href="5#n3" name="n3">3</a>
+<a href="5#n4" name="n4">4</a>
+<a href="5#n5" name="n5">5</a>
+<a href="5#n6" name="n6">6</a>
+<a href="5#n7" name="n7">7</a>
+<a href="5#n8" name="n8">8</a>
+<a href="5#n9" name="n9">9</a>
+<strong><a href="5#n10" name="n10">10</a></strong>
+<a href="5#n11" name="n11">11</a>
+<a href="5#n12" name="n12">12</a>
+<a href="5#n13" name="n13">13</a>
+<a href="5#n14" name="n14">14</a>
+<a href="5#n15" name="n15">15</a>
+<a href="5#n16" name="n16">16</a>
+<a href="5#n17" name="n17">17</a>
+<a href="5#n18" name="n18">18</a>
+<a href="5#n19" name="n19">19</a>
+<strong><a href="5#n20" name="n20">20</a></strong>
+<a href="5#n21" name="n21">21</a>
+<a href="5#n22" name="n22">22</a>
+<a href="5#n23" name="n23">23</a>
+<a href="5#n24" name="n24">24</a>
+<a href="5#n25" name="n25">25</a>
+</pre></td>
+  <td class="code"><pre>seq=[]
+<span style="color:#00D">1</span>.upto(<span style="color:#00D">4</span>) {|a| <span style="color:#00D">1</span>.upto(<span style="color:#00D">4</span>) {|b| <span style="color:#00D">1</span>.upto(<span style="color:#00D">4</span>) {|c| <span style="color:#00D">1</span>.upto(<span style="color:#00D">4</span>) {|d|
+  seq &lt;&lt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">%d%d%d%d</span><span style="color:#710">&quot;</span></span> % [a,b,c,d] <span style="color:#080;font-weight:bold">if</span> !(a==b || a==c || a==d || b==c || b==d || c==d)
+}}}}
+
+s=seq[<span style="color:#00D">0</span>]
+seq.delete_at(<span style="color:#00D">0</span>)
+<span style="color:#080;font-weight:bold">while</span> (seq.length&gt;<span style="color:#00D">0</span>)
+  next_code=(seq.select {|c| c[<span style="color:#00D">0</span>..<span style="color:#00D">2</span>]==s[<span style="color:#00D">-3</span>..<span style="color:#00D">-1</span>]})
+  <span style="color:#080;font-weight:bold">if</span> next_code.empty?
+    next_code=(seq.select {|c| c[<span style="color:#00D">0</span>..<span style="color:#00D">1</span>]==s[<span style="color:#00D">-2</span>..<span style="color:#00D">-1</span>]})
+    <span style="color:#080;font-weight:bold">if</span> next_code.empty? 
+      next_code=(seq.select {|c| c[<span style="color:#00D">0</span>]==s[<span style="color:#00D">-1</span>]})
+      s+=next_code[<span style="color:#00D">0</span>][<span style="color:#00D">1</span>..<span style="color:#00D">3</span>]
+      seq.delete_at(seq.index(next_code[<span style="color:#00D">0</span>]))
+    <span style="color:#080;font-weight:bold">else</span>
+      s+=next_code[<span style="color:#00D">0</span>][<span style="color:#00D">2</span>..<span style="color:#00D">3</span>]
+      seq.delete_at(seq.index(next_code[<span style="color:#00D">0</span>]))
+    <span style="color:#080;font-weight:bold">end</span>
+  <span style="color:#080;font-weight:bold">else</span>
+    next_code=(seq.select {|c| c[<span style="color:#00D">0</span>..<span style="color:#00D">2</span>]==s[<span style="color:#00D">-3</span>..<span style="color:#00D">-1</span>]})
+    s+=next_code[<span style="color:#00D">0</span>][<span style="color:#00D">3</span>].chr
+    seq.delete_at(seq.index(next_code[<span style="color:#00D">0</span>]))
+  <span style="color:#080;font-weight:bold">end</span>
+<span style="color:#080;font-weight:bold">end</span></pre></td>
+</tr></table>
+
+<p><br>
+The above code takes the first code "1234" of the 24 and then searches the rest of the array for a code beginning with "234". It finds "2341" and adds "1" to the end of <em>s</em> and continues to look for "341" and so on. Relatively soon there is no three digit match and then it tries two digits and eventually even that fails and then it gets the first one digit match. The resulting sequence is: </p>
+
+<blockquote>
+    <p>123412314231243121342132413214321</p>
+</blockquote>
+
+<p>From 96 to 33 keystrokes. Not as effective as De Bruijn but still significant. Unlike De Bruijn I have absolutely no proof that this is the shortest one possible but it seems likely. Also notice that in the middle of the sequence we find "3121" and "1213". Those break the criteria of four different digits but they seem to be necessary to be able to enter the reversed mode. Try reading the sequence forward and backwards to see what I mean.</p>
+
+<p>If the code only contains two digits it's gets even more trivial to try them all. There are 14 possible codes and by <em>compressing</em> those to one sequence you get down to 20 keystrokes. </p>
+
+<p>Things get a little more interesting if only three buttons are worn. It turns out that the repeated digits can be placed in the code in six different ways.</p>
+
+<blockquote>
+    <p>0012,1002,1200,0102,0120,1020</p>
+</blockquote>
+
+<p>That's 6x2x3=36 combinations and, maybe a little unintuitive, 12 more than if you are using four different digits. I compressed it down to 49 key strokes (16 more than with four different digits). Unlike the sequence for four different digits I can't find it with google and I know it's kind of security by obscurity but I still chose not to publish it here.</p>
+
+<p>Be aware that if an attacker knows you are using a 0012-like code he gets a smaller space to search. 6x8x9x10=4320 instead of 10000. You have to weight the risk of button leaks against a code protocol leak.
+<br><br>
+<font color="red">Edit 2010-10-25</font><br>
+<a href="http://stackoverflow.com/questions/4008603/how-to-compute-de-bruijn-sequences-for-non-power-of-two-sized-alphabets/4009417#4009417">Uckelman noticed</a> that the <code>alike</code> variable in the former version of the debruijn-script wasn't used so I removed it.</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/security" rel="noindex, follow, tag">Security</a>, <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2009/09/27/a-case-for-using-only-three-different-digits-in-keypad-codes#comments">4 comments</a>,
+      <a href="../2009/09/27/a-case-for-using-only-three-different-digits-in-keypad-codes" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/3659/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/3659/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-3629">
+  <h2 class="title">
+    <a href="../2009/09/23/why-you-should-use-four-different-digits-for-keypad-locks">Why you should use four different digits for keypad locks</a> 
+    <span class="comment_count">3</span>
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2009-09-23T19:49:00+02:00"><span class="typo_date" title="Wed, 23 Sep 2009 17:49:00 GMT">Wed, 23 Sep 2009 17:49:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>I made a couple of very bad mistakes in this article so I took it down. Hopefully I'm more on track in the <a href="../2009/09/27/a-case-for-using-only-three-different-digits-in-keypad-codes">sequel</a>.</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/security" rel="noindex, follow, tag">Security</a>, <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2009/09/23/why-you-should-use-four-different-digits-for-keypad-locks#comments">3 comments</a>,
+      <a href="../2009/09/23/why-you-should-use-four-different-digits-for-keypad-locks" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/3629/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/3629/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+<div class="atomentry" id="article-3604">
+  <h2 class="title">
+    <a href="../2009/09/16/breaking-simple-ciphers">Breaking simple ciphers</a> 
+    <span class="comment_count">7</span>
+  </h2>
+
+  <p class="author">
+    Posted by <cite>Jonas Elfström</cite>
+    <abbr class="published" title="2009-09-16T20:19:00+02:00"><span class="typo_date" title="Wed, 16 Sep 2009 18:19:00 GMT">Wed, 16 Sep 2009 18:19:00 GMT</span></abbr>
+  </p>
+
+  <div class="content">
+    <p>The last few days I've happened to stumble over a couple of ciphers and I just couldn't help myself from trying to break them.</p>
+
+<h3>The Lost Symbol</h3>
+
+<p>Dan Brown has a new book coming out and part of the promotion is this  cipher text "AOFACFSOA FSZWBEIC EIOA ZOHSFWQWOA OQQSDW". 
+The WQW, QQ and three of the words ending with an A made me believe we could be dealing with a substitution cipher and maybe even a Caesar cipher, the most simple of them all.</p>
+
+<p>My usual tool of choice is Ruby and in this case the splendid Interactive Ruby Shell.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="5#n1" name="n1">1</a>
+<a href="5#n2" name="n2">2</a>
+<a href="5#n3" name="n3">3</a>
+<a href="5#n4" name="n4">4</a>
+<a href="5#n5" name="n5">5</a>
+<a href="5#n6" name="n6">6</a>
+<a href="5#n7" name="n7">7</a>
+<a href="5#n8" name="n8">8</a>
+<a href="5#n9" name="n9">9</a>
+<strong><a href="5#n10" name="n10">10</a></strong>
+<a href="5#n11" name="n11">11</a>
+<a href="5#n12" name="n12">12</a>
+<a href="5#n13" name="n13">13</a>
+<a href="5#n14" name="n14">14</a>
+<a href="5#n15" name="n15">15</a>
+<a href="5#n16" name="n16">16</a>
+<a href="5#n17" name="n17">17</a>
+<a href="5#n18" name="n18">18</a>
+<a href="5#n19" name="n19">19</a>
+<strong><a href="5#n20" name="n20">20</a></strong>
+<a href="5#n21" name="n21">21</a>
+<a href="5#n22" name="n22">22</a>
+<a href="5#n23" name="n23">23</a>
+<a href="5#n24" name="n24">24</a>
+<a href="5#n25" name="n25">25</a>
+<a href="5#n26" name="n26">26</a>
+<a href="5#n27" name="n27">27</a>
+<a href="5#n28" name="n28">28</a>
+<a href="5#n29" name="n29">29</a>
+<strong><a href="5#n30" name="n30">30</a></strong>
+<a href="5#n31" name="n31">31</a>
+<a href="5#n32" name="n32">32</a>
+<a href="5#n33" name="n33">33</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#F00;background-color:#FAA">$</span> irb
+&gt;&gt; s=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">AOFACFSOA FSZWBEIC EIOA ZOHSFWQWOA OQQSDW</span><span style="color:#710">&quot;</span></span>
+=&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">AOFACFSOA FSZWBEIC EIOA ZOHSFWQWOA OQQSDW</span><span style="color:#710">&quot;</span></span>
+&gt;&gt; <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">caesar</span>(text,n)
+&gt;&gt;   alphas=(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">A</span><span style="color:#710">'</span></span>..<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Z</span><span style="color:#710">'</span></span>).to_a*<span style="color:#00D">2</span>
+&gt;&gt;   text.tr(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">A-Z</span><span style="color:#710">'</span></span>, alphas[n..n+<span style="color:#00D">26</span>].join)
+&gt;&gt; <span style="color:#080;font-weight:bold">end</span>
+&gt;&gt; <span style="color:#00D">1</span>.upto(<span style="color:#00D">25</span>) <span style="color:#080;font-weight:bold">do</span> |n| puts <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">%2d. %s</span><span style="color:#710">&quot;</span></span> % [n, caesar(s,n)] <span style="color:#080;font-weight:bold">end</span>
+ <span style="color:#00D">1</span>. BPGBDGTPB <span style="color:#036;font-weight:bold">GTAXCFJD</span> <span style="color:#036;font-weight:bold">FJPB</span> <span style="color:#036;font-weight:bold">APITGXRXPB</span> <span style="color:#036;font-weight:bold">PRRTEX</span>
+ <span style="color:#00D">2</span>. CQHCEHUQC <span style="color:#036;font-weight:bold">HUBYDGKE</span> <span style="color:#036;font-weight:bold">GKQC</span> <span style="color:#036;font-weight:bold">BQJUHYSYQC</span> <span style="color:#036;font-weight:bold">QSSUFY</span>
+ <span style="color:#00D">3</span>. DRIDFIVRD <span style="color:#036;font-weight:bold">IVCZEHLF</span> <span style="color:#036;font-weight:bold">HLRD</span> <span style="color:#036;font-weight:bold">CRKVIZTZRD</span> <span style="color:#036;font-weight:bold">RTTVGZ</span>
+ <span style="color:#00D">4</span>. ESJEGJWSE <span style="color:#036;font-weight:bold">JWDAFIMG</span> <span style="color:#036;font-weight:bold">IMSE</span> <span style="color:#036;font-weight:bold">DSLWJAUASE</span> <span style="color:#036;font-weight:bold">SUUWHA</span>
+ <span style="color:#00D">5</span>. FTKFHKXTF <span style="color:#036;font-weight:bold">KXEBGJNH</span> <span style="color:#036;font-weight:bold">JNTF</span> <span style="color:#036;font-weight:bold">ETMXKBVBTF</span> <span style="color:#036;font-weight:bold">TVVXIB</span>
+ <span style="color:#00D">6</span>. GULGILYUG <span style="color:#036;font-weight:bold">LYFCHKOI</span> <span style="color:#036;font-weight:bold">KOUG</span> <span style="color:#036;font-weight:bold">FUNYLCWCUG</span> <span style="color:#036;font-weight:bold">UWWYJC</span>
+ <span style="color:#00D">7</span>. HVMHJMZVH <span style="color:#036;font-weight:bold">MZGDILPJ</span> <span style="color:#036;font-weight:bold">LPVH</span> <span style="color:#036;font-weight:bold">GVOZMDXDVH</span> <span style="color:#036;font-weight:bold">VXXZKD</span>
+ <span style="color:#00D">8</span>. IWNIKNAWI <span style="color:#036;font-weight:bold">NAHEJMQK</span> <span style="color:#036;font-weight:bold">MQWI</span> <span style="color:#036;font-weight:bold">HWPANEYEWI</span> <span style="color:#036;font-weight:bold">WYYALE</span>
+ <span style="color:#00D">9</span>. JXOJLOBXJ <span style="color:#036;font-weight:bold">OBIFKNRL</span> <span style="color:#036;font-weight:bold">NRXJ</span> <span style="color:#036;font-weight:bold">IXQBOFZFXJ</span> <span style="color:#036;font-weight:bold">XZZBMF</span>
+<span style="color:#00D">10</span>. KYPKMPCYK <span style="color:#036;font-weight:bold">PCJGLOSM</span> <span style="color:#036;font-weight:bold">OSYK</span> <span style="color:#036;font-weight:bold">JYRCPGAGYK</span> <span style="color:#036;font-weight:bold">YAACNG</span>
+<span style="color:#00D">11</span>. LZQLNQDZL <span style="color:#036;font-weight:bold">QDKHMPTN</span> <span style="color:#036;font-weight:bold">PTZL</span> <span style="color:#036;font-weight:bold">KZSDQHBHZL</span> <span style="color:#036;font-weight:bold">ZBBDOH</span>
+<span style="color:#00D">12</span>. MARMOREAM <span style="color:#036;font-weight:bold">RELINQUO</span> <span style="color:#036;font-weight:bold">QUAM</span> <span style="color:#036;font-weight:bold">LATERICIAM</span> <span style="color:#036;font-weight:bold">ACCEPI</span>
+<span style="color:#00D">13</span>. NBSNPSFBN <span style="color:#036;font-weight:bold">SFMJORVP</span> <span style="color:#036;font-weight:bold">RVBN</span> <span style="color:#036;font-weight:bold">MBUFSJDJBN</span> <span style="color:#036;font-weight:bold">BDDFQJ</span>
+<span style="color:#00D">14</span>. OCTOQTGCO <span style="color:#036;font-weight:bold">TGNKPSWQ</span> <span style="color:#036;font-weight:bold">SWCO</span> <span style="color:#036;font-weight:bold">NCVGTKEKCO</span> <span style="color:#036;font-weight:bold">CEEGRK</span>
+<span style="color:#00D">15</span>. PDUPRUHDP <span style="color:#036;font-weight:bold">UHOLQTXR</span> <span style="color:#036;font-weight:bold">TXDP</span> <span style="color:#036;font-weight:bold">ODWHULFLDP</span> <span style="color:#036;font-weight:bold">DFFHSL</span>
+<span style="color:#00D">16</span>. QEVQSVIEQ <span style="color:#036;font-weight:bold">VIPMRUYS</span> <span style="color:#036;font-weight:bold">UYEQ</span> <span style="color:#036;font-weight:bold">PEXIVMGMEQ</span> <span style="color:#036;font-weight:bold">EGGITM</span>
+<span style="color:#00D">17</span>. RFWRTWJFR <span style="color:#036;font-weight:bold">WJQNSVZT</span> <span style="color:#036;font-weight:bold">VZFR</span> <span style="color:#036;font-weight:bold">QFYJWNHNFR</span> <span style="color:#036;font-weight:bold">FHHJUN</span>
+<span style="color:#00D">18</span>. SGXSUXKGS <span style="color:#036;font-weight:bold">XKROTWAU</span> <span style="color:#036;font-weight:bold">WAGS</span> <span style="color:#036;font-weight:bold">RGZKXOIOGS</span> <span style="color:#036;font-weight:bold">GIIKVO</span>
+<span style="color:#00D">19</span>. THYTVYLHT <span style="color:#036;font-weight:bold">YLSPUXBV</span> <span style="color:#036;font-weight:bold">XBHT</span> <span style="color:#036;font-weight:bold">SHALYPJPHT</span> <span style="color:#036;font-weight:bold">HJJLWP</span>
+<span style="color:#00D">20</span>. UIZUWZMIU <span style="color:#036;font-weight:bold">ZMTQVYCW</span> <span style="color:#036;font-weight:bold">YCIU</span> <span style="color:#036;font-weight:bold">TIBMZQKQIU</span> <span style="color:#036;font-weight:bold">IKKMXQ</span>
+<span style="color:#00D">21</span>. VJAVXANJV <span style="color:#036;font-weight:bold">ANURWZDX</span> <span style="color:#036;font-weight:bold">ZDJV</span> <span style="color:#036;font-weight:bold">UJCNARLRJV</span> <span style="color:#036;font-weight:bold">JLLNYR</span>
+<span style="color:#00D">22</span>. WKBWYBOKW <span style="color:#036;font-weight:bold">BOVSXAEY</span> <span style="color:#036;font-weight:bold">AEKW</span> <span style="color:#036;font-weight:bold">VKDOBSMSKW</span> <span style="color:#036;font-weight:bold">KMMOZS</span>
+<span style="color:#00D">23</span>. XLCXZCPLX <span style="color:#036;font-weight:bold">CPWTYBFZ</span> <span style="color:#036;font-weight:bold">BFLX</span> <span style="color:#036;font-weight:bold">WLEPCTNTLX</span> <span style="color:#036;font-weight:bold">LNNPAT</span>
+<span style="color:#00D">24</span>. YMDYADQMY <span style="color:#036;font-weight:bold">DQXUZCGA</span> <span style="color:#036;font-weight:bold">CGMY</span> <span style="color:#036;font-weight:bold">XMFQDUOUMY</span> <span style="color:#036;font-weight:bold">MOOQBU</span>
+<span style="color:#00D">25</span>. ZNEZBERNZ <span style="color:#036;font-weight:bold">ERYVADHB</span> <span style="color:#036;font-weight:bold">DHNZ</span> <span style="color:#036;font-weight:bold">YNGREVPVNZ</span> <span style="color:#036;font-weight:bold">NPPRCV</span></pre></td>
+</tr></table>
+
+<p>Take a closer look at row 12.</p>
+
+<p><strong>MARMOREAM RELINQUO QUAM LATERICIAM ACCEPI</strong></p>
+
+<p><em>I found Rome a city of bricks and left it a city of marble.</em> - Google tells me it's Augustus.</p>
+
+<p>The code is not the most clear I've written but if you read Ruby in your sleep you can skip this part.</p>
+
+<p><strong>('A'..'Z')</strong> is a range in Ruby. Another, maybe more obvious, example of a range is <strong>(0..7)</strong>. </p>
+
+<p><strong>.to_a</strong> could be read as to_array and unsurprisingly it converts a range to an array. <strong>(0..7).to_a</strong> will create  <strong>[0, 1, 2, 3, 4, 5, 6, 7]</strong></p>
+
+<p>The operator * for arrays appends n copies of the array. Thus <strong>[0,1,2]*2</strong> will create  <strong>[0,1,2,0,1,2]</strong>.</p>
+
+<p><a href="http://ruby-doc.org/core/classes/String.html#M000845">String#tr</a> works the same way as the Unix command tr, it translates the characters in the string according to the from and to parameters. </p>
+
+<p>At last <strong>.join</strong> converts the array to a string.</p>
+
+<h3>The recruiting agency</h3>
+
+<p>A government agency responsible for signals intelligence is hiring. Among the qualifications they are looking for is the ability to break a certain cipher. I will not publish their cipher here but instead one of my own, constructed in the same way as theirs.<pre>"VGhpcyBpcyBleGNsdXNpdmUgZm9yIHlvdSwgb3I/IGMNR0d
+LCkZPXgpTRV8K\nTENEQ1lCCkhfXgpoT1NFRElPCkNZCksKSE9eXk
+9YCklYU1peRU1YS1pCT1gK\nXkJLRAp5SUJET0NPWAQ="</pre>
+At first glance it looked like Base64 and the ending "=" made it even more likely.<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="5#n1" name="n1">1</a>
+<a href="5#n2" name="n2">2</a>
+<a href="5#n3" name="n3">3</a>
+<a href="5#n4" name="n4">4</a>
+<a href="5#n5" name="n5">5</a>
+</pre></td>
+  <td class="code"><pre><span style="color:#F00;background-color:#FAA">$</span> irb
+&gt;&gt; require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">base64</span><span style="color:#710">'</span></span>
+&gt;&gt; cipher = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">VGhpcyBpcyBleGNsdXNpdmUgZm9yIHlvdSwgb3I/IGMNR0dLCkZPXgpTRV8K</span><span style="color:#b0b">\n</span><span style="color:#D20">TENEQ1lCCkhfXgpoT1NFRElPCkNZCksKSE9eXk9YCklYU1peRU1YS1pCT1gK</span><span style="color:#b0b">\n</span><span style="color:#D20">XkJLRAp5SUJET0NPWAQ=</span><span style="color:#710">&quot;</span></span>
+&gt;&gt; decoded=<span style="color:#036;font-weight:bold">Base64</span>.decode64(cipher)
+=&gt; <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">This is exclusive for you, or? c</span><span style="color:#b0b">\r</span><span style="color:#D20">GGK</span><span style="color:#b0b">\n</span><span style="color:#D20">FO^</span><span style="color:#b0b">\n</span><span style="color:#D20">SE<em></span><span style="color:#b0b">\n</span><span style="color:#D20">LCDCYB</span><span style="color:#b0b">\n</span><span style="color:#D20">H</em>^</span><span style="color:#b0b">\n</span><span style="color:#D20">hOSEDIO</span><span style="color:#b0b">\n</span><span style="color:#D20">CY</span><span style="color:#b0b">\n</span><span style="color:#D20">K</span><span style="color:#b0b">\n</span><span style="color:#D20">HO^^OX</span><span style="color:#b0b">\n</span><span style="color:#D20">IXSZ^EMXKZBOX</span><span style="color:#b0b">\n</span><span style="color:#D20">^BKD</span><span style="color:#b0b">\n</span><span style="color:#D20">yIBDOCOX</span><span style="color:#b0b">\004</span><span style="color:#710">&quot;</span></span></pre></td>
+</tr></table></p>
+
+<p>So it's Base64 but to no surprise it didn't end there. The "This is exclusive for you, or?" hinted at XOR so I tried XORing the text with 0-255.</p>
+
+<table class="CodeRay"><tr>
+  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="5#n1" name="n1">1</a>
+<a href="5#n2" name="n2">2</a>
+<a href="5#n3" name="n3">3</a>
+<a href="5#n4" name="n4">4</a>
+<a href="5#n5" name="n5">5</a>
+<a href="5#n6" name="n6">6</a>
+<a href="5#n7" name="n7">7</a>
+<a href="5#n8" name="n8">8</a>
+</pre></td>
+  <td class="code"><pre>&gt;&gt; code=decoded[<span style="color:#00D">31</span>..decoded.length].split(<span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#404">/</span></span>)
+&gt;&gt; <span style="color:#036;font-weight:bold">File</span>.open(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">xor.txt</span><span style="color:#710">'</span></span>,<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">w</span><span style="color:#710">'</span></span>) { |file|
+<span style="color:#00D">?&gt;</span>   <span style="color:#00D">0</span>.upto(<span style="color:#00D">255</span>) {|n|
+<span style="color:#00D">?&gt;</span>     file.write(n.to_s + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20"> </span><span style="color:#710">&quot;</span></span>)
+&gt;&gt;     code.each {|c| file.write( (c[<span style="color:#00D">0</span>]^n).chr ) }
+&gt;&gt;     file.write(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#b0b">\n</span><span style="color:#b0b">\n</span><span style="color:#710">&quot;</span></span>)
+&gt;&gt;   }
+&gt;&gt; }</pre></td>
+</tr></table>
+
+<p>A quick look in the file told me that XORing with 42 was the solution.</p>
+
+<p>Now you know how to break two of the most simple cipher methods. Use the knowledge wisely. :)</p>
+
+      
+  </div>
+
+  <ul class="meta">
+    <li class="categories">Posted in <a href="http://alicebobandmallory.com/articles/category/ruby" rel="noindex, follow, tag">Ruby</a>, <a href="http://alicebobandmallory.com/articles/category/cryptography" rel="noindex, follow, tag">Cryptography</a></li>
+    
+    <li>Meta 
+      
+      <a href="../2009/09/16/breaking-simple-ciphers#comments">7 comments</a>,
+      <a href="../2009/09/16/breaking-simple-ciphers" rel="bookmark">permalink</a>,
+      <a href="../../xml/rss/article/3604/feed.xml">rss</a>,    
+      <a href="../../xml/atom/article/3604/feed.xml">atom</a>   
+    </li>
+  </ul>
+</div>
+
+
+<p class="pagination">Older posts: <a href="1">1</a> ...  <a href="3">3</a> <a href="4">4</a> 5 <a href="6">6</a> <a href="7">7</a>  ... <a href="12">12</a></p>
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../pages/AboutMe">About me</a>/<a href="../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

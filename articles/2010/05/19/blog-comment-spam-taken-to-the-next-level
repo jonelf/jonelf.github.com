@@ -1,0 +1,2730 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Blog comment spam taken to the next level?</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="../../../../xml/atom/article/4094/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../../xml/rss20/article/4094/feed.xml" />
+  <script src="../../../../javascripts/cookies.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/prototype.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/effects.js?1170454372" type="text/javascript"></script>
+  <script src="../../../../javascripts/typo.js?1170454372" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="../../../../stylesheets/theme/application.css?1357773761" media="all" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4453587-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</head>
+
+<body>
+<div id="container">
+  <div id="header">
+    <h1><span><a href="../../../../index.html">Alice, Bob, and Mallory</a></span></h1>
+    <h2>metasyntactics</h2>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+       xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+       xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about=""
+    dc:title="Blog comment spam taken to the next level?"
+    dc:identifier="http://alicebobandmallory.com/articles/2010/05/19/blog-comment-spam-taken-to-the-next-level"
+    dc:description="Only days after starting this barely visited blog the comment spammers showed up. I activated Akismet and it solved my problem for a while. Over time the spamming"
+    dc:creator="jonelf"
+    dc:date="2010-05-20T10:46:23+02:00" />
+</rdf:RDF>
+-->
+
+<div class="post" onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_article'); }"  onmouseout="Element.hide('admin_article');" >
+  <a href="http://alicebobandmallory.com/admin/content/edit/4094" class="admintools" id="admin_article" style="display: none">edit</a>
+  <h2>Blog comment spam taken to the next level?</h2>
+  <p class="auth">Posted by Jonas Elfström
+  <span class="typo_date" title="Wed, 19 May 2010 21:01:00 GMT">Wed, 19 May 2010 21:01:00 GMT</span></p>
+  <p>Only days after starting this barely visited blog the <a href="http://en.wikipedia.org/wiki/Spam_in_blogs">comment spammers</a> showed up. I activated <a href="http://akismet.com/">Akismet</a> and it solved my problem for a while. Over time the spamming got worse and although almost no spam actually showed up on the blog, my fear of false positives still forced me to remove the spam manually. Not my idea of fun.</p>
+
+<p>I then activated a very simple hurdle. I demanded JavaScript to be able to post comments. Well, not really, what <a href="http://wiki.github.com/fdv/typo/">Typo</a> really did was to expect the HTTP header <code>X-Requested-With: XMLHttpRequest</code>. That worked flawlessly for about three years. Just six weeks ago I noticed the first spambots including the needed header to pass through. Almost all posted stupid drug ads that Akismet easily identified as spam. The situation was still under control.</p>
+
+<p>Yesterday something completely new happened. I got a comment on an old post about my admiration of Ira Glass and <a href="http://www.thisamericanlife.org/">This American Life</a>. The comment seemed believable enough and it passed the spam filter. Still, the link at the end undeniably identified it as spam.
+Then there was another, and another, and up until now a total of six spam comments in the new and more advanced format. I'm still not sure if these are scripted but it seems an awful lot of work if they are actually manually typed. </p>
+
+<p><a href="../../02/03/ira-glass-on-storytelling"><img src="../../../../images/advanced_blog_spam1.png">
+</a>
+And also these on a post about <a href="../../../2009/10/20/infinite-ranges-in-c">infinite ranges in C#</a>:
+<a href="../../../2009/10/20/infinite-ranges-in-c"><img src="../../../../images/advanced_blog_spam2.png">
+</a></p>
+
+<p>I'm kind of bothered with the ones both referring to content of the post and at the same time mentioning that it's not about programming like most of my posts are.</p>
+
+<p>Are these human or machine made? A clever combination? Also, if you happen to be a spambot and actually answer this then I guess I will have to congratulate you for passing the Turing test.</p>
+
+<p>PS. They spammed from <code>110.0.0.0 - 110.255.255.255</code> so if you happen to have problems with the same spammers and aren't worried about blocking the Philippines then you know what to do. DS.</p>
+</div>
+<p class="meta">
+  Posted in <a href="http://alicebobandmallory.com/articles/category/blogging" rel="noindex, follow, tag">Blogging</a>&nbsp;<strong>|</strong>&nbsp;<a href="blog-comment-spam-taken-to-the-next-level#comments">14 comments</a>
+</p>
+
+  <a name="comments"></a><h4 class="blueblk">Comments</h4>
+    <p class="postmetadata alt">
+      <small><a href="blog-comment-spam-taken-to-the-next-level#respond">Comments closed</a></small>
+    </p>
+  <ol class="comment-list" id="commentList">
+  
+    <ol id="comments" class="comments">
+  	<li class="comment" id="comment-4095">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Charles</cite>
+		<abbr title="2010-05-20T01:11:13+02:00"><span class="typo_date" title="Wed, 19 May 2010 23:11:13 GMT">Wed, 19 May 2010 23:11:13 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Good article. One of the challenges we faced building <a href="http://www.dirtyphonebook.com">DirtyPhoneBook</a>, besides the obvious scaling and legal concerns was how to deal with spam. We took a several tiered approach.</p>
+
+<p>a) As of now, not auto-linking URLs to decrease the incentive to spam
+b) Rate-limiting commenting.
+c) Using Akismet for spam control and having other services code ready to go if need be.
+d) Having a reporting system for users to report spam
+e) Having a captcha system (which will soon also be a number verification system to remove that captcha)
+f) Making some form data hidden fields change so that robots can&#8217;t easily be programmed to submit comments.</p>
+
+<p>There are a few other things we did but those are some of the basics and despite a few serious attempts to spam us so far nothing has gone through.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4096">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T08:59:34+02:00"><span class="typo_date" title="Thu, 20 May 2010 06:59:34 GMT">Thu, 20 May 2010 06:59:34 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Charles thanks, and yes there are certainly a lot of things I could do to try to stop these. </p>
+
+<p>In this case the new kind of spams made me curious to find out if they are generated automatically, from the content of my blog, or if some kind of virtual sweatshop is involved. Because if they are purely software based then they are certainly up there with ELIZA, and that&#8217;s a new breed of spam, at least for me.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4097">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Pac</cite>
+		<abbr title="2010-05-20T10:09:39+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:09:39 GMT">Thu, 20 May 2010 08:09:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Seeing as the spam-comments are well-spelled and with no obvious (american?) internet-twitter-sms acronyms and misspellings, there&#8217;s no chance a normal internet user could have written them, they must be machine-made! ;)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4098">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T10:39:28+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:39:28 GMT">Thu, 20 May 2010 08:39:28 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Are there any thoughts going on regarding hash cash for blog comments? Now that spam bots are able to analyze content, parse and execute javascript and possible pass captchas, is it time to simply make it more time-consuming for them to do so? Or is this idea dead due to a fundamental flaw in the thinking?</p>
+
+<p>For example, when I want to comment on this article, I could get a hidden field with a checksum of a nonce. Upon submission, I would be required to submit the nonce itself, expensively calculated in JavaScript, and the checksum. The server could quickly verify that I have done the calculation.</p>
+
+<p>This never took off with mail, but I believe that is partly due to inertia and the needed support in mail clients. In the blog comment case, you control part of the client, so that every javascript-enabled browser has support for the scheme.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4099">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T11:09:43+02:00"><span class="typo_date" title="Thu, 20 May 2010 09:09:43 GMT">Thu, 20 May 2010 09:09:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@clacke Interesting idea but wouldn&#8217;t it be kind of cruel to users from slow mobile devices and such? There&#8217;s also a huge difference in speed of the JavaScript engines in the current browsers. IE is still very common and way behind in speed (and more).</p>
+
+<p>If the problem gets worse I think I will add a very simple custom text based CAPTCHA. I have that on a page that&#8217;s been online and indexed by search engines for 11 years. There&#8217;s still not one single spambot that has figured it out. They sure do try to post though.</p>
+
+<p>I&#8217;m trying to avoid having to log in (OpenId, Twitter, FB, and so on) to post because I like the idea of it being very simple to comment. Also some commenters may like the anonymity.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4100">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T12:46:24+02:00"><span class="typo_date" title="Thu, 20 May 2010 10:46:24 GMT">Thu, 20 May 2010 10:46:24 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Yes, the mobile device issue would probably be a problem. Although with mobile devices these days running on > 1GHz Snapdragons, maybe not as big a problem as you think. I&#8217;m not talking about minutes here. Only enough to make it less cost-effective to run large-scale spambots. But maybe someone with more insight will tell me that the spammers have access to huge botnets anyway, making the CPU time cheap enough that a scheme like this is meaningless unless it creates a problem even for legitimate users.</p>
+
+<p>Is your CAPTCHA home-grown? I have been thinking about this before. With a few widespread CAPTCHA implementations, spambots would probably focus on trying to get around those. Any site running a custom implementation, with some personal twist, would need the spammers&#8217; personal attention and thus escape the bulk of the spam.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4101">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T13:24:36+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:24:36 GMT">Thu, 20 May 2010 11:24:36 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>Is your CAPTCHA home-grown?</p>
+</blockquote>
+
+<p>Yes, and ridiculously simple. The question is &#8220;8th word on this page&#8221; and the word is always the same and is even present in the title of the page.</p>
+
+<blockquote>
+    <p>would need the spammers’ personal attention</p>
+</blockquote>
+
+<p>Exactly, but only until they perfect their AI. :)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4102">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T13:46:41+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:46:41 GMT">Thu, 20 May 2010 11:46:41 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>The question is “8th word on this page” and the word is always the same</p>
+</blockquote>
+
+<p>Well, the mother of all wikis at c2.com still uses &#8220;Type the code word, 567, here&#8221;, which seems to be working reasonably well, combined with the efforts of moderators and ad-hoc temporary write-blocking of troublesome nets.</p>
+
+<blockquote>
+    <p>Exactly, but only until they perfect their AI. :)</p>
+</blockquote>
+
+<p>So, are you predicting spam overtaking military and porn as the main technology driver? ;-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6587">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-10-04T11:07:05+02:00"><span class="typo_date" title="Tue, 04 Oct 2011 09:07:05 GMT">Tue, 04 Oct 2011 09:07:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p><a href="http://samsaffron.com/archive/2011/10/04/Spam+bacon+sausage+and+blog+spam+a+JavaScript+approach">Spam, bacon, sausage and blog spam: a JavaScript approach - by Sam Saffron</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8079">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T00:35:25+02:00"><span class="typo_date" title="Sun, 08 Apr 2012 22:35:25 GMT">Sun, 08 Apr 2012 22:35:25 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>A couple of minutes ago I finally hacked together a JavaScript based approach. It will be very interesting to see if I will get any spam in the next couple of days.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8108">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T21:50:35+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 19:50:35 GMT">Mon, 09 Apr 2012 19:50:35 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It didn&#8217;t work at all. Either they have a spambot that runs JavaScript or it&#8217;s posted by humans. Next try will be showing the numbers as images. If it&#8217;s a spambot I hope that will stop them for a while.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8111">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T23:41:02+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 21:41:02 GMT">Mon, 09 Apr 2012 21:41:02 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Now the numbers in the comment calc question are images. Let the countdown begin!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8118">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-10T10:33:32+02:00"><span class="typo_date" title="Tue, 10 Apr 2012 08:33:32 GMT">Tue, 10 Apr 2012 08:33:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It took them three hours and my conclusion is that this actually is human entered spam. Fascinating! How can that ever be a profitable business?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8397">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-05-03T23:26:54+02:00"><span class="typo_date" title="Thu, 03 May 2012 21:26:54 GMT">Thu, 03 May 2012 21:26:54 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Possible new kind of spam <a href="http://ezliu.com/my-favorite-spammers-world-of-tanks/">http://ezliu.com/my-favorite-spammers-world-of-tanks/</a></p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-4095">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Charles</cite>
+		<abbr title="2010-05-20T01:11:13+02:00"><span class="typo_date" title="Wed, 19 May 2010 23:11:13 GMT">Wed, 19 May 2010 23:11:13 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Good article. One of the challenges we faced building <a href="http://www.dirtyphonebook.com">DirtyPhoneBook</a>, besides the obvious scaling and legal concerns was how to deal with spam. We took a several tiered approach.</p>
+
+<p>a) As of now, not auto-linking URLs to decrease the incentive to spam
+b) Rate-limiting commenting.
+c) Using Akismet for spam control and having other services code ready to go if need be.
+d) Having a reporting system for users to report spam
+e) Having a captcha system (which will soon also be a number verification system to remove that captcha)
+f) Making some form data hidden fields change so that robots can&#8217;t easily be programmed to submit comments.</p>
+
+<p>There are a few other things we did but those are some of the basics and despite a few serious attempts to spam us so far nothing has gone through.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4096">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T08:59:34+02:00"><span class="typo_date" title="Thu, 20 May 2010 06:59:34 GMT">Thu, 20 May 2010 06:59:34 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Charles thanks, and yes there are certainly a lot of things I could do to try to stop these. </p>
+
+<p>In this case the new kind of spams made me curious to find out if they are generated automatically, from the content of my blog, or if some kind of virtual sweatshop is involved. Because if they are purely software based then they are certainly up there with ELIZA, and that&#8217;s a new breed of spam, at least for me.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4097">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Pac</cite>
+		<abbr title="2010-05-20T10:09:39+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:09:39 GMT">Thu, 20 May 2010 08:09:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Seeing as the spam-comments are well-spelled and with no obvious (american?) internet-twitter-sms acronyms and misspellings, there&#8217;s no chance a normal internet user could have written them, they must be machine-made! ;)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4098">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T10:39:28+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:39:28 GMT">Thu, 20 May 2010 08:39:28 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Are there any thoughts going on regarding hash cash for blog comments? Now that spam bots are able to analyze content, parse and execute javascript and possible pass captchas, is it time to simply make it more time-consuming for them to do so? Or is this idea dead due to a fundamental flaw in the thinking?</p>
+
+<p>For example, when I want to comment on this article, I could get a hidden field with a checksum of a nonce. Upon submission, I would be required to submit the nonce itself, expensively calculated in JavaScript, and the checksum. The server could quickly verify that I have done the calculation.</p>
+
+<p>This never took off with mail, but I believe that is partly due to inertia and the needed support in mail clients. In the blog comment case, you control part of the client, so that every javascript-enabled browser has support for the scheme.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4099">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T11:09:43+02:00"><span class="typo_date" title="Thu, 20 May 2010 09:09:43 GMT">Thu, 20 May 2010 09:09:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@clacke Interesting idea but wouldn&#8217;t it be kind of cruel to users from slow mobile devices and such? There&#8217;s also a huge difference in speed of the JavaScript engines in the current browsers. IE is still very common and way behind in speed (and more).</p>
+
+<p>If the problem gets worse I think I will add a very simple custom text based CAPTCHA. I have that on a page that&#8217;s been online and indexed by search engines for 11 years. There&#8217;s still not one single spambot that has figured it out. They sure do try to post though.</p>
+
+<p>I&#8217;m trying to avoid having to log in (OpenId, Twitter, FB, and so on) to post because I like the idea of it being very simple to comment. Also some commenters may like the anonymity.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4100">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T12:46:24+02:00"><span class="typo_date" title="Thu, 20 May 2010 10:46:24 GMT">Thu, 20 May 2010 10:46:24 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Yes, the mobile device issue would probably be a problem. Although with mobile devices these days running on > 1GHz Snapdragons, maybe not as big a problem as you think. I&#8217;m not talking about minutes here. Only enough to make it less cost-effective to run large-scale spambots. But maybe someone with more insight will tell me that the spammers have access to huge botnets anyway, making the CPU time cheap enough that a scheme like this is meaningless unless it creates a problem even for legitimate users.</p>
+
+<p>Is your CAPTCHA home-grown? I have been thinking about this before. With a few widespread CAPTCHA implementations, spambots would probably focus on trying to get around those. Any site running a custom implementation, with some personal twist, would need the spammers&#8217; personal attention and thus escape the bulk of the spam.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4101">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T13:24:36+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:24:36 GMT">Thu, 20 May 2010 11:24:36 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>Is your CAPTCHA home-grown?</p>
+</blockquote>
+
+<p>Yes, and ridiculously simple. The question is &#8220;8th word on this page&#8221; and the word is always the same and is even present in the title of the page.</p>
+
+<blockquote>
+    <p>would need the spammers’ personal attention</p>
+</blockquote>
+
+<p>Exactly, but only until they perfect their AI. :)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4102">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T13:46:41+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:46:41 GMT">Thu, 20 May 2010 11:46:41 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>The question is “8th word on this page” and the word is always the same</p>
+</blockquote>
+
+<p>Well, the mother of all wikis at c2.com still uses &#8220;Type the code word, 567, here&#8221;, which seems to be working reasonably well, combined with the efforts of moderators and ad-hoc temporary write-blocking of troublesome nets.</p>
+
+<blockquote>
+    <p>Exactly, but only until they perfect their AI. :)</p>
+</blockquote>
+
+<p>So, are you predicting spam overtaking military and porn as the main technology driver? ;-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6587">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-10-04T11:07:05+02:00"><span class="typo_date" title="Tue, 04 Oct 2011 09:07:05 GMT">Tue, 04 Oct 2011 09:07:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p><a href="http://samsaffron.com/archive/2011/10/04/Spam+bacon+sausage+and+blog+spam+a+JavaScript+approach">Spam, bacon, sausage and blog spam: a JavaScript approach - by Sam Saffron</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8079">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T00:35:25+02:00"><span class="typo_date" title="Sun, 08 Apr 2012 22:35:25 GMT">Sun, 08 Apr 2012 22:35:25 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>A couple of minutes ago I finally hacked together a JavaScript based approach. It will be very interesting to see if I will get any spam in the next couple of days.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8108">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T21:50:35+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 19:50:35 GMT">Mon, 09 Apr 2012 19:50:35 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It didn&#8217;t work at all. Either they have a spambot that runs JavaScript or it&#8217;s posted by humans. Next try will be showing the numbers as images. If it&#8217;s a spambot I hope that will stop them for a while.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8111">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T23:41:02+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 21:41:02 GMT">Mon, 09 Apr 2012 21:41:02 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Now the numbers in the comment calc question are images. Let the countdown begin!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8118">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-10T10:33:32+02:00"><span class="typo_date" title="Tue, 10 Apr 2012 08:33:32 GMT">Tue, 10 Apr 2012 08:33:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It took them three hours and my conclusion is that this actually is human entered spam. Fascinating! How can that ever be a profitable business?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8397">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-05-03T23:26:54+02:00"><span class="typo_date" title="Thu, 03 May 2012 21:26:54 GMT">Thu, 03 May 2012 21:26:54 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Possible new kind of spam <a href="http://ezliu.com/my-favorite-spammers-world-of-tanks/">http://ezliu.com/my-favorite-spammers-world-of-tanks/</a></p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-4095">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Charles</cite>
+		<abbr title="2010-05-20T01:11:13+02:00"><span class="typo_date" title="Wed, 19 May 2010 23:11:13 GMT">Wed, 19 May 2010 23:11:13 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Good article. One of the challenges we faced building <a href="http://www.dirtyphonebook.com">DirtyPhoneBook</a>, besides the obvious scaling and legal concerns was how to deal with spam. We took a several tiered approach.</p>
+
+<p>a) As of now, not auto-linking URLs to decrease the incentive to spam
+b) Rate-limiting commenting.
+c) Using Akismet for spam control and having other services code ready to go if need be.
+d) Having a reporting system for users to report spam
+e) Having a captcha system (which will soon also be a number verification system to remove that captcha)
+f) Making some form data hidden fields change so that robots can&#8217;t easily be programmed to submit comments.</p>
+
+<p>There are a few other things we did but those are some of the basics and despite a few serious attempts to spam us so far nothing has gone through.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4096">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T08:59:34+02:00"><span class="typo_date" title="Thu, 20 May 2010 06:59:34 GMT">Thu, 20 May 2010 06:59:34 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Charles thanks, and yes there are certainly a lot of things I could do to try to stop these. </p>
+
+<p>In this case the new kind of spams made me curious to find out if they are generated automatically, from the content of my blog, or if some kind of virtual sweatshop is involved. Because if they are purely software based then they are certainly up there with ELIZA, and that&#8217;s a new breed of spam, at least for me.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4097">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Pac</cite>
+		<abbr title="2010-05-20T10:09:39+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:09:39 GMT">Thu, 20 May 2010 08:09:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Seeing as the spam-comments are well-spelled and with no obvious (american?) internet-twitter-sms acronyms and misspellings, there&#8217;s no chance a normal internet user could have written them, they must be machine-made! ;)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4098">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T10:39:28+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:39:28 GMT">Thu, 20 May 2010 08:39:28 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Are there any thoughts going on regarding hash cash for blog comments? Now that spam bots are able to analyze content, parse and execute javascript and possible pass captchas, is it time to simply make it more time-consuming for them to do so? Or is this idea dead due to a fundamental flaw in the thinking?</p>
+
+<p>For example, when I want to comment on this article, I could get a hidden field with a checksum of a nonce. Upon submission, I would be required to submit the nonce itself, expensively calculated in JavaScript, and the checksum. The server could quickly verify that I have done the calculation.</p>
+
+<p>This never took off with mail, but I believe that is partly due to inertia and the needed support in mail clients. In the blog comment case, you control part of the client, so that every javascript-enabled browser has support for the scheme.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4099">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T11:09:43+02:00"><span class="typo_date" title="Thu, 20 May 2010 09:09:43 GMT">Thu, 20 May 2010 09:09:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@clacke Interesting idea but wouldn&#8217;t it be kind of cruel to users from slow mobile devices and such? There&#8217;s also a huge difference in speed of the JavaScript engines in the current browsers. IE is still very common and way behind in speed (and more).</p>
+
+<p>If the problem gets worse I think I will add a very simple custom text based CAPTCHA. I have that on a page that&#8217;s been online and indexed by search engines for 11 years. There&#8217;s still not one single spambot that has figured it out. They sure do try to post though.</p>
+
+<p>I&#8217;m trying to avoid having to log in (OpenId, Twitter, FB, and so on) to post because I like the idea of it being very simple to comment. Also some commenters may like the anonymity.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4100">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T12:46:24+02:00"><span class="typo_date" title="Thu, 20 May 2010 10:46:24 GMT">Thu, 20 May 2010 10:46:24 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Yes, the mobile device issue would probably be a problem. Although with mobile devices these days running on > 1GHz Snapdragons, maybe not as big a problem as you think. I&#8217;m not talking about minutes here. Only enough to make it less cost-effective to run large-scale spambots. But maybe someone with more insight will tell me that the spammers have access to huge botnets anyway, making the CPU time cheap enough that a scheme like this is meaningless unless it creates a problem even for legitimate users.</p>
+
+<p>Is your CAPTCHA home-grown? I have been thinking about this before. With a few widespread CAPTCHA implementations, spambots would probably focus on trying to get around those. Any site running a custom implementation, with some personal twist, would need the spammers&#8217; personal attention and thus escape the bulk of the spam.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4101">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T13:24:36+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:24:36 GMT">Thu, 20 May 2010 11:24:36 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>Is your CAPTCHA home-grown?</p>
+</blockquote>
+
+<p>Yes, and ridiculously simple. The question is &#8220;8th word on this page&#8221; and the word is always the same and is even present in the title of the page.</p>
+
+<blockquote>
+    <p>would need the spammers’ personal attention</p>
+</blockquote>
+
+<p>Exactly, but only until they perfect their AI. :)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4102">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T13:46:41+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:46:41 GMT">Thu, 20 May 2010 11:46:41 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>The question is “8th word on this page” and the word is always the same</p>
+</blockquote>
+
+<p>Well, the mother of all wikis at c2.com still uses &#8220;Type the code word, 567, here&#8221;, which seems to be working reasonably well, combined with the efforts of moderators and ad-hoc temporary write-blocking of troublesome nets.</p>
+
+<blockquote>
+    <p>Exactly, but only until they perfect their AI. :)</p>
+</blockquote>
+
+<p>So, are you predicting spam overtaking military and porn as the main technology driver? ;-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6587">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-10-04T11:07:05+02:00"><span class="typo_date" title="Tue, 04 Oct 2011 09:07:05 GMT">Tue, 04 Oct 2011 09:07:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p><a href="http://samsaffron.com/archive/2011/10/04/Spam+bacon+sausage+and+blog+spam+a+JavaScript+approach">Spam, bacon, sausage and blog spam: a JavaScript approach - by Sam Saffron</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8079">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T00:35:25+02:00"><span class="typo_date" title="Sun, 08 Apr 2012 22:35:25 GMT">Sun, 08 Apr 2012 22:35:25 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>A couple of minutes ago I finally hacked together a JavaScript based approach. It will be very interesting to see if I will get any spam in the next couple of days.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8108">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T21:50:35+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 19:50:35 GMT">Mon, 09 Apr 2012 19:50:35 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It didn&#8217;t work at all. Either they have a spambot that runs JavaScript or it&#8217;s posted by humans. Next try will be showing the numbers as images. If it&#8217;s a spambot I hope that will stop them for a while.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8111">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T23:41:02+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 21:41:02 GMT">Mon, 09 Apr 2012 21:41:02 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Now the numbers in the comment calc question are images. Let the countdown begin!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8118">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-10T10:33:32+02:00"><span class="typo_date" title="Tue, 10 Apr 2012 08:33:32 GMT">Tue, 10 Apr 2012 08:33:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It took them three hours and my conclusion is that this actually is human entered spam. Fascinating! How can that ever be a profitable business?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8397">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-05-03T23:26:54+02:00"><span class="typo_date" title="Thu, 03 May 2012 21:26:54 GMT">Thu, 03 May 2012 21:26:54 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Possible new kind of spam <a href="http://ezliu.com/my-favorite-spammers-world-of-tanks/">http://ezliu.com/my-favorite-spammers-world-of-tanks/</a></p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-4095">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Charles</cite>
+		<abbr title="2010-05-20T01:11:13+02:00"><span class="typo_date" title="Wed, 19 May 2010 23:11:13 GMT">Wed, 19 May 2010 23:11:13 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Good article. One of the challenges we faced building <a href="http://www.dirtyphonebook.com">DirtyPhoneBook</a>, besides the obvious scaling and legal concerns was how to deal with spam. We took a several tiered approach.</p>
+
+<p>a) As of now, not auto-linking URLs to decrease the incentive to spam
+b) Rate-limiting commenting.
+c) Using Akismet for spam control and having other services code ready to go if need be.
+d) Having a reporting system for users to report spam
+e) Having a captcha system (which will soon also be a number verification system to remove that captcha)
+f) Making some form data hidden fields change so that robots can&#8217;t easily be programmed to submit comments.</p>
+
+<p>There are a few other things we did but those are some of the basics and despite a few serious attempts to spam us so far nothing has gone through.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4096">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T08:59:34+02:00"><span class="typo_date" title="Thu, 20 May 2010 06:59:34 GMT">Thu, 20 May 2010 06:59:34 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Charles thanks, and yes there are certainly a lot of things I could do to try to stop these. </p>
+
+<p>In this case the new kind of spams made me curious to find out if they are generated automatically, from the content of my blog, or if some kind of virtual sweatshop is involved. Because if they are purely software based then they are certainly up there with ELIZA, and that&#8217;s a new breed of spam, at least for me.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4097">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Pac</cite>
+		<abbr title="2010-05-20T10:09:39+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:09:39 GMT">Thu, 20 May 2010 08:09:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Seeing as the spam-comments are well-spelled and with no obvious (american?) internet-twitter-sms acronyms and misspellings, there&#8217;s no chance a normal internet user could have written them, they must be machine-made! ;)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4098">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T10:39:28+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:39:28 GMT">Thu, 20 May 2010 08:39:28 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Are there any thoughts going on regarding hash cash for blog comments? Now that spam bots are able to analyze content, parse and execute javascript and possible pass captchas, is it time to simply make it more time-consuming for them to do so? Or is this idea dead due to a fundamental flaw in the thinking?</p>
+
+<p>For example, when I want to comment on this article, I could get a hidden field with a checksum of a nonce. Upon submission, I would be required to submit the nonce itself, expensively calculated in JavaScript, and the checksum. The server could quickly verify that I have done the calculation.</p>
+
+<p>This never took off with mail, but I believe that is partly due to inertia and the needed support in mail clients. In the blog comment case, you control part of the client, so that every javascript-enabled browser has support for the scheme.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4099">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T11:09:43+02:00"><span class="typo_date" title="Thu, 20 May 2010 09:09:43 GMT">Thu, 20 May 2010 09:09:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@clacke Interesting idea but wouldn&#8217;t it be kind of cruel to users from slow mobile devices and such? There&#8217;s also a huge difference in speed of the JavaScript engines in the current browsers. IE is still very common and way behind in speed (and more).</p>
+
+<p>If the problem gets worse I think I will add a very simple custom text based CAPTCHA. I have that on a page that&#8217;s been online and indexed by search engines for 11 years. There&#8217;s still not one single spambot that has figured it out. They sure do try to post though.</p>
+
+<p>I&#8217;m trying to avoid having to log in (OpenId, Twitter, FB, and so on) to post because I like the idea of it being very simple to comment. Also some commenters may like the anonymity.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4100">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T12:46:24+02:00"><span class="typo_date" title="Thu, 20 May 2010 10:46:24 GMT">Thu, 20 May 2010 10:46:24 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Yes, the mobile device issue would probably be a problem. Although with mobile devices these days running on > 1GHz Snapdragons, maybe not as big a problem as you think. I&#8217;m not talking about minutes here. Only enough to make it less cost-effective to run large-scale spambots. But maybe someone with more insight will tell me that the spammers have access to huge botnets anyway, making the CPU time cheap enough that a scheme like this is meaningless unless it creates a problem even for legitimate users.</p>
+
+<p>Is your CAPTCHA home-grown? I have been thinking about this before. With a few widespread CAPTCHA implementations, spambots would probably focus on trying to get around those. Any site running a custom implementation, with some personal twist, would need the spammers&#8217; personal attention and thus escape the bulk of the spam.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4101">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T13:24:36+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:24:36 GMT">Thu, 20 May 2010 11:24:36 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>Is your CAPTCHA home-grown?</p>
+</blockquote>
+
+<p>Yes, and ridiculously simple. The question is &#8220;8th word on this page&#8221; and the word is always the same and is even present in the title of the page.</p>
+
+<blockquote>
+    <p>would need the spammers’ personal attention</p>
+</blockquote>
+
+<p>Exactly, but only until they perfect their AI. :)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4102">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T13:46:41+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:46:41 GMT">Thu, 20 May 2010 11:46:41 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>The question is “8th word on this page” and the word is always the same</p>
+</blockquote>
+
+<p>Well, the mother of all wikis at c2.com still uses &#8220;Type the code word, 567, here&#8221;, which seems to be working reasonably well, combined with the efforts of moderators and ad-hoc temporary write-blocking of troublesome nets.</p>
+
+<blockquote>
+    <p>Exactly, but only until they perfect their AI. :)</p>
+</blockquote>
+
+<p>So, are you predicting spam overtaking military and porn as the main technology driver? ;-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6587">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-10-04T11:07:05+02:00"><span class="typo_date" title="Tue, 04 Oct 2011 09:07:05 GMT">Tue, 04 Oct 2011 09:07:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p><a href="http://samsaffron.com/archive/2011/10/04/Spam+bacon+sausage+and+blog+spam+a+JavaScript+approach">Spam, bacon, sausage and blog spam: a JavaScript approach - by Sam Saffron</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8079">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T00:35:25+02:00"><span class="typo_date" title="Sun, 08 Apr 2012 22:35:25 GMT">Sun, 08 Apr 2012 22:35:25 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>A couple of minutes ago I finally hacked together a JavaScript based approach. It will be very interesting to see if I will get any spam in the next couple of days.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8108">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T21:50:35+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 19:50:35 GMT">Mon, 09 Apr 2012 19:50:35 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It didn&#8217;t work at all. Either they have a spambot that runs JavaScript or it&#8217;s posted by humans. Next try will be showing the numbers as images. If it&#8217;s a spambot I hope that will stop them for a while.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8111">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T23:41:02+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 21:41:02 GMT">Mon, 09 Apr 2012 21:41:02 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Now the numbers in the comment calc question are images. Let the countdown begin!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8118">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-10T10:33:32+02:00"><span class="typo_date" title="Tue, 10 Apr 2012 08:33:32 GMT">Tue, 10 Apr 2012 08:33:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It took them three hours and my conclusion is that this actually is human entered spam. Fascinating! How can that ever be a profitable business?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8397">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-05-03T23:26:54+02:00"><span class="typo_date" title="Thu, 03 May 2012 21:26:54 GMT">Thu, 03 May 2012 21:26:54 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Possible new kind of spam <a href="http://ezliu.com/my-favorite-spammers-world-of-tanks/">http://ezliu.com/my-favorite-spammers-world-of-tanks/</a></p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-4095">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Charles</cite>
+		<abbr title="2010-05-20T01:11:13+02:00"><span class="typo_date" title="Wed, 19 May 2010 23:11:13 GMT">Wed, 19 May 2010 23:11:13 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Good article. One of the challenges we faced building <a href="http://www.dirtyphonebook.com">DirtyPhoneBook</a>, besides the obvious scaling and legal concerns was how to deal with spam. We took a several tiered approach.</p>
+
+<p>a) As of now, not auto-linking URLs to decrease the incentive to spam
+b) Rate-limiting commenting.
+c) Using Akismet for spam control and having other services code ready to go if need be.
+d) Having a reporting system for users to report spam
+e) Having a captcha system (which will soon also be a number verification system to remove that captcha)
+f) Making some form data hidden fields change so that robots can&#8217;t easily be programmed to submit comments.</p>
+
+<p>There are a few other things we did but those are some of the basics and despite a few serious attempts to spam us so far nothing has gone through.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4096">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T08:59:34+02:00"><span class="typo_date" title="Thu, 20 May 2010 06:59:34 GMT">Thu, 20 May 2010 06:59:34 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Charles thanks, and yes there are certainly a lot of things I could do to try to stop these. </p>
+
+<p>In this case the new kind of spams made me curious to find out if they are generated automatically, from the content of my blog, or if some kind of virtual sweatshop is involved. Because if they are purely software based then they are certainly up there with ELIZA, and that&#8217;s a new breed of spam, at least for me.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4097">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Pac</cite>
+		<abbr title="2010-05-20T10:09:39+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:09:39 GMT">Thu, 20 May 2010 08:09:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Seeing as the spam-comments are well-spelled and with no obvious (american?) internet-twitter-sms acronyms and misspellings, there&#8217;s no chance a normal internet user could have written them, they must be machine-made! ;)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4098">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T10:39:28+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:39:28 GMT">Thu, 20 May 2010 08:39:28 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Are there any thoughts going on regarding hash cash for blog comments? Now that spam bots are able to analyze content, parse and execute javascript and possible pass captchas, is it time to simply make it more time-consuming for them to do so? Or is this idea dead due to a fundamental flaw in the thinking?</p>
+
+<p>For example, when I want to comment on this article, I could get a hidden field with a checksum of a nonce. Upon submission, I would be required to submit the nonce itself, expensively calculated in JavaScript, and the checksum. The server could quickly verify that I have done the calculation.</p>
+
+<p>This never took off with mail, but I believe that is partly due to inertia and the needed support in mail clients. In the blog comment case, you control part of the client, so that every javascript-enabled browser has support for the scheme.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4099">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T11:09:43+02:00"><span class="typo_date" title="Thu, 20 May 2010 09:09:43 GMT">Thu, 20 May 2010 09:09:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@clacke Interesting idea but wouldn&#8217;t it be kind of cruel to users from slow mobile devices and such? There&#8217;s also a huge difference in speed of the JavaScript engines in the current browsers. IE is still very common and way behind in speed (and more).</p>
+
+<p>If the problem gets worse I think I will add a very simple custom text based CAPTCHA. I have that on a page that&#8217;s been online and indexed by search engines for 11 years. There&#8217;s still not one single spambot that has figured it out. They sure do try to post though.</p>
+
+<p>I&#8217;m trying to avoid having to log in (OpenId, Twitter, FB, and so on) to post because I like the idea of it being very simple to comment. Also some commenters may like the anonymity.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4100">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T12:46:24+02:00"><span class="typo_date" title="Thu, 20 May 2010 10:46:24 GMT">Thu, 20 May 2010 10:46:24 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Yes, the mobile device issue would probably be a problem. Although with mobile devices these days running on > 1GHz Snapdragons, maybe not as big a problem as you think. I&#8217;m not talking about minutes here. Only enough to make it less cost-effective to run large-scale spambots. But maybe someone with more insight will tell me that the spammers have access to huge botnets anyway, making the CPU time cheap enough that a scheme like this is meaningless unless it creates a problem even for legitimate users.</p>
+
+<p>Is your CAPTCHA home-grown? I have been thinking about this before. With a few widespread CAPTCHA implementations, spambots would probably focus on trying to get around those. Any site running a custom implementation, with some personal twist, would need the spammers&#8217; personal attention and thus escape the bulk of the spam.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4101">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T13:24:36+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:24:36 GMT">Thu, 20 May 2010 11:24:36 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>Is your CAPTCHA home-grown?</p>
+</blockquote>
+
+<p>Yes, and ridiculously simple. The question is &#8220;8th word on this page&#8221; and the word is always the same and is even present in the title of the page.</p>
+
+<blockquote>
+    <p>would need the spammers’ personal attention</p>
+</blockquote>
+
+<p>Exactly, but only until they perfect their AI. :)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4102">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T13:46:41+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:46:41 GMT">Thu, 20 May 2010 11:46:41 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>The question is “8th word on this page” and the word is always the same</p>
+</blockquote>
+
+<p>Well, the mother of all wikis at c2.com still uses &#8220;Type the code word, 567, here&#8221;, which seems to be working reasonably well, combined with the efforts of moderators and ad-hoc temporary write-blocking of troublesome nets.</p>
+
+<blockquote>
+    <p>Exactly, but only until they perfect their AI. :)</p>
+</blockquote>
+
+<p>So, are you predicting spam overtaking military and porn as the main technology driver? ;-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6587">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-10-04T11:07:05+02:00"><span class="typo_date" title="Tue, 04 Oct 2011 09:07:05 GMT">Tue, 04 Oct 2011 09:07:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p><a href="http://samsaffron.com/archive/2011/10/04/Spam+bacon+sausage+and+blog+spam+a+JavaScript+approach">Spam, bacon, sausage and blog spam: a JavaScript approach - by Sam Saffron</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8079">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T00:35:25+02:00"><span class="typo_date" title="Sun, 08 Apr 2012 22:35:25 GMT">Sun, 08 Apr 2012 22:35:25 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>A couple of minutes ago I finally hacked together a JavaScript based approach. It will be very interesting to see if I will get any spam in the next couple of days.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8108">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T21:50:35+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 19:50:35 GMT">Mon, 09 Apr 2012 19:50:35 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It didn&#8217;t work at all. Either they have a spambot that runs JavaScript or it&#8217;s posted by humans. Next try will be showing the numbers as images. If it&#8217;s a spambot I hope that will stop them for a while.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8111">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T23:41:02+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 21:41:02 GMT">Mon, 09 Apr 2012 21:41:02 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Now the numbers in the comment calc question are images. Let the countdown begin!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8118">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-10T10:33:32+02:00"><span class="typo_date" title="Tue, 10 Apr 2012 08:33:32 GMT">Tue, 10 Apr 2012 08:33:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It took them three hours and my conclusion is that this actually is human entered spam. Fascinating! How can that ever be a profitable business?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8397">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-05-03T23:26:54+02:00"><span class="typo_date" title="Thu, 03 May 2012 21:26:54 GMT">Thu, 03 May 2012 21:26:54 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Possible new kind of spam <a href="http://ezliu.com/my-favorite-spammers-world-of-tanks/">http://ezliu.com/my-favorite-spammers-world-of-tanks/</a></p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-4095">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Charles</cite>
+		<abbr title="2010-05-20T01:11:13+02:00"><span class="typo_date" title="Wed, 19 May 2010 23:11:13 GMT">Wed, 19 May 2010 23:11:13 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Good article. One of the challenges we faced building <a href="http://www.dirtyphonebook.com">DirtyPhoneBook</a>, besides the obvious scaling and legal concerns was how to deal with spam. We took a several tiered approach.</p>
+
+<p>a) As of now, not auto-linking URLs to decrease the incentive to spam
+b) Rate-limiting commenting.
+c) Using Akismet for spam control and having other services code ready to go if need be.
+d) Having a reporting system for users to report spam
+e) Having a captcha system (which will soon also be a number verification system to remove that captcha)
+f) Making some form data hidden fields change so that robots can&#8217;t easily be programmed to submit comments.</p>
+
+<p>There are a few other things we did but those are some of the basics and despite a few serious attempts to spam us so far nothing has gone through.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4096">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T08:59:34+02:00"><span class="typo_date" title="Thu, 20 May 2010 06:59:34 GMT">Thu, 20 May 2010 06:59:34 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Charles thanks, and yes there are certainly a lot of things I could do to try to stop these. </p>
+
+<p>In this case the new kind of spams made me curious to find out if they are generated automatically, from the content of my blog, or if some kind of virtual sweatshop is involved. Because if they are purely software based then they are certainly up there with ELIZA, and that&#8217;s a new breed of spam, at least for me.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4097">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Pac</cite>
+		<abbr title="2010-05-20T10:09:39+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:09:39 GMT">Thu, 20 May 2010 08:09:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Seeing as the spam-comments are well-spelled and with no obvious (american?) internet-twitter-sms acronyms and misspellings, there&#8217;s no chance a normal internet user could have written them, they must be machine-made! ;)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4098">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T10:39:28+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:39:28 GMT">Thu, 20 May 2010 08:39:28 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Are there any thoughts going on regarding hash cash for blog comments? Now that spam bots are able to analyze content, parse and execute javascript and possible pass captchas, is it time to simply make it more time-consuming for them to do so? Or is this idea dead due to a fundamental flaw in the thinking?</p>
+
+<p>For example, when I want to comment on this article, I could get a hidden field with a checksum of a nonce. Upon submission, I would be required to submit the nonce itself, expensively calculated in JavaScript, and the checksum. The server could quickly verify that I have done the calculation.</p>
+
+<p>This never took off with mail, but I believe that is partly due to inertia and the needed support in mail clients. In the blog comment case, you control part of the client, so that every javascript-enabled browser has support for the scheme.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4099">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T11:09:43+02:00"><span class="typo_date" title="Thu, 20 May 2010 09:09:43 GMT">Thu, 20 May 2010 09:09:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@clacke Interesting idea but wouldn&#8217;t it be kind of cruel to users from slow mobile devices and such? There&#8217;s also a huge difference in speed of the JavaScript engines in the current browsers. IE is still very common and way behind in speed (and more).</p>
+
+<p>If the problem gets worse I think I will add a very simple custom text based CAPTCHA. I have that on a page that&#8217;s been online and indexed by search engines for 11 years. There&#8217;s still not one single spambot that has figured it out. They sure do try to post though.</p>
+
+<p>I&#8217;m trying to avoid having to log in (OpenId, Twitter, FB, and so on) to post because I like the idea of it being very simple to comment. Also some commenters may like the anonymity.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4100">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T12:46:24+02:00"><span class="typo_date" title="Thu, 20 May 2010 10:46:24 GMT">Thu, 20 May 2010 10:46:24 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Yes, the mobile device issue would probably be a problem. Although with mobile devices these days running on > 1GHz Snapdragons, maybe not as big a problem as you think. I&#8217;m not talking about minutes here. Only enough to make it less cost-effective to run large-scale spambots. But maybe someone with more insight will tell me that the spammers have access to huge botnets anyway, making the CPU time cheap enough that a scheme like this is meaningless unless it creates a problem even for legitimate users.</p>
+
+<p>Is your CAPTCHA home-grown? I have been thinking about this before. With a few widespread CAPTCHA implementations, spambots would probably focus on trying to get around those. Any site running a custom implementation, with some personal twist, would need the spammers&#8217; personal attention and thus escape the bulk of the spam.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4101">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T13:24:36+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:24:36 GMT">Thu, 20 May 2010 11:24:36 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>Is your CAPTCHA home-grown?</p>
+</blockquote>
+
+<p>Yes, and ridiculously simple. The question is &#8220;8th word on this page&#8221; and the word is always the same and is even present in the title of the page.</p>
+
+<blockquote>
+    <p>would need the spammers’ personal attention</p>
+</blockquote>
+
+<p>Exactly, but only until they perfect their AI. :)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4102">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T13:46:41+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:46:41 GMT">Thu, 20 May 2010 11:46:41 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>The question is “8th word on this page” and the word is always the same</p>
+</blockquote>
+
+<p>Well, the mother of all wikis at c2.com still uses &#8220;Type the code word, 567, here&#8221;, which seems to be working reasonably well, combined with the efforts of moderators and ad-hoc temporary write-blocking of troublesome nets.</p>
+
+<blockquote>
+    <p>Exactly, but only until they perfect their AI. :)</p>
+</blockquote>
+
+<p>So, are you predicting spam overtaking military and porn as the main technology driver? ;-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6587">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-10-04T11:07:05+02:00"><span class="typo_date" title="Tue, 04 Oct 2011 09:07:05 GMT">Tue, 04 Oct 2011 09:07:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p><a href="http://samsaffron.com/archive/2011/10/04/Spam+bacon+sausage+and+blog+spam+a+JavaScript+approach">Spam, bacon, sausage and blog spam: a JavaScript approach - by Sam Saffron</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8079">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T00:35:25+02:00"><span class="typo_date" title="Sun, 08 Apr 2012 22:35:25 GMT">Sun, 08 Apr 2012 22:35:25 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>A couple of minutes ago I finally hacked together a JavaScript based approach. It will be very interesting to see if I will get any spam in the next couple of days.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8108">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T21:50:35+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 19:50:35 GMT">Mon, 09 Apr 2012 19:50:35 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It didn&#8217;t work at all. Either they have a spambot that runs JavaScript or it&#8217;s posted by humans. Next try will be showing the numbers as images. If it&#8217;s a spambot I hope that will stop them for a while.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8111">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T23:41:02+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 21:41:02 GMT">Mon, 09 Apr 2012 21:41:02 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Now the numbers in the comment calc question are images. Let the countdown begin!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8118">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-10T10:33:32+02:00"><span class="typo_date" title="Tue, 10 Apr 2012 08:33:32 GMT">Tue, 10 Apr 2012 08:33:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It took them three hours and my conclusion is that this actually is human entered spam. Fascinating! How can that ever be a profitable business?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8397">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-05-03T23:26:54+02:00"><span class="typo_date" title="Thu, 03 May 2012 21:26:54 GMT">Thu, 03 May 2012 21:26:54 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Possible new kind of spam <a href="http://ezliu.com/my-favorite-spammers-world-of-tanks/">http://ezliu.com/my-favorite-spammers-world-of-tanks/</a></p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-4095">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Charles</cite>
+		<abbr title="2010-05-20T01:11:13+02:00"><span class="typo_date" title="Wed, 19 May 2010 23:11:13 GMT">Wed, 19 May 2010 23:11:13 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Good article. One of the challenges we faced building <a href="http://www.dirtyphonebook.com">DirtyPhoneBook</a>, besides the obvious scaling and legal concerns was how to deal with spam. We took a several tiered approach.</p>
+
+<p>a) As of now, not auto-linking URLs to decrease the incentive to spam
+b) Rate-limiting commenting.
+c) Using Akismet for spam control and having other services code ready to go if need be.
+d) Having a reporting system for users to report spam
+e) Having a captcha system (which will soon also be a number verification system to remove that captcha)
+f) Making some form data hidden fields change so that robots can&#8217;t easily be programmed to submit comments.</p>
+
+<p>There are a few other things we did but those are some of the basics and despite a few serious attempts to spam us so far nothing has gone through.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4096">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T08:59:34+02:00"><span class="typo_date" title="Thu, 20 May 2010 06:59:34 GMT">Thu, 20 May 2010 06:59:34 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Charles thanks, and yes there are certainly a lot of things I could do to try to stop these. </p>
+
+<p>In this case the new kind of spams made me curious to find out if they are generated automatically, from the content of my blog, or if some kind of virtual sweatshop is involved. Because if they are purely software based then they are certainly up there with ELIZA, and that&#8217;s a new breed of spam, at least for me.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4097">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Pac</cite>
+		<abbr title="2010-05-20T10:09:39+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:09:39 GMT">Thu, 20 May 2010 08:09:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Seeing as the spam-comments are well-spelled and with no obvious (american?) internet-twitter-sms acronyms and misspellings, there&#8217;s no chance a normal internet user could have written them, they must be machine-made! ;)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4098">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T10:39:28+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:39:28 GMT">Thu, 20 May 2010 08:39:28 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Are there any thoughts going on regarding hash cash for blog comments? Now that spam bots are able to analyze content, parse and execute javascript and possible pass captchas, is it time to simply make it more time-consuming for them to do so? Or is this idea dead due to a fundamental flaw in the thinking?</p>
+
+<p>For example, when I want to comment on this article, I could get a hidden field with a checksum of a nonce. Upon submission, I would be required to submit the nonce itself, expensively calculated in JavaScript, and the checksum. The server could quickly verify that I have done the calculation.</p>
+
+<p>This never took off with mail, but I believe that is partly due to inertia and the needed support in mail clients. In the blog comment case, you control part of the client, so that every javascript-enabled browser has support for the scheme.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4099">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T11:09:43+02:00"><span class="typo_date" title="Thu, 20 May 2010 09:09:43 GMT">Thu, 20 May 2010 09:09:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@clacke Interesting idea but wouldn&#8217;t it be kind of cruel to users from slow mobile devices and such? There&#8217;s also a huge difference in speed of the JavaScript engines in the current browsers. IE is still very common and way behind in speed (and more).</p>
+
+<p>If the problem gets worse I think I will add a very simple custom text based CAPTCHA. I have that on a page that&#8217;s been online and indexed by search engines for 11 years. There&#8217;s still not one single spambot that has figured it out. They sure do try to post though.</p>
+
+<p>I&#8217;m trying to avoid having to log in (OpenId, Twitter, FB, and so on) to post because I like the idea of it being very simple to comment. Also some commenters may like the anonymity.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4100">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T12:46:24+02:00"><span class="typo_date" title="Thu, 20 May 2010 10:46:24 GMT">Thu, 20 May 2010 10:46:24 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Yes, the mobile device issue would probably be a problem. Although with mobile devices these days running on > 1GHz Snapdragons, maybe not as big a problem as you think. I&#8217;m not talking about minutes here. Only enough to make it less cost-effective to run large-scale spambots. But maybe someone with more insight will tell me that the spammers have access to huge botnets anyway, making the CPU time cheap enough that a scheme like this is meaningless unless it creates a problem even for legitimate users.</p>
+
+<p>Is your CAPTCHA home-grown? I have been thinking about this before. With a few widespread CAPTCHA implementations, spambots would probably focus on trying to get around those. Any site running a custom implementation, with some personal twist, would need the spammers&#8217; personal attention and thus escape the bulk of the spam.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4101">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T13:24:36+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:24:36 GMT">Thu, 20 May 2010 11:24:36 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>Is your CAPTCHA home-grown?</p>
+</blockquote>
+
+<p>Yes, and ridiculously simple. The question is &#8220;8th word on this page&#8221; and the word is always the same and is even present in the title of the page.</p>
+
+<blockquote>
+    <p>would need the spammers’ personal attention</p>
+</blockquote>
+
+<p>Exactly, but only until they perfect their AI. :)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4102">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T13:46:41+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:46:41 GMT">Thu, 20 May 2010 11:46:41 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>The question is “8th word on this page” and the word is always the same</p>
+</blockquote>
+
+<p>Well, the mother of all wikis at c2.com still uses &#8220;Type the code word, 567, here&#8221;, which seems to be working reasonably well, combined with the efforts of moderators and ad-hoc temporary write-blocking of troublesome nets.</p>
+
+<blockquote>
+    <p>Exactly, but only until they perfect their AI. :)</p>
+</blockquote>
+
+<p>So, are you predicting spam overtaking military and porn as the main technology driver? ;-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6587">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-10-04T11:07:05+02:00"><span class="typo_date" title="Tue, 04 Oct 2011 09:07:05 GMT">Tue, 04 Oct 2011 09:07:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p><a href="http://samsaffron.com/archive/2011/10/04/Spam+bacon+sausage+and+blog+spam+a+JavaScript+approach">Spam, bacon, sausage and blog spam: a JavaScript approach - by Sam Saffron</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8079">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T00:35:25+02:00"><span class="typo_date" title="Sun, 08 Apr 2012 22:35:25 GMT">Sun, 08 Apr 2012 22:35:25 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>A couple of minutes ago I finally hacked together a JavaScript based approach. It will be very interesting to see if I will get any spam in the next couple of days.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8108">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T21:50:35+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 19:50:35 GMT">Mon, 09 Apr 2012 19:50:35 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It didn&#8217;t work at all. Either they have a spambot that runs JavaScript or it&#8217;s posted by humans. Next try will be showing the numbers as images. If it&#8217;s a spambot I hope that will stop them for a while.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8111">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T23:41:02+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 21:41:02 GMT">Mon, 09 Apr 2012 21:41:02 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Now the numbers in the comment calc question are images. Let the countdown begin!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8118">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-10T10:33:32+02:00"><span class="typo_date" title="Tue, 10 Apr 2012 08:33:32 GMT">Tue, 10 Apr 2012 08:33:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It took them three hours and my conclusion is that this actually is human entered spam. Fascinating! How can that ever be a profitable business?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8397">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-05-03T23:26:54+02:00"><span class="typo_date" title="Thu, 03 May 2012 21:26:54 GMT">Thu, 03 May 2012 21:26:54 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Possible new kind of spam <a href="http://ezliu.com/my-favorite-spammers-world-of-tanks/">http://ezliu.com/my-favorite-spammers-world-of-tanks/</a></p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-4095">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Charles</cite>
+		<abbr title="2010-05-20T01:11:13+02:00"><span class="typo_date" title="Wed, 19 May 2010 23:11:13 GMT">Wed, 19 May 2010 23:11:13 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Good article. One of the challenges we faced building <a href="http://www.dirtyphonebook.com">DirtyPhoneBook</a>, besides the obvious scaling and legal concerns was how to deal with spam. We took a several tiered approach.</p>
+
+<p>a) As of now, not auto-linking URLs to decrease the incentive to spam
+b) Rate-limiting commenting.
+c) Using Akismet for spam control and having other services code ready to go if need be.
+d) Having a reporting system for users to report spam
+e) Having a captcha system (which will soon also be a number verification system to remove that captcha)
+f) Making some form data hidden fields change so that robots can&#8217;t easily be programmed to submit comments.</p>
+
+<p>There are a few other things we did but those are some of the basics and despite a few serious attempts to spam us so far nothing has gone through.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4096">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T08:59:34+02:00"><span class="typo_date" title="Thu, 20 May 2010 06:59:34 GMT">Thu, 20 May 2010 06:59:34 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Charles thanks, and yes there are certainly a lot of things I could do to try to stop these. </p>
+
+<p>In this case the new kind of spams made me curious to find out if they are generated automatically, from the content of my blog, or if some kind of virtual sweatshop is involved. Because if they are purely software based then they are certainly up there with ELIZA, and that&#8217;s a new breed of spam, at least for me.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4097">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Pac</cite>
+		<abbr title="2010-05-20T10:09:39+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:09:39 GMT">Thu, 20 May 2010 08:09:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Seeing as the spam-comments are well-spelled and with no obvious (american?) internet-twitter-sms acronyms and misspellings, there&#8217;s no chance a normal internet user could have written them, they must be machine-made! ;)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4098">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T10:39:28+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:39:28 GMT">Thu, 20 May 2010 08:39:28 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Are there any thoughts going on regarding hash cash for blog comments? Now that spam bots are able to analyze content, parse and execute javascript and possible pass captchas, is it time to simply make it more time-consuming for them to do so? Or is this idea dead due to a fundamental flaw in the thinking?</p>
+
+<p>For example, when I want to comment on this article, I could get a hidden field with a checksum of a nonce. Upon submission, I would be required to submit the nonce itself, expensively calculated in JavaScript, and the checksum. The server could quickly verify that I have done the calculation.</p>
+
+<p>This never took off with mail, but I believe that is partly due to inertia and the needed support in mail clients. In the blog comment case, you control part of the client, so that every javascript-enabled browser has support for the scheme.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4099">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T11:09:43+02:00"><span class="typo_date" title="Thu, 20 May 2010 09:09:43 GMT">Thu, 20 May 2010 09:09:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@clacke Interesting idea but wouldn&#8217;t it be kind of cruel to users from slow mobile devices and such? There&#8217;s also a huge difference in speed of the JavaScript engines in the current browsers. IE is still very common and way behind in speed (and more).</p>
+
+<p>If the problem gets worse I think I will add a very simple custom text based CAPTCHA. I have that on a page that&#8217;s been online and indexed by search engines for 11 years. There&#8217;s still not one single spambot that has figured it out. They sure do try to post though.</p>
+
+<p>I&#8217;m trying to avoid having to log in (OpenId, Twitter, FB, and so on) to post because I like the idea of it being very simple to comment. Also some commenters may like the anonymity.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4100">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T12:46:24+02:00"><span class="typo_date" title="Thu, 20 May 2010 10:46:24 GMT">Thu, 20 May 2010 10:46:24 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Yes, the mobile device issue would probably be a problem. Although with mobile devices these days running on > 1GHz Snapdragons, maybe not as big a problem as you think. I&#8217;m not talking about minutes here. Only enough to make it less cost-effective to run large-scale spambots. But maybe someone with more insight will tell me that the spammers have access to huge botnets anyway, making the CPU time cheap enough that a scheme like this is meaningless unless it creates a problem even for legitimate users.</p>
+
+<p>Is your CAPTCHA home-grown? I have been thinking about this before. With a few widespread CAPTCHA implementations, spambots would probably focus on trying to get around those. Any site running a custom implementation, with some personal twist, would need the spammers&#8217; personal attention and thus escape the bulk of the spam.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4101">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T13:24:36+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:24:36 GMT">Thu, 20 May 2010 11:24:36 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>Is your CAPTCHA home-grown?</p>
+</blockquote>
+
+<p>Yes, and ridiculously simple. The question is &#8220;8th word on this page&#8221; and the word is always the same and is even present in the title of the page.</p>
+
+<blockquote>
+    <p>would need the spammers’ personal attention</p>
+</blockquote>
+
+<p>Exactly, but only until they perfect their AI. :)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4102">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T13:46:41+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:46:41 GMT">Thu, 20 May 2010 11:46:41 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>The question is “8th word on this page” and the word is always the same</p>
+</blockquote>
+
+<p>Well, the mother of all wikis at c2.com still uses &#8220;Type the code word, 567, here&#8221;, which seems to be working reasonably well, combined with the efforts of moderators and ad-hoc temporary write-blocking of troublesome nets.</p>
+
+<blockquote>
+    <p>Exactly, but only until they perfect their AI. :)</p>
+</blockquote>
+
+<p>So, are you predicting spam overtaking military and porn as the main technology driver? ;-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6587">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-10-04T11:07:05+02:00"><span class="typo_date" title="Tue, 04 Oct 2011 09:07:05 GMT">Tue, 04 Oct 2011 09:07:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p><a href="http://samsaffron.com/archive/2011/10/04/Spam+bacon+sausage+and+blog+spam+a+JavaScript+approach">Spam, bacon, sausage and blog spam: a JavaScript approach - by Sam Saffron</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8079">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T00:35:25+02:00"><span class="typo_date" title="Sun, 08 Apr 2012 22:35:25 GMT">Sun, 08 Apr 2012 22:35:25 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>A couple of minutes ago I finally hacked together a JavaScript based approach. It will be very interesting to see if I will get any spam in the next couple of days.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8108">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T21:50:35+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 19:50:35 GMT">Mon, 09 Apr 2012 19:50:35 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It didn&#8217;t work at all. Either they have a spambot that runs JavaScript or it&#8217;s posted by humans. Next try will be showing the numbers as images. If it&#8217;s a spambot I hope that will stop them for a while.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8111">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T23:41:02+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 21:41:02 GMT">Mon, 09 Apr 2012 21:41:02 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Now the numbers in the comment calc question are images. Let the countdown begin!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8118">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-10T10:33:32+02:00"><span class="typo_date" title="Tue, 10 Apr 2012 08:33:32 GMT">Tue, 10 Apr 2012 08:33:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It took them three hours and my conclusion is that this actually is human entered spam. Fascinating! How can that ever be a profitable business?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8397">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-05-03T23:26:54+02:00"><span class="typo_date" title="Thu, 03 May 2012 21:26:54 GMT">Thu, 03 May 2012 21:26:54 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Possible new kind of spam <a href="http://ezliu.com/my-favorite-spammers-world-of-tanks/">http://ezliu.com/my-favorite-spammers-world-of-tanks/</a></p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-4095">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Charles</cite>
+		<abbr title="2010-05-20T01:11:13+02:00"><span class="typo_date" title="Wed, 19 May 2010 23:11:13 GMT">Wed, 19 May 2010 23:11:13 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Good article. One of the challenges we faced building <a href="http://www.dirtyphonebook.com">DirtyPhoneBook</a>, besides the obvious scaling and legal concerns was how to deal with spam. We took a several tiered approach.</p>
+
+<p>a) As of now, not auto-linking URLs to decrease the incentive to spam
+b) Rate-limiting commenting.
+c) Using Akismet for spam control and having other services code ready to go if need be.
+d) Having a reporting system for users to report spam
+e) Having a captcha system (which will soon also be a number verification system to remove that captcha)
+f) Making some form data hidden fields change so that robots can&#8217;t easily be programmed to submit comments.</p>
+
+<p>There are a few other things we did but those are some of the basics and despite a few serious attempts to spam us so far nothing has gone through.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4096">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T08:59:34+02:00"><span class="typo_date" title="Thu, 20 May 2010 06:59:34 GMT">Thu, 20 May 2010 06:59:34 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Charles thanks, and yes there are certainly a lot of things I could do to try to stop these. </p>
+
+<p>In this case the new kind of spams made me curious to find out if they are generated automatically, from the content of my blog, or if some kind of virtual sweatshop is involved. Because if they are purely software based then they are certainly up there with ELIZA, and that&#8217;s a new breed of spam, at least for me.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4097">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Pac</cite>
+		<abbr title="2010-05-20T10:09:39+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:09:39 GMT">Thu, 20 May 2010 08:09:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Seeing as the spam-comments are well-spelled and with no obvious (american?) internet-twitter-sms acronyms and misspellings, there&#8217;s no chance a normal internet user could have written them, they must be machine-made! ;)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4098">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T10:39:28+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:39:28 GMT">Thu, 20 May 2010 08:39:28 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Are there any thoughts going on regarding hash cash for blog comments? Now that spam bots are able to analyze content, parse and execute javascript and possible pass captchas, is it time to simply make it more time-consuming for them to do so? Or is this idea dead due to a fundamental flaw in the thinking?</p>
+
+<p>For example, when I want to comment on this article, I could get a hidden field with a checksum of a nonce. Upon submission, I would be required to submit the nonce itself, expensively calculated in JavaScript, and the checksum. The server could quickly verify that I have done the calculation.</p>
+
+<p>This never took off with mail, but I believe that is partly due to inertia and the needed support in mail clients. In the blog comment case, you control part of the client, so that every javascript-enabled browser has support for the scheme.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4099">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T11:09:43+02:00"><span class="typo_date" title="Thu, 20 May 2010 09:09:43 GMT">Thu, 20 May 2010 09:09:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@clacke Interesting idea but wouldn&#8217;t it be kind of cruel to users from slow mobile devices and such? There&#8217;s also a huge difference in speed of the JavaScript engines in the current browsers. IE is still very common and way behind in speed (and more).</p>
+
+<p>If the problem gets worse I think I will add a very simple custom text based CAPTCHA. I have that on a page that&#8217;s been online and indexed by search engines for 11 years. There&#8217;s still not one single spambot that has figured it out. They sure do try to post though.</p>
+
+<p>I&#8217;m trying to avoid having to log in (OpenId, Twitter, FB, and so on) to post because I like the idea of it being very simple to comment. Also some commenters may like the anonymity.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4100">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T12:46:24+02:00"><span class="typo_date" title="Thu, 20 May 2010 10:46:24 GMT">Thu, 20 May 2010 10:46:24 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Yes, the mobile device issue would probably be a problem. Although with mobile devices these days running on > 1GHz Snapdragons, maybe not as big a problem as you think. I&#8217;m not talking about minutes here. Only enough to make it less cost-effective to run large-scale spambots. But maybe someone with more insight will tell me that the spammers have access to huge botnets anyway, making the CPU time cheap enough that a scheme like this is meaningless unless it creates a problem even for legitimate users.</p>
+
+<p>Is your CAPTCHA home-grown? I have been thinking about this before. With a few widespread CAPTCHA implementations, spambots would probably focus on trying to get around those. Any site running a custom implementation, with some personal twist, would need the spammers&#8217; personal attention and thus escape the bulk of the spam.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4101">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T13:24:36+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:24:36 GMT">Thu, 20 May 2010 11:24:36 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>Is your CAPTCHA home-grown?</p>
+</blockquote>
+
+<p>Yes, and ridiculously simple. The question is &#8220;8th word on this page&#8221; and the word is always the same and is even present in the title of the page.</p>
+
+<blockquote>
+    <p>would need the spammers’ personal attention</p>
+</blockquote>
+
+<p>Exactly, but only until they perfect their AI. :)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4102">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T13:46:41+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:46:41 GMT">Thu, 20 May 2010 11:46:41 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>The question is “8th word on this page” and the word is always the same</p>
+</blockquote>
+
+<p>Well, the mother of all wikis at c2.com still uses &#8220;Type the code word, 567, here&#8221;, which seems to be working reasonably well, combined with the efforts of moderators and ad-hoc temporary write-blocking of troublesome nets.</p>
+
+<blockquote>
+    <p>Exactly, but only until they perfect their AI. :)</p>
+</blockquote>
+
+<p>So, are you predicting spam overtaking military and porn as the main technology driver? ;-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6587">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-10-04T11:07:05+02:00"><span class="typo_date" title="Tue, 04 Oct 2011 09:07:05 GMT">Tue, 04 Oct 2011 09:07:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p><a href="http://samsaffron.com/archive/2011/10/04/Spam+bacon+sausage+and+blog+spam+a+JavaScript+approach">Spam, bacon, sausage and blog spam: a JavaScript approach - by Sam Saffron</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8079">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T00:35:25+02:00"><span class="typo_date" title="Sun, 08 Apr 2012 22:35:25 GMT">Sun, 08 Apr 2012 22:35:25 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>A couple of minutes ago I finally hacked together a JavaScript based approach. It will be very interesting to see if I will get any spam in the next couple of days.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8108">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T21:50:35+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 19:50:35 GMT">Mon, 09 Apr 2012 19:50:35 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It didn&#8217;t work at all. Either they have a spambot that runs JavaScript or it&#8217;s posted by humans. Next try will be showing the numbers as images. If it&#8217;s a spambot I hope that will stop them for a while.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8111">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T23:41:02+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 21:41:02 GMT">Mon, 09 Apr 2012 21:41:02 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Now the numbers in the comment calc question are images. Let the countdown begin!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8118">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-10T10:33:32+02:00"><span class="typo_date" title="Tue, 10 Apr 2012 08:33:32 GMT">Tue, 10 Apr 2012 08:33:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It took them three hours and my conclusion is that this actually is human entered spam. Fascinating! How can that ever be a profitable business?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8397">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-05-03T23:26:54+02:00"><span class="typo_date" title="Thu, 03 May 2012 21:26:54 GMT">Thu, 03 May 2012 21:26:54 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Possible new kind of spam <a href="http://ezliu.com/my-favorite-spammers-world-of-tanks/">http://ezliu.com/my-favorite-spammers-world-of-tanks/</a></p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-4095">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Charles</cite>
+		<abbr title="2010-05-20T01:11:13+02:00"><span class="typo_date" title="Wed, 19 May 2010 23:11:13 GMT">Wed, 19 May 2010 23:11:13 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Good article. One of the challenges we faced building <a href="http://www.dirtyphonebook.com">DirtyPhoneBook</a>, besides the obvious scaling and legal concerns was how to deal with spam. We took a several tiered approach.</p>
+
+<p>a) As of now, not auto-linking URLs to decrease the incentive to spam
+b) Rate-limiting commenting.
+c) Using Akismet for spam control and having other services code ready to go if need be.
+d) Having a reporting system for users to report spam
+e) Having a captcha system (which will soon also be a number verification system to remove that captcha)
+f) Making some form data hidden fields change so that robots can&#8217;t easily be programmed to submit comments.</p>
+
+<p>There are a few other things we did but those are some of the basics and despite a few serious attempts to spam us so far nothing has gone through.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4096">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T08:59:34+02:00"><span class="typo_date" title="Thu, 20 May 2010 06:59:34 GMT">Thu, 20 May 2010 06:59:34 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Charles thanks, and yes there are certainly a lot of things I could do to try to stop these. </p>
+
+<p>In this case the new kind of spams made me curious to find out if they are generated automatically, from the content of my blog, or if some kind of virtual sweatshop is involved. Because if they are purely software based then they are certainly up there with ELIZA, and that&#8217;s a new breed of spam, at least for me.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4097">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Pac</cite>
+		<abbr title="2010-05-20T10:09:39+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:09:39 GMT">Thu, 20 May 2010 08:09:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Seeing as the spam-comments are well-spelled and with no obvious (american?) internet-twitter-sms acronyms and misspellings, there&#8217;s no chance a normal internet user could have written them, they must be machine-made! ;)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4098">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T10:39:28+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:39:28 GMT">Thu, 20 May 2010 08:39:28 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Are there any thoughts going on regarding hash cash for blog comments? Now that spam bots are able to analyze content, parse and execute javascript and possible pass captchas, is it time to simply make it more time-consuming for them to do so? Or is this idea dead due to a fundamental flaw in the thinking?</p>
+
+<p>For example, when I want to comment on this article, I could get a hidden field with a checksum of a nonce. Upon submission, I would be required to submit the nonce itself, expensively calculated in JavaScript, and the checksum. The server could quickly verify that I have done the calculation.</p>
+
+<p>This never took off with mail, but I believe that is partly due to inertia and the needed support in mail clients. In the blog comment case, you control part of the client, so that every javascript-enabled browser has support for the scheme.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4099">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T11:09:43+02:00"><span class="typo_date" title="Thu, 20 May 2010 09:09:43 GMT">Thu, 20 May 2010 09:09:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@clacke Interesting idea but wouldn&#8217;t it be kind of cruel to users from slow mobile devices and such? There&#8217;s also a huge difference in speed of the JavaScript engines in the current browsers. IE is still very common and way behind in speed (and more).</p>
+
+<p>If the problem gets worse I think I will add a very simple custom text based CAPTCHA. I have that on a page that&#8217;s been online and indexed by search engines for 11 years. There&#8217;s still not one single spambot that has figured it out. They sure do try to post though.</p>
+
+<p>I&#8217;m trying to avoid having to log in (OpenId, Twitter, FB, and so on) to post because I like the idea of it being very simple to comment. Also some commenters may like the anonymity.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4100">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T12:46:24+02:00"><span class="typo_date" title="Thu, 20 May 2010 10:46:24 GMT">Thu, 20 May 2010 10:46:24 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Yes, the mobile device issue would probably be a problem. Although with mobile devices these days running on > 1GHz Snapdragons, maybe not as big a problem as you think. I&#8217;m not talking about minutes here. Only enough to make it less cost-effective to run large-scale spambots. But maybe someone with more insight will tell me that the spammers have access to huge botnets anyway, making the CPU time cheap enough that a scheme like this is meaningless unless it creates a problem even for legitimate users.</p>
+
+<p>Is your CAPTCHA home-grown? I have been thinking about this before. With a few widespread CAPTCHA implementations, spambots would probably focus on trying to get around those. Any site running a custom implementation, with some personal twist, would need the spammers&#8217; personal attention and thus escape the bulk of the spam.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4101">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T13:24:36+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:24:36 GMT">Thu, 20 May 2010 11:24:36 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>Is your CAPTCHA home-grown?</p>
+</blockquote>
+
+<p>Yes, and ridiculously simple. The question is &#8220;8th word on this page&#8221; and the word is always the same and is even present in the title of the page.</p>
+
+<blockquote>
+    <p>would need the spammers’ personal attention</p>
+</blockquote>
+
+<p>Exactly, but only until they perfect their AI. :)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4102">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T13:46:41+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:46:41 GMT">Thu, 20 May 2010 11:46:41 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>The question is “8th word on this page” and the word is always the same</p>
+</blockquote>
+
+<p>Well, the mother of all wikis at c2.com still uses &#8220;Type the code word, 567, here&#8221;, which seems to be working reasonably well, combined with the efforts of moderators and ad-hoc temporary write-blocking of troublesome nets.</p>
+
+<blockquote>
+    <p>Exactly, but only until they perfect their AI. :)</p>
+</blockquote>
+
+<p>So, are you predicting spam overtaking military and porn as the main technology driver? ;-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6587">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-10-04T11:07:05+02:00"><span class="typo_date" title="Tue, 04 Oct 2011 09:07:05 GMT">Tue, 04 Oct 2011 09:07:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p><a href="http://samsaffron.com/archive/2011/10/04/Spam+bacon+sausage+and+blog+spam+a+JavaScript+approach">Spam, bacon, sausage and blog spam: a JavaScript approach - by Sam Saffron</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8079">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T00:35:25+02:00"><span class="typo_date" title="Sun, 08 Apr 2012 22:35:25 GMT">Sun, 08 Apr 2012 22:35:25 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>A couple of minutes ago I finally hacked together a JavaScript based approach. It will be very interesting to see if I will get any spam in the next couple of days.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8108">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T21:50:35+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 19:50:35 GMT">Mon, 09 Apr 2012 19:50:35 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It didn&#8217;t work at all. Either they have a spambot that runs JavaScript or it&#8217;s posted by humans. Next try will be showing the numbers as images. If it&#8217;s a spambot I hope that will stop them for a while.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8111">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T23:41:02+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 21:41:02 GMT">Mon, 09 Apr 2012 21:41:02 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Now the numbers in the comment calc question are images. Let the countdown begin!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8118">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-10T10:33:32+02:00"><span class="typo_date" title="Tue, 10 Apr 2012 08:33:32 GMT">Tue, 10 Apr 2012 08:33:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It took them three hours and my conclusion is that this actually is human entered spam. Fascinating! How can that ever be a profitable business?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8397">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-05-03T23:26:54+02:00"><span class="typo_date" title="Thu, 03 May 2012 21:26:54 GMT">Thu, 03 May 2012 21:26:54 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Possible new kind of spam <a href="http://ezliu.com/my-favorite-spammers-world-of-tanks/">http://ezliu.com/my-favorite-spammers-world-of-tanks/</a></p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-4095">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Charles</cite>
+		<abbr title="2010-05-20T01:11:13+02:00"><span class="typo_date" title="Wed, 19 May 2010 23:11:13 GMT">Wed, 19 May 2010 23:11:13 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Good article. One of the challenges we faced building <a href="http://www.dirtyphonebook.com">DirtyPhoneBook</a>, besides the obvious scaling and legal concerns was how to deal with spam. We took a several tiered approach.</p>
+
+<p>a) As of now, not auto-linking URLs to decrease the incentive to spam
+b) Rate-limiting commenting.
+c) Using Akismet for spam control and having other services code ready to go if need be.
+d) Having a reporting system for users to report spam
+e) Having a captcha system (which will soon also be a number verification system to remove that captcha)
+f) Making some form data hidden fields change so that robots can&#8217;t easily be programmed to submit comments.</p>
+
+<p>There are a few other things we did but those are some of the basics and despite a few serious attempts to spam us so far nothing has gone through.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4096">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T08:59:34+02:00"><span class="typo_date" title="Thu, 20 May 2010 06:59:34 GMT">Thu, 20 May 2010 06:59:34 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Charles thanks, and yes there are certainly a lot of things I could do to try to stop these. </p>
+
+<p>In this case the new kind of spams made me curious to find out if they are generated automatically, from the content of my blog, or if some kind of virtual sweatshop is involved. Because if they are purely software based then they are certainly up there with ELIZA, and that&#8217;s a new breed of spam, at least for me.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4097">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Pac</cite>
+		<abbr title="2010-05-20T10:09:39+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:09:39 GMT">Thu, 20 May 2010 08:09:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Seeing as the spam-comments are well-spelled and with no obvious (american?) internet-twitter-sms acronyms and misspellings, there&#8217;s no chance a normal internet user could have written them, they must be machine-made! ;)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4098">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T10:39:28+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:39:28 GMT">Thu, 20 May 2010 08:39:28 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Are there any thoughts going on regarding hash cash for blog comments? Now that spam bots are able to analyze content, parse and execute javascript and possible pass captchas, is it time to simply make it more time-consuming for them to do so? Or is this idea dead due to a fundamental flaw in the thinking?</p>
+
+<p>For example, when I want to comment on this article, I could get a hidden field with a checksum of a nonce. Upon submission, I would be required to submit the nonce itself, expensively calculated in JavaScript, and the checksum. The server could quickly verify that I have done the calculation.</p>
+
+<p>This never took off with mail, but I believe that is partly due to inertia and the needed support in mail clients. In the blog comment case, you control part of the client, so that every javascript-enabled browser has support for the scheme.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4099">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T11:09:43+02:00"><span class="typo_date" title="Thu, 20 May 2010 09:09:43 GMT">Thu, 20 May 2010 09:09:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@clacke Interesting idea but wouldn&#8217;t it be kind of cruel to users from slow mobile devices and such? There&#8217;s also a huge difference in speed of the JavaScript engines in the current browsers. IE is still very common and way behind in speed (and more).</p>
+
+<p>If the problem gets worse I think I will add a very simple custom text based CAPTCHA. I have that on a page that&#8217;s been online and indexed by search engines for 11 years. There&#8217;s still not one single spambot that has figured it out. They sure do try to post though.</p>
+
+<p>I&#8217;m trying to avoid having to log in (OpenId, Twitter, FB, and so on) to post because I like the idea of it being very simple to comment. Also some commenters may like the anonymity.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4100">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T12:46:24+02:00"><span class="typo_date" title="Thu, 20 May 2010 10:46:24 GMT">Thu, 20 May 2010 10:46:24 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Yes, the mobile device issue would probably be a problem. Although with mobile devices these days running on > 1GHz Snapdragons, maybe not as big a problem as you think. I&#8217;m not talking about minutes here. Only enough to make it less cost-effective to run large-scale spambots. But maybe someone with more insight will tell me that the spammers have access to huge botnets anyway, making the CPU time cheap enough that a scheme like this is meaningless unless it creates a problem even for legitimate users.</p>
+
+<p>Is your CAPTCHA home-grown? I have been thinking about this before. With a few widespread CAPTCHA implementations, spambots would probably focus on trying to get around those. Any site running a custom implementation, with some personal twist, would need the spammers&#8217; personal attention and thus escape the bulk of the spam.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4101">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T13:24:36+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:24:36 GMT">Thu, 20 May 2010 11:24:36 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>Is your CAPTCHA home-grown?</p>
+</blockquote>
+
+<p>Yes, and ridiculously simple. The question is &#8220;8th word on this page&#8221; and the word is always the same and is even present in the title of the page.</p>
+
+<blockquote>
+    <p>would need the spammers’ personal attention</p>
+</blockquote>
+
+<p>Exactly, but only until they perfect their AI. :)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4102">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T13:46:41+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:46:41 GMT">Thu, 20 May 2010 11:46:41 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>The question is “8th word on this page” and the word is always the same</p>
+</blockquote>
+
+<p>Well, the mother of all wikis at c2.com still uses &#8220;Type the code word, 567, here&#8221;, which seems to be working reasonably well, combined with the efforts of moderators and ad-hoc temporary write-blocking of troublesome nets.</p>
+
+<blockquote>
+    <p>Exactly, but only until they perfect their AI. :)</p>
+</blockquote>
+
+<p>So, are you predicting spam overtaking military and porn as the main technology driver? ;-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6587">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-10-04T11:07:05+02:00"><span class="typo_date" title="Tue, 04 Oct 2011 09:07:05 GMT">Tue, 04 Oct 2011 09:07:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p><a href="http://samsaffron.com/archive/2011/10/04/Spam+bacon+sausage+and+blog+spam+a+JavaScript+approach">Spam, bacon, sausage and blog spam: a JavaScript approach - by Sam Saffron</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8079">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T00:35:25+02:00"><span class="typo_date" title="Sun, 08 Apr 2012 22:35:25 GMT">Sun, 08 Apr 2012 22:35:25 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>A couple of minutes ago I finally hacked together a JavaScript based approach. It will be very interesting to see if I will get any spam in the next couple of days.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8108">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T21:50:35+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 19:50:35 GMT">Mon, 09 Apr 2012 19:50:35 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It didn&#8217;t work at all. Either they have a spambot that runs JavaScript or it&#8217;s posted by humans. Next try will be showing the numbers as images. If it&#8217;s a spambot I hope that will stop them for a while.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8111">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T23:41:02+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 21:41:02 GMT">Mon, 09 Apr 2012 21:41:02 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Now the numbers in the comment calc question are images. Let the countdown begin!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8118">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-10T10:33:32+02:00"><span class="typo_date" title="Tue, 10 Apr 2012 08:33:32 GMT">Tue, 10 Apr 2012 08:33:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It took them three hours and my conclusion is that this actually is human entered spam. Fascinating! How can that ever be a profitable business?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8397">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-05-03T23:26:54+02:00"><span class="typo_date" title="Thu, 03 May 2012 21:26:54 GMT">Thu, 03 May 2012 21:26:54 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Possible new kind of spam <a href="http://ezliu.com/my-favorite-spammers-world-of-tanks/">http://ezliu.com/my-favorite-spammers-world-of-tanks/</a></p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-4095">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Charles</cite>
+		<abbr title="2010-05-20T01:11:13+02:00"><span class="typo_date" title="Wed, 19 May 2010 23:11:13 GMT">Wed, 19 May 2010 23:11:13 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Good article. One of the challenges we faced building <a href="http://www.dirtyphonebook.com">DirtyPhoneBook</a>, besides the obvious scaling and legal concerns was how to deal with spam. We took a several tiered approach.</p>
+
+<p>a) As of now, not auto-linking URLs to decrease the incentive to spam
+b) Rate-limiting commenting.
+c) Using Akismet for spam control and having other services code ready to go if need be.
+d) Having a reporting system for users to report spam
+e) Having a captcha system (which will soon also be a number verification system to remove that captcha)
+f) Making some form data hidden fields change so that robots can&#8217;t easily be programmed to submit comments.</p>
+
+<p>There are a few other things we did but those are some of the basics and despite a few serious attempts to spam us so far nothing has gone through.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4096">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T08:59:34+02:00"><span class="typo_date" title="Thu, 20 May 2010 06:59:34 GMT">Thu, 20 May 2010 06:59:34 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Charles thanks, and yes there are certainly a lot of things I could do to try to stop these. </p>
+
+<p>In this case the new kind of spams made me curious to find out if they are generated automatically, from the content of my blog, or if some kind of virtual sweatshop is involved. Because if they are purely software based then they are certainly up there with ELIZA, and that&#8217;s a new breed of spam, at least for me.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4097">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Pac</cite>
+		<abbr title="2010-05-20T10:09:39+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:09:39 GMT">Thu, 20 May 2010 08:09:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Seeing as the spam-comments are well-spelled and with no obvious (american?) internet-twitter-sms acronyms and misspellings, there&#8217;s no chance a normal internet user could have written them, they must be machine-made! ;)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4098">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T10:39:28+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:39:28 GMT">Thu, 20 May 2010 08:39:28 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Are there any thoughts going on regarding hash cash for blog comments? Now that spam bots are able to analyze content, parse and execute javascript and possible pass captchas, is it time to simply make it more time-consuming for them to do so? Or is this idea dead due to a fundamental flaw in the thinking?</p>
+
+<p>For example, when I want to comment on this article, I could get a hidden field with a checksum of a nonce. Upon submission, I would be required to submit the nonce itself, expensively calculated in JavaScript, and the checksum. The server could quickly verify that I have done the calculation.</p>
+
+<p>This never took off with mail, but I believe that is partly due to inertia and the needed support in mail clients. In the blog comment case, you control part of the client, so that every javascript-enabled browser has support for the scheme.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4099">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T11:09:43+02:00"><span class="typo_date" title="Thu, 20 May 2010 09:09:43 GMT">Thu, 20 May 2010 09:09:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@clacke Interesting idea but wouldn&#8217;t it be kind of cruel to users from slow mobile devices and such? There&#8217;s also a huge difference in speed of the JavaScript engines in the current browsers. IE is still very common and way behind in speed (and more).</p>
+
+<p>If the problem gets worse I think I will add a very simple custom text based CAPTCHA. I have that on a page that&#8217;s been online and indexed by search engines for 11 years. There&#8217;s still not one single spambot that has figured it out. They sure do try to post though.</p>
+
+<p>I&#8217;m trying to avoid having to log in (OpenId, Twitter, FB, and so on) to post because I like the idea of it being very simple to comment. Also some commenters may like the anonymity.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4100">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T12:46:24+02:00"><span class="typo_date" title="Thu, 20 May 2010 10:46:24 GMT">Thu, 20 May 2010 10:46:24 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Yes, the mobile device issue would probably be a problem. Although with mobile devices these days running on > 1GHz Snapdragons, maybe not as big a problem as you think. I&#8217;m not talking about minutes here. Only enough to make it less cost-effective to run large-scale spambots. But maybe someone with more insight will tell me that the spammers have access to huge botnets anyway, making the CPU time cheap enough that a scheme like this is meaningless unless it creates a problem even for legitimate users.</p>
+
+<p>Is your CAPTCHA home-grown? I have been thinking about this before. With a few widespread CAPTCHA implementations, spambots would probably focus on trying to get around those. Any site running a custom implementation, with some personal twist, would need the spammers&#8217; personal attention and thus escape the bulk of the spam.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4101">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T13:24:36+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:24:36 GMT">Thu, 20 May 2010 11:24:36 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>Is your CAPTCHA home-grown?</p>
+</blockquote>
+
+<p>Yes, and ridiculously simple. The question is &#8220;8th word on this page&#8221; and the word is always the same and is even present in the title of the page.</p>
+
+<blockquote>
+    <p>would need the spammers’ personal attention</p>
+</blockquote>
+
+<p>Exactly, but only until they perfect their AI. :)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4102">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T13:46:41+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:46:41 GMT">Thu, 20 May 2010 11:46:41 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>The question is “8th word on this page” and the word is always the same</p>
+</blockquote>
+
+<p>Well, the mother of all wikis at c2.com still uses &#8220;Type the code word, 567, here&#8221;, which seems to be working reasonably well, combined with the efforts of moderators and ad-hoc temporary write-blocking of troublesome nets.</p>
+
+<blockquote>
+    <p>Exactly, but only until they perfect their AI. :)</p>
+</blockquote>
+
+<p>So, are you predicting spam overtaking military and porn as the main technology driver? ;-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6587">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-10-04T11:07:05+02:00"><span class="typo_date" title="Tue, 04 Oct 2011 09:07:05 GMT">Tue, 04 Oct 2011 09:07:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p><a href="http://samsaffron.com/archive/2011/10/04/Spam+bacon+sausage+and+blog+spam+a+JavaScript+approach">Spam, bacon, sausage and blog spam: a JavaScript approach - by Sam Saffron</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8079">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T00:35:25+02:00"><span class="typo_date" title="Sun, 08 Apr 2012 22:35:25 GMT">Sun, 08 Apr 2012 22:35:25 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>A couple of minutes ago I finally hacked together a JavaScript based approach. It will be very interesting to see if I will get any spam in the next couple of days.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8108">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T21:50:35+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 19:50:35 GMT">Mon, 09 Apr 2012 19:50:35 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It didn&#8217;t work at all. Either they have a spambot that runs JavaScript or it&#8217;s posted by humans. Next try will be showing the numbers as images. If it&#8217;s a spambot I hope that will stop them for a while.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8111">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T23:41:02+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 21:41:02 GMT">Mon, 09 Apr 2012 21:41:02 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Now the numbers in the comment calc question are images. Let the countdown begin!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8118">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-10T10:33:32+02:00"><span class="typo_date" title="Tue, 10 Apr 2012 08:33:32 GMT">Tue, 10 Apr 2012 08:33:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It took them three hours and my conclusion is that this actually is human entered spam. Fascinating! How can that ever be a profitable business?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8397">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-05-03T23:26:54+02:00"><span class="typo_date" title="Thu, 03 May 2012 21:26:54 GMT">Thu, 03 May 2012 21:26:54 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Possible new kind of spam <a href="http://ezliu.com/my-favorite-spammers-world-of-tanks/">http://ezliu.com/my-favorite-spammers-world-of-tanks/</a></p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-4095">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Charles</cite>
+		<abbr title="2010-05-20T01:11:13+02:00"><span class="typo_date" title="Wed, 19 May 2010 23:11:13 GMT">Wed, 19 May 2010 23:11:13 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Good article. One of the challenges we faced building <a href="http://www.dirtyphonebook.com">DirtyPhoneBook</a>, besides the obvious scaling and legal concerns was how to deal with spam. We took a several tiered approach.</p>
+
+<p>a) As of now, not auto-linking URLs to decrease the incentive to spam
+b) Rate-limiting commenting.
+c) Using Akismet for spam control and having other services code ready to go if need be.
+d) Having a reporting system for users to report spam
+e) Having a captcha system (which will soon also be a number verification system to remove that captcha)
+f) Making some form data hidden fields change so that robots can&#8217;t easily be programmed to submit comments.</p>
+
+<p>There are a few other things we did but those are some of the basics and despite a few serious attempts to spam us so far nothing has gone through.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4096">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T08:59:34+02:00"><span class="typo_date" title="Thu, 20 May 2010 06:59:34 GMT">Thu, 20 May 2010 06:59:34 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Charles thanks, and yes there are certainly a lot of things I could do to try to stop these. </p>
+
+<p>In this case the new kind of spams made me curious to find out if they are generated automatically, from the content of my blog, or if some kind of virtual sweatshop is involved. Because if they are purely software based then they are certainly up there with ELIZA, and that&#8217;s a new breed of spam, at least for me.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4097">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Pac</cite>
+		<abbr title="2010-05-20T10:09:39+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:09:39 GMT">Thu, 20 May 2010 08:09:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Seeing as the spam-comments are well-spelled and with no obvious (american?) internet-twitter-sms acronyms and misspellings, there&#8217;s no chance a normal internet user could have written them, they must be machine-made! ;)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4098">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T10:39:28+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:39:28 GMT">Thu, 20 May 2010 08:39:28 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Are there any thoughts going on regarding hash cash for blog comments? Now that spam bots are able to analyze content, parse and execute javascript and possible pass captchas, is it time to simply make it more time-consuming for them to do so? Or is this idea dead due to a fundamental flaw in the thinking?</p>
+
+<p>For example, when I want to comment on this article, I could get a hidden field with a checksum of a nonce. Upon submission, I would be required to submit the nonce itself, expensively calculated in JavaScript, and the checksum. The server could quickly verify that I have done the calculation.</p>
+
+<p>This never took off with mail, but I believe that is partly due to inertia and the needed support in mail clients. In the blog comment case, you control part of the client, so that every javascript-enabled browser has support for the scheme.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4099">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T11:09:43+02:00"><span class="typo_date" title="Thu, 20 May 2010 09:09:43 GMT">Thu, 20 May 2010 09:09:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@clacke Interesting idea but wouldn&#8217;t it be kind of cruel to users from slow mobile devices and such? There&#8217;s also a huge difference in speed of the JavaScript engines in the current browsers. IE is still very common and way behind in speed (and more).</p>
+
+<p>If the problem gets worse I think I will add a very simple custom text based CAPTCHA. I have that on a page that&#8217;s been online and indexed by search engines for 11 years. There&#8217;s still not one single spambot that has figured it out. They sure do try to post though.</p>
+
+<p>I&#8217;m trying to avoid having to log in (OpenId, Twitter, FB, and so on) to post because I like the idea of it being very simple to comment. Also some commenters may like the anonymity.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4100">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T12:46:24+02:00"><span class="typo_date" title="Thu, 20 May 2010 10:46:24 GMT">Thu, 20 May 2010 10:46:24 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Yes, the mobile device issue would probably be a problem. Although with mobile devices these days running on > 1GHz Snapdragons, maybe not as big a problem as you think. I&#8217;m not talking about minutes here. Only enough to make it less cost-effective to run large-scale spambots. But maybe someone with more insight will tell me that the spammers have access to huge botnets anyway, making the CPU time cheap enough that a scheme like this is meaningless unless it creates a problem even for legitimate users.</p>
+
+<p>Is your CAPTCHA home-grown? I have been thinking about this before. With a few widespread CAPTCHA implementations, spambots would probably focus on trying to get around those. Any site running a custom implementation, with some personal twist, would need the spammers&#8217; personal attention and thus escape the bulk of the spam.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4101">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T13:24:36+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:24:36 GMT">Thu, 20 May 2010 11:24:36 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>Is your CAPTCHA home-grown?</p>
+</blockquote>
+
+<p>Yes, and ridiculously simple. The question is &#8220;8th word on this page&#8221; and the word is always the same and is even present in the title of the page.</p>
+
+<blockquote>
+    <p>would need the spammers’ personal attention</p>
+</blockquote>
+
+<p>Exactly, but only until they perfect their AI. :)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4102">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T13:46:41+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:46:41 GMT">Thu, 20 May 2010 11:46:41 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>The question is “8th word on this page” and the word is always the same</p>
+</blockquote>
+
+<p>Well, the mother of all wikis at c2.com still uses &#8220;Type the code word, 567, here&#8221;, which seems to be working reasonably well, combined with the efforts of moderators and ad-hoc temporary write-blocking of troublesome nets.</p>
+
+<blockquote>
+    <p>Exactly, but only until they perfect their AI. :)</p>
+</blockquote>
+
+<p>So, are you predicting spam overtaking military and porn as the main technology driver? ;-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6587">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-10-04T11:07:05+02:00"><span class="typo_date" title="Tue, 04 Oct 2011 09:07:05 GMT">Tue, 04 Oct 2011 09:07:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p><a href="http://samsaffron.com/archive/2011/10/04/Spam+bacon+sausage+and+blog+spam+a+JavaScript+approach">Spam, bacon, sausage and blog spam: a JavaScript approach - by Sam Saffron</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8079">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T00:35:25+02:00"><span class="typo_date" title="Sun, 08 Apr 2012 22:35:25 GMT">Sun, 08 Apr 2012 22:35:25 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>A couple of minutes ago I finally hacked together a JavaScript based approach. It will be very interesting to see if I will get any spam in the next couple of days.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8108">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T21:50:35+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 19:50:35 GMT">Mon, 09 Apr 2012 19:50:35 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It didn&#8217;t work at all. Either they have a spambot that runs JavaScript or it&#8217;s posted by humans. Next try will be showing the numbers as images. If it&#8217;s a spambot I hope that will stop them for a while.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8111">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T23:41:02+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 21:41:02 GMT">Mon, 09 Apr 2012 21:41:02 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Now the numbers in the comment calc question are images. Let the countdown begin!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8118">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-10T10:33:32+02:00"><span class="typo_date" title="Tue, 10 Apr 2012 08:33:32 GMT">Tue, 10 Apr 2012 08:33:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It took them three hours and my conclusion is that this actually is human entered spam. Fascinating! How can that ever be a profitable business?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8397">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-05-03T23:26:54+02:00"><span class="typo_date" title="Thu, 03 May 2012 21:26:54 GMT">Thu, 03 May 2012 21:26:54 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Possible new kind of spam <a href="http://ezliu.com/my-favorite-spammers-world-of-tanks/">http://ezliu.com/my-favorite-spammers-world-of-tanks/</a></p>
+	  </div>
+	</li>
+	</ol>
+<ol id="comments" class="comments">
+  	<li class="comment" id="comment-4095">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Charles</cite>
+		<abbr title="2010-05-20T01:11:13+02:00"><span class="typo_date" title="Wed, 19 May 2010 23:11:13 GMT">Wed, 19 May 2010 23:11:13 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Good article. One of the challenges we faced building <a href="http://www.dirtyphonebook.com">DirtyPhoneBook</a>, besides the obvious scaling and legal concerns was how to deal with spam. We took a several tiered approach.</p>
+
+<p>a) As of now, not auto-linking URLs to decrease the incentive to spam
+b) Rate-limiting commenting.
+c) Using Akismet for spam control and having other services code ready to go if need be.
+d) Having a reporting system for users to report spam
+e) Having a captcha system (which will soon also be a number verification system to remove that captcha)
+f) Making some form data hidden fields change so that robots can&#8217;t easily be programmed to submit comments.</p>
+
+<p>There are a few other things we did but those are some of the basics and despite a few serious attempts to spam us so far nothing has gone through.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4096">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T08:59:34+02:00"><span class="typo_date" title="Thu, 20 May 2010 06:59:34 GMT">Thu, 20 May 2010 06:59:34 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@Charles thanks, and yes there are certainly a lot of things I could do to try to stop these. </p>
+
+<p>In this case the new kind of spams made me curious to find out if they are generated automatically, from the content of my blog, or if some kind of virtual sweatshop is involved. Because if they are purely software based then they are certainly up there with ELIZA, and that&#8217;s a new breed of spam, at least for me.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4097">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite>Pac</cite>
+		<abbr title="2010-05-20T10:09:39+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:09:39 GMT">Thu, 20 May 2010 08:09:39 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Seeing as the spam-comments are well-spelled and with no obvious (american?) internet-twitter-sms acronyms and misspellings, there&#8217;s no chance a normal internet user could have written them, they must be machine-made! ;)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4098">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T10:39:28+02:00"><span class="typo_date" title="Thu, 20 May 2010 08:39:28 GMT">Thu, 20 May 2010 08:39:28 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Are there any thoughts going on regarding hash cash for blog comments? Now that spam bots are able to analyze content, parse and execute javascript and possible pass captchas, is it time to simply make it more time-consuming for them to do so? Or is this idea dead due to a fundamental flaw in the thinking?</p>
+
+<p>For example, when I want to comment on this article, I could get a hidden field with a checksum of a nonce. Upon submission, I would be required to submit the nonce itself, expensively calculated in JavaScript, and the checksum. The server could quickly verify that I have done the calculation.</p>
+
+<p>This never took off with mail, but I believe that is partly due to inertia and the needed support in mail clients. In the blog comment case, you control part of the client, so that every javascript-enabled browser has support for the scheme.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4099">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T11:09:43+02:00"><span class="typo_date" title="Thu, 20 May 2010 09:09:43 GMT">Thu, 20 May 2010 09:09:43 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>@clacke Interesting idea but wouldn&#8217;t it be kind of cruel to users from slow mobile devices and such? There&#8217;s also a huge difference in speed of the JavaScript engines in the current browsers. IE is still very common and way behind in speed (and more).</p>
+
+<p>If the problem gets worse I think I will add a very simple custom text based CAPTCHA. I have that on a page that&#8217;s been online and indexed by search engines for 11 years. There&#8217;s still not one single spambot that has figured it out. They sure do try to post though.</p>
+
+<p>I&#8217;m trying to avoid having to log in (OpenId, Twitter, FB, and so on) to post because I like the idea of it being very simple to comment. Also some commenters may like the anonymity.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4100">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=c408f7f198e49fb3db945cff2594df04&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T12:46:24+02:00"><span class="typo_date" title="Thu, 20 May 2010 10:46:24 GMT">Thu, 20 May 2010 10:46:24 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Yes, the mobile device issue would probably be a problem. Although with mobile devices these days running on > 1GHz Snapdragons, maybe not as big a problem as you think. I&#8217;m not talking about minutes here. Only enough to make it less cost-effective to run large-scale spambots. But maybe someone with more insight will tell me that the spammers have access to huge botnets anyway, making the CPU time cheap enough that a scheme like this is meaningless unless it creates a problem even for legitimate users.</p>
+
+<p>Is your CAPTCHA home-grown? I have been thinking about this before. With a few widespread CAPTCHA implementations, spambots would probably focus on trying to get around those. Any site running a custom implementation, with some personal twist, would need the spammers&#8217; personal attention and thus escape the bulk of the spam.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4101">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas</a></cite>
+		<abbr title="2010-05-20T13:24:36+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:24:36 GMT">Thu, 20 May 2010 11:24:36 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>Is your CAPTCHA home-grown?</p>
+</blockquote>
+
+<p>Yes, and ridiculously simple. The question is &#8220;8th word on this page&#8221; and the word is always the same and is even present in the title of the page.</p>
+
+<blockquote>
+    <p>would need the spammers’ personal attention</p>
+</blockquote>
+
+<p>Exactly, but only until they perfect their AI. :)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-4102">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=d41d8cd98f00b204e9800998ecf8427e&amp;size=60" /></div>
+	    <cite><a href="http://identi.ca/clacke">clacke</a></cite>
+		<abbr title="2010-05-20T13:46:41+02:00"><span class="typo_date" title="Thu, 20 May 2010 11:46:41 GMT">Thu, 20 May 2010 11:46:41 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <blockquote>
+    <p>The question is “8th word on this page” and the word is always the same</p>
+</blockquote>
+
+<p>Well, the mother of all wikis at c2.com still uses &#8220;Type the code word, 567, here&#8221;, which seems to be working reasonably well, combined with the efforts of moderators and ad-hoc temporary write-blocking of troublesome nets.</p>
+
+<blockquote>
+    <p>Exactly, but only until they perfect their AI. :)</p>
+</blockquote>
+
+<p>So, are you predicting spam overtaking military and porn as the main technology driver? ;-)</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-6587">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite>Jonas Elfström</cite>
+		<abbr title="2011-10-04T11:07:05+02:00"><span class="typo_date" title="Tue, 04 Oct 2011 09:07:05 GMT">Tue, 04 Oct 2011 09:07:05 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p><a href="http://samsaffron.com/archive/2011/10/04/Spam+bacon+sausage+and+blog+spam+a+JavaScript+approach">Spam, bacon, sausage and blog spam: a JavaScript approach - by Sam Saffron</a></p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8079">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T00:35:25+02:00"><span class="typo_date" title="Sun, 08 Apr 2012 22:35:25 GMT">Sun, 08 Apr 2012 22:35:25 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>A couple of minutes ago I finally hacked together a JavaScript based approach. It will be very interesting to see if I will get any spam in the next couple of days.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8108">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T21:50:35+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 19:50:35 GMT">Mon, 09 Apr 2012 19:50:35 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It didn&#8217;t work at all. Either they have a spambot that runs JavaScript or it&#8217;s posted by humans. Next try will be showing the numbers as images. If it&#8217;s a spambot I hope that will stop them for a while.</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8111">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-09T23:41:02+02:00"><span class="typo_date" title="Mon, 09 Apr 2012 21:41:02 GMT">Mon, 09 Apr 2012 21:41:02 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Now the numbers in the comment calc question are images. Let the countdown begin!</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8118">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-04-10T10:33:32+02:00"><span class="typo_date" title="Tue, 10 Apr 2012 08:33:32 GMT">Tue, 10 Apr 2012 08:33:32 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>It took them three hours and my conclusion is that this actually is human entered spam. Fascinating! How can that ever be a profitable business?</p>
+	  </div>
+	</li>
+		<li class="comment" id="comment-8397">
+	  <div class="author">
+	    <div><img alt="Avatar" class="gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=9e36aeb20f1b4a763043d3ce4942b454&amp;size=60" /></div>
+	    <cite><a href="../../../../index.html">Jonas Elfström</a></cite>
+		<abbr title="2012-05-03T23:26:54+02:00"><span class="typo_date" title="Thu, 03 May 2012 21:26:54 GMT">Thu, 03 May 2012 21:26:54 GMT</span></abbr>
+	  </div>
+	  <div class="content">
+	    <p>Possible new kind of spam <a href="http://ezliu.com/my-favorite-spammers-world-of-tanks/">http://ezliu.com/my-favorite-spammers-world-of-tanks/</a></p>
+	  </div>
+	</li>
+	</ol>
+
+  
+  </ol>
+
+
+<p class="postmetadata alt">
+  <small>
+  <a href="../../../../xml/rss20/article/4094/feed.xml" title="RSS Feed">RSS feed for this post</a>
+  </small>
+</p>
+
+
+<p>Comments are closed</p>
+<!--
+  <p>Comments are disabled</p>
+-->
+
+      <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+    </div>
+
+    <div id="sidebar">
+      <!-- search -->
+      <div id="search" class="search">
+<!--	<form action="/articles/search" id="sform" method="get">
+	  <p><input type="text" id="q" name="q" value="" /></p>
+	</form>
+	
+	<div id="loading" class="loading" style="display:none;">Searching...</div>
+	<div id="results" class="results"></div>
+  <script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('loading')}, onLoading:function(request){Element.show('loading')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+-->
+</div>
+
+
+      <!-- sidebar components -->
+      
+      
+<div class="sidebar-node">
+  <h3></h3>
+<a href="http://stackoverflow.com/users/44620/jonas-elfstrom">
+<img src="http://stackoverflow.com/users/flair/44620.png" width="208" height="58" alt="Stack Overflow profile for Jonas Elfström" title="Stack Overflow profile for Jonas Elfström">
+</a>
+<ul>
+<li><nobr><a href="../../../../pages/AboutMe">About me</a>/<a href="../../../../pages/OmMig">Om mig</a></nobr></li>
+</ul>
+<a href="https://gist.github.com/jonelf">Public Gists</a><br><a href="http://jonelf.posterous.com/">Posterous</a><br><br>
+<b>Recommended reading</b><br/><a href="http://www.amazon.com/gp/product/0385495323?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385495323">The Code Book</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385495323" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/>
+<a href="http://www.amazon.com/gp/product/0385493622?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0385493622">Fermat's Enigma</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0385493622" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0399156828?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0399156828">Zero History</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0399156828" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><br/>
+<a href="http://www.amazon.com/gp/product/0470474246?ie=UTF8&tag=alibobandmal-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0470474246">Cryptography Engineering</a><img src="http://www.assoc-amazon.com/e/ir?t=alibobandmal-20&l=as2&o=1&a=0470474246" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<br/><br/>
+
+</div>
+
+
+  
+
+
+    </div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+    <hr />
+    <p><a href="../../../../index.html">Alice, Bob, and Mallory</a></p>
+    <ul>
+      <li>powered by <a href="http://typosphere.org">typo</a> /
+          styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
